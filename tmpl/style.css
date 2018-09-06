@@ -1,0 +1,308 @@
+<!-- this css file gets inlined by the build script to make standalone html5 output
+that is why it has a style tag... -->
+
+<style type="text/css">
+body
+{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+body, p, ul, ol, li, span, div
+{
+     font-family: "FreeSans", "Helvetica", sans-serif; 
+}
+
+pre, code, tt, code span, pre span
+{
+    font-family: "Ubuntu Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+}
+
+p code
+{
+    padding: 0 .25em; 
+}
+
+aside
+{
+    border: medium solid gray;
+    border-radius: 8px;
+    padding: .5em;
+    margin: 3em .5em;
+    background-color: #F6CCDA;
+}
+
+figcaption
+{
+    font-weight: bold;
+    font-size: 90%;
+}
+
+h1,h2,h3,h4,h5, .header-section-number
+{ 
+    font-family: "Gil Sans", Futura, Ubuntu, "Century Gothic", sans-serif; 
+}
+
+h1
+{
+    font-size: 350%; 
+    border-bottom: medium solid black;
+    text-transform: uppercase;
+    padding: 0;
+    padding-top: 3em;
+}
+
+
+
+#foreword, #the-way-of-the-program {
+    counter-reset: section;
+}
+
+section.level1 {
+    counter-increment: section;
+    counter-reset: subsection;
+}
+
+
+h1:before
+{
+    content: "Part " counter(section) ": ";
+}
+
+/*section h1:nth-child(-n+):before
+{
+    content: counter(section, lower-roman) ". ";
+}
+*/
+
+h2:before {
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
+}
+
+
+h1.title:before, h2.author:before, nav#TOC h2:before, #forward h2:before, #preface h2:before {
+    content: "";
+}
+
+
+h1 a, h2 a, h3 a, h4 a
+{
+    color: black;
+}
+
+
+h2{ font-size: 130%; margin:0; margin-top: 1em; }
+h3{ font-size: 120%; font-weight: bold; }
+h4{ font-size: 110%; font-weight: bold; }
+h5 { padding: 0; margin: 0; font-size: 100%; font-style: italic; }
+
+h1.title 
+{
+    margin:0;
+    padding:0;
+    padding-top: 80px;
+    border-style: none;
+    background-color: transparent;
+    color: black;
+    clear: both;
+    color: #ab1c19;
+}
+
+h2.author
+{
+    font-size: 100%;
+    line-height: 1;
+    padding: 0;
+}
+
+
+pre
+{
+    padding: .5em;
+}
+
+dl { margin-left: 2em; }
+dt
+{ 
+    font-weight: bold; 
+    font-size: 115%; 
+    margin-top: .5em;
+}
+dd p {padding: 0; margin: 0; }
+
+
+a { text-decoration: none; }
+a img { border-style: none; }
+
+/*tr.odd { background-color: #d3d3d3; }*/
+
+p
+{
+    margin: .5em 0;
+    line-height: 1.5em;
+}
+
+blockquote
+{
+    line-height: 120%;
+    font-size: 90%;
+    border-left: 3px solid gray;
+    padding-left: 1em;
+}
+
+nav#TOC
+{
+    background: none repeat scroll 0 0 white;
+    counter-reset: toccount;
+}
+
+nav#TOC li
+{
+    list-style-type: none;
+    font-weight: normal;
+}
+
+nav#TOC>ul>li
+{
+    font-weight: bold;
+    padding-top: 1em;
+    margin-bottom: .5em;
+}
+
+
+
+nav#TOC>ul>li:nth-child(3)
+{
+    counter-reset: toccount;
+}
+
+nav#TOC>ul>li:before
+{
+    counter-reset: tocsub;
+    counter-increment: toccount;
+    content: counter(toccount) ". ";
+}
+
+nav#TOC>ul>li:nth-child(-n+2):before
+{
+    content: counter(toccount, lower-roman) ". ";
+}
+
+nav#TOC>ul>li>ul>li:first-child
+{
+    padding-top: .5em;
+}
+
+nav#TOC>ul>li>ul>li:before
+{
+    counter-increment: tocsub;
+    content: counter(toccount) "." counter(tocsub) " ";
+}
+
+ol li ol li
+{
+    list-style-type: lower-alpha;
+}
+
+
+/** code highlighting stuff **/
+
+table.sourceCode, pre.sourceCode
+{
+    line-height: 125%;
+}
+
+td.lineNumbers {
+    border-right: 0px none;
+    padding-right: 0px;
+    margin-right: 0px;
+    width: 2em;
+    text-align: right;
+}
+
+
+p code, li code
+{
+    background-color: #ededed;
+    color: black;
+}
+
+.sourceCode pre, pre.sourceCode, li table .sourceCode
+{
+    color: inherit;
+    border-style: none;
+    background-color: #303030;
+}
+
+
+/** code listings/case studies **/
+
+section[id*="case-study"]
+{
+    padding-left: 40%;
+    position: relative;
+    border-top: 1px solid gray;
+}
+
+section[id*="case-study"] h2, section[id*="case-study"] h3
+{
+    text-align: right;
+    margin: 2em 0;
+
+}
+
+section[id*="case-study"] aside
+{
+    background: white;
+    border-style: none;
+    border-radius: 0px;
+    position: absolute;
+    left: 0;
+    width: 39%;
+    text-align: justify;
+    padding: 0;
+    margin: 0;
+    font-size: 90%;
+}
+
+section[id*="case-study"] aside p
+{
+    margin: 0;
+    padding: 0;
+    padding-right: .5em;
+    line-height: 1.1em;
+    margin-bottom: .5em;
+}
+
+section[id*="case-study"] aside code, h1 code, h2 code, h3 code, h4 code
+{
+    background-color: #ededed;
+    color: black;
+}
+
+#neighbor-details table { border-collapse:collapse; }
+
+#neighbor-details table, #neighbor-details th, #neighbor-details td
+{
+    border: 1px solid black;
+    background-color: white;
+    padding: .25em;
+}
+
+@media screen
+{
+    body
+    {
+        font-size: 14px;
+        width: 720px;
+        margin: 0 auto;
+    }
+
+}
+
+</style>
+
+

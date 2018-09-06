@@ -1,0 +1,19 @@
+<style type="text/css">
+
+@media print
+{
+    a {color: black;}
+
+    #required-books p a:link:after, #suggested-books p a:link:after, *[id*='reading'] p a:link:after, .ref p a:link:after, *[id*='bibliography'] p a:link:after, #required-books p a:link:after:visited, #suggested-books p a:link:after:visited, *[id*='reading'] p a:link:after:visited, .ref p a:link:after:visited, *[id*='bibliography'] p a:link:after:visited, 
+     { content:" <" attr(href) "> "; }
+
+    #TOC {display: none;}
+    body
+    {
+        font-size: 10pt;
+        width: 100%;
+    }
+    .page-break {clear: both; page-break-before: always; }
+}
+
+</style>
