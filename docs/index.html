@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Matthew X. Curinga">
+  <meta name="author" content="Peter Wentworth">
+  <meta name="author" content="Jeffrey Elkner">
+  <meta name="author" content="Allen B. Downey">
+  <meta name="author" content="and Chris Meyers">
+  <title>Think Javascript</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+  </style>
+  <!-- this css file gets inlined by the build script to make standalone html5 output
+  that is why it has a style tag... -->
+  
+  <style type="text/css">
+  body
+  {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+  }
+  
+  body, p, ul, ol, li, span, div
+  {
+       font-family: "FreeSans", "Helvetica", sans-serif; 
+  }
+  
+  pre, code, tt, code span, pre span
+  {
+      font-family: "Ubuntu Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+  }
+  
+  p code
+  {
+      padding: 0 .25em; 
+  }
+  
+  aside
+  {
+      border: medium solid gray;
+      border-radius: 8px;
+      padding: .5em;
+      margin: 3em .5em;
+      background-color: #F6CCDA;
+  }
+  
+  figcaption
+  {
+      font-weight: bold;
+      font-size: 90%;
+  }
+  
+  h1,h2,h3,h4,h5, .header-section-number
+  { 
+      font-family: "Gil Sans", Futura, Ubuntu, "Century Gothic", sans-serif; 
+  }
+  
+  h1
+  {
+      font-size: 350%; 
+      border-bottom: medium solid black;
+      text-transform: uppercase;
+      padding: 0;
+      padding-top: 3em;
+  }
+  
+  
+  
+  #foreword, #the-way-of-the-program {
+      counter-reset: section;
+  }
+  
+  section.level1 {
+      counter-increment: section;
+      counter-reset: subsection;
+  }
+  
+  
+  h1:before
+  {
+      content: "Part " counter(section) ": ";
+  }
+  
+  /*section h1:nth-child(-n+):before
+  {
+      content: counter(section, lower-roman) ". ";
+  }
+  */
+  
+  h2:before {
+      counter-increment: subsection;
+      content: counter(section) "." counter(subsection) " ";
+  }
+  
+  
+  h1.title:before, h2.author:before, nav#TOC h2:before, #forward h2:before, #preface h2:before {
+      content: "";
+  }
+  
+  
+  h1 a, h2 a, h3 a, h4 a
+  {
+      color: black;
+  }
+  
+  
+  h2{ font-size: 130%; margin:0; margin-top: 1em; }
+  h3{ font-size: 120%; font-weight: bold; }
+  h4{ font-size: 110%; font-weight: bold; }
+  h5 { padding: 0; margin: 0; font-size: 100%; font-style: italic; }
+  
+  h1.title 
+  {
+      margin:0;
+      padding:0;
+      padding-top: 80px;
+      border-style: none;
+      background-color: transparent;
+      color: black;
+      clear: both;
+      color: #ab1c19;
+  }
+  
+  h2.author
+  {
+      font-size: 100%;
+      line-height: 1;
+      padding: 0;
+  }
+  
+  
+  pre
+  {
+      padding: .5em;
+  }
+  
+  dl { margin-left: 2em; }
+  dt
+  { 
+      font-weight: bold; 
+      font-size: 115%; 
+      margin-top: .5em;
+  }
+  dd p {padding: 0; margin: 0; }
+  
+  
+  a { text-decoration: none; }
+  a img { border-style: none; }
+  
+  /*tr.odd { background-color: #d3d3d3; }*/
+  
+  p
+  {
+      margin: .5em 0;
+      line-height: 1.5em;
+  }
+  
+  blockquote
+  {
+      line-height: 120%;
+      font-size: 90%;
+      border-left: 3px solid gray;
+      padding-left: 1em;
+  }
+  
+  nav#TOC
+  {
+      background: none repeat scroll 0 0 white;
+      counter-reset: toccount;
+  }
+  
+  nav#TOC li
+  {
+      list-style-type: none;
+      font-weight: normal;
+  }
+  
+  nav#TOC>ul>li
+  {
+      font-weight: bold;
+      padding-top: 1em;
+      margin-bottom: .5em;
+  }
+  
+  
+  
+  nav#TOC>ul>li:nth-child(3)
+  {
+      counter-reset: toccount;
+  }
+  
+  nav#TOC>ul>li:before
+  {
+      counter-reset: tocsub;
+      counter-increment: toccount;
+      content: counter(toccount) ". ";
+  }
+  
+  nav#TOC>ul>li:nth-child(-n+2):before
+  {
+      content: counter(toccount, lower-roman) ". ";
+  }
+  
+  nav#TOC>ul>li>ul>li:first-child
+  {
+      padding-top: .5em;
+  }
+  
+  nav#TOC>ul>li>ul>li:before
+  {
+      counter-increment: tocsub;
+      content: counter(toccount) "." counter(tocsub) " ";
+  }
+  
+  ol li ol li
+  {
+      list-style-type: lower-alpha;
+  }
+  
+  
+  /** code highlighting stuff **/
+  
+  table.sourceCode, pre.sourceCode
+  {
+      line-height: 125%;
+  }
+  
+  td.lineNumbers {
+      border-right: 0px none;
+      padding-right: 0px;
+      margin-right: 0px;
+      width: 2em;
+      text-align: right;
+  }
+  
+  
+  p code, li code
+  {
+      background-color: #ededed;
+      color: black;
+  }
+  
+  .sourceCode pre, pre.sourceCode, li table .sourceCode
+  {
+      color: inherit;
+      border-style: none;
+      background-color: #303030;
+  }
+  
+  
+  /** code listings/case studies **/
+  
+  section[id*="case-study"]
+  {
+      padding-left: 40%;
+      position: relative;
+      border-top: 1px solid gray;
+  }
+  
+  section[id*="case-study"] h2, section[id*="case-study"] h3
+  {
+      text-align: right;
+      margin: 2em 0;
+  
+  }
+  
+  section[id*="case-study"] aside
+  {
+      background: white;
+      border-style: none;
+      border-radius: 0px;
+      position: absolute;
+      left: 0;
+      width: 39%;
+      text-align: justify;
+      padding: 0;
+      margin: 0;
+      font-size: 90%;
+  }
+  
+  section[id*="case-study"] aside p
+  {
+      margin: 0;
+      padding: 0;
+      padding-right: .5em;
+      line-height: 1.1em;
+      margin-bottom: .5em;
+  }
+  
+  section[id*="case-study"] aside code, h1 code, h2 code, h3 code, h4 code
+  {
+      background-color: #ededed;
+      color: black;
+  }
+  
+  #neighbor-details table { border-collapse:collapse; }
+  
+  #neighbor-details table, #neighbor-details th, #neighbor-details td
+  {
+      border: 1px solid black;
+      background-color: white;
+      padding: .25em;
+  }
+  
+  @media screen
+  {
+      body
+      {
+          font-size: 14px;
+          width: 720px;
+          margin: 0 auto;
+      }
+  
+  }
+  
+  </style>
+</head>
+<body>
+<header>
+<h1 class="title">Think Javascript</h1>
+<h2 class="author">Matthew X. Curinga</h2>
+<h2 class="author">Peter Wentworth</h2>
+<h2 class="author">Jeffrey Elkner</h2>
+<h2 class="author">Allen B. Downey</h2>
+<h2 class="author">and Chris Meyers</h2>
+</header>
+<nav id="TOC">
+<h2>Contents</h2>
+<ul>
+<li><a href="#forward">Forward</a><ul>
+<li><a href="#a-very-brief-forward">A very brief forward</a></li>
+<li><a href="#foreword-to-learning-with-python-3-rle">Foreword to Learning with Python 3 (RLE)</a></li>
+<li><a href="#contributor-list">Contributor List</a></li>
+</ul></li>
+<li><a href="#preface-to-previous-edition">Preface to previous edition</a><ul>
+<li><a href="#how-and-why-i-came-to-use-python">How and why I came to use Python</a></li>
+<li><a href="#finding-a-textbook">Finding a textbook</a></li>
+<li><a href="#introducing-programming-with-python">Introducing programming with Python</a></li>
+<li><a href="#building-a-community">Building a community</a></li>
+<li><a href="#the-rhodes-local-edition-rle-version-of-august-2012">The Rhodes Local Edition (RLE) (Version of August, 2012)</a></li>
+</ul></li>
+<li><a href="#the-way-of-the-program">The way of the program</a><ul>
+<li><a href="#the-javascript-programming-language">The Javascript programming language</a></li>
+<li><a href="#what-is-a-program">What is a program?</a></li>
+<li><a href="#what-is-debugging">What is debugging?</a></li>
+<li><a href="#syntax-errors">Syntax errors</a></li>
+<li><a href="#runtime-errors">Runtime errors</a></li>
+<li><a href="#semantic-errors">Semantic errors</a></li>
+<li><a href="#experimental-debugging">Experimental debugging</a></li>
+<li><a href="#formal-and-natural-languages">Formal and natural languages</a></li>
+<li><a href="#glossary">Glossary</a></li>
+<li><a href="#the-first-program">The first program</a></li>
+<li><a href="#comments">Comments</a></li>
+<li><a href="#glossary-1">Glossary</a></li>
+</ul></li>
+<li><a href="#variables-expressions-and-statements">Variables, expressions and statements</a><ul>
+<li><a href="#values-and-data-types">Values and data types</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#variable-names-and-keywords">Variable names and keywords</a></li>
+<li><a href="#statements">Statements</a></li>
+<li><a href="#evaluating-expressions">Evaluating expressions</a></li>
+<li><a href="#operators-and-operands">Operators and operands</a></li>
+<li><a href="#type-conversion">Type conversion</a></li>
+<li><a href="#order-of-operations">Order of operations</a></li>
+<li><a href="#operations-on-strings">Operations on strings</a></li>
+<li><a href="#input">Input</a></li>
+<li><a href="#composition">Composition</a></li>
+<li><a href="#the-modulus-operator">The modulus operator</a></li>
+<li><a href="#glossary-2">Glossary</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>The Adelphi University Mod of <em>Think Python</em> ports to Javascript the <a href="http://openbookproject.net/thinkcs/python/english3e/"><em>Learning with Python 3 (RLE)</em> edition by Peter Wentworth</a>.</p>
+<p><strong>Copyright Notice</strong></p>
+<p>Copyright (C) 2018. Matthew X. Curinga.</p>
+<p>Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with Invariant Sections being Foreword, Preface, and Contributor List, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled “GNU Free Documentation License”.</p>
+<section id="forward" class="level1">
+<h1>Forward</h1>
+<section id="a-very-brief-forward" class="level2">
+<h2>A very brief forward</h2>
+<p>In the Ed Tech department at Adelphi, we have switched our introductory programming courses from Python to Javascript. Javascript has many of the features we like about Python, but also offers easy congiguration and a path to developing web and mobile apps without introducing additional programming languages. Most of the text is a straight port of the Python text, with some details to the specific Javascript features. The chapters are augmented with video tutorials and large code samples that focus on unstructured problem solving.</p>
+</section>
+<section id="foreword-to-learning-with-python-3-rle" class="level2">
+<h2>Foreword to Learning with Python 3 (RLE)</h2>
+<p>By David Beazley</p>
+<p>As an educator, researcher, and book author, I am delighted to see the completion of this book. Python is a fun and extremely easy-to-use programming language that has steadily gained in popularity over the last few years. Developed over ten years ago by Guido van Rossum, Python’s simple syntax and overall feel is largely derived from ABC, a teaching language that was developed in the 1980’s. However, Python was also created to solve real problems and it borrows a wide variety of features from programming languages such as C++, Java, Modula-3, and Scheme. Because of this, one of Python’s most remarkable features is its broad appeal to professional software developers, scientists, researchers, artists, and educators.</p>
+<p>Despite Python’s appeal to many different communities, you may still wonder why Python? or why teach programming with Python? Answering these questions is no simple task—especially when popular opinion is on the side of more masochistic alternatives such as C++ and Java. However, I think the most direct answer is that programming in Python is simply a lot of fun and more productive.</p>
+<p>When I teach computer science courses, I want to cover important concepts in addition to making the material interesting and engaging to students. Unfortunately, there is a tendency for introductory programming courses to focus far too much attention on mathematical abstraction and for students to become frustrated with annoying problems related to low-level details of syntax, compilation, and the enforcement of seemingly arcane rules. Although such abstraction and formalism is important to professional software engineers and students who plan to continue their study of computer science, taking such an approach in an introductory course mostly succeeds in making computer science boring. When I teach a course, I don’t want to have a room of uninspired students. I would much rather see them trying to solve interesting problems by exploring different ideas, taking unconventional approaches, breaking the rules, and learning from their mistakes. In doing so, I don’t want to waste half of the semester trying to sort out obscure syntax problems, unintelligible compiler error messages, or the several hundred ways that a program might generate a general protection fault.</p>
+<p>One of the reasons why I like Python is that it provides a really nice balance between the practical and the conceptual. Since Python is interpreted, beginners can pick up the language and start doing neat things almost immediately without getting lost in the problems of compilation and linking. Furthermore, Python comes with a large library of modules that can be used to do all sorts of tasks ranging from web-programming to graphics. Having such a practical focus is a great way to engage students and it allows them to complete significant projects. However, Python can also serve as an excellent foundation for introducing important computer science concepts. Since Python fully supports procedures and classes, students can be gradually introduced to topics such as procedural abstraction, data structures, and object-oriented programming — all of which are applicable to later courses on Java or C++. Python even borrows a number of features from functional programming languages and can be used to introduce concepts that would be covered in more detail in courses on Scheme and Lisp.</p>
+<p>In reading Jeffrey’s preface, I am struck by his comments that Python allowed him to see a higher level of success and a lower level of frustration and that he was able to move faster with better results. Although these comments refer to his introductory course, I sometimes use Python for these exact same reasons in advanced graduate level computer science courses at the University of Chicago. In these courses, I am constantly faced with the daunting task of covering a lot of difficult course material in a blistering nine week quarter. Although it is certainly possible for me to inflict a lot of pain and suffering by using a language like C++, I have often found this approach to be counterproductive—especially when the course is about a topic unrelated to just programming. I find that using Python allows me to better focus on the actual topic at hand while allowing students to complete substantial class projects.</p>
+<p>Although Python is still a young and evolving language, I believe that it has a bright future in education. This book is an important step in that direction. David Beazley University of Chicago Author of the <em>Python Essential Reference</em></p>
+</section>
+<section id="contributor-list" class="level2">
+<h2>Contributor List</h2>
+<p>To paraphrase the philosophy of the Free Software Foundation, this book is free like free speech, but not necessarily free like free pizza. It came about because of a collaboration that would not have been possible without the GNU Free Documentation License. So we would like to thank the Free Software Foundation for developing this license and, of course, making it available to us.</p>
+<p>We would also like to thank the more than 100 sharp-eyed and thoughtful readers who have sent us suggestions and corrections over the past few years. In the spirit of free software, we decided to express our gratitude in the form of a contributor list. Unfortunately, this list is not complete, but we are doing our best to keep it up to date. It was also getting too large to include everyone who sends in a typo or two. You have our gratitude, and you have the personal satisfaction of making a book you found useful better for you and everyone else who uses it. New additions to the list for the 2nd edition will be those who have made on-going contributions.</p>
+<p>If you have a chance to look through the list, you should realize that each person here has spared you and all subsequent readers from the confusion of a technical error or a less-than-transparent explanation, just by sending us a note.</p>
+<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
+<section id="second-edition" class="level3">
+<h3>Second Edition</h3>
+<ul>
+<li>An email from Mike MacHenry set me straight on tail recursion. He not only pointed out an error in the presentation, but suggested how to correct it.</li>
+<li>It wasn’t until 5th Grade student Owen Davies came to me in a Saturday morning Python enrichment class and said he wanted to write the card game, Gin Rummy, in Python that I finally knew what I wanted to use as the case study for the object oriented programming chapters.</li>
+<li>A <em>special</em> thanks to pioneering students in Jeff’s Python Programming class at <a href="http://www.arlington.k12.va.us/1540108115320583/blank/browse.asp?A=383&amp;BMDRN=2000&amp;BCOB=0&amp;C=59085%3E">GCTAA</a> during the 2009-2010 school year: Safath Ahmed, Howard Batiste, Louis Elkner-Alfaro, and Rachel Hancock. Your continual and thoughtfull feedback led to changes in most of the chapters of the book. You set the standard for the active and engaged learners that will help make the new Governor’s Academy what it is to become. Thanks to you this is truly a <em>student tested</em> text.</li>
+<li>Thanks in a similar vein to the students in Jeff’s Computer Science class at the HB-Woodlawn program during the 2007-2008 school year: James Crowley, Joshua Eddy, Eric Larson, Brian McGrail, and Iliana Vazuka.</li>
+<li>Ammar Nabulsi sent in numerous corrections from Chapters 1 and 2.</li>
+<li>Aldric Giacomoni pointed out an error in our definition of the Fibonacci sequence in Chapter 5.</li>
+<li>Roger Sperberg sent in several spelling corrections and pointed out a twisted piece of logic in Chapter 3.</li>
+<li>Adele Goldberg sat down with Jeff at PyCon 2007 and gave him a list of suggestions and corrections from throughout the book.</li>
+<li>Ben Bruno sent in corrections for chapters 4, 5, 6, and 7.</li>
+<li>Carl LaCombe pointed out that we incorrectly used the term commutative in chapter 6 where symmetric was the correct term.</li>
+<li>Alessandro Montanile sent in corrections for errors in the code examples and text in chapters 3, 12, 15, 17, 18, 19, and 20.</li>
+<li>Emanuele Rusconi found errors in chapters 4, 8, and 15.</li>
+<li>Michael Vogt reported an indentation error in an example in chapter 6, and sent in a suggestion for improving the clarity of the shell vs. script section in chapter 1.</li>
+</ul>
+</section>
+<section id="first-edition" class="level3">
+<h3>First Edition</h3>
+<ul>
+<li>Lloyd Hugh Allen sent in a correction to Section 8.4.</li>
+<li>Yvon Boulianne sent in a correction of a semantic error in Chapter 5.</li>
+<li>Fred Bremmer submitted a correction in Section 2.1.</li>
+<li>Jonah Cohen wrote the Perl scripts to convert the LaTeX source for this book into beautiful HTML.</li>
+<li>Michael Conlon sent in a grammar correction in Chapter 2 and an improvement in style in Chapter 1, and he initiated discussion on the technical aspects of interpreters.</li>
+<li>Benoit Girard sent in a correction to a humorous mistake in Section 5.6.</li>
+<li>Courtney Gleason and Katherine Smith wrote <code>horsebet.py</code>, which was used as a case study in an earlier version of the book. Their program can now be found on the website.</li>
+<li>Lee Harr submitted more corrections than we have room to list here, and indeed he should be listed as one of the principal editors of the text.</li>
+<li>James Kaylin is a student using the text. He has submitted numerous corrections.</li>
+<li>David Kershaw fixed the broken <code>catTwice</code> function in Section 3.10.</li>
+<li>Eddie Lam has sent in numerous corrections to Chapters 1, 2, and 3. He also fixed the Makefile so that it creates an index the first time it is run and helped us set up a versioning scheme.</li>
+<li>Man-Yong Lee sent in a correction to the example code in Section 2.4.</li>
+<li>David Mayo pointed out that the word unconsciously in Chapter 1 needed to be changed to subconsciously .</li>
+<li>Chris McAloon sent in several corrections to Sections 3.9 and 3.10.</li>
+<li>Matthew J. Moelter has been a long-time contributor who sent in numerous corrections and suggestions to the book.</li>
+<li>Simon Dicon Montford reported a missing function definition and several typos in Chapter 3. He also found errors in the <code>increment</code> function in Chapter 13.</li>
+<li>John Ouzts corrected the definition of return value in Chapter 3.</li>
+<li>Kevin Parks sent in valuable comments and suggestions as to how to improve the distribution of the book.</li>
+<li>David Pool sent in a typo in the glossary of Chapter 1, as well as kind words of encouragement.</li>
+<li>Michael Schmitt sent in a correction to the chapter on files and exceptions.</li>
+<li>Robin Shaw pointed out an error in Section 13.1, where the printTime function was used in an example without being defined.</li>
+<li>Paul Sleigh found an error in Chapter 7 and a bug in Jonah Cohen’s Perl script that generates HTML from LaTeX.</li>
+<li>Craig T. Snydal is testing the text in a course at Drew University. He has contributed several valuable suggestions and corrections.</li>
+<li>Ian Thomas and his students are using the text in a programming course. They are the first ones to test the chapters in the latter half of the book, and they have make numerous corrections and suggestions.</li>
+<li>Keith Verheyden sent in a correction in Chapter 3.</li>
+<li>Peter Winstanley let us know about a longstanding error in our Latin in Chapter 3.</li>
+<li>Chris Wrobel made corrections to the code in the chapter on file I/O and exceptions.</li>
+<li>Moshe Zadka has made invaluable contributions to this project. In addition to writing the first draft of the chapter on Dictionaries, he provided continual guidance in the early stages of the book.</li>
+<li>Christoph Zwerschke sent several corrections and pedagogic suggestions, and explained the difference between <em>gleich</em> and <em>selbe</em>.</li>
+<li>James Mayer sent us a whole slew of spelling and typographical errors, including two in the contributor list.</li>
+<li>Hayden McAfee caught a potentially confusing inconsistency between two examples.</li>
+<li>Angel Arnal is part of an international team of translators working on the Spanish version of the text. He has also found several errors in the English version.</li>
+<li>Tauhidul Hoque and Lex Berezhny created the illustrations in Chapter 1 and improved many of the other illustrations.</li>
+<li>Dr. Michele Alzetta caught an error in Chapter 8 and sent some interesting pedagogic comments and suggestions about Fibonacci and Old Maid.</li>
+<li>Andy Mitchell caught a typo in Chapter 1 and a broken example in Chapter 2.</li>
+<li>Kalin Harvey suggested a clarification in Chapter 7 and caught some typos.</li>
+<li>Christopher P. Smith caught several typos and is helping us prepare to update the book for Python 2.2.</li>
+<li>David Hutchins caught a typo in the Foreword.</li>
+<li>Gregor Lingl is teaching Python at a high school in Vienna, Austria. He is working on a German translation of the book, and he caught a couple of bad errors in Chapter 5.</li>
+<li>Julie Peters caught a typo in the Preface.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="preface-to-previous-edition" class="level1">
+<h1>Preface to previous edition</h1>
+<p>By Jeffrey Elkner</p>
+<p>This book owes its existence to the collaboration made possible by the Internet and the free software movement. Its three authors—a college professor, a high school teacher, and a professional programmer—never met face to face to work on it, but we have been able to collaborate closely, aided by many other folks who have taken the time and energy to send us their feedback.</p>
+<p>We think this book is a testament to the benefits and future possibilities of this kind of collaboration, the framework for which has been put in place by Richard Stallman and the Free Software Foundation.</p>
+<section id="how-and-why-i-came-to-use-python" class="level2">
+<h2>How and why I came to use Python</h2>
+<p>In 1999, the College Board’s Advanced Placement (AP) Computer Science exam was given in C++ for the first time. As in many high schools throughout the country, the decision to change languages had a direct impact on the computer science curriculum at Yorktown High School in Arlington, Virginia, where I teach. Up to this point, Pascal was the language of instruction in both our first-year and AP courses. In keeping with past practice of giving students two years of exposure to the same language, we made the decision to switch to C++ in the first year course for the 1997-98 school year so that we would be in step with the College Board’s change for the AP course the following year.</p>
+<p>Two years later, I was convinced that C++ was a poor choice to use for introducing students to computer science. While it is certainly a very powerful programming language, it is also an extremely difficult language to learn and teach. I found myself constantly fighting with C++’s difficult syntax and multiple ways of doing things, and I was losing many students unnecessarily as a result. Convinced there had to be a better language choice for our first-year class, I went looking for an alternative to C++.</p>
+<p>I needed a language that would run on the machines in our GNU/Linux lab as well as on the Windows and Macintosh platforms most students have at home. I wanted it to be free software, so that students could use it at home regardless of their income. I wanted a language that was used by professional programmers, and one that had an active developer community around it. It had to support both procedural and object-oriented programming. And most importantly, it had to be easy to learn and teach. When I investigated the choices with these goals in mind, Python stood out as the best candidate for the job.</p>
+<p>I asked one of Yorktown’s talented students, Matt Ahrens, to give Python a try. In two months he not only learned the language but wrote an application called pyTicket that enabled our staff to report technology problems via the Web. I knew that Matt could not have finished an application of that scale in so short a time in C++, and this accomplishment, combined with Matt’s positive assessment of Python, suggested that Python was the solution I was looking for.</p>
+</section>
+<section id="finding-a-textbook" class="level2">
+<h2>Finding a textbook</h2>
+<p>Having decided to use Python in both of my introductory computer science classes the following year, the most pressing problem was the lack of an available textbook.</p>
+<p>Free documents came to the rescue. Earlier in the year, Richard Stallman had introduced me to Allen Downey. Both of us had written to Richard expressing an interest in developing free educational materials. Allen had already written a first-year computer science textbook, <em>How to Think Like a Computer Scientist</em>. When I read this book, I knew immediately that I wanted to use it in my class. It was the clearest and most helpful computer science text I had seen. It emphasized the processes of thought involved in programming rather than the features of a particular language. Reading it immediately made me a better teacher.</p>
+<p><em>How to Think Like a Computer Scientist</em> was not just an excellent book, but it had been released under the GNU public license, which meant it could be used freely and modified to meet the needs of its user. Once I decided to use Python, it occurred to me that I could translate Allen’s original Java version of the book into the new language. While I would not have been able to write a textbook on my own, having Allen’s book to work from made it possible for me to do so, at the same time demonstrating that the cooperative development model used so well in software could also work for educational materials.</p>
+<p>Working on this book for the last two years has been rewarding for both my students and me, and my students played a big part in the process. Since I could make instant changes whenever someone found a spelling error or difficult passage, I encouraged them to look for mistakes in the book by giving them a bonus point each time they made a suggestion that resulted in a change in the text. This had the double benefit of encouraging them to read the text more carefully and of getting the text thoroughly reviewed by its most important critics, students using it to learn computer science.</p>
+<p>For the second half of the book on object-oriented programming, I knew that someone with more real programming experience than I had would be needed to do it right. The book sat in an unfinished state for the better part of a year until the open source community once again provided the needed means for its completion.</p>
+<p>I received an email from Chris Meyers expressing interest in the book. Chris is a professional programmer who started teaching a programming course last year using Python at Lane Community College in Eugene, Oregon. The prospect of teaching the course had led Chris to the book, and he started helping out with it immediately. By the end of the school year he had created a companion project on our Website at <a href="http://openbookproject.net" class="uri">http://openbookproject.net</a> (<em>Python for Fun</em>)[http://openbookproject.net/py4fun&gt;] and was working with some of my most advanced students as a master teacher, guiding them beyond where I could take them.</p>
+</section>
+<section id="introducing-programming-with-python" class="level2">
+<h2>Introducing programming with Python</h2>
+<p>The process of translating and using <em>How to Think Like a Computer Scientist</em> for the past two years has confirmed Python’s suitability for teaching beginning students. Python greatly simplifies programming examples and makes important programming ideas easier to teach.</p>
+<p>The first example from the text illustrates this point. It is the traditional hello, world program, which in the Java version of the book looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Hello
+{
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)
+    {
+        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);
+    }
+}</code></pre></div>
+<p>in the Python version it becomes:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</code></pre></div>
+<p>Even though this is a trivial example, the advantages of Python stand out. Yorktown’s Computer Science I course has no prerequisites, so many of the students seeing this example are looking at their first program. Some of them are undoubtedly a little nervous, having heard that computer programming is difficult to learn. The Java version has always forced me to choose between two unsatisfying options: either to explain the <code>class Hello</code>, <code>public static void main</code>, <code>String[] args</code>, <code>{</code>, and <code>}</code>, statements and risk confusing or intimidating some of the students right at the start, or to tell them, Just don’t worry about all of that stuff now; we will talk about it later, and risk the same thing. The educational objectives at this point in the course are to introduce students to the idea of a programming statement and to get them to write their first program, thereby introducing them to the programming environment. The Python program has exactly what is needed to do these things, and nothing more.</p>
+<p>Comparing the explanatory text of the program in each version of the book further illustrates what this means to the beginning student. There are seven paragraphs of explanation of Hello, world! in the Java version; in the Python version, there are only a few sentences. More importantly, the missing six paragraphs do not deal with the big ideas in computer programming but with the minutia of Java syntax. I found this same thing happening throughout the book. Whole paragraphs simply disappear from the Python version of the text because Python’s much clearer syntax renders them unnecessary.</p>
+<p>Using a very high-level language like Python allows a teacher to postpone talking about low-level details of the machine until students have the background that they need to better make sense of the details. It thus creates the ability to put first things first pedagogically. One of the best examples of this is the way in which Python handles variables. In Java a variable is a name for a place that holds a value if it is a built-in type, and a reference to an object if it is not. Explaining this distinction requires a discussion of how the computer stores data. Thus, the idea of a variable is bound up with the hardware of the machine. The powerful and fundamental concept of a variable is already difficult enough for beginning students (in both computer science and algebra). Bytes and addresses do not help the matter. In Python a variable is a name that refers to a thing. This is a far more intuitive concept for beginning students and is much closer to the meaning of variable that they learned in their math courses. I had much less difficulty teaching variables this year than I did in the past, and I spent less time helping students with problems using them.</p>
+<p>Another example of how Python aids in the teaching and learning of programming is in its syntax for functions. My students have always had a great deal of difficulty understanding functions. The main problem centers around the difference between a function definition and a function call, and the related distinction between a parameter and an argument. Python comes to the rescue with syntax that is nothing short of beautiful. Function definitions begin with the keyword <code>def</code>, so I simply tell my students, When you define a function, begin with <code>def</code>, followed by the name of the function that you are defining; when you call a function, simply call (type) out its name. Parameters go with definitions; arguments go with calls. There are no return types, parameter types, or reference and value parameters to get in the way, so I am now able to teach functions in less than half the time that it previously took me, with better comprehension.</p>
+<p>Using Python improved the effectiveness of our computer science program for all students. I saw a higher general level of success and a lower level of frustration than I experienced teaching with either C++ or Java. I moved faster with better results. More students left the course with the ability to create meaningful programs and with the positive attitude toward the experience of programming that this engenders.</p>
+</section>
+<section id="building-a-community" class="level2">
+<h2>Building a community</h2>
+<p>I have received email from all over the globe from people using this book to learn or to teach programming. A user community has begun to emerge, and many people have been contributing to the project by sending in materials for the companion Website at <a href="http://openbookproject.net/pybiblio" class="uri">http://openbookproject.net/pybiblio</a>.</p>
+<p><strong>With the continued growth of Python, I expect the growth in the user community to continue and accelerate. The emergence of this user community and the possibility it suggests for similar collaboration among educators have been the most exciting parts of working on this project for me. By working together, we can increase the quality of materials available for our use and save valuable time. I invite you to join our community and look forward to hearing from you. Please write to me at <a href="mailto:jeff@elkner.net%3E">jeff@elkner.net</a></strong>.</p>
+<p>Jeffrey Elkner<br />
+Governor’s Career and Technical Academy in Arlington<br />
+Arlington, Virginia<br />
+</p>
+</section>
+<section id="the-rhodes-local-edition-rle-version-of-august-2012" class="level2">
+<h2>The Rhodes Local Edition (RLE) (Version of August, 2012)</h2>
+<p>By Peter Wentworth</p>
+<aside>
+<p><strong>A word of thanks …</strong></p>
+<p>We switched from Java to Python in our introductory courses in 2010. So far we think the results look positive. More time will tell.</p>
+<p>This predecessor to this book was a great starting point for us, especially because of the liberal permission to change things. Having our own in-house course notes or handouts allows us to adapt and stay fresh, rearrange, see what works, and it gives us agility. We can also ensure that every student in the course gets a copy of the handouts — something that doesn’t always happen if we prescribe costly textbooks.</p>
+Many thanks to all the contributors and the authors for making their hard work available to the Python community and to our students.
+</aside>
+<p>A colleague and friend, Peter Warren, once made the remark that learning introductory programming is as much about the environment as it is about the programming language.</p>
+<p>I’m a big fan of IDEs (Integrated Development Environments).<br />
+I want help to be integrated into my editor, as a first-class citizen, available at the press of a button. I want syntax highlighting. I want immediate syntax checking, and sensible autocompletion. I’d like an editor that can fold function bodies or regions of code away, because it promotes and encourages how we build mental abstractions.</p>
+<p>I’m especially keen on having a single-stepping debugger and breakpoints with code inspection built in. We’re trying to build a conceptual model of program execution in the student’s mind, so I find most helpful for teaching to have the call stack and variables explicitly visible, and to be able to immediately inspect the result of executing a statement.</p>
+<p>My philosophy, then, is not to look for a language to teach, but to look for a combination of IDE and language that are packaged together, and evaluated as a whole.</p>
+<p>I’ve made some quite deep changes to the original book to reflect this (and various other opinionated views that I hold), and I have no doubt that more changes will follow as we mature our course.</p>
+<p>Here are some of the key things I’ve approached differently:</p>
+<ul>
+<li>Our local situation demands that we have a large number of service course students in an introductory course of just 3 weeks, and then we get another semester of teaching with those going into our mainstream program. So the book is in two parts: we’ll do the first five chapters in the big “get your toes wet” course, and the rest of the material in a separate semester.</li>
+<li>We’re using Python 3. It is cleaner, more object oriented, and has fewer ad-hoc irregularities than earlier versions of Python.</li>
+<li>We’re using PyScripter as our IDE, on Windows. And it is hardwired into parts of these notes, with screenshots, etc.</li>
+<li>I’ve dropped GASP.</li>
+<li>For graphics we start with the Turtle module.<br />
+As things move along, we use PyGame for more advanced graphics.</li>
+<li>I’ve introduced some event-driven programming using the turtle.<br />
+</li>
+<li>I have tried to push more object-oriented notions earlier, without asking students to synthesize objects or write their own classes. So, for example, in the chapter about the turtle, we create multiple instances of turtles, talk about their attributes and state (color, position, etc), and we favour method-call style to move them around, i.e. <code>tess.forward(100)</code>. Similarly, when we use random numbers, we avoid the “hidden singleton generator” in the random module — we prefer to create an instance of a generator, and invoke methods on the instance.</li>
+<li>The ease of constructing lists and the <code>for</code> loop seem to be winners in Python, so rather than use the traditional command-line <code>input</code> for data, I’ve favoured using loops and lists right up front, like this:</li>
+</ul>
+<div class="sourceCode"><table class="sourceCode python numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode python">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]
+<span class="cf">for</span> f <span class="kw">in</span> friends:
+    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span>
+    <span class="bu">print</span>(invitation)</code></pre></td></tr></table></div>
+<p>This also means that I bumped <code>range</code> up for early exposure.<br />
+I envisage that over time we’ll see more opportunities to exploit “early lists, early iteration” in its most simple form.</p>
+<ul>
+<li>I dumped <code>doctest</code>: it is too quirky for my liking. For example, it fails a test if the spacing between list elements is not precisely the same as the output string, or if Python prints a string with single quotes, but you wrote up the test case with double quotes. Cases like this also confused students (and instructors) quite badly:</li>
+</ul>
+<div class="sourceCode"><table class="sourceCode python numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode python">
+<span class="kw">def</span> addlist(xs):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span>
+<span class="co">    &gt;&gt;&gt; addlist(xs)</span>
+<span class="co">    9</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="cf">return</span></code></pre></td></tr></table></div>
+<p>If you can explain the difference in scope rules and lifetimes between the parameter <code>xs</code> and the doctest variable <code>xs</code> elegantly, please let me know. Yes, I know doctest creates its own scope behind our back, but it is exactly this black magic that we’re trying to avoid.<br />
+From the usual indentation rules, also looks like the doctests are nested inside the function scope, but they are not. Students thought that the parameter had been given its value by the assignment to <code>xs</code> in the doctest!</p>
+<p>I also think that keeping the test suite separate from the functions under test leads to a cleaner relationship between caller and callee, and gives a better chance of getting argument passing / parameter concepts taught accurately.</p>
+<p>There is a good unit testing module in Python, (and PyScripter offers integrated support for it, and automated generation of skeleton test modules), but it looked too advanced for beginners, because it requires multi-module concepts.</p>
+<p>So I’ve favoured my own test scaffolding in Chapter 6 (about 10 lines of code) that the students must insert into whatever file they’re working on.</p>
+<ul>
+<li><p>I’ve played down command-line input / process / output where possible. Many of our students have never seen a command-line shell, and it is arguably quite intimidating.</p></li>
+<li><p>We’ve gone back to a more “classic / static” approach to writing our own classes and objects. Python (in company with languages like Javascript, Ruby, Perl, PHP, etc.) don’t really emphasize notions of “sealed” classes or “private” members, or even “sealed instances”.</p></li>
+</ul>
+<p>So one teaching approach is to allocate each instance as an empty container, and subsequently allow the external clients of the class to poke new members (methods or attributes) into different instances as they wish to.<br />
+It is a very dynamic approach, but perhaps not one that encourages thinking in abstractions, layers, contracts, decoupling, etc. It might even be the kind of thing that one could write one of those <em>“x,y,z … considered harmful”</em> papers about.</p>
+<p>In our more conservative approach, we put an initializer into every class, we determine at object instantiation time what members we want, and we initialize the instances from within the class. So we’ve moved closer in philosophy to C# / Java on this one.</p>
+<ul>
+<li><p>We’re moving towards introducing more algorithms earlier into the course. Python is an efficient teaching language — we can make fast progress. But the gains we make there we’d like to invest into deeper problem solving, and more complex algorithms with the basics, rather than cover “more Python features”. Some of these changes have started to find their way in this version, and I’m sure we’ll see more in future.</p></li>
+<li><p>We’re interested in issues around teaching and learning. Some research indicates that “intellectual playfulness” is important. The study referenced in the Odds-and-ends workbook at the end just didn’t seem to have anywhere sensible to go in the book, yet I wanted it included. It is quite likely that we’ll allow more issues like this to creep into the book, to try to make it more than just about programming in Python.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-way-of-the-program" class="level1">
+<h1>The way of the program</h1>
+<p>The goal of this book is to teach you to think like a computer scientist. This way of thinking combines some of the best features of mathematics, engineering, and natural science. Like mathematicians, computer scientists use formal languages to denote ideas (specifically computations). Like engineers, they design things, assembling components into systems and evaluating tradeoffs among alternatives. Like scientists, they observe the behavior of complex systems, form hypotheses, and test predictions.</p>
+<p>The single most important skill for a computer scientist is <strong>problem solving</strong>. Problem solving means the ability to formulate problems, think creatively about solutions, and express a solution clearly and accurately. As it turns out, the process of learning to program is an excellent opportunity to practice problem-solving skills. That’s why this chapter is called, The way of the program.</p>
+<p>On one level, you will be learning to program, a useful skill by itself. On another level, you will use programming as a means to an end. As we go along, that end will become clearer.</p>
+<section id="the-javascript-programming-language" class="level2">
+<h2>The Javascript programming language</h2>
+<p>The programming language you will be learning is Javascript. Javascript is an example of a <strong>high-level language</strong>; other high-level languages you might have heard of are Python, C++, PHP, Pascal, C#, and Java. It’s important to point out that Java and Javascript are two different programming languages with different syntax, styles, purposes, and histories. They unfortunately, share a very close name!</p>
+<p>As you might infer from the name high-level language, there are also <strong>low-level languages</strong>, sometimes referred to as machine languages or assembly languages. Loosely speaking, computers can only execute programs written in low-level languages. Thus, programs written in a high-level language have to be translated into something more suitable before they can run.</p>
+<p>Almost all programs are written in high-level languages because of their advantages. It is much easier to program in a high-level language so programs take less time to write, they are shorter and easier to read, and they are more likely to be correct. Second, high-level languages are <strong>portable</strong>, meaning that they can run on different kinds of computers with few or no modifications.</p>
+<p>The engine that translates and runs Javascript is called the <strong>Javascript Interpreter</strong>. All modern web browser (Firefox, Chrome, Safari, MS Edge/IE, etc) ship with a Javascript interpreter. You can also install a stand-alone interpreter on your computer.</p>
+<p>The longer code examples in this book will use <a href="https://repl.it">Repl.it</a>, an online programming platform and community. There are two ways to use the interpreter: <em>interactive or immediate mode</em> and <em>script mode</em>. In immediate mode, you type Javascript expressions into the interpreter’s console, and the interpreter immediately shows the result. This is the an example of the repl.it interpreter’s console:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Babel</span> Compiler v6.4.4
+<span class="ex">Copyright</span> (c) <span class="ex">2014-2015</span> Sebastian McKenzie
+   
+<span class="ex">2+2</span>
+=<span class="op">&gt;</span> <span class="ex">4</span>   </code></pre></div>
+<p>The <code>2+2</code> is entered at the <strong>Javascript prompt</strong>. The interpreter uses the prompt to indicate that it is ready for instructions. We typed <code>2 + 2</code> and hit <code>enter</code> the interpreter evaluated our expression, and replied <code>4</code>, and on the next line it gave a new prompt. In this case, <code>4</code> is the <strong>output</strong> and it is indicated as output in our console by the <code>=&gt;</code> token.</p>
+<p>Alternatively, you can write a program in a file and use the interpreter to execute the contents of the file. Such a file is called a <strong>script</strong>. Scripts have the advantage that they can be saved to disk, printed, shared, and so on.</p>
+<p>For example, we created a file named <code>main.js</code> using our text editor. By convention, files that contain Javascript programs have names that end with <code>.js</code>, but they are just plain-text files.</p>
+<p>To execute the program in repl.it, we simply click the “run” button. The output is shown in the console.</p>
+<p>Working directly in the interpreter is convenient for testing short bits of code because you get immediate feedback. Think of it as scratch paper used to help you work out problems. Anything longer than a few lines should be put into a script.</p>
+</section>
+<section id="what-is-a-program" class="level2">
+<h2>What is a program?</h2>
+<p>A <strong>program</strong> is a sequence of instructions that specifies how to perform a computation. The computation might be something mathematical, such as solving a system of equations or finding the roots of a polynomial, but it can also be a symbolic computation, such as searching and replacing text in a document or (strangely enough) compiling a program.</p>
+<p>The details look different in different languages, but a few basic instructions appear in just about every language:</p>
+<dl>
+<dt>input</dt>
+<dd><p>Get data from the keyboard, a file, or some other device.</p>
+</dd>
+<dt>output</dt>
+<dd><p>Display data on the screen or send data to a file or other device.</p>
+</dd>
+<dt>math</dt>
+<dd><p>Perform basic mathematical operations like addition and multiplication.</p>
+</dd>
+<dt>conditional execution</dt>
+<dd><p>Check for certain conditions and execute the appropriate sequence of statements.</p>
+</dd>
+<dt>repetition</dt>
+<dd><p>Perform some action repeatedly, usually with some variation.</p>
+</dd>
+</dl>
+<p>Believe it or not, that’s pretty much all there is to it. Every program you’ve ever used, no matter how complicated, is made up of instructions that look more or less like these. Thus, we can describe programming as the process of breaking a large, complex task into smaller and smaller subtasks until the subtasks are simple enough to be performed with sequences of these basic instructions.</p>
+<p>That may be a little vague, but we will come back to this topic later when we talk about <strong>algorithms</strong>.</p>
+</section>
+<section id="what-is-debugging" class="level2">
+<h2>What is debugging?</h2>
+<p>Programming is a complex process, and because it is done by human beings, it often leads to errors. Programming errors are called <strong>bugs</strong> and the process of tracking them down and correcting them is called <strong>debugging</strong>. Use of the term <em>bug</em> to describe small engineering difficulties dates back to at least 1889, when Thomas Edison had a bug with his phonograph.</p>
+<p>Three kinds of errors can occur in a program: <a href="http://en.wikipedia.org/wiki/Syntax_error">syntax errors</a>, <a href="http://en.wikipedia.org/wiki/Runtime_error">runtime errors</a>, and <a href="http://en.wikipedia.org/wiki/Logic_error">semantic errors</a>. It is useful to distinguish between them in order to track them down more quickly.</p>
+</section>
+<section id="syntax-errors" class="level2">
+<h2>Syntax errors</h2>
+<p>Javascript can only execute a program if the program is syntactically correct; otherwise, the process fails and returns an error message. <strong>Syntax</strong> refers to the structure of a program and the rules about that structure. For example, in English, a sentence must begin with a capital letter and end with a period. this sentence contains a <strong>syntax error</strong>. So does this one</p>
+<p>For most readers, a few syntax errors are not a significant problem, which is why we can read the poetry of E. E. Cummings without (too many) problems. Javascript is not so forgiving. If there is a single syntax error anywhere in your program, Javascript will display an error message and quit, and you will not be able to run your program. During the first few weeks of your programming career, you will probably spend a lot of time tracking down syntax errors. As you gain experience, though, you will make fewer errors and find them faster.</p>
+</section>
+<section id="runtime-errors" class="level2">
+<h2>Runtime errors</h2>
+<p>The second type of error is a runtime error, so called because the error does not appear until you run the program. These errors are also called <strong>exceptions</strong> because they usually indicate that something exceptional (and bad) has happened.</p>
+<p>Runtime errors are rare in the simple programs you will see in the first few chapters, so it might be a while before you encounter one.</p>
+</section>
+<section id="semantic-errors" class="level2">
+<h2>Semantic errors</h2>
+<p>The third type of error is the <strong>semantic error</strong>. If there is a semantic error in your program, it will run successfully, in the sense that the computer will not generate any error messages, but it will not do the right thing. It will do something else. Specifically, it will do what you told it to do.</p>
+<p>The problem is that the program you wrote is not the program you wanted to write. The meaning of the program (its semantics) is wrong. Identifying semantic errors can be tricky because it requires you to work backward by looking at the output of the program and trying to figure out what it is doing.</p>
+</section>
+<section id="experimental-debugging" class="level2">
+<h2>Experimental debugging</h2>
+<p>One of the most important skills you will acquire is debugging. Although it can be frustrating, debugging is one of the most intellectually rich, challenging, and interesting parts of programming.</p>
+<p>In some ways, debugging is like detective work. You are confronted with clues, and you have to infer the processes and events that led to the results you see.</p>
+<p>Debugging is also like an experimental science. Once you have an idea what is going wrong, you modify your program and try again. If your hypothesis was correct, then you can predict the result of the modification, and you take a step closer to a working program. If your hypothesis was wrong, you have to come up with a new one. As Sherlock Holmes pointed out, When you have eliminated the impossible, whatever remains, however improbable, must be the truth. (A. Conan Doyle, <em>The Sign of Four</em>)</p>
+<p>For some people, programming and debugging are the same thing. That is, programming is the process of gradually debugging a program until it does what you want. The idea is that you should start with a program that does <em>something</em> and make small modifications, debugging them as you go, so that you always have a working program.</p>
+<p>For example, Linux is an operating system kernel that contains millions of lines of code, but it started out as a simple program Linus Torvalds used to explore the Intel 80386 chip. According to Larry Greenfield, one of Linus’s earlier projects was a program that would switch between displaying AAAA and BBBB. This later evolved to Linux (<em>The Linux Users’ Guide</em> Beta Version 1).</p>
+<p>Later chapters will make more suggestions about debugging and other programming practices.</p>
+</section>
+<section id="formal-and-natural-languages" class="level2">
+<h2>Formal and natural languages</h2>
+<p><strong>Natural languages</strong> are the languages that people speak, such as English, Spanish, and French. They were not designed by people (although people try to impose some order on them); they evolved naturally.</p>
+<p><strong>Formal languages</strong> are languages that are designed by people for specific applications. For example, the notation that mathematicians use is a formal language that is particularly good at denoting relationships among numbers and symbols. Chemists use a formal language to represent the chemical structure of molecules. And most importantly:</p>
+<blockquote>
+<p><em>Programming languages are formal languages that have been designed to express computations.</em></p>
+</blockquote>
+<p>Formal languages tend to have strict rules about syntax. For example, <code>3+3=6</code> is a syntactically correct mathematical statement, but <code>3=+6$</code> is not. H<sub>2</sub>O is a syntactically correct chemical name, but <sub>2</sub>Zz is not.</p>
+<p>Syntax rules come in two flavors, pertaining to <strong>tokens</strong> and structure. Tokens are the basic elements of the language, such as words, numbers, parentheses, commas, and so on. In Javascript, a statement like <code>console.log(&quot;Happy New Year for &quot;, 2013)</code> has 6 tokens: a function name, an open parenthesis (round bracket), a string, a comma, a number, and a close parenthesis.</p>
+<p>It is possible to make errors in the way one constructs tokens.<br />
+One of the problems with <code>3=+6$</code> is that <code>$</code> is not a legal token in mathematics (at least as far as we know). Similarly, <sub>2</sub>Zz is not a legal token in chemistry notation because there is no element with the abbreviation <code>Zz</code>.</p>
+<p>The second type of syntax rule pertains to the <strong>structure</strong> of a statement—that is, the way the tokens are arranged. The statement <code>3=+6$</code> is structurally illegal because you can’t place a plus sign immediately after an equal sign. Similarly, molecular formulas have to have subscripts <em>after</em> the element name, not before. And in our Javascript example, if we omitted the comma, or if we changed the two parentheses around to say <code>console.log)&quot;Happy New Year for &quot;,2013(</code> our statement would still have six legal and valid tokens, but the structure is illegal.</p>
+<p>When you read a sentence in English or a statement in a formal language, you have to figure out what the structure of the sentence is (although in a natural language you do this subconsciously). This process is called <strong>parsing</strong>.</p>
+<p>For example, when you hear the sentence, “The other shoe fell”, you understand that the other shoe is the subject and fell is the verb. Once you have parsed a sentence, you can figure out what it means, or the <strong>semantics</strong> of the sentence. Assuming that you know what a shoe is and what it means to fall, you will understand the general implication of this sentence.</p>
+<p>Although formal and natural languages have many features in common—tokens, structure, syntax, and semantics—there are many differences:</p>
+</section>
+<section id="glossary" class="level2">
+<h2>Glossary</h2>
+<dl>
+<dt>ambiguity</dt>
+<dd><p>Natural languages are full of ambiguity, which people deal with by using contextual clues and other information. Formal languages are designed to be nearly or completely unambiguous, which means that any statement has exactly one meaning, regardless of context.</p>
+</dd>
+<dt>redundancy</dt>
+<dd><p>In order to make up for ambiguity and reduce misunderstandings, natural languages employ lots of redundancy. As a result, they are often verbose. Formal languages are less redundant and more concise.</p>
+</dd>
+<dt>literalness</dt>
+<dd><p>Formal languages mean exactly what they say. On the other hand, natural languages are full of idiom and metaphor. If someone says, “The other shoe fell”, there is probably no shoe and nothing falling.<br />
+You’ll need to find the original joke to understand the idiomatic meaning of the other shoe falling. <em>Yahoo! Answers</em> thinks it knows!</p>
+</dd>
+</dl>
+<p>People who grow up speaking a natural language—everyone—often have a hard time adjusting to formal languages. In some ways, the difference between formal and natural language is like the difference between poetry and prose, but more so:</p>
+<dl>
+<dt>poetry</dt>
+<dd><p>Words are used for their sounds as well as for their meaning, and the whole poem together creates an effect or emotional response. Ambiguity is not only common but often deliberate.</p>
+</dd>
+<dt>prose</dt>
+<dd><p>The literal meaning of words is more important, and the structure contributes more meaning. Prose is more amenable to analysis than poetry but still often ambiguous.</p>
+</dd>
+<dt>program</dt>
+<dd><p>The meaning of a computer program is unambiguous and literal, and can be understood entirely by analysis of the tokens and structure.</p>
+</dd>
+</dl>
+<p>Here are some suggestions for reading programs (and other formal languages). First, remember that formal languages are much more dense than natural languages, so it takes longer to read them. Also, the structure is very important, so it is usually not a good idea to read from top to bottom, left to right. Instead, learn to parse the program in your head, identifying the tokens and interpreting the structure. Finally, the details matter. Little things like spelling errors and bad punctuation, which you can get away with in natural languages, can make a big difference in a formal language.</p>
+</section>
+<section id="the-first-program" class="level2">
+<h2>The first program</h2>
+<p>Traditionally, the first program written in a new language is called <em>Hello, World!</em> because all it does is display the words, Hello, World! In Javascript, the script looks like this: (For scripts, we’ll show line numbers to the left of the Javascript statements.)</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hello, World!&quot;</span>)<span class="op">;</span></code></pre></td></tr></table></div>
+<p>This is an example of using <code>console.log</code>, Javascript’s <strong>print function</strong>, which doesn’t actually print anything on paper. It displays a value on the screen’s console. In this case, the result shown is</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Hello</span>, World!</code></pre></div>
+<p>The quotation marks in the program mark the beginning and end of the value; they don’t appear in the result.</p>
+<p>Some people judge the quality of a programming language by the simplicity of the Hello, World! program. By this standard, Javascript does about as well as possible.</p>
+</section>
+<section id="comments" class="level2">
+<h2>Comments</h2>
+<p>As programs get bigger and more complicated, they get more difficult to read. Formal languages are dense, and it is often difficult to look at a piece of code and figure out what it is doing, or why.</p>
+<p>For this reason, it is a good idea to add notes to your programs to explain in natural language what the program is doing.</p>
+<p>A <strong>comment</strong> in a computer program is text that is intended only for the human reader — it is completely ignored by the interpreter.</p>
+<p>In Javascript, the <code>\\</code> token starts a comment. The rest of the line is ignored. Here is a new version of <em>Hello, World!</em>.</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="co">//---------------------------------------------------</span>
+<span class="co">// This demo program shows off how elegant Javascript is!</span>
+<span class="co">// Based on the Python program by Joe Soap, December 2010.</span>
+<span class="co">// Anyone may freely copy or modify this program.</span>
+<span class="co">//---------------------------------------------------</span>
+
+<span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hello, World!&quot;</span>)<span class="op">;</span>     <span class="co">// Isn&#39;t this easy! </span>
+      </code></pre></td></tr></table></div>
+<p>You’ll also notice that we’ve left a blank line in the program. Blank lines are also ignored by the interpreter, but comments and blank lines can make your programs much easier for humans to parse. Use them liberally!</p>
+</section>
+<section id="glossary-1" class="level2">
+<h2>Glossary</h2>
+<dl>
+<dt>algorithm</dt>
+<dd><p>A set of specific steps for solving a category of problems.</p>
+</dd>
+<dt>bug</dt>
+<dd><p>An error in a program.</p>
+</dd>
+<dt>comment</dt>
+<dd><p>Information in a program that is meant for other programmers (or anyone reading the source code) and has no effect on the execution of the program.</p>
+</dd>
+<dt>debugging</dt>
+<dd><p>The process of finding and removing any of the three kinds of programming errors.</p>
+</dd>
+<dt>exception</dt>
+<dd><p>Another name for a runtime error.</p>
+</dd>
+<dt>formal language</dt>
+<dd><p>Any one of the languages that people have designed for specific purposes, such as representing mathematical ideas or computer programs; all programming languages are formal languages.</p>
+</dd>
+<dt>high-level language</dt>
+<dd><p>A programming language like Javascript that is designed to be easy for humans to read and write.</p>
+</dd>
+<dt>immediate mode</dt>
+<dd><p>A style of using Javascript where we type expressions at the command prompt, and the results are shown immediately. Contrast with <strong>script</strong>, and see the entry under <strong>Javascript shell</strong>.</p>
+</dd>
+<dt>interpreter</dt>
+<dd><p>The engine that executes your Javascript scripts or expressions.</p>
+</dd>
+<dt>low-level language</dt>
+<dd><p>A programming language that is designed to be easy for a computer to execute; also called machine language or assembly language.</p>
+</dd>
+<dt>natural language</dt>
+<dd><p>Any one of the languages that people speak that evolved naturally.</p>
+</dd>
+<dt>object code</dt>
+<dd><p>The output of the compiler after it translates the program.</p>
+</dd>
+<dt>parse</dt>
+<dd><p>To examine a program and analyze the syntactic structure.</p>
+</dd>
+<dt>portability</dt>
+<dd><p>A property of a program that can run on more than one kind of computer.</p>
+</dd>
+<dt>print function</dt>
+<dd><p>A function used in a program or script that causes the Javascript interpreter to display a value on its output device.</p>
+</dd>
+<dt>problem solving</dt>
+<dd><p>The process of formulating a problem, finding a solution, and expressing the solution.</p>
+</dd>
+<dt>program</dt>
+<dd><p>a sequence of instructions that specifies to a computer actions and computations to be performed.</p>
+</dd>
+<dt>Javascript console</dt>
+<dd><p>An interactive user interface to the Javascript interpreter. The user of a Javascript shell types commands at the prompt, and presses the return key to send these commands immediately to the interpreter for processing.</p>
+</dd>
+<dt>runtime error</dt>
+<dd><p>An error that does not occur until the program has started to execute but that prevents the program from continuing.</p>
+</dd>
+<dt>script</dt>
+<dd><p>A program stored in a file (usually one that will be interpreted).</p>
+</dd>
+<dt>semantic error</dt>
+<dd><p>An error in a program that makes it do something other than what the programmer intended.</p>
+</dd>
+<dt>semantics</dt>
+<dd><p>The meaning of a program.</p>
+</dd>
+<dt>source code</dt>
+<dd><p>A program in a high-level language before being compiled.</p>
+</dd>
+<dt>syntax</dt>
+<dd><p>The structure of a program.</p>
+</dd>
+<dt>syntax error</dt>
+<dd><p>An error in a program that makes it impossible to parse — and therefore impossible to interpret.</p>
+</dd>
+<dt>token</dt>
+<dd><p>One of the basic elements of the syntactic structure of a program, analogous to a word in a natural language.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="variables-expressions-and-statements" class="level1">
+<h1>Variables, expressions and statements</h1>
+<section id="values-and-data-types" class="level2">
+<h2>Values and data types</h2>
+<p>A <strong>value</strong> is one of the fundamental things — like a letter or a number — that a program manipulates. Programming <code>turtle</code> we have been using values like <code>100</code> when we write <code>fd(100)</code> and <code>&quot;blue&quot;</code> in statements like <code>setColor(&quot;blue&quot;)</code>.</p>
+<p>These values are classified into different <strong>classes</strong>, or <strong>data types</strong>: <code>100</code> is an <em>number</em>, and <code>&quot;blue&quot;</code> is a <em>string</em>, so-called because it contains a string of letters. You (and the interpreter) can identify strings because they are enclosed in quotation marks.</p>
+<p>If you are not sure what class a value falls into, the Javascript <strong>typeof</strong> operator can tell you.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">typeof</span> <span class="st">&quot;blue&quot;</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span>
+<span class="kw">typeof</span> <span class="dv">100</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;number&#39;</span></code></pre></div>
+<p>Not surprisingly, strings are of type <code>string</code> and integers are of type <code>number</code>. In Javascript, both whole numbers and fractions (numbers with decimal points) are of type <code>number</code>. At this stage, you can treat the words <em>class</em> and <em>type</em> interchangeably. We’ll come back to a deeper understanding of what a class is in later chapters.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="op">=&gt;</span> <span class="kw">typeof</span> <span class="fl">3.2</span><span class="op">;</span>
+<span class="st">&#39;number&#39;</span></code></pre></div>
+<p>What about values like <code>&quot;17&quot;</code> and <code>&quot;3.2&quot;</code>? They look like numbers, but they are in quotation marks like strings.</p>
+<section id="strings" class="level3">
+<h3>Strings</h3>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">typeof</span> <span class="st">&quot;17&quot;</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span>
+<span class="kw">typeof</span> <span class="st">&quot;3.2&quot;</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span></code></pre></div>
+<p>They’re strings!</p>
+<p>Strings in Javascript can be enclosed in either single quotes (<code>'</code>) or double quotes (<code>&quot;</code>), or “backticks” (<code>`</code>).</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">        
+<span class="kw">typeof</span> <span class="st">&#39;This is a string.&#39;</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span>
+<span class="kw">typeof</span> <span class="st">&quot;And so is this.&quot;</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span>
+<span class="kw">typeof</span> <span class="vs">`and this is a special type of string...`</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span></code></pre></div>
+<p>Double quoted strings can contain single quotes inside them, as in <code>&quot;Bruce's beard&quot;</code>, and single quoted strings can have double quotes inside them, as in <code>'The knights who say &quot;Ni!&quot;'</code>.</p>
+<p>Strings enclosed with the backtick symbol are called <strong>template literals</strong>. Template literals can contain either single or double quotes:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`&quot;Oh no&quot;, she exclaimed, &quot;Ben&#39;s bike is broken!&quot;`</span>)<span class="op">;</span>
+<span class="st">&quot;Oh no&quot;</span><span class="op">,</span> she exclaimed<span class="op">,</span> <span class="st">&quot;Ben&#39;s bike is broken!&quot;</span>
+<span class="op">&gt;&gt;&gt;</span></code></pre></div>
+<p>Template literal strings can even span multiple lines:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="vs">`This message will</span>
+<span class="vs">... span several</span>
+<span class="vs">... lines`</span><span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(message)<span class="op">;</span>
+
+This message will
+span several
+<span class="va">lines</span>.</code></pre></div>
+<p>Strings can also be joined use the <code>+</code> token which adds strings together (also called concatenation).</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;This long message will&quot;</span> <span class="op">+</span>
+<span class="st">&quot;... will appear on one line&quot;</span> <span class="op">+</span>
+<span class="st">&quot;... when it&#39;s logged to the console.&quot;</span><span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(message)<span class="op">;</span>
+
+This long message <span class="va">will</span>... <span class="at">will</span> <span class="at">appear</span> <span class="at">on</span> <span class="at">one</span> <span class="va">line</span>... <span class="at">when</span> <span class="at">it</span><span class="st">&#39;s logged to the console.</span></code></pre></div>
+<p>Javascript doesn’t care whether you use single or double quotes to surround your strings: once it has parsed the text of your program or command, the way it stores the value is identical in all cases, and the surrounding quotes are not part of the value. But when the interpreter wants to display a string, it has to decide which quotes to use to make it look like a string. It usually choose a single quote.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">
+<span class="st">&#39;This is a string.&#39;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;This is a string.&#39;</span>
+<span class="st">&quot;And so is this.&quot;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;And so is this.&#39;</span>
+<span class="vs">`This is a string too!`</span>
+<span class="op">=&gt;</span> <span class="st">&#39;This is a string too!&#39;</span></code></pre></div>
+<p>The code examples in this book will use double quotes as the default, and use single quotes and template literals when they make more sense (such as in strings containing double quotes or spanning multiple lines). We will learn more about template strings in the chapter on strings.</p>
+<p>When you type a large number, you might be tempted to use commas between groups of three digits, as in <code>42,000</code>. This is not a legal number in Javascript, and different Javascript interpreters handle it differently. Formal languages are strict, the notation is concise, and even the smallest change might mean something quite different from what you intended.</p>
+</section>
+</section>
+<section id="variables" class="level2">
+<h2>Variables</h2>
+<p>One of the most powerful features of a programming language is the ability to manipulate <strong>variables</strong>. A variable is a name that refers to a value.</p>
+<p>The <strong>let</strong> keyword declares a new variable and the <strong>assignment token</strong>, gives a value to a variable:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;What&#39;s up, Doc?&quot;</span><span class="op">;</span>
+<span class="kw">let</span> n <span class="op">=</span> <span class="dv">17</span><span class="op">;</span>
+<span class="kw">let</span> pi <span class="op">=</span> <span class="fl">3.14159</span><span class="op">;</span></code></pre></div>
+<p>This example declares three variables and assigns them values. The first assigns the string value <code>&quot;What's up, Doc?&quot;</code> to a variable named <code>message</code>. The second gives the number <code>17</code> to <code>n</code>, and the third assigns the number <code>3.14159</code> to a variable called <code>pi</code>.</p>
+<p>The <strong>assignment token</strong>, <code>=</code>, should not be confused with <em>equals</em>, which uses the token <code>===</code>. The assignment statement binds a <em>name</em>, on the left-hand side of the operator, to a <em>value</em>, on the right-hand side. This is why you will get an error if you enter:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">        
+<span class="kw">let</span> <span class="dv">17</span> <span class="op">=</span> n<span class="op">;</span>
+
+SyntaxError<span class="op">:</span> unexpected token<span class="op">:</span> numeric literal</code></pre></div>
+<p><em><strong>Tip:</strong> When reading or writing code, say to yourself “n is assigned 17” or “n gets the value 17”. Don’t say “n equals 17”.</em></p>
+<p>A common way to represent variables on paper is to write the name with an arrow pointing to the variable’s value. This kind of figure is called a <strong>state snapshot</strong> because it shows what state each of the variables is in at a particular instant in time. (Think of it as the variable’s state of mind). This diagram shows the result of executing the assignment statements:</p>
+<figure>
+<img src="figs/state.png" alt="State snapshot" /><figcaption>State snapshot</figcaption>
+</figure>
+<p>If you ask the interpreter to evaluate a variable, it will produce the value that is currently linked to the variable:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">message
+<span class="st">&#39;What&#39;</span>s up<span class="op">,</span> Doc<span class="op">?</span><span class="st">&#39;</span>
+n
+<span class="op">=&gt;</span> <span class="dv">17</span>
+pi
+<span class="op">=&gt;</span> <span class="fl">3.14159</span></code></pre></div>
+<p>We use variables in a program to “remember” things, perhaps the current score in the video game. But variables are <em>variable</em>. This means they can change over time, just like the score in a video game. You can assign a value to a variable, and later assign a different value to the same variable.<br />
+(<em>This is different from maths. In maths, if you give <code>x</code> the value 3, it cannot change to link to a different value half-way through your calculations!</em>)</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> day <span class="op">=</span> <span class="st">&quot;Thursday&quot;</span>
+day
+<span class="op">=&gt;</span> <span class="st">&#39;Thursday&#39;</span>
+day <span class="op">=</span> <span class="st">&quot;Friday&quot;</span>
+day
+<span class="op">=&gt;</span> <span class="st">&#39;Friday&#39;</span>
+day <span class="op">=</span> <span class="dv">21</span>
+day
+<span class="op">=&gt;</span> <span class="dv">21</span></code></pre></div>
+<p>You’ll notice we changed the value of <code>day</code> three times, and on the third assignment we even made it refer to a value that was of a different type.</p>
+<p>A great deal of programming is about having the computer remember things, e.g. <em>The number of missed calls on your phone</em>, and then arranging to update or change the variable when you miss another call.</p>
+</section>
+<section id="variable-names-and-keywords" class="level2">
+<h2>Variable names and keywords</h2>
+<p><strong>Variable names</strong> and other <strong>identifiers</strong> can be arbitrarily long. They can contain both letters and digits, but they have to begin with a letter, the dollar sign <code>$</code>, or an underscore <code>_</code>. Remember that case matters. <code>Bruce</code> and <code>bruce</code> are different variables.</p>
+<p>In Javascript, capital letters are often used in variables tha contain multiple words, such as <code>myName</code> or <code>thePriceOfTeaInChina</code>. The underscore character (<code>_</code>) can appear in a name, too. You may see it to separate multiple words, such as <code>my_name</code> or <code>price_of_tea_in_china</code>, but this style is less common in Javascript.</p>
+<p>Sometimes programmers start variables with underscores or dollar signs to give them special meanings. In this book, all variable names will start with letters.</p>
+<p>If you give a variable an illegal name, you get a syntax error:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> 76trombones <span class="op">=</span> <span class="st">&quot;big parade&quot;</span><span class="op">;</span>
+unknown<span class="op">:</span> Identifier directly after number
+<span class="kw">let</span> <span class="kw">typeof</span> <span class="op">=</span> <span class="st">&quot;Computer Science 101&quot;</span><span class="op">;</span>
+unknown<span class="op">:</span> Unexpected token </code></pre></div>
+<p><code>76trombones</code> is illegal because it does not begin with a letter, but what’s wrong with <code>typeof</code>?</p>
+<p>It turns out that <code>typeof</code> is reserved as one of Javascript’s <strong>keywords</strong>. Keywords define the language’s syntax rules and structure, and they cannot be used as variable names.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords">Javascript has almost fourty keywords</a> (different versions of Javascript have slightly different keywords):</p>
+<pre><code>
+await       finally       protected
+break       for           return
+case        function      super
+catch       if            switch
+class       implements    this
+const       import        throw
+continue    in            try
+debugger    instanceof    typeof
+default     interface     var
+delete      let           void
+else        new           while
+export      package       with
+extends     private       yield
+</code></pre>
+<p>You might want to keep this list handy. If the interpreter complains about one of your variable names and you don’t know why, see if it is on this list.</p>
+<p>Programmers generally choose names for their variables that are meaningful to the human readers of the program—they help the programmer document, or remember, what the variable is used for.</p>
+<aside id="meaningful-names">
+<p>Beginners sometimes confuse “meaningful to the human readers” with “meaningful to the computer”. So they’ll wrongly think that because they’ve called some variable <code>average</code> or <code>pi</code>, it will somehow magically calculate an average, or magically know that the variable <code>pi</code> should have a value like 3.14159. No! The computer doesn’t understand what you intend the variable to mean.</p>
+So you’ll find some instructors who deliberately don’t choose meaningful names when they teach beginners — not because we don’t think it is a good habit, but because we’re trying to reinforce the message that you — the programmer — must write the program code to calculate the average, and you must write an assignment statement to give the variable <code>pi</code> the value you want it to have.
+</aside>
+</section>
+<section id="statements" class="level2">
+<h2>Statements</h2>
+<p>A <strong>statement</strong> is an instruction that the Javascript interpreter can execute. We have mostly seen the assignment statement so far. Some other kinds of statements that we’ll see shortly are <code>while</code> statements, <code>for</code> statements, and <code>if</code> statements. (There are other kinds too!)</p>
+<p>When you type a statement in the console and hit enter, Javascript executes it. Statements don’t produce any result.</p>
+</section>
+<section id="evaluating-expressions" class="level2">
+<h2>Evaluating expressions</h2>
+<p>An <strong>expression</strong> is a combination of values, variables, operators, and calls to functions. If you type an expression at the Javascript prompt, the interpreter <strong>evaluates</strong> it and displays the result:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">2</span>
+<span class="kw">typeof</span> <span class="st">&quot;hello&quot;</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span></code></pre></div>
+<p>In this example <code>typeof</code> is a Javascript operator that returns the type of a variable or literal data operand.</p>
+<p>The <em>evaluation of an expression</em> produces a value, which is why expressions can appear on the right hand side of assignment statements. A value all by itself is a simple expression, and so is a variable.</p>
+<p>These examples show the expression and the value they return indicated by <code>=&gt;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="dv">17</span>
+<span class="op">=&gt;</span> <span class="dv">17</span><span class="op">;</span>
+<span class="kw">let</span> y <span class="op">=</span> <span class="fl">3.14</span><span class="op">;</span>
+<span class="kw">let</span> x <span class="op">=</span> <span class="kw">typeof</span> <span class="st">&quot;hello&quot;</span><span class="op">;</span>
+x
+<span class="op">=&gt;</span> <span class="st">&#39;string&#39;</span>
+y
+<span class="op">=&gt;</span> <span class="fl">3.14</span></code></pre></div>
+</section>
+<section id="operators-and-operands" class="level2">
+<h2>Operators and operands</h2>
+<p><strong>Operators</strong> are special tokens that represent computations like addition, multiplication and division. The values the operator uses are called <strong>operands</strong>.</p>
+<p>The following are all legal Javascript expressions whose meaning is more or less clear:</p>
+<pre><code>20+32   hour-1   hour*60+minute   minute/60   5**2   (5+9)*(15-7)</code></pre>
+<p>The tokens <code>+</code>, <code>-</code>, and <code>*</code>, and the use of parenthesis for grouping, mean in Javascript what they mean in mathematics. The asterisk (<code>*</code>) is the token for multiplication, and <code>**</code> is the token for exponentiation.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span>
+<span class="op">=&gt;</span> <span class="dv">8</span>
+<span class="dv">3</span> <span class="op">**</span> <span class="dv">2</span>
+<span class="op">=&gt;</span> <span class="dv">9</span></code></pre></div>
+<p>When a variable name appears in the place of an operand, it is replaced with its value before the operation is performed.</p>
+<p>Addition, subtraction, multiplication, and exponentiation all do what you expect.</p>
+<p>Example: so let us convert 645 minutes into hours:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> minutes <span class="op">=</span> <span class="dv">645</span><span class="op">;</span>
+<span class="kw">let</span> hours <span class="op">=</span> minutes / <span class="dv">60</span><span class="op">;</span>
+hours<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="fl">10.75</span></code></pre></div>
+<p>Oops! In Javascript, the division operator <code>/</code> always yields a floating point (decimal) result. What we might have wanted to know was how many <em>whole</em> hours there are, and how many minutes remain. Javascript provides helpful <strong>Math</strong> functions to allow us to do this. <code>Math.floor()</code> rounds a number down to the nearest whole number. Its result is always a whole number — and if it has to adjust the number it always moves it to the left on the number line. So <code>Math.floor(6 / 4)</code> yields <code>1</code>, but <code>Math.floor(-6 / 4)</code> might surprise you!</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="dv">7</span> / <span class="dv">4</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="fl">1.75</span>
+<span class="va">Math</span>.<span class="at">floor</span>(<span class="dv">7</span> / <span class="dv">4</span>)<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">1</span>
+<span class="kw">let</span> minutes <span class="op">=</span> <span class="dv">645</span><span class="op">;</span>
+<span class="kw">let</span> hours <span class="op">=</span> <span class="va">Math</span>.<span class="at">flor</span>(minutes / <span class="dv">60</span>)<span class="op">;</span>
+hours<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">10</span></code></pre></div>
+</section>
+<section id="type-conversion" class="level2">
+<h2>Type conversion</h2>
+<p>Here we’ll look at some ways to convert data. We call these <strong>type converters</strong>.</p>
+<p>The <code>Number.parseInt(arg)</code> function can take a floating point number or a string, and turn it into an whole number. For floating point numbers, it <em>discards</em> the decimal portion of the number — a process we call <em>truncation towards zero</em> on the number line. Let us see this in action:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.14</span>)<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">3</span>
+<span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.9999</span>)<span class="op">;</span>     <span class="co">// This doesn&#39;t round to the closest int! </span>
+<span class="op">=&gt;</span> <span class="dv">3</span>
+<span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.0</span>)<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">3</span>
+<span class="va">Number</span>.<span class="at">parseInt</span>(<span class="op">-</span><span class="fl">3.999</span>)<span class="op">;</span>     <span class="co">// Note that the result is closer to zero</span>
+<span class="op">=&gt;</span> <span class="dv">-3</span>
+<span class="va">Number</span>.<span class="at">parseInt</span>(minutes / <span class="dv">60</span>)<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">10</span>
+<span class="va">Number</span>.<span class="at">parseInt</span>(<span class="st">&quot;2345&quot;</span>)<span class="op">;</span>     <span class="co">// Parse a string to produce an int</span>
+<span class="op">=&gt;</span> <span class="dv">2345</span>
+<span class="va">Number</span>.<span class="at">parseInt</span>(<span class="dv">17</span>)<span class="op">;</span> <span class="co">// It even works if arg is already an int</span>
+<span class="op">=&gt;</span> <span class="dv">17</span></code></pre></div>
+<p>The type converter <code>Number.parseFloat(arg)</code> can a syntactically legal string into a decimal:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">Number</span>.<span class="at">parseFloat</span>(<span class="st">&quot;123.45&quot;</span>)<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="fl">123.45</span></code></pre></div>
+<p>The type converter <code>String(arg)</code> turns its argument into a string:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="at">String</span>(<span class="dv">17</span>)
+<span class="op">=&gt;</span> <span class="st">&#39;17&#39;</span>
+<span class="at">String</span>(<span class="fl">123.45</span>)
+<span class="op">=&gt;</span> <span class="st">&#39;123.45&#39;</span></code></pre></div>
+</section>
+<section id="order-of-operations" class="level2">
+<h2>Order of operations</h2>
+<p>When more than one operator appears in an expression, the order of evaluation depends on the <strong>rules of precedence</strong>. Javascript follows the same precedence rules for its mathematical operators that mathematics does. The acronym PEMDAS is a useful way to remember the order of operations:</p>
+<ol>
+<li><strong>P</strong> arentheses have the highest precedence and can be used to force an expression to evaluate in the order you want. Since expressions in parentheses are evaluated first, <code>2 * (3-1)</code> is 4, and <code>(1+1)**(5-2)</code> is</li>
+<li>You can also use parentheses to make an expression easier to read, as in <code>(minute * 100) / 60</code>, even though it doesn’t change the result.</li>
+<li><strong>E</strong> xponentiation has the next highest precedence, so <code>2**1+1</code> is 3 and not 4, and <code>3*1**3</code> is 3 and not 27.</li>
+<li><strong>M</strong> ultiplication and both <strong>D</strong> ivision operators have the same precedence, which is higher than <strong>A</strong> ddition and <strong>S</strong> ubtraction, which also have the same precedence. So <code>2*3-1</code> yields 5 rather than 4, and <code>5-2*2</code> is 1, not 6.</li>
+<li>Operators with the <em>same</em> precedence are evaluated from left-to-right. In algebra we say they are <em>left-associative</em>. So in the expression <code>6-3+2</code>, the subtraction happens first, yielding 3. We then add 2 to get the result 5. If the operations had been evaluated from right to left, the result would have been <code>6-(3+2)</code>, which is 1. (The acronym PEDMAS could mislead you to thinking that division has higher precedence than multiplication, and addition is done ahead of subtraction - don’t be misled.<br />
+Subtraction and addition are at the same precedence, and the left-to-right rule applies.)</li>
+</ol>
+<ul>
+<li>An exception to the left-to-right left-associative rule is the exponentiation operator <code>**</code>, so a useful hint is to always use parentheses to force exactly the order you want when exponentiation is involved:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">  <span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span> <span class="op">**</span> <span class="dv">2</span>     <span class="co">// The right-most ** operator gets done first!</span>
+  <span class="op">=&gt;</span> <span class="dv">512</span>
+  (<span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span>) <span class="op">**</span> <span class="dv">2</span>   <span class="co">// Use parentheses to force the order you want!</span>
+  <span class="op">=&gt;</span> <span class="dv">64</span></code></pre></div>
+<p>The Javascript console in repl.it is great for exploring and experimenting with expressions like this. You can fork this repl to try it: <a href="https://repl.it/@mcuringa/ES6-shell" class="uri">https://repl.it/@mcuringa/ES6-shell</a></p>
+</section>
+<section id="operations-on-strings" class="level2">
+<h2>Operations on strings</h2>
+<p>If a string looks like a number, Javascript while try to automatically convert it to an number in order to execute a mathematical operation.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;4&quot;</span><span class="op">;</span>
+message <span class="op">*</span> <span class="dv">2</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">8</span>
+message <span class="op">**</span> <span class="dv">2</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">16</span><span class="op">;</span></code></pre></div>
+<p>If the automatic type conversion fails in a mathematical operation, Javascript returns the special <em>Not a Number</em> value, <code>Nan</code>.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;Hello, world.&quot;</span><span class="op">;</span>
+message <span class="op">*</span> <span class="dv">2</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="kw">NaN</span></code></pre></div>
+<p>Interestingly, the <code>+</code> operator work with strings, but for strings, the <code>+</code> operator represents <strong>concatenation</strong>, not addition.<br />
+As we’ve seen, concatenation means joining the two operands by linking them end-to-end. For example:</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">let</span> fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span><span class="op">;</span>
+<span class="kw">let</span> bakedGood <span class="op">=</span> <span class="st">&quot; nut bread&quot;</span><span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(fruit <span class="op">+</span> bakedGood)<span class="op">;</span></code></pre></td></tr></table></div>
+<p>The output of this program is <code>banana nut bread</code>. The space before the word <code>nut</code> is part of the string, and is necessary to produce the space between the concatenated strings.</p>
+<p>Automatic conversion can be tricky and sometimes lead to unexpected results. Consider:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> age <span class="op">=</span> <span class="st">&quot;24&quot;</span><span class="op">;</span>
+age <span class="op">-</span> <span class="dv">10</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">14</span>
+age <span class="op">+</span> <span class="dv">10</span><span class="op">;</span>
+<span class="op">=&gt;</span> <span class="st">&#39;2410&#39;</span></code></pre></div>
+</section>
+<section id="input" class="level2">
+<h2>Input</h2>
+<p>There is a built-in function in Javascript for getting input from the user:</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">let</span> n <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;Please enter your name: &quot;</span>)<span class="op">;</span></code></pre></td></tr></table></div>
+<p>If you run this sample in a repl.it prompt, it will open a dialog window with the message:</p>
+<pre><code>Please enter your name: </code></pre>
+<p>The user of the program can type the name and hit <code>enter</code>. When this happens the text that has been entered is returned from the <code>prompt</code> function, and in this case assigned to the variable <code>n</code>.</p>
+<p>Even if you asked the user to enter their age, you would get back a string like <code>&quot;17&quot;</code>. It would be your job, as the programmer, to convert that string into a integer or float before using it, if that was required.</p>
+</section>
+<section id="composition" class="level2">
+<h2>Composition</h2>
+<p>So far, we have looked at the elements of a program — variables, expressions, statements, and function calls — in isolation, without talking about how to combine them.</p>
+<p>One of the most useful features of programming languages is their ability to take small building blocks and <strong>compose</strong> them into larger chunks.</p>
+<p>For example, we know how to get the user to enter some input, we know how to convert the string we get into a number, we know how to write a complex expression, and we know how to print values. Let’s put these together in a small four-step program that asks the user to input a value for the radius of a circle, and then computes the area of the circle from the formula</p>
+<figure>
+<img src="figs/circle_area.png" />
+</figure>
+<p>Firstly, we’ll do the four steps one at a time:</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">let</span> response <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What is your radius? &quot;</span>)<span class="op">;</span>
+<span class="kw">let</span> r <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(response)<span class="op">;</span>
+<span class="kw">let</span> area <span class="op">=</span> <span class="fl">3.14159</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span><span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The area is &quot;</span><span class="op">,</span> area)<span class="op">;</span></code></pre></td></tr></table></div>
+<p>Now let’s compose the first two lines into a single line of code, and compose the second two lines into another line of code.</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">let</span> r <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(<span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What is your radius? &quot;</span>))<span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The area is &quot;</span><span class="op">,</span> <span class="fl">3.14159</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span></code></pre></td></tr></table></div>
+<p>If we really wanted to be tricky, we could write it all in one statement:</p>
+<p><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub>~</sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub>~</sub>{.javascript .numberLines} console.log(“The area is”, 3.14159 * Number.parseFloat(window.prompt(“What is your radius?”))**2); <sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub>~</sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub>~<sub><sub><sub><sub><sub>~</sub></sub></sub></sub></sub></sub>~</p>
+<p>Such compact code may not be the most understandable for humans, but it does illustrate how we can compose bigger chunks from our building blocks.</p>
+<p>If you’re ever in doubt about whether to compose code or fragment it into smaller steps, try to make it as simple as you can for the human to follow. My choice would be the first case above, with four separate steps.</p>
+</section>
+<section id="the-modulus-operator" class="level2">
+<h2>The modulus operator</h2>
+<p>The <strong>modulus operator</strong> works on integers (and integer expressions) and gives the <em>remainder</em> when the first number is divided by the second. In Javascript, the modulus operator is a percent sign (<code>%</code>). The syntax is the same as for other operators. It has the same precedence as the multiplication operator.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">let</span> q <span class="op">=</span> <span class="va">Math</span>.<span class="at">floor</span>(<span class="dv">7</span> / <span class="dv">3</span>)<span class="op">;</span>     <span class="co">// This is integer division</span>
+q<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">2</span>
+<span class="kw">let</span> r  <span class="op">=</span> <span class="dv">7</span> <span class="op">%</span> <span class="dv">3</span>
+r<span class="op">;</span>
+<span class="op">=&gt;</span> <span class="dv">1</span></code></pre></div>
+<p>So 7 divided by 3 is 2 with a remainder of 1.</p>
+<p>The modulus operator turns out to be surprisingly useful. For example, you can check whether one number is divisible by another—if <code>x % y</code> is zero, then <code>x</code> is evenly divisible by <code>y</code>.</p>
+<p>Also, you can extract the right-most digit or digits from a number. For example, <code>x % 10</code> yields the right-most digit of <code>x</code> (in base 10). Similarly <code>x % 100</code> yields the last two digits.</p>
+<p>It is also extremely useful for doing conversions, say from seconds, to hours, minutes and seconds. So let’s write a program to ask the user to enter some seconds, and we’ll convert them into hours, minutes, and remaining seconds.</p>
+<div class="sourceCode"><table class="sourceCode javascript numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">let</span> totalSecs <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseInt</span>(<span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;How many seconds, in total?&quot;</span>))<span class="op">;</span>
+<span class="kw">let</span> hours <span class="op">=</span> <span class="va">Math</span>.<span class="at">floor</span>(totalSecs / <span class="dv">3600</span>)<span class="op">;</span>
+<span class="kw">let</span> secsStillRemaining  <span class="op">=</span> totalSecs <span class="op">%</span> <span class="dv">3600</span><span class="op">;</span>
+<span class="kw">let</span> minutes <span class="op">=</span> <span class="va">Math</span>.<span class="at">floor</span>(secsStillRemaining / <span class="dv">60</span>)<span class="op">;</span>
+<span class="kw">let</span> secsFinallyRemaining <span class="op">=</span> secsStillRemaining  <span class="op">%</span> <span class="dv">60</span><span class="op">;</span>
+
+<span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hrs=&quot;</span><span class="op">,</span> hours<span class="op">,</span> <span class="st">&quot;  mins=&quot;</span><span class="op">,</span> minutes<span class="op">,</span> <span class="st">&quot;secs=&quot;</span><span class="op">,</span> secsFinallyRemaining)<span class="op">;</span></code></pre></td></tr></table></div>
+</section>
+<section id="glossary-2" class="level2">
+<h2>Glossary</h2>
+<dl>
+<dt>assignment statement</dt>
+<dd><p>A statement that assigns a value to a name (variable). To the left of the assignment operator, <code>=</code>, is a name. To the right of the assignment token is an expression which is evaluated by the Javascript interpreter and then assigned to the name. The difference between the left and right hand sides of the assignment statement is often confusing to new programmers. In the following assignment:<br />
+<code>n = n + 1</code><br />
+<code>n</code> plays a very different role on each side of the <code>=</code>. On the right it is a <em>value</em> and makes up part of the <em>expression</em> which will be evaluated by the Javascript interpreter before assigning it to the name on the left.</p>
+</dd>
+<dt>assignment token</dt>
+<dd><p><code>=</code> is Javascript’s assignment token. Do not confuse it with <em>equals</em>, which is an operator for comparing values.</p>
+</dd>
+<dt>composition</dt>
+<dd><p>The ability to combine simple expressions and statements into compound statements and expressions in order to represent complex computations concisely.</p>
+</dd>
+<dt>concatenate</dt>
+<dd><p>To join two strings end-to-end.</p>
+</dd>
+<dt>data type</dt>
+<dd><p>A set of values. The type of a value determines how it can be used in expressions. So far, the types you have seen are <code>number</code> and <code>string</code>.</p>
+</dd>
+<dt>evaluate</dt>
+<dd><p>To simplify an expression by performing the operations in order to yield a single value.</p>
+</dd>
+<dt>expression</dt>
+<dd><p>A combination of variables, operators, and values that represents a single result value.</p>
+</dd>
+<dt>float</dt>
+<dd><p>Javascript data type which stores <em>floating-point</em> numbers. Although integers and floats are are all of type <code>number</code>, floating-point numbers are stored internally in two parts: a <em>base</em> and an <em>exponent</em>. When printed in the standard format, they look like decimal numbers. Beware of rounding errors when you use <code>float</code> s, and remember that they are only approximate values.</p>
+</dd>
+<dt>int</dt>
+<dd><p>An integer or whole number. In Javascript, its type is <code>number</code>.</p>
+</dd>
+<dt>keyword</dt>
+<dd><p>A reserved word that is used by the compiler to parse program; you cannot use keywords like <code>if</code>, <code>function</code>, and <code>while</code> as variable names.</p>
+</dd>
+<dt>modulus operator</dt>
+<dd><p>An operator, denoted with a percent sign ( <code>%</code>), that works on integers and yields the remainder when one number is divided by another.</p>
+</dd>
+<dt>operand</dt>
+<dd><p>One of the values on which an operator operates.</p>
+</dd>
+<dt>operator</dt>
+<dd><p>A special symbol that represents a simple computation like addition, multiplication, or string concatenation.</p>
+</dd>
+<dt>rules of precedence</dt>
+<dd><p>The set of rules governing the order in which expressions involving multiple operators and operands are evaluated.</p>
+</dd>
+<dt>state snapshot</dt>
+<dd><p>A graphical representation of a set of variables and the values to which they refer, taken at a particular instant during the program’s execution.</p>
+</dd>
+<dt>statement</dt>
+<dd><p>An instruction that the Javascript interpreter can execute. So far we have mostly seen the assignment statement.</p>
+</dd>
+<dt>string</dt>
+<dd><p>A Javascript data type that holds a string of characters (e.g. textual data).</p>
+</dd>
+<dt>value</dt>
+<dd><p>A number or string (or other things to be named later) that can be stored in a variable or computed in an expression.</p>
+</dd>
+<dt>variable</dt>
+<dd><p>A name that refers to a value.</p>
+</dd>
+<dt>variable name</dt>
+<dd><p>A name given to a variable. Variable names in Javascript consist of a sequence of letters (a..z, A..Z, $, and _) and digits (0..9) that begins with a letter. In best programming practice, variable names should be chosen so that they describe their use in the program, making the program <em>self documenting</em>.</p>
+</dd>
+</dl>
+</section>
+</section>
+</body>
+</html>
