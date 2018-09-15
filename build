@@ -2,9 +2,9 @@
 
 #CHAPTERS="forward.md preface.md way_of_the_program.md variables.md turtles.md functions.md conditionals.md iteration.md lists.md tuples.md dictionaries.md schools.md while.md";
 
-CHAPTERS="forward.md preface.md way_of_the_program.md variables.md";
+CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md";
 
-pandoc -o index.html --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s -S --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
+pandoc -o index.html --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 
 cp index.html ./docs/;
 cp -r figs ./docs/figs;
