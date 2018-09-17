@@ -36,9 +36,56 @@ code** --- they do not affect the execution of the program.
 
 <aside data-line-number="14">
 
-**welcome** is a very simple **function** --- it does not accept
+``welcome`` is a very simple **function** --- it does not accept
 any data in the form of **function paramters** and it does not
 **return** any data using a **return statement**. It simply prints out a
 message to the console.
+
+</aside>
+
+
+<aside data-line-number="28">
+
+The ``calcTip`` function defines 2 **parameters**:
+`bill` and `pct`. These parameters become
+variables within the **function body**. Line 30 uses
+**arithmetic operators** (multiplication here) to
+calculate a new value and store it in the `tip` **variable**.
+`tip` is converted to a float using the **built-in function**
+`Number.parseFloat`. Finally, the rounded tip amount is returned.
+
+
+</aside>
+
+<aside data-line-number="41">
+
+``askBillAmt`` is a **fruitful function** because
+it has a **return statement**. It uses the
+**built-in function** `window.prompt` to ask for data from the
+user of the program. When this function is called, it returns
+the amount of the bill as a float, because it represents money.
+
+</aside>
+
+
+
+<aside data-line-number="68">
+
+``showResults`` defines 3 **parameters** which are used
+to pass in all of the data needed to show the results
+of the tip calculation. Notice that the `console.log` statements
+use the **+ operator** to <abbr title="join together">concatenate</abbr>
+strings. Because we are joining **string literals** with variables of
+type `number`. The ``+`` operator automatically converts the numbers to strings.
+
+</aside>
+
+<aside data-line-number="87">
+
+``main`` is the first function **called** for
+this program. It maintains the executive control of the
+program, calling other functions in sequence and passing
+data between functions. All of the other functions have
+been defined, but are waiting to be called.
 
 </aside>

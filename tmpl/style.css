@@ -132,10 +132,9 @@ aside
     margin-left: 1em;
 }
 */
-p code, li code
-{
-    background-color: #ededed;
-    color: black;
+aside code {
+    font-size: 87.5%;
+    color: #e83e8c;    
 }
 
 a.sourceLine:before {
@@ -147,7 +146,8 @@ div.sourceCode {
     padding: 6px;
 }
 
-.sourceCode pre, pre.sourceCode, li table .sourceCode
+/* not sure why this is necessary -- need to look at the syntax highlighter */
+.sourceCode pre, pre.sourceCode
 {
     color: inherit;
     border-style: none;
@@ -194,20 +194,7 @@ section[id*="case-study"] aside p
     margin-bottom: .5em;
 }
 
-section[id*="case-study"] aside code, h1 code, h2 code, h3 code, h4 code
-{
-    background-color: #ededed;
-    color: black;
-}
 
-#neighbor-details table { border-collapse:collapse; }
-
-#neighbor-details table, #neighbor-details th, #neighbor-details td
-{
-    border: 1px solid black;
-    background-color: white;
-    padding: .25em;
-}
 
 @media screen
 {

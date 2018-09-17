@@ -406,12 +406,6 @@ compound statement
         statement
         statement ...
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                                           
-docstring
-
-:   A special string that is attached to a function as its ``__doc__`` attribute.
-    Tools like PyScripter can use docstrings to provide documentation or hints for the programmer.
-    When we get to modules, classes, and methods, we'll see that docstrings can also be used there. 
 
 flow of execution
 
@@ -488,46 +482,61 @@ stack diagram
 traceback
 
 :   A list of the functions that are executing, printed when a runtime
-    error occurs. A traceback is also commonly refered to as a
+    error occurs. A traceback is also commonly referred to as a
     *stack trace*, since it lists the functions in the order in which they
     are stored in the
-    `runtime stack <http://en.wikipedia.org/wiki/Runtime_stack>`__.
+    [runtime stack](http://en.wikipedia.org/wiki/Runtime_stack).
     
 void function
 
 :    The opposite of a fruitful function: one that does not return a value.  It is
     executed for the work it does, rather than for the value it returns.
 
-Exercises
-------------------------------
+Examples
+--------
 
-1.  Write a void (non-fruitful) function to that prints out centered text to the console.
-    Your function should have two parameters, ``text``—the string to center,
-    and ``maxLen``—the width of the document (in spaces).\
-    (Hint: you will want to use the built-in ``len`` function and might want to 
-    use the * operator with spaces.)
+1.  Write a void (non-fruitful) function to that prints out a "hello" message. Your function
+    should declare 3 parameters: ``firstName``, ``lastName``, and ``title``. ``title`` will be
+    Mr., Ms., Dr., etc. The function should print a message like this one:
+    `Hello Dr. Matthew Curinga.`
     
-2.  Write a function ``area_of_circle(r)`` which returns the area of a circle of radius ``r``.\
+
+2. Write a function ``half(num)`` which returns the value of ``num`` divided by 2.
+
+3. Write a function ...
+
+2.  Write a function ``areaOfACircle(r)`` which returns the area of a circle of radius ``r``.
+    For the value of PI, use the constant ``Math.PI``<br>
     (Hint: if you can't remember how to find the area of a circle, look it up or ask a friend.)
 
 3. _Lemonade Stand_. Diego has a lemonade stand and he needs a program to estimate costs. Write
    a Python program called lemonade.py that allows him to see potential profits
    for his stand. Use the following skeleton to start your program:
 
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-    def estimate_profit(lemonCost, cupCost, estPeople, price):
-        # write a doc string
-        # write the code
-        # return the estimate
-    
-    def main():
-        l = .3
-        c = .15
-        n = 100
-        p = 2.50
-        profit = estimate_profit(l, c, n, p)
-        show_results(l, c, n, p, price) # you need to define this one yourself
-    
-    if __name__ == "__main__":
-        main()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+Functions Lab
+-------------
+
+This is the first "lab" in our textbook. For this project, you will be asked to write
+a complete program that solves a problem. The labs should break up parts of the program
+into different functions. Your program should start when the ``main()`` function is
+called. ``main`` is not a keyword in Javascript, but in many programming languages there
+is a convention that the starting function is called ``main``. Please take a look at the
+Tip Calculator case study below for a sense of how your program should be structured.
+
+For this first lab, too, please pay attention to your [coding style](#coding-style) to
+make sure that the program is well formatted and easy for human readers to understand.
+
+For this lab you are going to revisit the lemonade stand estimator from the exercises in
+chapter 2. You will make an interactive program that asks the user to enter all of the 
+data for:
+
+- prices of the ingredients
+- prices for the materials (e.g. cups)
+- sale price for a cup of lemonade
+- and estimation of the number of cups sold
+
+Once all of the data is entered, the program will print out a neatly formatted message
+with the results of the estimation.

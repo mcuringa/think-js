@@ -211,10 +211,9 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
       margin-left: 1em;
   }
   */
-  p code, li code
-  {
-      background-color: #ededed;
-      color: black;
+  aside code {
+      font-size: 87.5%;
+      color: #e83e8c;    
   }
   
   a.sourceLine:before {
@@ -226,7 +225,8 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
       padding: 6px;
   }
   
-  .sourceCode pre, pre.sourceCode, li table .sourceCode
+  /* not sure why this is necessary -- need to look at the syntax highlighter */
+  .sourceCode pre, pre.sourceCode
   {
       color: inherit;
       border-style: none;
@@ -273,20 +273,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
       margin-bottom: .5em;
   }
   
-  section[id*="case-study"] aside code, h1 code, h2 code, h3 code, h4 code
-  {
-      background-color: #ededed;
-      color: black;
-  }
   
-  #neighbor-details table { border-collapse:collapse; }
-  
-  #neighbor-details table, #neighbor-details th, #neighbor-details td
-  {
-      border: 1px solid black;
-      background-color: white;
-      padding: .25em;
-  }
   
   @media screen
   {
@@ -362,7 +349,8 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#functions-that-require-arguments">Functions that require arguments</a></li>
 <li><a href="#functions-that-return-values">Functions that return values</a></li>
 <li><a href="#glossary-3">Glossary</a></li>
-<li><a href="#exercises">Exercises</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#functions-lab">Functions Lab</a></li>
 <li><a href="#code-listing-1-the-tip-calculator">Code Listing 1: The Tip Calculator</a></li>
 </ul></li>
 </ul>
@@ -1387,9 +1375,6 @@ Short variable names are more economical and sometimes make code easier to read:
 <a class="sourceLine" id="cb56-2" data-line-number="2">    statement</a>
 <a class="sourceLine" id="cb56-3" data-line-number="3">    <span class="va">statement</span> ...</a></code></pre></div>
 </dd>
-<dt>docstring</dt>
-<dd><p>A special string that is attached to a function as its <code>__doc__</code> attribute. Tools like PyScripter can use docstrings to provide documentation or hints for the programmer. When we get to modules, classes, and methods, we’ll see that docstrings can also be used there.</p>
-</dd>
 <dt>flow of execution</dt>
 <dd><p>The order in which statements are executed during a program run.</p>
 </dd>
@@ -1433,37 +1418,35 @@ Short variable names are more economical and sometimes make code easier to read:
 <dd><p>A graphical representation of a stack of functions, their variables, and the values to which they refer.</p>
 </dd>
 <dt>traceback</dt>
-<dd><p>A list of the functions that are executing, printed when a runtime error occurs. A traceback is also commonly refered to as a <em>stack trace</em>, since it lists the functions in the order in which they are stored in the <code>runtime stack &lt;http://en.wikipedia.org/wiki/Runtime_stack&gt;</code>__.</p>
+<dd><p>A list of the functions that are executing, printed when a runtime error occurs. A traceback is also commonly referred to as a <em>stack trace</em>, since it lists the functions in the order in which they are stored in the <a href="http://en.wikipedia.org/wiki/Runtime_stack">runtime stack</a>.</p>
 </dd>
 <dt>void function</dt>
 <dd><p>The opposite of a fruitful function: one that does not return a value. It is executed for the work it does, rather than for the value it returns.</p>
 </dd>
 </dl>
 </section>
-<section id="exercises" class="level2">
-<h2>Exercises</h2>
+<section id="examples" class="level2">
+<h2>Examples</h2>
 <ol type="1">
-<li><p>Write a void (non-fruitful) function to that prints out centered text to the console. Your function should have two parameters, <code>text</code>—the string to center, and <code>maxLen</code>—the width of the document (in spaces).<br />
-(Hint: you will want to use the built-in <code>len</code> function and might want to use the * operator with spaces.)</p></li>
-<li><p>Write a function <code>area_of_circle(r)</code> which returns the area of a circle of radius <code>r</code>.<br />
-(Hint: if you can’t remember how to find the area of a circle, look it up or ask a friend.)</p></li>
-<li><p><em>Lemonade Stand</em>. Diego has a lemonade stand and he needs a program to estimate costs. Write a Python program called lemonade.py that allows him to see potential profits for his stand. Use the following skeleton to start your program:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb57-1" data-line-number="1">def <span class="at">estimate_profit</span>(lemonCost<span class="op">,</span> cupCost<span class="op">,</span> estPeople<span class="op">,</span> price)<span class="op">:</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">    # write a doc string</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">    # write the code</a>
-<a class="sourceLine" id="cb57-4" data-line-number="4">    # <span class="cf">return</span> the estimate</a>
-<a class="sourceLine" id="cb57-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb57-6" data-line-number="6">def <span class="at">main</span>()<span class="op">:</span></a>
-<a class="sourceLine" id="cb57-7" data-line-number="7">    l <span class="op">=</span> <span class="fl">.3</span></a>
-<a class="sourceLine" id="cb57-8" data-line-number="8">    c <span class="op">=</span> <span class="fl">.15</span></a>
-<a class="sourceLine" id="cb57-9" data-line-number="9">    n <span class="op">=</span> <span class="dv">100</span></a>
-<a class="sourceLine" id="cb57-10" data-line-number="10">    p <span class="op">=</span> <span class="fl">2.50</span></a>
-<a class="sourceLine" id="cb57-11" data-line-number="11">    profit <span class="op">=</span> <span class="at">estimate_profit</span>(l<span class="op">,</span> c<span class="op">,</span> n<span class="op">,</span> p)</a>
-<a class="sourceLine" id="cb57-12" data-line-number="12">    <span class="at">show_results</span>(l<span class="op">,</span> c<span class="op">,</span> n<span class="op">,</span> p<span class="op">,</span> price) # you need to define <span class="kw">this</span> one yourself</a>
-<a class="sourceLine" id="cb57-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb57-14" data-line-number="14"><span class="cf">if</span> __name__ <span class="op">==</span> <span class="st">&quot;__main__&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb57-15" data-line-number="15">    <span class="at">main</span>()</a></code></pre></div></li>
+<li><p>Write a void (non-fruitful) function to that prints out a “hello” message. Your function should declare 3 parameters: <code>firstName</code>, <code>lastName</code>, and <code>title</code>. <code>title</code> will be Mr., Ms., Dr., etc. The function should print a message like this one: <code>Hello Dr. Matthew Curinga.</code></p></li>
+<li><p>Write a function <code>half(num)</code> which returns the value of <code>num</code> divided by 2.</p></li>
+<li><p>Write a function …</p></li>
+<li><p>Write a function <code>areaOfACircle(r)</code> which returns the area of a circle of radius <code>r</code>. For the value of PI, use the constant <code>Math.PI</code><br> (Hint: if you can’t remember how to find the area of a circle, look it up or ask a friend.)</p></li>
+<li><p><em>Lemonade Stand</em>. Diego has a lemonade stand and he needs a program to estimate costs. Write a Python program called lemonade.py that allows him to see potential profits for his stand. Use the following skeleton to start your program:</p></li>
 </ol>
+</section>
+<section id="functions-lab" class="level2">
+<h2>Functions Lab</h2>
+<p>This is the first “lab” in our textbook. For this project, you will be asked to write a complete program that solves a problem. The labs should break up parts of the program into different functions. Your program should start when the <code>main()</code> function is called. <code>main</code> is not a keyword in Javascript, but in many programming languages there is a convention that the starting function is called <code>main</code>. Please take a look at the Tip Calculator case study below for a sense of how your program should be structured.</p>
+<p>For this first lab, too, please pay attention to your <a href="#coding-style">coding style</a> to make sure that the program is well formatted and easy for human readers to understand.</p>
+<p>For this lab you are going to revisit the lemonade stand estimator from the exercises in chapter 2. You will make an interactive program that asks the user to enter all of the data for:</p>
+<ul>
+<li>prices of the ingredients</li>
+<li>prices for the materials (e.g. cups)</li>
+<li>sale price for a cup of lemonade</li>
+<li>and estimation of the number of cups sold</li>
+</ul>
+<p>Once all of the data is entered, the program will print out a neatly formatted message with the results of the estimation.</p>
 </section>
 <section id="code-listing-1-the-tip-calculator" class="level2">
 <h2>Code Listing 1: The Tip Calculator</h2>
@@ -1481,106 +1464,118 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <p>Brief header <strong>comments</strong> at the top of the <strong>source file</strong> identify basic information about the program and the file. Comments are messages for programmers who read the <strong>source code</strong> — they do not affect the execution of the program.</p>
 </aside>
 <aside data-line-number="14">
-<p><strong>welcome</strong> is a very simple <strong>function</strong> — it does not accept any data in the form of <strong>function paramters</strong> and it does not <strong>return</strong> any data using a <strong>return statement</strong>. It simply prints out a message to the console.</p>
+<p><code>welcome</code> is a very simple <strong>function</strong> — it does not accept any data in the form of <strong>function paramters</strong> and it does not <strong>return</strong> any data using a <strong>return statement</strong>. It simply prints out a message to the console.</p>
+</aside>
+<aside data-line-number="28">
+<p>The <code>calcTip</code> function defines 2 <strong>parameters</strong>: <code>bill</code> and <code>pct</code>. These parameters become variables within the <strong>function body</strong>. Line 30 uses <strong>arithmetic operators</strong> (multiplication here) to calculate a new value and store it in the <code>tip</code> <strong>variable</strong>. <code>tip</code> is converted to a float using the <strong>built-in function</strong> <code>Number.parseFloat</code>. Finally, the rounded tip amount is returned.</p>
+</aside>
+<aside data-line-number="41">
+<p><code>askBillAmt</code> is a <strong>fruitful function</strong> because it has a <strong>return statement</strong>. It uses the <strong>built-in function</strong> <code>window.prompt</code> to ask for data from the user of the program. When this function is called, it returns the amount of the bill as a float, because it represents money.</p>
+</aside>
+<aside data-line-number="68">
+<p><code>showResults</code> defines 3 <strong>parameters</strong> which are used to pass in all of the data needed to show the results of the tip calculation. Notice that the <code>console.log</code> statements use the <strong>+ operator</strong> to <abbr title="join together">concatenate</abbr> strings. Because we are joining <strong>string literals</strong> with variables of type <code>number</code>. The <code>+</code> operator automatically converts the numbers to strings.</p>
+</aside>
+<aside data-line-number="87">
+<p><code>main</code> is the first function <strong>called</strong> for this program. It maintains the executive control of the program, calling other functions in sequence and passing data between functions. All of the other functions have been defined, but are waiting to be called.</p>
 </aside>
 <div class="listingSrcCode">
-<div class="sourceCode" id="cb58"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="co"> * tip-calulator.js</span></a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co"> * This example program helps the user</span></a>
-<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="co"> * calculate the amount of tip to leave</span></a>
-<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="co"> * on a restaurant bill.</span></a>
-<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="co"> * by Matt Curinga</span></a>
-<a class="sourceLine" id="cb58-7" data-line-number="7"><span class="co"> * 15 Sep 2018 </span></a>
-<a class="sourceLine" id="cb58-8" data-line-number="8"><span class="co"> *</span></a>
-<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb58-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb58-11" data-line-number="11"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb58-12" data-line-number="12"><span class="co"> Present the user with a welcome message.</span></a>
-<a class="sourceLine" id="cb58-13" data-line-number="13"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb58-14" data-line-number="14"><span class="kw">function</span> <span class="at">welcome</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb58-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb58-16" data-line-number="16">  <span class="kw">let</span> msg <span class="op">=</span> <span class="vs">```</span></a>
-<a class="sourceLine" id="cb58-17" data-line-number="17"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb58-18" data-line-number="18"><span class="vs">   Welcome to the Tip Calculator   </span></a>
-<a class="sourceLine" id="cb58-19" data-line-number="19"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb58-20" data-line-number="20"><span class="vs">```</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb58-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb58-22" data-line-number="22"><span class="op">}</span></a>
-<a class="sourceLine" id="cb58-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb58-24" data-line-number="24"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb58-25" data-line-number="25"><span class="co">  Calculate the tip on a bill, given the pct of the tip.</span></a>
-<a class="sourceLine" id="cb58-26" data-line-number="26"><span class="co">  Return the amount of the tip</span></a>
-<a class="sourceLine" id="cb58-27" data-line-number="27"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb58-28" data-line-number="28"><span class="kw">function</span> <span class="at">calcTip</span>(bill<span class="op">,</span> pct) <span class="op">{</span></a>
-<a class="sourceLine" id="cb58-29" data-line-number="29">    <span class="co">// convert pct to a decimal and calculate</span></a>
-<a class="sourceLine" id="cb58-30" data-line-number="30">    <span class="kw">let</span> tip <span class="op">=</span> bill <span class="op">*</span> pct<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-31" data-line-number="31">    </a>
-<a class="sourceLine" id="cb58-32" data-line-number="32">    <span class="co">// convert the tip to float with 2 decimal places</span></a>
-<a class="sourceLine" id="cb58-33" data-line-number="33">    tip <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(tip)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-34" data-line-number="34">    <span class="cf">return</span> tip<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-35" data-line-number="35"><span class="op">}</span></a>
-<a class="sourceLine" id="cb58-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb58-37" data-line-number="37"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb58-38" data-line-number="38"><span class="co">  Ask the user to enter the amount of the bill</span></a>
-<a class="sourceLine" id="cb58-39" data-line-number="39"><span class="co">  and return this amount as a &lt;float&gt;</span></a>
-<a class="sourceLine" id="cb58-40" data-line-number="40"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb58-41" data-line-number="41"><span class="kw">function</span> <span class="at">askBillAmt</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb58-42" data-line-number="42">    <span class="kw">let</span> amt <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;How much was your total bill?&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-43" data-line-number="43">    amt <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb58-45" data-line-number="45">    <span class="cf">return</span> amt<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-46" data-line-number="46"><span class="op">}</span></a>
-<a class="sourceLine" id="cb58-47" data-line-number="47"></a>
-<a class="sourceLine" id="cb58-48" data-line-number="48"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb58-49" data-line-number="49"><span class="co">  Allow the user to choose a tip amount from a menu.</span></a>
-<a class="sourceLine" id="cb58-50" data-line-number="50"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb58-51" data-line-number="51"><span class="kw">function</span> <span class="at">askTipPct</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb58-52" data-line-number="52">  <span class="kw">let</span> pct <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What percent tip do you want to leave?&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-53" data-line-number="53">  <span class="co">// convert the pct from a whole number to a fraction</span></a>
-<a class="sourceLine" id="cb58-54" data-line-number="54">  pct /<span class="op">=</span> <span class="dv">100</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb58-55" data-line-number="55">  pct <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(pct).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-56" data-line-number="56">  <span class="cf">return</span> pct<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-57" data-line-number="57"><span class="op">}</span></a>
-<a class="sourceLine" id="cb58-58" data-line-number="58"></a>
-<a class="sourceLine" id="cb58-59" data-line-number="59"><span class="kw">function</span> <span class="at">mone</span>(amt) <span class="op">{</span></a>
-<a class="sourceLine" id="cb58-60" data-line-number="60">  <span class="kw">let</span> dollars <span class="op">=</span> <span class="st">&quot;$&quot;</span> <span class="op">+</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-61" data-line-number="61">  <span class="cf">return</span> dollars<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-62" data-line-number="62"><span class="op">}</span></a>
-<a class="sourceLine" id="cb58-63" data-line-number="63"></a>
-<a class="sourceLine" id="cb58-64" data-line-number="64"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb58-65" data-line-number="65"><span class="co">  Prints a message to the user showing</span></a>
-<a class="sourceLine" id="cb58-66" data-line-number="66"><span class="co">  the result of the calculations.</span></a>
-<a class="sourceLine" id="cb58-67" data-line-number="67"><span class="co">*/</span>    </a>
-<a class="sourceLine" id="cb58-68" data-line-number="68"><span class="kw">function</span> <span class="at">showResults</span>(bill<span class="op">,</span> tip<span class="op">,</span> pct)<span class="op">:</span></a>
-<a class="sourceLine" id="cb58-69" data-line-number="69">  <span class="kw">let</span> total <span class="op">=</span> tip <span class="op">+</span> bill<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-70" data-line-number="70"></a>
-<a class="sourceLine" id="cb58-71" data-line-number="71">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Bill amount: &quot;</span> <span class="op">+</span> <span class="at">money</span>(bill) )<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-72" data-line-number="72">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip percentage: &quot;</span> <span class="op">+</span> pct <span class="op">+</span> <span class="st">&quot;%&quot;</span> )<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-73" data-line-number="73">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip amount due: &quot;</span> <span class="op">+</span> <span class="at">money</span>(tip) )<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-74" data-line-number="74">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total with tip: &quot;</span> <span class="op">+</span> <span class="at">money</span>(total) )<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-75" data-line-number="75"></a>
-<a class="sourceLine" id="cb58-76" data-line-number="76">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">```</span></a>
-<a class="sourceLine" id="cb58-77" data-line-number="77"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb58-78" data-line-number="78"><span class="vs">             GOOD BYE      </span></a>
-<a class="sourceLine" id="cb58-79" data-line-number="79"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb58-80" data-line-number="80"><span class="vs">```</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-81" data-line-number="81"></a>
-<a class="sourceLine" id="cb58-82" data-line-number="82"></a>
-<a class="sourceLine" id="cb58-83" data-line-number="83"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb58-84" data-line-number="84"><span class="co">  Read in the basic information, calcualte the tip</span></a>
-<a class="sourceLine" id="cb58-85" data-line-number="85"><span class="co">  and the share, then dispaly the results to the user.</span></a>
-<a class="sourceLine" id="cb58-86" data-line-number="86"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb58-87" data-line-number="87"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb58-88" data-line-number="88">    </a>
-<a class="sourceLine" id="cb58-89" data-line-number="89">    <span class="at">welcome</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb58-90" data-line-number="90">    <span class="kw">let</span> myBill <span class="op">=</span> <span class="at">askBillAmt</span>()</a>
-<a class="sourceLine" id="cb58-91" data-line-number="91">    <span class="kw">let</span> pct <span class="op">=</span> <span class="at">askTipPct</span>()</a>
-<a class="sourceLine" id="cb58-92" data-line-number="92">    <span class="kw">let</span> tip <span class="op">=</span> <span class="at">calcTIp</span>(myBill<span class="op">,</span> pct)</a>
-<a class="sourceLine" id="cb58-93" data-line-number="93">    <span class="at">showResults</span>(myBill<span class="op">,</span> tip<span class="op">,</span> pct)</a>
-<a class="sourceLine" id="cb58-94" data-line-number="94"></a>
-<a class="sourceLine" id="cb58-95" data-line-number="95"><span class="op">}</span></a>
-<a class="sourceLine" id="cb58-96" data-line-number="96"></a>
-<a class="sourceLine" id="cb58-97" data-line-number="97"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="co"> * tip-calulator.js</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co"> * This example program helps the user</span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co"> * calculate the amount of tip to leave</span></a>
+<a class="sourceLine" id="cb57-5" data-line-number="5"><span class="co"> * on a restaurant bill.</span></a>
+<a class="sourceLine" id="cb57-6" data-line-number="6"><span class="co"> * by Matt Curinga</span></a>
+<a class="sourceLine" id="cb57-7" data-line-number="7"><span class="co"> * 15 Sep 2018 </span></a>
+<a class="sourceLine" id="cb57-8" data-line-number="8"><span class="co"> *</span></a>
+<a class="sourceLine" id="cb57-9" data-line-number="9"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb57-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb57-11" data-line-number="11"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-12" data-line-number="12"><span class="co"> Present the user with a welcome message.</span></a>
+<a class="sourceLine" id="cb57-13" data-line-number="13"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-14" data-line-number="14"><span class="kw">function</span> <span class="at">welcome</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb57-16" data-line-number="16">  <span class="kw">let</span> msg <span class="op">=</span> <span class="vs">```</span></a>
+<a class="sourceLine" id="cb57-17" data-line-number="17"><span class="vs">-----------------------------------</span></a>
+<a class="sourceLine" id="cb57-18" data-line-number="18"><span class="vs">   Welcome to the Tip Calculator   </span></a>
+<a class="sourceLine" id="cb57-19" data-line-number="19"><span class="vs">-----------------------------------</span></a>
+<a class="sourceLine" id="cb57-20" data-line-number="20"><span class="vs">```</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb57-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb57-22" data-line-number="22"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb57-24" data-line-number="24"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-25" data-line-number="25"><span class="co">  Calculate the tip on a bill, given the pct of the tip.</span></a>
+<a class="sourceLine" id="cb57-26" data-line-number="26"><span class="co">  Return the amount of the tip</span></a>
+<a class="sourceLine" id="cb57-27" data-line-number="27"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-28" data-line-number="28"><span class="kw">function</span> <span class="at">calcTip</span>(bill<span class="op">,</span> pct) <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-29" data-line-number="29">    <span class="co">// convert pct to a decimal and calculate</span></a>
+<a class="sourceLine" id="cb57-30" data-line-number="30">    <span class="kw">let</span> tip <span class="op">=</span> bill <span class="op">*</span> pct<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-31" data-line-number="31">    </a>
+<a class="sourceLine" id="cb57-32" data-line-number="32">    <span class="co">// convert the tip to float with 2 decimal places</span></a>
+<a class="sourceLine" id="cb57-33" data-line-number="33">    tip <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(tip)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-34" data-line-number="34">    <span class="cf">return</span> tip<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-35" data-line-number="35"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb57-37" data-line-number="37"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-38" data-line-number="38"><span class="co">  Ask the user to enter the amount of the bill</span></a>
+<a class="sourceLine" id="cb57-39" data-line-number="39"><span class="co">  and return this amount as a &lt;float&gt;</span></a>
+<a class="sourceLine" id="cb57-40" data-line-number="40"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-41" data-line-number="41"><span class="kw">function</span> <span class="at">askBillAmt</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-42" data-line-number="42">    <span class="kw">let</span> amt <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;How much was your total bill?&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-43" data-line-number="43">    amt <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb57-45" data-line-number="45">    <span class="cf">return</span> amt<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-46" data-line-number="46"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb57-48" data-line-number="48"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-49" data-line-number="49"><span class="co">  Allow the user to choose a tip amount from a menu.</span></a>
+<a class="sourceLine" id="cb57-50" data-line-number="50"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-51" data-line-number="51"><span class="kw">function</span> <span class="at">askTipPct</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-52" data-line-number="52">  <span class="kw">let</span> pct <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What percent tip do you want to leave?&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-53" data-line-number="53">  <span class="co">// convert the pct from a whole number to a fraction</span></a>
+<a class="sourceLine" id="cb57-54" data-line-number="54">  pct /<span class="op">=</span> <span class="dv">100</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb57-55" data-line-number="55">  pct <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(pct).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-56" data-line-number="56">  <span class="cf">return</span> pct<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-57" data-line-number="57"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb57-59" data-line-number="59"><span class="kw">function</span> <span class="at">money</span>(amt) <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-60" data-line-number="60">  <span class="kw">let</span> dollars <span class="op">=</span> <span class="st">&quot;$&quot;</span> <span class="op">+</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-61" data-line-number="61">  <span class="cf">return</span> dollars<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-62" data-line-number="62"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb57-64" data-line-number="64"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-65" data-line-number="65"><span class="co">  Prints a message to the user showing</span></a>
+<a class="sourceLine" id="cb57-66" data-line-number="66"><span class="co">  the result of the calculations.</span></a>
+<a class="sourceLine" id="cb57-67" data-line-number="67"><span class="co">*/</span>    </a>
+<a class="sourceLine" id="cb57-68" data-line-number="68"><span class="kw">function</span> <span class="at">showResults</span>(bill<span class="op">,</span> tip<span class="op">,</span> pct)<span class="op">:</span></a>
+<a class="sourceLine" id="cb57-69" data-line-number="69">  <span class="kw">let</span> total <span class="op">=</span> tip <span class="op">+</span> bill<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-70" data-line-number="70"></a>
+<a class="sourceLine" id="cb57-71" data-line-number="71">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Bill amount: &quot;</span> <span class="op">+</span> <span class="at">money</span>(bill) )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-72" data-line-number="72">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip percentage: &quot;</span> <span class="op">+</span> pct <span class="op">+</span> <span class="st">&quot;%&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-73" data-line-number="73">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip amount due: &quot;</span> <span class="op">+</span> <span class="at">money</span>(tip) )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-74" data-line-number="74">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total with tip: &quot;</span> <span class="op">+</span> <span class="at">money</span>(total) )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-75" data-line-number="75"></a>
+<a class="sourceLine" id="cb57-76" data-line-number="76">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">```</span></a>
+<a class="sourceLine" id="cb57-77" data-line-number="77"><span class="vs">-----------------------------------</span></a>
+<a class="sourceLine" id="cb57-78" data-line-number="78"><span class="vs">             GOOD BYE      </span></a>
+<a class="sourceLine" id="cb57-79" data-line-number="79"><span class="vs">-----------------------------------</span></a>
+<a class="sourceLine" id="cb57-80" data-line-number="80"><span class="vs">```</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-81" data-line-number="81"></a>
+<a class="sourceLine" id="cb57-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb57-83" data-line-number="83"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-84" data-line-number="84"><span class="co">  Read in the basic information, calcualte the tip</span></a>
+<a class="sourceLine" id="cb57-85" data-line-number="85"><span class="co">  and the share, then dispaly the results to the user.</span></a>
+<a class="sourceLine" id="cb57-86" data-line-number="86"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-87" data-line-number="87"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-88" data-line-number="88">    </a>
+<a class="sourceLine" id="cb57-89" data-line-number="89">    <span class="at">welcome</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-90" data-line-number="90">    <span class="kw">let</span> myBill <span class="op">=</span> <span class="at">askBillAmt</span>()</a>
+<a class="sourceLine" id="cb57-91" data-line-number="91">    <span class="kw">let</span> pct <span class="op">=</span> <span class="at">askTipPct</span>()</a>
+<a class="sourceLine" id="cb57-92" data-line-number="92">    <span class="kw">let</span> tip <span class="op">=</span> <span class="at">calcTIp</span>(myBill<span class="op">,</span> pct)</a>
+<a class="sourceLine" id="cb57-93" data-line-number="93">    <span class="at">showResults</span>(myBill<span class="op">,</span> tip<span class="op">,</span> pct)</a>
+<a class="sourceLine" id="cb57-94" data-line-number="94"></a>
+<a class="sourceLine" id="cb57-95" data-line-number="95"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-96" data-line-number="96"></a>
+<a class="sourceLine" id="cb57-97" data-line-number="97"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
 </div>
 </section>
 </section>

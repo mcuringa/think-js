@@ -56,7 +56,7 @@ function askTipPct() {
   return pct;
 }
 
-function mone(amt) {
+function money(amt) {
   let dollars = "$" + Number.parseFloat(amt).toFixed(2);
   return dollars;
 }
