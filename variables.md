@@ -476,7 +476,7 @@ message ** 2;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If the automatic type conversion fails in a mathematical operation, Javascript
-returns the special *Not a Number* value, `Nan`.
+returns the special *Not a Number* value, `NaN`.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
