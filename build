@@ -1,8 +1,18 @@
 #!/bin/bash
 
+echo "<div class='listingSrcCode'>" > tip-src.md;
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}" >> tip-src.md;
+cat ./examples/tip-calculator.js >> tip-src.md;
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> tip-src.md;
+echo "</div>" >> tip-src.md;
+
+cat tip-calc.md > tips.md;
+cat tip-src.md >> tips.md;
+
+
 #CHAPTERS="forward.md preface.md way_of_the_program.md variables.md turtles.md functions.md conditionals.md iteration.md lists.md tuples.md dictionaries.md schools.md while.md";
 
-CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md";
+CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md tips.md";
 
 pandoc -o index.html --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 

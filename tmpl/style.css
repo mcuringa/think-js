@@ -128,10 +128,10 @@ aside
 
 /** code highlighting stuff **/
 
-pre.numberSource {
+/*pre.numberSource {
     margin-left: 1em;
 }
-
+*/
 p code, li code
 {
     background-color: #ededed;
@@ -213,9 +213,8 @@ section[id*="case-study"] aside code, h1 code, h2 code, h3 code, h4 code
 {
     body
     {
-        font-size: 14px;
         width: 100%;
-        max-width: 720px;
+        max-width: 1200px;
         margin: 0 auto;
     }
 
