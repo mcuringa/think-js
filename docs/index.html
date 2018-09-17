@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Matthew X. Curinga">
   <meta name="author" content="Peter Wentworth">
@@ -10,7 +11,7 @@
   <meta name="author" content="and Chris Meyers">
   <title>Think Javascript</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-  <style type="text/css">code{white-space: pre;}</style>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -211,8 +212,10 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   }
   */
   aside code {
-      font-size: 87.5%;
-      color: #e83e8c;    
+      font-size: 90%;
+      color: #e83e8c !important;
+      background-color: transparent !important;
+      border-style: none !important;
   }
   
   a.sourceLine:before {
@@ -348,7 +351,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#functions-that-require-arguments">Functions that require arguments</a></li>
 <li><a href="#functions-that-return-values">Functions that return values</a></li>
 <li><a href="#glossary-3">Glossary</a></li>
-<li><a href="#examples">Examples</a></li>
+<li><a href="#exercises">Exercises</a></li>
 <li><a href="#functions-lab">Functions Lab</a></li>
 <li><a href="#code-listing-1-the-tip-calculator">Code Listing 1: The Tip Calculator</a></li>
 </ul></li>
@@ -1050,7 +1053,7 @@ Subtraction and addition are at the same precedence, and the left-to-right rule 
 <a class="sourceLine" id="cb35-3" data-line-number="3"><span class="op">=&gt;</span> <span class="dv">8</span></a>
 <a class="sourceLine" id="cb35-4" data-line-number="4">⠕ message <span class="op">**</span> <span class="dv">2</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb35-5" data-line-number="5"><span class="op">=&gt;</span> <span class="dv">16</span><span class="op">;</span></a></code></pre></div>
-<p>If the automatic type conversion fails in a mathematical operation, Javascript returns the special <em>Not a Number</em> value, <code>Nan</code>.</p>
+<p>If the automatic type conversion fails in a mathematical operation, Javascript returns the special <em>Not a Number</em> value, <code>NaN</code>.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb36-1" data-line-number="1">⠕ <span class="kw">let</span> message <span class="op">=</span> <span class="st">&quot;Hello, world.&quot;</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb36-2" data-line-number="2">⠕ message <span class="op">*</span> <span class="dv">2</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb36-3" data-line-number="3"><span class="op">=&gt;</span> <span class="kw">NaN</span></a></code></pre></div>
@@ -1342,10 +1345,11 @@ As we’ve seen, concatenation means joining the two operands by linking them en
 Short variable names are more economical and sometimes make code easier to read: <var>E = mc<sup>2</sup></var> would not be nearly so memorable if Einstein had used longer variable names! If you do prefer short names, make sure you also have some comments to enlighten the reader about what the variables are used for.</p>
 <hr />
 <p>When we declare a new <strong>local variable</strong> inside a function, it only exists inside the function, and we cannot use it outside. For example, consider again this function:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">function</span> <span class="at">finalAmt</span> (p<span class="op">,</span> r<span class="op">,</span> n<span class="op">,</span> t) <span class="op">{</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2">  <span class="kw">let</span> a <span class="op">=</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> r/n) <span class="op">**</span> (n <span class="op">*</span> t)<span class="op">;</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3">  <span class="cf">return</span> a<span class="op">;</span></a>
-<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="op">}</span> </a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb54-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="kw">function</span> <span class="at">finalAmt</span> (p<span class="op">,</span> r<span class="op">,</span> n<span class="op">,</span> t) <span class="op">{</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">  <span class="kw">let</span> a <span class="op">=</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> r/n) <span class="op">**</span> (n <span class="op">*</span> t)<span class="op">;</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">  <span class="cf">return</span> a<span class="op">;</span></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="op">}</span> </a></code></pre></div>
 <p>If we try to use <code>a</code>, outside the function, we’ll get an error like this:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb55-1" data-line-number="1">⠕ a</a>
 <a class="sourceLine" id="cb55-2" data-line-number="2">ReferenceError<span class="op">:</span> a is not defined</a></code></pre></div>
@@ -1424,14 +1428,15 @@ Short variable names are more economical and sometimes make code easier to read:
 </dd>
 </dl>
 </section>
-<section id="examples" class="level2">
-<h2>Examples</h2>
+<section id="exercises" class="level2">
+<h2>Exercises</h2>
 <ol type="1">
 <li><p>Write a void (non-fruitful) function to that prints out a “hello” message. Your function should declare 3 parameters: <code>firstName</code>, <code>lastName</code>, and <code>title</code>. <code>title</code> will be Mr., Ms., Dr., etc. The function should print a message like this one: <code>Hello Dr. Matthew Curinga.</code></p></li>
 <li><p>Write a function <code>half(num)</code> which returns the value of <code>num</code> divided by 2.</p></li>
-<li><p>Write a function …</p></li>
+<li><p>Write a function <code>triple(num)</code> which return <code>num</code> * 3.</p></li>
 <li><p>Write a function <code>areaOfACircle(r)</code> which returns the area of a circle of radius <code>r</code>. For the value of PI, use the constant <code>Math.PI</code><br> (Hint: if you can’t remember how to find the area of a circle, look it up or ask a friend.)</p></li>
-<li><p><em>Lemonade Stand</em>. Diego has a lemonade stand and he needs a program to estimate costs. Write a Python program called lemonade.py that allows him to see potential profits for his stand. Use the following skeleton to start your program:</p></li>
+<li><p>Write a function <code>hypotenuse(a, b)</code> which calculates the hypotonuse of a right triangle, given the formula <code>a^2 + b^2 = c^</code>.<br> Note, you will need to be able to calculate square roots to solve this problem. You can use the build in math function <code>Math.sqrt</code>.</p></li>
+<li><p>(hard bonus) Write a function called <code>distance(x1, y1, x2, y2)</code> which calculates the distance between the point at (x1, y1) and (x2, y2) on a Cartesian Plane. You can find the formula for this at <a href="http://www.mathsisfun.com/algebra/distance-2-points.html" class="uri">http://www.mathsisfun.com/algebra/distance-2-points.html</a><br> Use the <code>hypotenuse</code> function from exercise 5 to compose this function.</p></li>
 </ol>
 </section>
 <section id="functions-lab" class="level2">

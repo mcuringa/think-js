@@ -5,6 +5,7 @@ const makeListings = ()=> {
 
   const alignNote = (note)=> {
     const n = note.dataset.lineNumber;
+    console.log("line number", n);
     const line = lines[n-1];
     alignToTop(note, line, container);
 
@@ -12,6 +13,7 @@ const makeListings = ()=> {
   let container = document.querySelector("section.tipCalculator");
   let notes = document.querySelectorAll(".tipCalculator aside");
   const lines = document.querySelectorAll(".tipCalculator .listingSrcCode .sourceLine");
+  console.log("lines", lines);
   notes = notes.forEach(alignNote);
   
 }
@@ -29,9 +31,6 @@ const alignToTop = (note, line, container)=> {
   note.style.top = off + "px";
 
 
-
-  // line = document.getElementById("cb58-56");
-  // note = document.querySelector("#case-study-tip-calculator aside");
 
 
 }

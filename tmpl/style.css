@@ -133,8 +133,10 @@ aside
 }
 */
 aside code {
-    font-size: 87.5%;
-    color: #e83e8c;    
+    font-size: 90%;
+    color: #e83e8c !important;
+    background-color: transparent !important;
+    border-style: none !important;
 }
 
 a.sourceLine:before {

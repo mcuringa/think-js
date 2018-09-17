@@ -342,10 +342,12 @@ When we declare a new **local variable** inside a function, it only exists insid
 the function, and we cannot use it outside. For example, consider again this function:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+
 function finalAmt (p, r, n, t) {
   let a = p * (1 + r/n) ** (n * t);
   return a;
 } 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 If we try to use ``a``, outside the function, we'll get an error like this:
@@ -503,17 +505,21 @@ Exercises
 
 2. Write a function ``half(num)`` which returns the value of ``num`` divided by 2.
 
-3. Write a function ...
+3. Write a function ``triple(num)`` which return ``num`` * 3.
 
-2.  Write a function ``areaOfACircle(r)`` which returns the area of a circle of radius ``r``.
-    For the value of PI, use the constant ``Math.PI``<br>
-    (Hint: if you can't remember how to find the area of a circle, look it up or ask a friend.)
+4. Write a function ``areaOfACircle(r)`` which returns the area of a circle of radius ``r``.
+   For the value of PI, use the constant ``Math.PI``<br>
+   (Hint: if you can't remember how to find the area of a circle, look it up or ask a friend.)
 
-3. _Lemonade Stand_. Diego has a lemonade stand and he needs a program to estimate costs. Write
-   a Python program called lemonade.py that allows him to see potential profits
-   for his stand. Use the following skeleton to start your program:
+5. Write a function ``hypotenuse(a, b)`` which calculates the hypotonuse of a right triangle,
+   given the formula `a^2 + b^2 = c^`.<br>
+   Note, you will need to be able to calculate square roots to solve this problem. 
+   You can use the build in math function ``Math.sqrt``.
 
-
+6. (hard bonus) Write a function called ``distance(x1, y1, x2, y2)`` which calculates the
+   distance between the point at (x1, y1) and (x2, y2) on a Cartesian Plane. You can
+   find the formula for this at <http://www.mathsisfun.com/algebra/distance-2-points.html><br>
+   Use the ``hypotenuse`` function from exercise 5 to compose this function.
 
 
 Functions Lab
