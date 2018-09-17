@@ -492,8 +492,8 @@ void function
 :    The opposite of a fruitful function: one that does not return a value.  It is
     executed for the work it does, rather than for the value it returns.
 
-Examples
---------
+Exercises
+---------
 
 1.  Write a void (non-fruitful) function to that prints out a "hello" message. Your function
     should declare 3 parameters: ``firstName``, ``lastName``, and ``title``. ``title`` will be
