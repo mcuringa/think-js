@@ -4,183 +4,125 @@ Functions
 Functions
 -------------------------
 
-In Python, a **function** is a named sequence of statements
-that belong together.  Their primary purpose is to help us
+In Javascript, a **function** is a named sequence of statements
+that belong together. Their primary purpose is to help us
 organize programs into chunks that match how we think about
 the problem. 
  
 The syntax for a **function definition** is:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python}        
-def NAME( PARAMETERS ):
-    STATEMENTS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
+function NAME( PARAMETERS ) {
+  STATEMENTS
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We can make up any names we want for the functions we create, except that
-we can't use a name that is a Python keyword, and the names must follow the rules
-for legal identifiers. 
+we can't use a name that is a Javascript keyword, and the names must follow the rules
+for legal identifiers (the same rules that apply to variable names). 
 
 There can be any number of statements inside the function, but they have to be
-indented from the ``def``. In the examples in this book, we will use the
-standard indentation of four spaces. Function definitions are the second of
+between the curly braces (`{}`). These statements make up the **function body**.
+In the examples in this book, we will use the
+standard indentation of two spaces. Function definitions are the second of
 several **compound statements** we will see, all of which have the same
 pattern:
 
-1. A header line which begins with a keyword and ends with a colon.
-2. A **body** consisting of one or more Python statements, each
-   indented the same amount — *the Python style guide recommends 4 spaces* — from
+1. A header line which begins with a keyword and ends with an opening (left) curly brace.
+2. A **body** consisting of one or more Javascript statements, each
+   indented the same amount — *we will use 2 spaces* — from
    the header line.
+3. A closing (right) curly brace.
 
 We've already seen the ``for`` loop which follows this pattern.
    
-So looking again at the function definition, the keyword in the header is ``def``, which is
+So looking again at the function definition, the keyword in the header is ``function``, which is
 followed by the name of the function and some *parameters* enclosed in
 parentheses. The parameter list may be empty, or it may contain any number of
 parameters separated from one another by commas. In either case, the parentheses are required.
 The parameters specifies what information, if any, we have to provide in order to use the new function.
-
-Suppose we're working with turtles, and a common operation we need is to draw
-squares.   "Draw a square" is an *abstraction*, or a mental
-chunk, of a number of smaller steps.  So let's write a function to capture the pattern
-of this "building block": 
 
 Suppose we are writing a program to calculate the amount of tip due on a
 bill. We might write a function to "calculate tip". "calculate tip" is
 an *abstraction*, or a mental chunk, of a number of smaller steps.  So
 let's write a function to capture the pattern of this "building block": 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-def calculate_tip(bill, pct):
-    """
-        Calculate the tip on a bill, given the pct of the tip.
-    """
-    
-    tip = bill * (pct * .01) # convert pct to a decimal and calculate
-    tip = round(tip, 2) # round the tip to 2 decimal places
-    total = tip + bill
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+/*
+  Calculate the tip on a bill, given the pct of the tip.
+*/
+function calculateTip (bill, pct) {
+  let tip = bill * (pct * .01); // convert pct to a decimal and calculate
+  tip = tip.toFixed(tip, 2); // convert tip to a number with 2 decimal places
+  total = tip + bill;
+  total = Number.parseFloat(total).toFixed(2);
 
-    # now show the results to the user
-    print("Bill total: $" + str(bill))
-    print("Tip percentage: " + str(pct) + "%")
-    print("Tip amount due: $" + str(total))
+  // now show the results to the user
+  console.log("Bill amount: $" + bill);
+  console.log("Tip percentage: " + pct + "%");
+  console.log("Total amount due: $" + total);
+}
 
-# find the amount of an 18% tip on a $100 bill
-calculate_tip(100,18)
-
+// find the amount of an 18% tip on a $100 bill
+calculateTip(100,18);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<aside id="docstrings">
-**Docstrings for documentation**
-
-If the first thing after the function header is a string, it is
-treated as a **docstring** and gets special treatment in Python and
-in some programming tools. For example, when we type a built-in
-function name with an unclosed parenthesis in PyScripter, a tooltip
-pops up, telling us what arguments the function takes, and it shows 
-us any other text contained in the docstring.
-
-Docstrings are the key way to document our functions in Python and
-the documentation part is important. Because whoever calls our
-function shouldn't have to need to know what is going on in the
-function or how it works; they just need to know what arguments our
-function takes, what it does, and what the expected result is.
-Enough to be able to use the function without having to look
-underneath. This goes back to the concept of abstraction of which
-we'll talk more about.
-
-Docstrings are usually formed using triple-quoted strings as they
-allow us to easily expand the docstring later on should we want to
-write more than a one-liner.
-
-Just to differentiate from comments, a string at the start of a
-function (a docstring) is retrievable by Python tools *at runtime*.
-By contrast, comments are completely eliminated when the program is 
-parsed.
- </aside>
-
-This function is named ``calculate_tip``.  It has two parameters: one to tell 
+This function is named ``calculateTip``.  It has two parameters: one to tell 
 the function the amount of the bill, and the other to tell it the percent
-tip to calculate. Make sure you know where the body of the function
-ends — it depends on the indentation, and the blank lines don't count for
-this purpose!
+tip to calculate.
 
 Defining a new function does not make the function run. To do that we
 need a **function call**. We've already seen how to call some built-in
-functions like **print**, **range**, **round**, and **int**. Function
+functions like **console.log**, **window.input**, and **Number.parseInt**. Function
 calls contain the name of the function being executed followed by a list
 of values, called *arguments*, which are assigned to the parameters in
-the function definition.  So in the last line of the example program
+the function definition. So in the last line of the example program
 above, we call the function, and pass ``100`` as the amount of the bill
 and ``18`` as the percentage of the tip. While the function is
 executing, then, the variable ``bill`` refers to the value 100, and the
-variable ``pct`` refers to 18. 
+variable ``pct`` refers to 18. We can pass either variables (like ``myBill``)
+or literal values (like ``100``) as arguments.
 
 Once we've defined a function, we can call it as often as we like, and its 
-statements will be executed each time we call it.  And we could use it to get
-any of our turtles to draw a square.   In the next example, we calculate 3 different
-tip amounts for the same bill.
+statements will be executed each time we call it. In the next example, we calculate 3 different
+tip amounts for the same bill, using ``calculateTip`` defined above.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-def calculate_tip(bill, pct):
-    """
-        Calculate the tip on a bill, given the pct of the tip.
-    """
-    
-    tip = bill * (pct * .01) # convert pct to a decimal and calculate
-    tip = round(tip, 2) # round the tip to 2 decimal places
-    total = tip + bill
-
-    # now show the results to the user
-    print("Bill total: $" + str(bill))
-    print("Tip percentage: " + str(pct) + "%")
-    print("Tip amount due: $" + str(total))
-
-myBill = 100
-calculate_tip(myBill, 15)
-calculate_tip(myBill, 18)
-calculate_tip(myBill, 20)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+let myBill = 100;
+calculateTip(myBill, 15);
+calculateTip(myBill, 18);
+calculateTip(myBill, 20);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <aside id="coding-style">
 
 **Coding Style**
 
-Now that you are about to write longer, more complex pieces of Python,
+Now that you are about to write longer, more complex pieces of Javascript,
 it is a good time to talk about coding style. Most languages can be
 written (or more concise, formatted) in different styles; some are more
 readable than others. Making it easy for others to read your code is
 always a good idea, and adopting a nice coding style helps tremendously
 for that.
 
-For Python, [PEP 8 has emerged as the style
-guide](http://www.python.org/dev/peps/pep-0008/) that most projects
-adhere to; it promotes a very readable and eye-pleasing coding
-style. Every Python developer should read it at some point; here are
-the most important points extracted for you:
+For our Javascript, we will follow the coding style described
+in the [Mozilla project developer's guide](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style). Here are the most important points extracted for you:
 
-- Use 4-space indentation, and no tabs.
-- 4 spaces are a good compromise between small indentation (allows
-  greater nesting depth) and large indentation (easier to read). Tabs
-  introduce confusion, and are best left out.
-- Wrap lines so that they don’t exceed 79 characters.
-- This helps users with small displays and makes it possible to have
-  several code files side-by-side on larger displays.
+- Use 2-space indentation, and no tabs.
+- Wrap lines so that they don’t exceed 80 characters.
+  - This helps users with small displays and makes it possible to have
+    several code files side-by-side on larger displays.
+- Use double quotes ``"`` for string literals, except when avoiding inline double quotes
 - Use blank lines to separate functions and classes, and larger blocks
   of code inside functions.
 - When possible, put comments on a line of their own.
-- Use docstrings.
 - Use spaces around operators and after commas, but not directly inside
   bracketing constructs: a = f(1, 2) + g(3, 4).
-- Name your classes and functions consistently; the convention is to use
-  CamelCase for classes and lower_case_with_underscores for functions and
-  methods. Always use self as the name for the first method argument (see
-  A First Look at Classes for more on classes and methods).
+- Name your variables, classes, and functions consistently; the convention is to use
+  CamelCase for identifier names.
 - Don’t use fancy encodings if your code is meant to be used in
-  international environments. Python’s default, UTF-8, or even plain ASCII
-  work best in any case.
-- Likewise, don’t use non-ASCII characters in identifiers if there is
-  only the slightest chance people speaking a different language will read
-  or maintain the code.
+  international environments. Use UTF-8 or plain ASCII.
+  - Likewise, don’t use non-ASCII characters in identifiers.
 
 </aside>
 
@@ -192,18 +134,19 @@ So far, we have looked at the elements of a program—``variables``,
 combine them.
 
 One of the most useful features of programming languages is their
-ability to take small building blocks and **compose** them. In our calculate_tip
-example, we call several Python built-in functions: ``round`` to keep our amounts
-to 2 decimal places and ``str`` to convert numeric data (ints and floats) to strings
-when we print them. As we will see, we can compose our programs of many functions
+ability to take small building blocks and **compose** them. In our ``calculateTip``
+example, we call several Javascript built-in functions: ``toFixed`` to keep our amounts
+to 2 decimal places and ``Number.parseFloat`` to convert the data to a float so that
+we can use ``toFixed``. We use ``console.log`` to print our output on the Javascript
+console. As we will see, we can compose our programs of many functions
 that we define ourselves.
 
 There are some points worth noting here:
 
 * Functions can call other functions. 
-* A caller of this function might say ``calculate_tip(myBill, 15)``.  The parameters
+* A caller of this function might say ``calculateTip(myBill, 15)``.  The parameters
   of this function, ``bill`` and ``tip``, are assigned the values of the myBill variable, and
-  the int literal 15, respectively.
+  the number literal 15, respectively.
 * In the body of the function they are just like any other variable. 
 
 So far, it may not be clear why it is worth the trouble to create all of these
@@ -233,7 +176,7 @@ executed one at a time, in order from top to bottom.
 
 Function definitions do not alter the flow of execution of the program, but
 remember that statements inside the function are not executed until the
-function is called. Although it is not common, we can define one function
+function is called. In Javascript we can define one function
 inside another. In this case, the inner definition isn't executed until the
 outer function is called.
 
@@ -247,7 +190,7 @@ another. While in the middle of one function, the program might have to execute
 the statements in another function. But while executing that new function, the
 program might have to execute yet another function!
 
-Fortunately, Python is adept at keeping track of where it is, so each time a
+Fortunately, Javascript is adept at keeping track of where it is, so each time a
 function completes, the program picks up where it left off in the function that
 called it. When it gets to the end of the program, it terminates.
 
@@ -257,391 +200,177 @@ top to bottom. Instead, follow the flow of execution.
 Functions that require arguments
 ---------------------------------------------
 
-Most functions require arguments: the arguments provide for generalization. 
+Most functions require arguments: the arguments provide for generalization, allowing the same
+function to work with different data inputs. 
 For example, if we want to find the absolute value of a number, we have 
-to indicate what the number is. Python has a built-in function for 
+to indicate what the number is. The Javascript ``Math`` class has a built-in function for 
 computing the absolute value:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python}        
->>> abs(5)
-5
->>> abs(-5)
-5
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
+⠕ Math.abs(5);
+=> 5
+⠕ Math.abs(-5);
+=> 5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 In this example, the arguments to the ``abs`` function are 5 and -5.
 
-Some functions take more than one argument. For example the built-in function ``round``
-takes two arguments, the number to round and the (optional) number of
-decimal digits of precision. Inside the function, the values that are
+Some functions take more than one argument. For example the function ``calculateTip``
+function we wrote in the example above takes two arguments:
+the amount of the bill and the percent tip to calculate.
+Inside the function, the values that are
 passed get assigned to variables called **parameters**.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python}
->>> round(3.14159)
-3
->>> round(3.14159,3)
-3.142
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ calculateTip(87, 10);
+Bill amount: $87
+Tip percentage: 10%
+Total amount due: $8.70
 
-Another built-in function that takes more than one argument is ``max``.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python}        
->>> max(7, 11)
-11
->>> max(4, 1, 17, 2, 12)
-17
->>> max(3 * 11, 5**3, 512 - 9, 1024**0)
-503
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Another built-in function that takes more than one argument is ``Math.max``.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
+⠕ Math.max(7, 11);
+=> 11
+⠕ Math.max(4, 1, 17, 2, 12);
+=> 17
+⠕ Math.max(3 * 11, 5**3, 512 - 9, 1024**0);
+=> 503
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``max`` can be passed any number of arguments, separated by commas, and will
+``Math.max`` can be passed any number of arguments, separated by commas, and will
 return the largest value passed. The arguments can be either simple values or
 expressions. In the last example, 503 is returned, since it is larger than 33,
-125, and 1.
+125, and 1. All of the expressions are resolved --- in this case the mathematical
+operations are calculated --- before their values are assigned to the function
+parameters.
 
 Functions that return values
 ------------------------------------------------------------------------------
 
-All the functions in the previous section return values. 
-Furthermore, functions like ``range``, ``int``, ``abs`` all return values that
-can be used to build more complex expressions.  
-
-So an important difference between these functions and one like ``calculate_tip`` is that
-``calculate_tip`` does not return a useful value — it computes a value and displays
-the results on the screen. 
+Some functions return values. In the previous section we saw that ``Math.abs``
+and ``Math.max`` return values. ``calculateTip`` does not return a value; it
+uses ``console.log`` to produce output on the screen for the user. 
+We can use the return values from functions to compose more complex functions. 
 
 A function that returns a value is called a **fruitful function** in this book.
 The opposite of a fruitful function is **void function** — one that is not executed
-for its resulting value, but is executed because it does something useful. (Languages
-like Java, C#, C and C++ use the term "void function", other languages like Pascal 
+for its resulting value, but is executed because it does something useful.
+(Languages like Java, C#, C and C++ use the term "void function", other languages like Pascal
 call it a **procedure**.) Even though void functions are not executed
-for their resulting value, Python always wants to return something. So if the programmer
-doesn't arrange to return a value, Python will automatically return the value ``None``.
+for their resulting value, Javascript always wants to return something. So if the programmer
+doesn't arrange to return a value, Javascript will automatically return the value ``undefined``.
 
 How do we write our own fruitful function? Let's look at the standard
-formula for compound interest as an example fo a fruitful function:   
+formula for compound interest as an example of a fruitful function:   
 
 ![](figs/compoundInterest.png)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-def final_amt(p, r, n, t):
-   """
-     Apply the compound interest formula to p
-      to produce the final amount.
-   """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+/*
+Apply the compound interest formula to p
+to produce the final amount.
+*/
+function finalAmt (p, r, n, t) {
+  let a = p * (1 + r/n) ** (n * t);
+  // This is new, and makes the function fruitful
+  return a;
+}
    
-   a = p * (1 + r/n) ** (n*t)
-   return a         # This is new, and makes the function fruitful.
-             
-# now that we have the function above, let us call it.  
-toInvest = float(input("How much do you want to invest?"))
-fnl = final_amt(toInvest, 0.08, 12, 5)
-print("At the end of the period you'll have", fnl)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           
+//now that we have the function above, let's call it
+let toInvest = Number.parseFloat( window.prompt("How much do you want to invest?") );
+let fnl = finalAmt(toInvest, 0.08, 12, 5);
+console.log("At the end of the period you'll have", fnl);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * The **return** statement is followed an expression (``a`` in this case). This expression will be
   evaluated and returned to the caller as the "fruit" of calling this function.
-* We prompted the user for the principal amount.  The type of ``toInvest`` is a string, but
-  we need a number before we can work with it.  Because it is money, and could have decimal places,
-  we've used the ``float`` type converter function to parse the string and return a float.
+* We prompted the user for the principal amount. The type of ``toInvest`` is a string, but
+  we need a number before we can work with it. Javascript can automatically convert
+  it to a number for us when we use it in the calculation. Because it is money, and could have decimal
+  places, we've used the ``Number.parseFloat`` type converter function to parse the string and return a float.
 * Notice how we entered the arguments for 8% interest, compounded 12 times per year, for 5 years.
-* When we run this, we get the output 
-
-      *At the end of the period you'll have 14898.457083*
- 
+* When we run this, if we enter ``100`` when prompted for the amount to invest, we get the output<br>
+  _At the end of the period you'll have 148.9845708301606_<br>
   This is a bit messy with all these decimal places, but remember that
-  Python doesn't understand that we're working with money: it just does the calculation to
-  the best of its ability, without rounding.  Later we'll see how to format the string that
+  Javascript doesn't understand that we're working with money: it just does the calculation to
+  the best of its ability, without rounding. Later we'll see how to format the string that
   is printed in such a way that it does get nicely rounded to two decimal places before printing. 
-* The line ``toInvest = float(input("How much do you want to invest?"))``
+* The line ``let toInvest = Number.parseFloat( window.prompt("How much do you want to invest?") );
+``
   also shows yet another example
-  of *composition* — we can call a function like ``float``, and its arguments 
-  can be the results of other function calls (like ``input``) that we've called along the way.
+  of *composition* — we can call a function like ``Number.parseFloat``, and its arguments 
+  can be the results of other function calls (like ``window.prompt``) that we've called along the way.
   
 Notice something else very important here. The name of the variable we pass as an
 argument — ``toInvest`` — has nothing to do with the name of the parameter
-— ``p``.  It is as if  ``p = toInvest`` is executed when ``final_amt`` is called. 
+— ``p``.  It is as if  ``p = toInvest`` is executed when ``finalAmt`` is called. 
 It doesn't matter what the value was named in 
-the caller, in ``final_amt`` its name is ``p``.  
+the caller, in ``finalAmt`` its name is ``p``.  
          
 These short variable names are getting quite tricky, so perhaps we'd prefer one of these
 versions instead:       
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-def final_amt_v2(principalAmount, nominalPercentageRate, 
-                                   numTimesPerYear, years):
-   a = principalAmount * (1 + nominalPercentageRate / 
-                        numTimesPerYear) ** (numTimesPerYear*years)
-   return a
-   
-def final_amt_v3(amt, rate, compounded, years):
-   a = amt * (1 + rate/compounded) ** (componded*years)
-   return a
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+function finalAmtV2(principalAmount, nominalPercentageRate, numTimesPerYear, years) {
+  let a = principalAmount * (1 + nominalPercentageRate / numTimesPerYear) ** (numTimesPerYear * years);
+  return a;
+}
 
-They all do the same thing. Use your judgement to write code that can be best 
+function finalAmtV3(amt, rate, compounded, years) {
+  let a = amt * (1 + rate / compounded) ** (compounded * years);
+  return a;
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+They all do the same thing. Use your judgment to write code that can be best 
 understood by other humans!  
 Short variable names are more economical and sometimes make 
 code easier to read: 
-E = mc<sup>2</sup> would not be nearly so memorable if Einstein had
+<var>E = mc<sup>2</sup></var> would not be nearly so memorable if Einstein had
 used longer variable names! If you do prefer short names, 
 make sure you also have some comments to enlighten the reader 
 about what the variables are used for.
 
-
 -----------------------------------------------
 
-When we create a **local variable** inside a function, it only exists inside
+When we declare a new **local variable** inside a function, it only exists inside
 the function, and we cannot use it outside. For example, consider again this function:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-def final_amt(p, r, n, t):
-   a = p * (1 + r/n) ** (n*t)
-   return a           
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+function finalAmt (p, r, n, t) {
+  let a = p * (1 + r/n) ** (n * t);
+  return a;
+} 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
-If we try to use ``a``, outside the function, we'll get an error:
+If we try to use ``a``, outside the function, we'll get an error like this:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python}        
->>> a
-NameError: name 'a' is not defined
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
+⠕ a
+ReferenceError: a is not defined
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
  
-The variable ``a`` is local to ``final_amt``, and is not visible
+The variable ``a`` is local to ``finalAmt``, and is not visible
 outside the function.
 
 Additionally, ``a`` only exists while the function is being executed — 
 we call this its **lifetime**. 
-When the execution of the function terminates, 
-the local variables  are destroyed. 
+When the execution of the function terminates, the local variables are destroyed.
 
 Parameters are also local, and act like local variables. 
-For example, the lifetimes of ``p``, ``r``, ``n``, ``t`` begin when ``final_amt`` is called, 
+For example, the lifetimes of ``p``, ``r``, ``n``, ``t`` begin when ``finalAmt`` is called, 
 and the lifetime ends when the function completes its execution.   
 
 So it is not possible for a function to set some local variable to a 
 value, complete its execution, and then when it is called again next
-time, recover the local variable.  Each call of the function creates
+time, recover the local variable. Each call of the function creates
 new local variables, and their lifetimes expire when the function returns
 to the caller. 
-
-Tips Revisited
----------------------------------
-
-Now that we have fruitful functions, we can focus our attention on 
-reorganizing our code so that it fits more nicely into our mental chunks.  
-This process of rearrangement is called **refactoring** the code.  
- 
-Two things we want to do in our tip calculator is to find the amount 
-of the tip and show the results to the user. In the example below, 
-we separate the various functions of the program to make a more 
-complete tip calculator. As you'll see, we're starting to build code 
-that is useful. Using functions allows us to make changes to one 
-part of a program without affecting other parts of the program. For 
-example, we can change the welcome message without worrying about 
-breaking our calculations.
-
-The trick about refactoring code is to anticipate which things we 
-are likely to want to change each time we call the function: these 
-should become the parameters, or changeable parts, of the functions 
-we write.
-
-[Download and run the source code: tip2.py](examples/tip2.py)
-
-### Case Study: Tip Calculator
-
-<aside id="tip_header" style="top: 110px">
-
-Brief header **comments** at the top of the **source file** 
-identify basic information about the program and the file.
-Comments are messages for programmers who read the **source
-code** --- they do not affect the execution of the program.
-
-</aside>
-
-<aside id="tip_welcome" style="top: 173px">
-
-**weclcome** is a very simple **function** --- it does not accept
-any data in the form of **function paramters** and it does not
-**return** any data using a **return statement**. It simply prints out a
-message to the console.
-
-</aside>
-
-<aside id="tip_calc" style="top: 354px">
-
-The **calc_tip** function has 2 **parameters**:
-`bill` and `pct`. These parameters become
-variables within the **function body**. Line 22 uses
-**arithmetic operators** (multiplication here) to
-calculate a new value and store it in the `tip` **variable**.
-`tip` is rounded to 2 decimal places using the **built-in function**
-`round()`. Finally, the rounded tip amount is returned.
-
-
-</aside>
-
-<aside id="tip_get_pct" style="top: 545px">
-
-**get_bill_amt** is a **fruitful function** because
-it has a **return statement**. It uses the
-**built-in function** `input()` to ask for data from the
-user of the program.  --- when it is called
-it returns the bill 
-
-</aside>
-
-<aside id="tip_get_amt" style="top: 710px">
-
-**get_tip_pct** is similar to **get_bill_amt**. It 
-requests user data by calling the ``input`` function
-and then returns a result. Notice that the
-**multi-line string** inside of 3 quotation marks (""")
-makes it easy to read and write formatted data.
-
-This function uses a series of **if statements** to
-interpret the user's choice from a menu. While we
-could use ``elif`` to change the conditions together, it
-is not needed here. Once a ``return`` statement is reached,
-no further conditions can be tested or executed. If none of 
-the ``if`` conditions are met, this function returns -1
-to indicate that an invalid choice was entered.
-
-</aside>
-
-<aside id="tip_get_amt" style="top: 1125px">
-
-**show_results** defines **parameters** which are used
-to pass in all of the data needed to show the results
-of the tip calculation. Notice that the `print` statements
-use the **+ operator** to <abbr title="join together">concatenate</abbr>
-strings. Because we are joining **string literals** with variables of
-type `int` and `float`, we need to use the `str()` function to convert
-the numeric data to strings.
-
-</aside>
-
-<aside id="tip_main" style="top: 1430px">
-The **main** function is the first function called for
-this program. It maintains the executive control of the
-program, calling other functions in sequence and passing
-data between functions.
-
-We encounter Python's special syntax
-for running a program from the **command line**:
-
-``if __name__ == "__main__":``
-
-This **conditional statement** allows the program to execute code if 
-it is being run as a standalone Python program. In our case, we 
-choose to call the ``main`` function which we defined. main() has no 
-special meaning in Python --- we could execute any 
-statements we choose under that block.
-
-</aside>
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-# tip2.py
-# example of an interactive tip calculator
-# by: mxc
-
-def welcome():
-    """
-        Give the user a welcome message.
-    """
-    print("""
-
------------------------------------
-   Welcome to the Tip Calculator   
------------------------------------
-""")
-
-def calc_tip(bill, pct):
-    """
-        Calculate the tip on a bill, given the pct of the tip.
-        Return the amount of the tip
-    """
-    # convert pct to a decimal and calculate
-    tip = bill * (pct * .01)
-    
-    # round the tip to 2 decimal places
-    tip = round(tip, 2) # round the tip to 2 decimal places
-    return tip
-
-def get_bill_amt():
-    """
-        Ask the user to enter the amount of the bill
-        and return this amount as a <float>
-    """
-    amt = input("How much was your total bill: ")
-    amt = float(amt)
-
-    return amt
-
-def get_tip_pct():
-    """
-        Allow the user to choose a tip amount
-        from a menu.
-    """
-    
-    print("""
-What percent tip do you want to leave?
-  1 - 10%, lousy service
-  2 - 15%, good service, but I'm cheap
-  3 - 20%, the server is hard working and deserves a decent tip
-  4 - 25%, outstanding service""")
-
-    menu = input("enter your choice (1-4):")
-    
-    if menu == "1":
-        return 10
-    if menu == "2":
-        return 15
-    if menu == "3":
-        return 20
-    if menu == "4":
-        return 25
-    
-    return -1 # return -1 for any invalid choice
-
-def show_results(bill, tip, pct):
-    """
-        Prints a message to the user showing
-        the result of the calculations.
-    """
-    
-    total = tip + bill
-
-    print("Bill amount: $" + str(bill))
-    print("Tip percentage: " + str(pct) + "%")
-    print("Tip amount due: $" + str(tip))
-    print("Total with tip: $" + str(total))
-
-    print("""
------------------------------------
-             GOOD BYE      
------------------------------------
-""")
-
-def main():
-    """
-        Read in the basic information, calcualte the tip
-        and the share, then dispaly the results to the user.
-    """
-    
-    welcome()
-    myBill = get_bill_amt()
-    pct = get_tip_pct()
-    tip = calc_tip(myBill, pct)
-    show_results(myBill, tip, pct)
-
-
-if __name__ == "__main__":
-    main()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 Glossary
@@ -672,17 +401,11 @@ compound statement
 
     The syntax of a compound statement looks like this:
 
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python}
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
     keyword ... :
         statement
         statement ...
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                                           
-docstring
-
-:   A special string that is attached to a function as its ``__doc__`` attribute.
-    Tools like PyScripter can use docstrings to provide documentation or hints for the programmer.
-    When we get to modules, classes, and methods, we'll see that docstrings can also be used there. 
 
 flow of execution
 
@@ -759,10 +482,10 @@ stack diagram
 traceback
 
 :   A list of the functions that are executing, printed when a runtime
-    error occurs. A traceback is also commonly refered to as a
+    error occurs. A traceback is also commonly referred to as a
     *stack trace*, since it lists the functions in the order in which they
     are stored in the
-    `runtime stack <http://en.wikipedia.org/wiki/Runtime_stack>`__.
+    [runtime stack](http://en.wikipedia.org/wiki/Runtime_stack).
     
 void function
 
@@ -770,35 +493,50 @@ void function
     executed for the work it does, rather than for the value it returns.
 
 Exercises
-------------------------------
+---------
 
-1.  Write a void (non-fruitful) function to that prints out centered text to the console.
-    Your function should have two parameters, ``text``—the string to center,
-    and ``maxLen``—the width of the document (in spaces).\
-    (Hint: you will want to use the built-in ``len`` function and might want to 
-    use the * operator with spaces.)
+1.  Write a void (non-fruitful) function to that prints out a "hello" message. Your function
+    should declare 3 parameters: ``firstName``, ``lastName``, and ``title``. ``title`` will be
+    Mr., Ms., Dr., etc. The function should print a message like this one:
+    `Hello Dr. Matthew Curinga.`
     
-2.  Write a function ``area_of_circle(r)`` which returns the area of a circle of radius ``r``.\
+
+2. Write a function ``half(num)`` which returns the value of ``num`` divided by 2.
+
+3. Write a function ...
+
+2.  Write a function ``areaOfACircle(r)`` which returns the area of a circle of radius ``r``.
+    For the value of PI, use the constant ``Math.PI``<br>
     (Hint: if you can't remember how to find the area of a circle, look it up or ask a friend.)
 
 3. _Lemonade Stand_. Diego has a lemonade stand and he needs a program to estimate costs. Write
    a Python program called lemonade.py that allows him to see potential profits
    for his stand. Use the following skeleton to start your program:
 
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-    def estimate_profit(lemonCost, cupCost, estPeople, price):
-        # write a doc string
-        # write the code
-        # return the estimate
-    
-    def main():
-        l = .3
-        c = .15
-        n = 100
-        p = 2.50
-        profit = estimate_profit(l, c, n, p)
-        show_results(l, c, n, p, price) # you need to define this one yourself
-    
-    if __name__ == "__main__":
-        main()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+Functions Lab
+-------------
+
+This is the first "lab" in our textbook. For this project, you will be asked to write
+a complete program that solves a problem. The labs should break up parts of the program
+into different functions. Your program should start when the ``main()`` function is
+called. ``main`` is not a keyword in Javascript, but in many programming languages there
+is a convention that the starting function is called ``main``. Please take a look at the
+Tip Calculator case study below for a sense of how your program should be structured.
+
+For this first lab, too, please pay attention to your [coding style](#coding-style) to
+make sure that the program is well formatted and easy for human readers to understand.
+
+For this lab you are going to revisit the lemonade stand estimator from the exercises in
+chapter 2. You will make an interactive program that asks the user to enter all of the 
+data for:
+
+- prices of the ingredients
+- prices for the materials (e.g. cups)
+- sale price for a cup of lemonade
+- and estimation of the number of cups sold
+
+Once all of the data is entered, the program will print out a neatly formatted message
+with the results of the estimation.

@@ -48,7 +48,9 @@ All modern web browser (Firefox, Chrome, Safari, MS Edge/IE, etc) ship with a Ja
 interpreter. You can also install a stand-alone interpreter on your computer.
 
 The longer code examples in this book will use [Repl.it](https://repl.it), an online
-programming platform and community.
+programming platform and community. Code listings include links to the "repl" that you can
+copy ("fork") and experiment with.
+
 There are two ways to use the interpreter: *interactive or immediate mode* and *script
 mode*. In immediate mode, you type Javascript expressions into the interpreter's console, 
 and the interpreter immediately shows the result. This is the an example of the repl.it
@@ -58,11 +60,13 @@ interpreter's console:
 Babel Compiler v6.4.4
 Copyright (c) 2014-2015 Sebastian McKenzie
    
-2+2
-=> 4   
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+⠕ 2+2
+=> 4
 
-The ``2+2`` is entered at the **Javascript prompt**. The interpreter uses the prompt to indicate that it is ready for
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``2+2`` is entered at the **Javascript prompt**. The ``⠕`` token indicates a statement entered at the prompt.
+The interpreter uses the prompt to indicate that it is ready for
 instructions. We typed ``2 + 2`` and hit ``enter`` the interpreter evaluated our expression, and replied ``4``, 
 and on the next line it gave a new prompt. In this case, ``4`` is the **output** and it is indicated as output
 in our console by the ``=>`` token.
@@ -332,16 +336,14 @@ looks like this: (For scripts, we'll show line numbers to the left of the Javasc
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 console.log("Hello, World!");
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This is an example of using ``console.log``, Javascript's **print function**, which doesn't actually print
 anything on paper. It displays a value on the screen's console. In this case, the result shown
 is
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.bash}
 Hello, World!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The quotation marks in the program mark the beginning and end of the value;
 they don't appear in the result.
 
@@ -376,12 +378,49 @@ is ignored. Here is a new version of *Hello, World!*.
 
 console.log("Hello, World!");     // Isn't this easy! 
       
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You'll also notice that we've left a blank line in the program.  Blank lines
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You'll also notice that we've left a blank line in the program. Blank lines
 are also ignored by the interpreter, but comments and blank lines can make your
-programs much easier for humans to parse. Use them liberally! 
+programs much easier for humans to parse. Use them liberally!
 
+Javascript also supports multiline comments with the ``/* */`` style.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+/*
+---------------------------------------------------
+  This demo program shows off how elegant Javascript is!
+  Based on the Python program by Joe Soap, December 2010.
+  Anyone may freely copy or modify this program.
+---------------------------------------------------
+*/
+
+console.log("Hello, World!");     // Isn't this easy! 
+      
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In addition to adding hints and suggestions for human readers,
+comments play an important role in debugging. Because the
+Javascript interpreter doesn't try to run commented lines,
+you can "comment out" sections of your code to isolate errors.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+console.log("Hello, World!");
+// console.log("I am trying to find");
+// console.log("out which line");
+// console.log("of my code isn't");
+// console.log("working the way I expect it to.);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the above code, only line 1 is interpreted and run as Javascript.
+The other lines are ignored. To debug this program, we can uncomment
+one line at a time until we find out which line has the buggy code.
+
+It is so common for programmers to comment out large blocks of code
+when they are testing their programs, that programmer's text editors
+support quickly commenting out sections of code. In repl.it, our online
+editor for this book, you can simply highlight the lines you want to
+comment or uncomment and use the <kbd>Ctrl</kbd> + <kbd>/</kbd>
+keyboard shortcut. You will see us using this technique in our example
+videos.
 
 Glossary
 --------

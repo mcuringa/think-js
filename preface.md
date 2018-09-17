@@ -1,6 +1,8 @@
-Preface to previous edition
-===========================
+Preface
+=======
 
+Preface to previous edition
+---------------------------
 By Jeffrey Elkner
 
 This book owes its existence to the collaboration made possible by the Internet
