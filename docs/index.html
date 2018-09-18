@@ -84,207 +84,215 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   
   h1.title 
   {
-      margin:0;
-      margin-bottom: .5em;
-      padding:0;
-      padding-top: 80px;
-      border-style: none;
-      background-color: transparent;
-      clear: both;
-      color: #ab1c19;
-      font-weight: bold;
-      font-size: 400%;
+    margin:0;
+    margin-bottom: .5em;
+    padding:0;
+    padding-top: 80px;
+    border-style: none;
+    background-color: transparent;
+    clear: both;
+    color: #ab1c19;
+    font-weight: bold;
+    font-size: 400%;
   }
   
   
   h1
   {
-      font-size: 350%; 
-      border-bottom: medium solid black;
-      text-transform: uppercase;
-      padding: 0;
-      padding-top: 3em;
+    font-size: 350%; 
+    border-bottom: medium solid black;
+    text-transform: uppercase;
+    padding: 0;
+    padding-top: 3em;
   }
   
   #TOC {
-      margin-top: 2em;
+    margin-top: 2em;
   }
   
   #foreword, #the-way-of-the-program {
-      counter-reset: section;
+    counter-reset: section;
   }
   
-  section.level1 {
-      counter-increment: section;
-      counter-reset: subsection;
+  
+  
+  section.level2 {
+    counter-increment: section;
+    counter-reset: subsection;
+    max-width: 680px;
   }
   
   
   h2:before {
-      counter-increment: subsection;
-      content: counter(section) "." counter(subsection) " ";
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) " ";
   }
   
   #forward h2:before, #preface h2:before {
-      content: "";
+    content: "";
   }
   
   
   
   h1.title:before, h2.author:before, nav#TOC h2:before, #forward h2:before, #preface h2:before {
-      content: "";
+    content: "";
   }
   
   
   h2.author
   {
-      font-size: 1rem;
-      line-height: 1.15em;
-      padding: 0;
-      margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.15em;
+    padding: 0;
+    margin-bottom: 0;
   }
   
   
   nav#TOC
   {
-      background: none repeat scroll 0 0 white;
-      counter-reset: toccount;
+    background: none repeat scroll 0 0 white;
+    counter-reset: toccount;
   }
   
   nav#TOC li
   {
-      list-style-type: none;
-      font-weight: normal;
+    list-style-type: none;
+    font-weight: normal;
   }
   
   nav#TOC>ul>li
   {
-      font-weight: bold;
-      padding-top: 1em;
-      margin-bottom: .5em;
+    font-weight: bold;
+    padding-top: 1em;
+    margin-bottom: .5em;
   }
   
   
   
   nav#TOC>ul>li:nth-child(3)
   {
-      counter-reset: toccount;
+    counter-reset: toccount;
   }
   
   nav#TOC>ul>li:before
   {
-      counter-reset: tocsub;
-      counter-increment: toccount;
-      content: counter(toccount) ". ";
+    counter-reset: tocsub;
+    counter-increment: toccount;
+    content: counter(toccount) ". ";
   }
   
   nav#TOC>ul>li:nth-child(-n+2):before
   {
-      content: counter(toccount, lower-roman) ". ";
+    content: counter(toccount, lower-roman) ". ";
   }
   
   nav#TOC>ul>li>ul>li:first-child
   {
-      padding-top: .5em;
+    padding-top: .5em;
   }
   
   nav#TOC>ul>li>ul>li:before
   {
-      counter-increment: tocsub;
-      content: counter(toccount) "." counter(tocsub) " ";
+    counter-increment: tocsub;
+    content: counter(toccount) "." counter(tocsub) " ";
   }
   
   
   aside
   {
-      border: medium solid gray;
-      border-radius: 8px;
-      padding: .5em;
-      margin: 3em .5em;
-      background-color: #F6CCDA;
+    border: medium solid gray;
+    border-radius: 8px;
+    padding: .5em;
+    margin: 3em .5em;
+    background-color: #F6CCDA;
   }
   
   
   /** code highlighting stuff **/
   
   /*pre.numberSource {
-      margin-left: 1em;
+    margin-left: 1em;
   }
   */
   aside code {
-      font-size: 90%;
-      color: #e83e8c !important;
-      background-color: transparent !important;
-      border-style: none !important;
+    font-size: 90%;
+    color: #e83e8c !important;
+    background-color: transparent !important;
+    border-style: none !important;
   }
   
   a.sourceLine:before {
-      text-decoration: none !important;
-      border-style: none;
+    text-decoration: none !important;
+    border-style: none;
   }
   
   div.sourceCode {
-      padding: 6px;
+    padding: 6px;
   }
   
   /* not sure why this is necessary -- need to look at the syntax highlighter */
   .sourceCode pre, pre.sourceCode
   {
-      color: inherit;
-      border-style: none;
-      background-color: #303030;
+    color: inherit;
+    border-style: none;
+    background-color: #303030;
   }
   
   
   /** code listings/case studies **/
   
+  section.codeListing {
+    width: 1200px;
+    max-width: 100%;
+  }
+  
   section[id*="case-study"]
   {
-      padding-left: 40%;
-      position: relative;
-      border-top: 1px solid gray;
+    padding-left: 40%;
+    position: relative;
+    border-top: 1px solid gray;
   }
   
   section[id*="case-study"] h2, section[id*="case-study"] h3
   {
-      text-align: right;
-      margin: 2em 0;
+    text-align: right;
+    margin: 2em 0;
   
   }
   
   section[id*="case-study"] aside
   {
-      background: white;
-      border-style: none;
-      border-radius: 0px;
-      position: absolute;
-      left: 0;
-      width: 39%;
-      text-align: justify;
-      padding: 0;
-      margin: 0;
-      font-size: 90%;
+    background: white;
+    border-style: none;
+    border-radius: 0px;
+    position: absolute;
+    left: 0;
+    width: 39%;
+    text-align: justify;
+    padding: 0;
+    margin: 0;
+    font-size: 90%;
   }
   
   section[id*="case-study"] aside p
   {
-      margin: 0;
-      padding: 0;
-      padding-right: .5em;
-      line-height: 1.1em;
-      margin-bottom: .5em;
+    margin: 0;
+    padding: 0;
+    padding-right: .5em;
+    line-height: 1.1em;
+    margin-bottom: .5em;
   }
   
   
   
   @media screen
   {
-      body
-      {
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-      }
+    body
+    {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
   
   }
   
@@ -1435,7 +1443,7 @@ Short variable names are more economical and sometimes make code easier to read:
 <li><p>Write a function <code>half(num)</code> which returns the value of <code>num</code> divided by 2.</p></li>
 <li><p>Write a function <code>triple(num)</code> which return <code>num</code> * 3.</p></li>
 <li><p>Write a function <code>areaOfACircle(r)</code> which returns the area of a circle of radius <code>r</code>. For the value of PI, use the constant <code>Math.PI</code><br> (Hint: if you can’t remember how to find the area of a circle, look it up or ask a friend.)</p></li>
-<li><p>Write a function <code>hypotenuse(a, b)</code> which calculates the hypotonuse of a right triangle, given the formula <code>a^2 + b^2 = c^</code>.<br> Note, you will need to be able to calculate square roots to solve this problem. You can use the build in math function <code>Math.sqrt</code>.</p></li>
+<li><p>Write a function <code>hypotenuse(a, b)</code> which calculates the hypotonuse of a right triangle when given the length of sides <code>a</code> and <code>b</code>. Use the <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean theorem</a> <code>a^2 + b^2 = c^2</code>.<br> Note, you will need to be able to calculate square roots to solve this problem. You can use the build in math function <code>Math.sqrt</code>.</p></li>
 <li><p>(hard bonus) Write a function called <code>distance(x1, y1, x2, y2)</code> which calculates the distance between the point at (x1, y1) and (x2, y2) on a Cartesian Plane. You can find the formula for this at <a href="http://www.mathsisfun.com/algebra/distance-2-points.html" class="uri">http://www.mathsisfun.com/algebra/distance-2-points.html</a><br> Use the <code>hypotenuse</code> function from exercise 5 to compose this function.</p></li>
 </ol>
 </section>
@@ -1452,7 +1460,7 @@ Short variable names are more economical and sometimes make code easier to read:
 </ul>
 <p>Once all of the data is entered, the program will print out a neatly formatted message with the results of the estimation.</p>
 </section>
-<section id="code-listing-1-the-tip-calculator" class="level2">
+<section id="code-listing-1-the-tip-calculator" class="level2 codeListing">
 <h2>Code Listing 1: The Tip Calculator</h2>
 <section id="refactoring" class="level3">
 <h3>Refactoring</h3>
@@ -1460,7 +1468,7 @@ Short variable names are more economical and sometimes make code easier to read:
 This process of rearrangement is called <strong>refactoring</strong> the code.</p>
 <p>With our Tip Calculator we need to find the amount of the tip and show the results to the user. In the example below, we separate the various functions of the program to make a more complete tip calculator. As you’ll see, we’re starting to build code that is useful. Using functions allows us to make changes to one part of a program without affecting other parts of the program. For example, we can change the welcome message without worrying about breaking our calculations.</p>
 <p>The trick about refactoring code is to anticipate which things we are likely to want to change each time we call the function: these should become the parameters, or changeable parts, of the functions we write.</p>
-<p><a href="examples/tip2.py">View the “Tip Calculator” repl</a></p>
+<p><a href="https://repl.it/@mcuringa/tip-calculator">View the “Tip Calculator” repl</a></p>
 </section>
 <section id="case-study-tip-calculator" class="level3 tipCalculator">
 <h3>Case Study: Tip Calculator</h3>
@@ -1468,13 +1476,16 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <p>Brief header <strong>comments</strong> at the top of the <strong>source file</strong> identify basic information about the program and the file. Comments are messages for programmers who read the <strong>source code</strong> — they do not affect the execution of the program.</p>
 </aside>
 <aside data-line-number="14">
-<p><code>welcome</code> is a very simple <strong>function</strong> — it does not accept any data in the form of <strong>function paramters</strong> and it does not <strong>return</strong> any data using a <strong>return statement</strong>. It simply prints out a message to the console.</p>
+<p><code>welcome</code> is a very simple <strong>function</strong> — it does not accept any data in the form of <strong>function parameters</strong> and it does not <strong>return</strong> any data using a <strong>return statement</strong>. It simply prints out a message to the console.</p>
 </aside>
 <aside data-line-number="28">
 <p>The <code>calcTip</code> function defines 2 <strong>parameters</strong>: <code>bill</code> and <code>pct</code>. These parameters become variables within the <strong>function body</strong>. Line 30 uses <strong>arithmetic operators</strong> (multiplication here) to calculate a new value and store it in the <code>tip</code> <strong>variable</strong>. <code>tip</code> is converted to a float using the <strong>built-in function</strong> <code>Number.parseFloat</code>. Finally, the rounded tip amount is returned.</p>
 </aside>
 <aside data-line-number="41">
 <p><code>askBillAmt</code> is a <strong>fruitful function</strong> because it has a <strong>return statement</strong>. It uses the <strong>built-in function</strong> <code>window.prompt</code> to ask for data from the user of the program. When this function is called, it returns the amount of the bill as a float, because it represents money.</p>
+</aside>
+<aside data-line-number="59">
+<p><code>money</code> is a small helper function that we wrote to re-use the task of formatting numbers as currency with a dollar sign and two decimal places. It is called 3 times in <code>showResults</code> with different <strong>arguments</strong>.</p>
 </aside>
 <aside data-line-number="68">
 <p><code>showResults</code> defines 3 <strong>parameters</strong> which are used to pass in all of the data needed to show the results of the tip calculation. Notice that the <code>console.log</code> statements use the <strong>+ operator</strong> to <abbr title="join together">concatenate</abbr> strings. Because we are joining <strong>string literals</strong> with variables of type <code>number</code>. The <code>+</code> operator automatically converts the numbers to strings.</p>
@@ -1498,88 +1509,91 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb57-13" data-line-number="13"><span class="co">*/</span></a>
 <a class="sourceLine" id="cb57-14" data-line-number="14"><span class="kw">function</span> <span class="at">welcome</span>() <span class="op">{</span></a>
 <a class="sourceLine" id="cb57-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb57-16" data-line-number="16">  <span class="kw">let</span> msg <span class="op">=</span> <span class="vs">```</span></a>
+<a class="sourceLine" id="cb57-16" data-line-number="16">  <span class="kw">let</span> msg <span class="op">=</span> <span class="vs">`</span></a>
 <a class="sourceLine" id="cb57-17" data-line-number="17"><span class="vs">-----------------------------------</span></a>
 <a class="sourceLine" id="cb57-18" data-line-number="18"><span class="vs">   Welcome to the Tip Calculator   </span></a>
 <a class="sourceLine" id="cb57-19" data-line-number="19"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb57-20" data-line-number="20"><span class="vs">```</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb57-20" data-line-number="20"><span class="vs">`</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb57-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb57-22" data-line-number="22"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-22" data-line-number="22">  <span class="va">console</span>.<span class="at">log</span>(msg)<span class="op">;</span></a>
 <a class="sourceLine" id="cb57-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb57-24" data-line-number="24"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb57-25" data-line-number="25"><span class="co">  Calculate the tip on a bill, given the pct of the tip.</span></a>
-<a class="sourceLine" id="cb57-26" data-line-number="26"><span class="co">  Return the amount of the tip</span></a>
-<a class="sourceLine" id="cb57-27" data-line-number="27"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb57-28" data-line-number="28"><span class="kw">function</span> <span class="at">calcTip</span>(bill<span class="op">,</span> pct) <span class="op">{</span></a>
-<a class="sourceLine" id="cb57-29" data-line-number="29">    <span class="co">// convert pct to a decimal and calculate</span></a>
-<a class="sourceLine" id="cb57-30" data-line-number="30">    <span class="kw">let</span> tip <span class="op">=</span> bill <span class="op">*</span> pct<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-31" data-line-number="31">    </a>
-<a class="sourceLine" id="cb57-32" data-line-number="32">    <span class="co">// convert the tip to float with 2 decimal places</span></a>
-<a class="sourceLine" id="cb57-33" data-line-number="33">    tip <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(tip)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-34" data-line-number="34">    <span class="cf">return</span> tip<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-35" data-line-number="35"><span class="op">}</span></a>
-<a class="sourceLine" id="cb57-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb57-37" data-line-number="37"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb57-38" data-line-number="38"><span class="co">  Ask the user to enter the amount of the bill</span></a>
-<a class="sourceLine" id="cb57-39" data-line-number="39"><span class="co">  and return this amount as a &lt;float&gt;</span></a>
-<a class="sourceLine" id="cb57-40" data-line-number="40"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb57-41" data-line-number="41"><span class="kw">function</span> <span class="at">askBillAmt</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb57-42" data-line-number="42">    <span class="kw">let</span> amt <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;How much was your total bill?&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-43" data-line-number="43">    amt <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb57-45" data-line-number="45">    <span class="cf">return</span> amt<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-46" data-line-number="46"><span class="op">}</span></a>
-<a class="sourceLine" id="cb57-47" data-line-number="47"></a>
-<a class="sourceLine" id="cb57-48" data-line-number="48"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb57-49" data-line-number="49"><span class="co">  Allow the user to choose a tip amount from a menu.</span></a>
-<a class="sourceLine" id="cb57-50" data-line-number="50"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb57-51" data-line-number="51"><span class="kw">function</span> <span class="at">askTipPct</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb57-52" data-line-number="52">  <span class="kw">let</span> pct <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What percent tip do you want to leave?&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-53" data-line-number="53">  <span class="co">// convert the pct from a whole number to a fraction</span></a>
-<a class="sourceLine" id="cb57-54" data-line-number="54">  pct /<span class="op">=</span> <span class="dv">100</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb57-55" data-line-number="55">  pct <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(pct).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-56" data-line-number="56">  <span class="cf">return</span> pct<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-57" data-line-number="57"><span class="op">}</span></a>
-<a class="sourceLine" id="cb57-58" data-line-number="58"></a>
-<a class="sourceLine" id="cb57-59" data-line-number="59"><span class="kw">function</span> <span class="at">money</span>(amt) <span class="op">{</span></a>
-<a class="sourceLine" id="cb57-60" data-line-number="60">  <span class="kw">let</span> dollars <span class="op">=</span> <span class="st">&quot;$&quot;</span> <span class="op">+</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-61" data-line-number="61">  <span class="cf">return</span> dollars<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-62" data-line-number="62"><span class="op">}</span></a>
-<a class="sourceLine" id="cb57-63" data-line-number="63"></a>
-<a class="sourceLine" id="cb57-64" data-line-number="64"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb57-65" data-line-number="65"><span class="co">  Prints a message to the user showing</span></a>
-<a class="sourceLine" id="cb57-66" data-line-number="66"><span class="co">  the result of the calculations.</span></a>
-<a class="sourceLine" id="cb57-67" data-line-number="67"><span class="co">*/</span>    </a>
-<a class="sourceLine" id="cb57-68" data-line-number="68"><span class="kw">function</span> <span class="at">showResults</span>(bill<span class="op">,</span> tip<span class="op">,</span> pct)<span class="op">:</span></a>
-<a class="sourceLine" id="cb57-69" data-line-number="69">  <span class="kw">let</span> total <span class="op">=</span> tip <span class="op">+</span> bill<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-70" data-line-number="70"></a>
-<a class="sourceLine" id="cb57-71" data-line-number="71">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Bill amount: &quot;</span> <span class="op">+</span> <span class="at">money</span>(bill) )<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-72" data-line-number="72">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip percentage: &quot;</span> <span class="op">+</span> pct <span class="op">+</span> <span class="st">&quot;%&quot;</span> )<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-73" data-line-number="73">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip amount due: &quot;</span> <span class="op">+</span> <span class="at">money</span>(tip) )<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-74" data-line-number="74">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total with tip: &quot;</span> <span class="op">+</span> <span class="at">money</span>(total) )<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-75" data-line-number="75"></a>
-<a class="sourceLine" id="cb57-76" data-line-number="76">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">```</span></a>
-<a class="sourceLine" id="cb57-77" data-line-number="77"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb57-78" data-line-number="78"><span class="vs">             GOOD BYE      </span></a>
-<a class="sourceLine" id="cb57-79" data-line-number="79"><span class="vs">-----------------------------------</span></a>
-<a class="sourceLine" id="cb57-80" data-line-number="80"><span class="vs">```</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-81" data-line-number="81"></a>
-<a class="sourceLine" id="cb57-82" data-line-number="82"></a>
-<a class="sourceLine" id="cb57-83" data-line-number="83"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb57-84" data-line-number="84"><span class="co">  Read in the basic information, calcualte the tip</span></a>
-<a class="sourceLine" id="cb57-85" data-line-number="85"><span class="co">  and the share, then dispaly the results to the user.</span></a>
-<a class="sourceLine" id="cb57-86" data-line-number="86"><span class="co">*/</span></a>
-<a class="sourceLine" id="cb57-87" data-line-number="87"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb57-88" data-line-number="88">    </a>
-<a class="sourceLine" id="cb57-89" data-line-number="89">    <span class="at">welcome</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb57-90" data-line-number="90">    <span class="kw">let</span> myBill <span class="op">=</span> <span class="at">askBillAmt</span>()</a>
-<a class="sourceLine" id="cb57-91" data-line-number="91">    <span class="kw">let</span> pct <span class="op">=</span> <span class="at">askTipPct</span>()</a>
-<a class="sourceLine" id="cb57-92" data-line-number="92">    <span class="kw">let</span> tip <span class="op">=</span> <span class="at">calcTIp</span>(myBill<span class="op">,</span> pct)</a>
-<a class="sourceLine" id="cb57-93" data-line-number="93">    <span class="at">showResults</span>(myBill<span class="op">,</span> tip<span class="op">,</span> pct)</a>
-<a class="sourceLine" id="cb57-94" data-line-number="94"></a>
-<a class="sourceLine" id="cb57-95" data-line-number="95"><span class="op">}</span></a>
-<a class="sourceLine" id="cb57-96" data-line-number="96"></a>
-<a class="sourceLine" id="cb57-97" data-line-number="97"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
+<a class="sourceLine" id="cb57-24" data-line-number="24"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb57-26" data-line-number="26"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-27" data-line-number="27"><span class="co">  Calculate the tip on a bill, given the pct of the tip.</span></a>
+<a class="sourceLine" id="cb57-28" data-line-number="28"><span class="co">  Return the amount of the tip</span></a>
+<a class="sourceLine" id="cb57-29" data-line-number="29"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-30" data-line-number="30"><span class="kw">function</span> <span class="at">calcTip</span>(bill<span class="op">,</span> pct) <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-31" data-line-number="31">    <span class="co">// convert pct to a decimal and calculate</span></a>
+<a class="sourceLine" id="cb57-32" data-line-number="32">    <span class="kw">let</span> tip <span class="op">=</span> bill <span class="op">*</span> pct<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-33" data-line-number="33">    </a>
+<a class="sourceLine" id="cb57-34" data-line-number="34">    <span class="co">// convert the tip to float with 2 decimal places</span></a>
+<a class="sourceLine" id="cb57-35" data-line-number="35">    tip <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(tip)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-36" data-line-number="36">    <span class="cf">return</span> tip<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-37" data-line-number="37"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb57-39" data-line-number="39"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-40" data-line-number="40"><span class="co">  Ask the user to enter the amount of the bill</span></a>
+<a class="sourceLine" id="cb57-41" data-line-number="41"><span class="co">  and return this amount as a &lt;float&gt;</span></a>
+<a class="sourceLine" id="cb57-42" data-line-number="42"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-43" data-line-number="43"><span class="kw">function</span> <span class="at">askBillAmt</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-44" data-line-number="44">    <span class="kw">let</span> amt <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;How much was your total bill?&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-45" data-line-number="45">    amt <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb57-47" data-line-number="47">    <span class="cf">return</span> amt<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-48" data-line-number="48"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-49" data-line-number="49"></a>
+<a class="sourceLine" id="cb57-50" data-line-number="50"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-51" data-line-number="51"><span class="co">  Allow the user to choose a tip amount from a menu.</span></a>
+<a class="sourceLine" id="cb57-52" data-line-number="52"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-53" data-line-number="53"><span class="kw">function</span> <span class="at">askTipPct</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-54" data-line-number="54">  <span class="kw">let</span> pct <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What percent tip do you want to leave?&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-55" data-line-number="55">  <span class="co">// convert the pct from a whole number to a fraction</span></a>
+<a class="sourceLine" id="cb57-56" data-line-number="56">  pct /<span class="op">=</span> <span class="dv">100</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb57-57" data-line-number="57">  pct <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(pct).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-58" data-line-number="58">  <span class="cf">return</span> pct<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-59" data-line-number="59"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb57-61" data-line-number="61"><span class="kw">function</span> <span class="at">money</span>(amt) <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-62" data-line-number="62">  <span class="kw">let</span> dollars <span class="op">=</span> <span class="st">&quot;$&quot;</span> <span class="op">+</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(amt).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-63" data-line-number="63">  <span class="cf">return</span> dollars<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-64" data-line-number="64"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb57-66" data-line-number="66"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-67" data-line-number="67"><span class="co">  Prints a message to the user showing</span></a>
+<a class="sourceLine" id="cb57-68" data-line-number="68"><span class="co">  the result of the calculations.</span></a>
+<a class="sourceLine" id="cb57-69" data-line-number="69"><span class="co">*/</span>    </a>
+<a class="sourceLine" id="cb57-70" data-line-number="70"><span class="kw">function</span> <span class="at">showResults</span>(bill<span class="op">,</span> tip<span class="op">,</span> pct) <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-71" data-line-number="71">  <span class="kw">let</span> total <span class="op">=</span> tip <span class="op">+</span> bill<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-72" data-line-number="72"></a>
+<a class="sourceLine" id="cb57-73" data-line-number="73">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Bill amount: &quot;</span> <span class="op">+</span> <span class="at">money</span>(bill) )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-74" data-line-number="74">  <span class="co">// multiply % by 100 to convert back</span></a>
+<a class="sourceLine" id="cb57-75" data-line-number="75">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip percentage: &quot;</span> <span class="op">+</span> (pct <span class="op">*</span> <span class="dv">100</span>) <span class="op">+</span> <span class="st">&quot;%&quot;</span> )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-76" data-line-number="76">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Tip amount due: &quot;</span> <span class="op">+</span> <span class="at">money</span>(tip) )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-77" data-line-number="77">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total with tip: &quot;</span> <span class="op">+</span> <span class="at">money</span>(total) )<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-78" data-line-number="78"></a>
+<a class="sourceLine" id="cb57-79" data-line-number="79">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span></a>
+<a class="sourceLine" id="cb57-80" data-line-number="80"><span class="vs">-----------------------------------</span></a>
+<a class="sourceLine" id="cb57-81" data-line-number="81"><span class="vs">             GOOD BYE      </span></a>
+<a class="sourceLine" id="cb57-82" data-line-number="82"><span class="vs">-----------------------------------</span></a>
+<a class="sourceLine" id="cb57-83" data-line-number="83"><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-84" data-line-number="84"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-85" data-line-number="85"></a>
+<a class="sourceLine" id="cb57-86" data-line-number="86"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb57-87" data-line-number="87"><span class="co">  Read in the basic information, calcualte the tip</span></a>
+<a class="sourceLine" id="cb57-88" data-line-number="88"><span class="co">  and the share, then dispaly the results to the user.</span></a>
+<a class="sourceLine" id="cb57-89" data-line-number="89"><span class="co">*/</span></a>
+<a class="sourceLine" id="cb57-90" data-line-number="90"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb57-91" data-line-number="91">    </a>
+<a class="sourceLine" id="cb57-92" data-line-number="92">    <span class="at">welcome</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-93" data-line-number="93">    <span class="kw">let</span> myBill <span class="op">=</span> <span class="at">askBillAmt</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-94" data-line-number="94">    <span class="kw">let</span> pct <span class="op">=</span> <span class="at">askTipPct</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-95" data-line-number="95">    <span class="kw">let</span> tip <span class="op">=</span> <span class="at">calcTip</span>(myBill<span class="op">,</span> pct)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-96" data-line-number="96">    <span class="at">showResults</span>(myBill<span class="op">,</span> tip<span class="op">,</span> pct)<span class="op">;</span></a>
+<a class="sourceLine" id="cb57-97" data-line-number="97"></a>
+<a class="sourceLine" id="cb57-98" data-line-number="98"><span class="op">}</span></a>
+<a class="sourceLine" id="cb57-99" data-line-number="99"></a>
+<a class="sourceLine" id="cb57-100" data-line-number="100"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
 </div>
 </section>
 </section>

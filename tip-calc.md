@@ -1,5 +1,5 @@
-Code Listing 1: The Tip Calculator
-----------------------------------
+Code Listing 1: The Tip Calculator {.codeListing}
+-------------------------------------------------
 
 ### Refactoring
 
@@ -21,7 +21,7 @@ are likely to want to change each time we call the function: these
 should become the parameters, or changeable parts, of the functions 
 we write.
 
-[View the "Tip Calculator" repl](examples/tip2.py)
+[View the "Tip Calculator" repl](https://repl.it/@mcuringa/tip-calculator)
 
 ### Case Study: Tip Calculator {.tipCalculator}
 
@@ -37,7 +37,7 @@ code** --- they do not affect the execution of the program.
 <aside data-line-number="14">
 
 ``welcome`` is a very simple **function** --- it does not accept
-any data in the form of **function paramters** and it does not
+any data in the form of **function parameters** and it does not
 **return** any data using a **return statement**. It simply prints out a
 message to the console.
 
@@ -66,6 +66,17 @@ user of the program. When this function is called, it returns
 the amount of the bill as a float, because it represents money.
 
 </aside>
+
+<aside data-line-number="59">
+
+``money`` is a small helper function that we
+wrote to re-use the task of formatting numbers
+as currency with a dollar sign and two decimal places.
+It is called 3 times in ``showResults`` with
+different **arguments**.
+
+</aside>
+
 
 
 

@@ -13,11 +13,13 @@
 */
 function welcome() {
 
-  let msg = ```
+  let msg = `
 -----------------------------------
    Welcome to the Tip Calculator   
 -----------------------------------
-```;
+`;
+
+  console.log(msg);
 
 }
 
@@ -65,20 +67,21 @@ function money(amt) {
   Prints a message to the user showing
   the result of the calculations.
 */    
-function showResults(bill, tip, pct):
+function showResults(bill, tip, pct) {
   let total = tip + bill;
 
   console.log("Bill amount: " + money(bill) );
-  console.log("Tip percentage: " + pct + "%" );
+  // multiply % by 100 to convert back
+  console.log("Tip percentage: " + (pct * 100) + "%" );
   console.log("Tip amount due: " + money(tip) );
   console.log("Total with tip: " + money(total) );
 
-  console.log(```
+  console.log(`
 -----------------------------------
              GOOD BYE      
 -----------------------------------
-```);
-
+`);
+}
 
 /*
   Read in the basic information, calcualte the tip
@@ -87,10 +90,10 @@ function showResults(bill, tip, pct):
 function main() {
     
     welcome();
-    let myBill = askBillAmt()
-    let pct = askTipPct()
-    let tip = calcTIp(myBill, pct)
-    showResults(myBill, tip, pct)
+    let myBill = askBillAmt();
+    let pct = askTipPct();
+    let tip = calcTip(myBill, pct);
+    showResults(myBill, tip, pct);
 
 }
 

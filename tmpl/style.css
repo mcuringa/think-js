@@ -5,207 +5,215 @@ that is why it has a style tag... -->
 
 h1.title 
 {
-    margin:0;
-    margin-bottom: .5em;
-    padding:0;
-    padding-top: 80px;
-    border-style: none;
-    background-color: transparent;
-    clear: both;
-    color: #ab1c19;
-    font-weight: bold;
-    font-size: 400%;
+  margin:0;
+  margin-bottom: .5em;
+  padding:0;
+  padding-top: 80px;
+  border-style: none;
+  background-color: transparent;
+  clear: both;
+  color: #ab1c19;
+  font-weight: bold;
+  font-size: 400%;
 }
 
 
 h1
 {
-    font-size: 350%; 
-    border-bottom: medium solid black;
-    text-transform: uppercase;
-    padding: 0;
-    padding-top: 3em;
+  font-size: 350%; 
+  border-bottom: medium solid black;
+  text-transform: uppercase;
+  padding: 0;
+  padding-top: 3em;
 }
 
 #TOC {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 #foreword, #the-way-of-the-program {
-    counter-reset: section;
+  counter-reset: section;
 }
 
-section.level1 {
-    counter-increment: section;
-    counter-reset: subsection;
+
+
+section.level2 {
+  counter-increment: section;
+  counter-reset: subsection;
+  max-width: 680px;
 }
 
 
 h2:before {
-    counter-increment: subsection;
-    content: counter(section) "." counter(subsection) " ";
+  counter-increment: subsection;
+  content: counter(section) "." counter(subsection) " ";
 }
 
 #forward h2:before, #preface h2:before {
-    content: "";
+  content: "";
 }
 
 
 
 h1.title:before, h2.author:before, nav#TOC h2:before, #forward h2:before, #preface h2:before {
-    content: "";
+  content: "";
 }
 
 
 h2.author
 {
-    font-size: 1rem;
-    line-height: 1.15em;
-    padding: 0;
-    margin-bottom: 0;
+  font-size: 1rem;
+  line-height: 1.15em;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 
 nav#TOC
 {
-    background: none repeat scroll 0 0 white;
-    counter-reset: toccount;
+  background: none repeat scroll 0 0 white;
+  counter-reset: toccount;
 }
 
 nav#TOC li
 {
-    list-style-type: none;
-    font-weight: normal;
+  list-style-type: none;
+  font-weight: normal;
 }
 
 nav#TOC>ul>li
 {
-    font-weight: bold;
-    padding-top: 1em;
-    margin-bottom: .5em;
+  font-weight: bold;
+  padding-top: 1em;
+  margin-bottom: .5em;
 }
 
 
 
 nav#TOC>ul>li:nth-child(3)
 {
-    counter-reset: toccount;
+  counter-reset: toccount;
 }
 
 nav#TOC>ul>li:before
 {
-    counter-reset: tocsub;
-    counter-increment: toccount;
-    content: counter(toccount) ". ";
+  counter-reset: tocsub;
+  counter-increment: toccount;
+  content: counter(toccount) ". ";
 }
 
 nav#TOC>ul>li:nth-child(-n+2):before
 {
-    content: counter(toccount, lower-roman) ". ";
+  content: counter(toccount, lower-roman) ". ";
 }
 
 nav#TOC>ul>li>ul>li:first-child
 {
-    padding-top: .5em;
+  padding-top: .5em;
 }
 
 nav#TOC>ul>li>ul>li:before
 {
-    counter-increment: tocsub;
-    content: counter(toccount) "." counter(tocsub) " ";
+  counter-increment: tocsub;
+  content: counter(toccount) "." counter(tocsub) " ";
 }
 
 
 aside
 {
-    border: medium solid gray;
-    border-radius: 8px;
-    padding: .5em;
-    margin: 3em .5em;
-    background-color: #F6CCDA;
+  border: medium solid gray;
+  border-radius: 8px;
+  padding: .5em;
+  margin: 3em .5em;
+  background-color: #F6CCDA;
 }
 
 
 /** code highlighting stuff **/
 
 /*pre.numberSource {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 */
 aside code {
-    font-size: 90%;
-    color: #e83e8c !important;
-    background-color: transparent !important;
-    border-style: none !important;
+  font-size: 90%;
+  color: #e83e8c !important;
+  background-color: transparent !important;
+  border-style: none !important;
 }
 
 a.sourceLine:before {
-    text-decoration: none !important;
-    border-style: none;
+  text-decoration: none !important;
+  border-style: none;
 }
 
 div.sourceCode {
-    padding: 6px;
+  padding: 6px;
 }
 
 /* not sure why this is necessary -- need to look at the syntax highlighter */
 .sourceCode pre, pre.sourceCode
 {
-    color: inherit;
-    border-style: none;
-    background-color: #303030;
+  color: inherit;
+  border-style: none;
+  background-color: #303030;
 }
 
 
 /** code listings/case studies **/
 
+section.codeListing {
+  width: 1200px;
+  max-width: 100%;
+}
+
 section[id*="case-study"]
 {
-    padding-left: 40%;
-    position: relative;
-    border-top: 1px solid gray;
+  padding-left: 40%;
+  position: relative;
+  border-top: 1px solid gray;
 }
 
 section[id*="case-study"] h2, section[id*="case-study"] h3
 {
-    text-align: right;
-    margin: 2em 0;
+  text-align: right;
+  margin: 2em 0;
 
 }
 
 section[id*="case-study"] aside
 {
-    background: white;
-    border-style: none;
-    border-radius: 0px;
-    position: absolute;
-    left: 0;
-    width: 39%;
-    text-align: justify;
-    padding: 0;
-    margin: 0;
-    font-size: 90%;
+  background: white;
+  border-style: none;
+  border-radius: 0px;
+  position: absolute;
+  left: 0;
+  width: 39%;
+  text-align: justify;
+  padding: 0;
+  margin: 0;
+  font-size: 90%;
 }
 
 section[id*="case-study"] aside p
 {
-    margin: 0;
-    padding: 0;
-    padding-right: .5em;
-    line-height: 1.1em;
-    margin-bottom: .5em;
+  margin: 0;
+  padding: 0;
+  padding-right: .5em;
+  line-height: 1.1em;
+  margin-bottom: .5em;
 }
 
 
 
 @media screen
 {
-    body
-    {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  body
+  {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
 }
 
