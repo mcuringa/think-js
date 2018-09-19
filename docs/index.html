@@ -82,6 +82,14 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   
   <style type="text/css">
   
+  blockquote {
+    margin-top: 1em;
+    max-width: 600px;
+    border-left: 8px solid lightgray;
+    padding-left: .5em;
+  }
+  
+  
   h1.title 
   {
     margin:0;
@@ -106,6 +114,26 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     padding-top: 3em;
   }
   
+  /* make all tables bootstrappy */
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  
+  td, th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+  }
+  
+  
   #TOC {
     margin-top: 2em;
   }
@@ -114,10 +142,12 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     counter-reset: section;
   }
   
+  section.level1 {
+    counter-increment: section;
+  }
   
   
   section.level2 {
-    counter-increment: section;
     counter-reset: subsection;
     max-width: 680px;
   }
@@ -362,6 +392,22 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#exercises">Exercises</a></li>
 <li><a href="#functions-lab">Functions Lab</a></li>
 <li><a href="#code-listing-1-the-tip-calculator">Code Listing 1: The Tip Calculator</a></li>
+</ul></li>
+<li><a href="#conditionals">Conditionals</a><ul>
+<li><a href="#boolean-values-and-expressions">Boolean values and expressions</a></li>
+<li><a href="#logical-operators">Logical operators</a></li>
+<li><a href="#truth-tables">Truth Tables</a></li>
+<li><a href="#simplifying-boolean-expressions">Simplifying Boolean Expressions</a></li>
+<li><a href="#conditional-execution">Conditional execution</a></li>
+<li><a href="#omitting-the-else-clause">Omitting the <code>else</code> clause</a></li>
+<li><a href="#chained-conditionals">Chained conditionals</a></li>
+<li><a href="#nested-conditionals">Nested conditionals</a></li>
+<li><a href="#the-return-statement">The <code>return</code> statement</a></li>
+<li><a href="#logical-opposites">Logical opposites</a></li>
+<li><a href="#type-conversion-1">Type conversion</a></li>
+<li><a href="#a-turtle-bar-chart">A Turtle Bar Chart</a></li>
+<li><a href="#glossary-4">Glossary</a></li>
+<li><a href="#exercises-1">Exercises</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1596,6 +1642,642 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb57-100" data-line-number="100"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
 </div>
 </section>
+</section>
+</section>
+<section id="conditionals" class="level1">
+<h1>Conditionals</h1>
+<blockquote>
+<p>A successful attempt to express logical propositions by symbols, the laws of whose combinations should be founded upon the laws of the mental processes which they represent, would, so far, be a step towards a philosophical language.</p>
+<p>— George Boole, <em>The Mathematical Analysis of Logic</em> 1847</p>
+</blockquote>
+<section id="boolean-values-and-expressions" class="level2">
+<h2>Boolean values and expressions</h2>
+<p>A <em>Boolean</em> value is either true or false. It is named after the British mathematician, George Boole, who first formulated <em>Boolean algebra</em> — some rules for reasoning about and combining these values. This is the basis of all modern computer logic.</p>
+<p>In Javascript, the two Boolean values are <code>true</code> and <code>false</code> (the capitalization must be exactly as shown), and the Javascript type is <strong>‘boolean’</strong>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb58-1" data-line-number="1">⠕ tyepof <span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="op">=&gt;</span> <span class="st">&#39;boolean&#39;</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">⠕ tyepof True<span class="op">;</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="op">=&gt;</span> <span class="st">&#39;undefined&#39;</span></a></code></pre></div>
+<p>A <strong>Boolean expression</strong> is an expression that evaluates to produce a result which is a Boolean value. For example, the operator <code>===</code> tests if two values are equal. It produces (or <em>yields</em>) a Boolean value:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb59-1" data-line-number="1">⠕ <span class="dv">5</span> <span class="op">===</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">2</span>)<span class="op">;</span>   <span class="co">// Is five equal 5 to the result of 3 + 2? </span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="op">=&gt;</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb59-3" data-line-number="3">⠕ <span class="dv">5</span> <span class="op">===</span> <span class="dv">6</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">⠕ <span class="kw">let</span> j <span class="op">=</span> <span class="st">&quot;hel&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">⠕ j <span class="op">+</span> <span class="st">&quot;lo&quot;</span> <span class="op">===</span> <span class="st">&quot;hello&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="kw">true</span></a></code></pre></div>
+<p>In the first statement, the two operands evaluate to equal values, so the expression evaluates to <code>true</code>; in the second statement, 5 is not equal to 6, so we get <code>false</code>.</p>
+<p>The <code>===</code> operator is one of six common <strong>comparison operators</strong> which all produce a <code>boolean</code> result; here are all six:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb60-1" data-line-number="1">x <span class="op">===</span> y   <span class="co">// Produce true if ... x is equal to y</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">x <span class="op">!==</span> y   <span class="co">// Produce true if ... x is not equal to y</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">x <span class="op">&gt;</span> y     <span class="co">// Produce true if ... x is greater than y</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">x <span class="op">&lt;</span> y     <span class="co">// Produce true if ... x is less than y</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">x <span class="op">&gt;=</span> y    <span class="co">// Produce true if ... x is greater than or equal to y</span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">x <span class="op">&lt;=</span> y    <span class="co">// Produce true if ... x is less than or equal to y</span></a></code></pre></div>
+<p>Although these operations are probably familiar, the Javascript symbols are different from the mathematical symbols. A common error is to use a single equal sign (<code>=</code>) instead of a triple equal sign (<code>===</code>). Remember that <code>=</code> is an assignment operator and <code>===</code> is a comparison operator. Also, there is no such thing as <code>=&lt;</code> or <code>=&gt;</code>.</p>
+<p>Like any other types we’ve seen so far, Boolean values can be assigned to variables, printed, etc.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb61-1" data-line-number="1">⠕ <span class="kw">let</span> age <span class="op">=</span> <span class="dv">18</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">⠕ <span class="kw">let</span> oldEnoughToGetADrivingLicence <span class="op">=</span> age <span class="op">&gt;=</span> <span class="dv">16</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">⠕ <span class="va">console</span>.<span class="at">log</span>(oldEnoughToGetADrivingLicence)<span class="op">;</span></a>
+<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="kw">true</span></a>
+<a class="sourceLine" id="cb61-5" data-line-number="5">⠕ <span class="kw">typeof</span> oldEnoughToGetADrivingLicence<span class="op">;</span></a>
+<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="st">&#39;boolean&#39;</span></a></code></pre></div>
+<aside id="strict-equality">
+<p><strong>Equality and “sameness” in Javascript</strong></p>
+<p>Javascript, as a programming language, is a little bit quirky when it comes to testing equality. The double equal sign <code>==</code> is a “loose” equality operator, while the triple equal sign <code>===</code> used in the examples above is the “strict” equality operator.</p>
+<p>When we looked at variables and data types in chapter 2, we saw how Javascript does automatic type conversion. For example, it converts numbers to strings when you use the <code>+</code> token for string concatenation and strings to numbers (if it can) when we use other mathematical operators.</p>
+<p>The <code>==</code> compares values for equality <em>after</em> type conversion, whereas the <code>===</code> compares values <em>before</em> conversion. Only values of the same type are equal with the strict operator.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb62-1" data-line-number="1">⠕ <span class="dv">5</span> <span class="op">==</span> <span class="st">&quot;5&quot;</span><span class="op">;</span> <span class="co">// true because of type conversion</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="op">=&gt;</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">⠕ <span class="dv">5</span> <span class="op">===</span> <span class="st">&quot;5&quot;</span><span class="op">;</span> <span class="co">// false using strict equality</span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5">⠕ <span class="dv">5</span> <span class="op">===</span> <span class="fl">5.0</span><span class="op">;</span> <span class="co">// true because integers and floats are all type `number`</span></a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="op">=&gt;</span> <span class="kw">true</span></a></code></pre></div>
+<p>In addition to the loose equality with <code>==</code> there is a loose inequality operator using <code>!=</code>. Because loose equality (and inequality) is difficult to predict, <strong>we will only use strict equality</strong> in the examples in this book. However, you are likely to encounter both styles when reading other code, documentation, and tutorials.</p>
+<p>For further reading on this topic you can read <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">Equality comparison and sameness</a> on the Mozilla Developer Network.</p>
+</aside>
+</section>
+<section id="logical-operators" class="level2">
+<h2>Logical operators</h2>
+<p>There are three <strong>logical operators</strong>, <em>and</em> <code>&amp;&amp;</code>, <em>or</em> <code>||</code>, and <em>not</em> <code>!</code>, that allow us to build more complex Boolean expressions from simpler Boolean expressions. The semantics (meaning) of these operators is similar to their meaning in English. For example, <code>x &gt; 0 &amp;&amp; x &lt; 10</code> produces <code>true</code> only if <code>x</code> is greater than 0 <em>and</em> at the same time, x is less than 10.</p>
+<p><code>n % 2 == 0 || n % 3 == 0</code> is <code>true</code> if <em>either</em> of the conditions are <code>true</code>, that is, if the number <code>n</code> is divisible by 2 <em>or</em> it is divisible by 3. (What do you think happens if <code>n</code> is divisible by both 2 and by 3 at the same time? Will the expression yield <code>true</code> or <code>false</code>? Try it in your Javascript interpreter.)</p>
+<p>Finally, the <code>not</code> operator negates a Boolean value, so <code>! (x &gt; y)</code> is <code>true</code> if <code>(x &gt; y)</code> is <code>false</code>, that is, if <code>x</code> is less than or equal to <code>y</code>.</p>
+<p>The expression on the left of the <code>||</code> operator is evaluated first: if the result is <code>true</code>, Javascript does not (and need not) evaluate the expression on the right — this is called <em>short-circuit evaluation</em>. Similarly, for the <code>&amp;&amp;</code> operator, if the expression on the left yields <code>false</code>, Javascript does not evaluate the expression on the right.</p>
+<p>So there are no unnecessary evaluations.</p>
+</section>
+<section id="truth-tables" class="level2">
+<h2>Truth Tables</h2>
+<p>A truth table is a small table that allows us to list all the possible inputs, and to give the results for the logical operators. Because the <code>&amp;&amp;</code> and <code>||</code> operators each have two operands, there are only four rows in a truth table that describes the semantics of <code>&amp;&amp;</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">a</th>
+<th style="text-align: left;">b</th>
+<th style="text-align: left;">a &amp;&amp; b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">True</td>
+</tr>
+</tbody>
+</table>
+<p>In a Truth Table, we sometimes use T and F as shorthand for the two Boolean values: here is the truth table describing <code>||</code>:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">a</th>
+<th style="text-align: left;">b</th>
+<th style="text-align: left;">a || b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+</tr>
+</tbody>
+</table>
+<p>The third logical operator, <code>!</code>, only takes a single operand, so its truth table only has two rows:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">a</th>
+<th style="text-align: left;">!a</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="simplifying-boolean-expressions" class="level2">
+<h2>Simplifying Boolean Expressions</h2>
+<p>A set of rules for simplifying and rearranging expressions is called an <em>algebra</em>. For example, we are all familiar with school algebra rules, such as:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb63-1" data-line-number="1">n <span class="op">*</span> <span class="dv">0</span> <span class="op">===</span> <span class="dv">0</span></a></code></pre></div>
+<p>which provides rules for working with Boolean values.</p>
+<p>First, the <code>&amp;&amp;</code> operator:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb64-1" data-line-number="1">x <span class="op">&amp;&amp;</span> <span class="kw">false</span> <span class="op">===</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="kw">false</span> <span class="op">&amp;&amp;</span> x <span class="op">===</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">y <span class="op">&amp;&amp;</span> x <span class="op">===</span> x <span class="op">&amp;&amp;</span> y</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4">x <span class="op">&amp;&amp;</span> <span class="kw">true</span> <span class="op">===</span> x</a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"><span class="kw">true</span> <span class="op">&amp;&amp;</span> x <span class="op">===</span> x</a>
+<a class="sourceLine" id="cb64-6" data-line-number="6">x <span class="op">&amp;&amp;</span> x <span class="op">===</span> x</a></code></pre></div>
+<p>Here are some corresponding rules for the <code>||</code> operator:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb65-1" data-line-number="1">x <span class="op">||</span> <span class="kw">false</span> <span class="op">===</span> x</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="kw">false</span> <span class="op">||</span> x <span class="op">===</span> x</a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">y <span class="op">||</span> x <span class="op">===</span> x <span class="op">||</span> y</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4">x <span class="op">||</span> <span class="kw">true</span> <span class="op">===</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="kw">true</span> <span class="op">||</span> x <span class="op">===</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb65-6" data-line-number="6">x <span class="op">||</span> x <span class="op">===</span> x</a></code></pre></div>
+<p>Two <code>!</code> operators cancel each other:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="op">!</span>(<span class="op">!</span>x) <span class="op">==</span> x</a></code></pre></div>
+</section>
+<section id="conditional-execution" class="level2">
+<h2>Conditional execution</h2>
+<p>In order to write useful programs, we almost always need the ability to check conditions and change the behavior of the program accordingly. <strong>Conditional statements</strong> give us this ability. The simplest form is the <strong>if</strong> statement:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="cf">if</span> (x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(x<span class="op">,</span> <span class="st">&quot; is even.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Did you know that 2 is the only even number that is prime?&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="op">}</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb67-6" data-line-number="6">  <span class="va">console</span>.<span class="at">log</span>(x<span class="op">,</span> <span class="st">&quot; is odd.&quot;</span>) <span class="op">;</span></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Did you know that multiplying two odd numbers always gives an odd result?&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb67-8" data-line-number="8"><span class="op">}</span></a></code></pre></div>
+<p>If it is true, then all the indented statements get executed. If not, then all the statements indented under the <code>else</code> clause get executed.</p>
+<figure>
+<img src="figs/flowchart_if_else.png" alt="Flowchart of an if statement with an else clause" /><figcaption>Flowchart of an if statement with an else clause</figcaption>
+</figure>
+<p>The syntax for an <code>if</code> statement looks like this:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="cf">if</span> BOOLEAN EXPRESSION <span class="op">{</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">  STATEMENTS_1   <span class="co">// Executed if condition evaluates to true</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb68-5" data-line-number="5">  STATEMENTS_2   <span class="co">// Executed if condition evaluates to false</span></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>As with the function definition from the last chapter and other compound statements like <code>for</code>, the <code>if</code> statement consists of a header line and a body. The header line begins with the keyword <code>if</code> followed by a <em>Boolean expression</em> and ends with a left curly brace ( { ).</p>
+<p>The indented statements that follow are called a <strong>block</strong>. The block ends with the right curly brace ( } ).</p>
+<p>Each of the statements inside the first block of statements are executed in order if the Boolean expression evaluates to <code>true</code>. The entire first block of statements is skipped if the Boolean expression evaluates to <code>false</code>, and instead all the statements indented under the <code>else</code> clause are executed.</p>
+<p>There is no limit on the number of statements that can appear under the two clauses of an <code>if</code> statement, but there has to be at least one statement in each block.</p>
+</section>
+<section id="omitting-the-else-clause" class="level2">
+<h2>Omitting the <code>else</code> clause</h2>
+<figure>
+<img src="figs/flowchart_if_only.png" alt="Flowchart of an if statement with no else clause" /><figcaption>Flowchart of an if statement with no else clause</figcaption>
+</figure>
+<p>Another form of the <code>if</code> statement is one in which the <code>else</code> clause is omitted entirely. In this case, when the condition evaluates to <code>true</code>, the statements are executed, otherwise the flow of execution continues to the statement after the <code>if</code>.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The negative number &quot;</span><span class="op">,</span>  x<span class="op">,</span> <span class="st">&quot; is not valid here.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3">  x <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;I&#39;ve decided to use the number 42 instead.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="op">}</span></a>
+<a class="sourceLine" id="cb69-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The square root of &quot;</span><span class="op">,</span> x<span class="op">,</span> <span class="st">&quot;is&quot;</span><span class="op">,</span> <span class="va">Math</span>.<span class="at">sqrt</span>(x)) <span class="op">;</span></a></code></pre></div>
+<p>In this case, the print function that outputs the square root is the one after the <code>if</code> — it comes after our curly braces ended the conditional block.</p>
+<p>Notice that <code>else</code> is not a statement. The <code>if</code> statement has two <em>clauses</em>, one of which is the (optional) <code>else</code> clause. However you can never use the <code>else</code> keyword outside of an <code>if</code> statement.</p>
+</section>
+<section id="chained-conditionals" class="level2">
+<h2>Chained conditionals</h2>
+<p>Sometimes there are more than two possibilities and we need more than two branches. One way to express a computation like that is a <strong>chained conditional</strong>:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="cf">if</span> (x <span class="op">&lt;</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">  STATEMENTS_A</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&gt;</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">  STATEMENTS_B</a>
+<a class="sourceLine" id="cb70-6" data-line-number="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb70-7" data-line-number="7"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb70-8" data-line-number="8">  STATEMENTS_C</a>
+<a class="sourceLine" id="cb70-9" data-line-number="9"><span class="op">}</span></a></code></pre></div>
+<p><img src="figs/flowchart_chained_conditional.png" /></p>
+<p>Again, exactly one branch will be executed. There is no limit of the number of <code>else if</code> statements but only a single (and optional) final <code>else</code> statement is allowed and it must be the last branch in the statement:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="cf">if</span> choice <span class="op">==</span> <span class="st">&quot;a&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">    <span class="at">function_one</span>()</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">elif choice <span class="op">==</span> <span class="st">&quot;b&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb71-4" data-line-number="4">    <span class="at">function_two</span>()</a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">elif choice <span class="op">==</span> <span class="st">&quot;c&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb71-6" data-line-number="6">    <span class="at">function_three</span>()</a>
+<a class="sourceLine" id="cb71-7" data-line-number="7"><span class="cf">else</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb71-8" data-line-number="8">    <span class="at">print</span>(<span class="st">&quot;Invalid choice.&quot;</span>)</a></code></pre></div>
+<p>and so on. If one of them is true, the corresponding branch executes, and the statement ends. Even if more than one condition is true, only the first true branch executes.</p>
+</section>
+<section id="nested-conditionals" class="level2">
+<h2>Nested conditionals</h2>
+<p>One conditional can also be <strong>nested</strong> within another. (It is the same theme of composability, again!) We could have written the previous example as follows:</p>
+<figure>
+<img src="figs/flowchart_nested_conditional.png" alt="Flowchart of this nested conditional" /><figcaption>Flowchart of this nested conditional</figcaption>
+</figure>
+<div class="sourceCode" id="cb72"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="cf">if</span> x <span class="op">&lt;</span> y<span class="op">:</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">    STATEMENTS_A</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4">    <span class="cf">if</span> x <span class="op">&gt;</span> y<span class="op">:</span></a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">STATEMENTS_B</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">    <span class="cf">else</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">STATEMENTS_C</a></code></pre></div>
+<p>The second branch contains another <code>if</code> statement, which has two branches of its own. Those two branches could contain conditional statements as well.</p>
+<p>Although the indentation of the statements makes the structure apparent, nested conditionals very quickly become difficult to read. In general, it is a good idea to avoid them when we can.</p>
+<p>Logical operators often provide a way to simplify nested conditional statements. For example, we can rewrite the following code using a single conditional:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;</span> x<span class="op">:</span>    # Assume x is an int here</a>
+<a class="sourceLine" id="cb73-2" data-line-number="2">    <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">10</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="at">print</span>(<span class="st">&quot;x is a positive single digit.&quot;</span>)</a></code></pre></div>
+<p>conditionals, so instead of the above which uses two <code>if</code> statements each with a simple condition, we could make a more complex condition using the <code>and</code> operator. Now we only need a single <code>if</code> statement:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;</span> x and x <span class="op">&lt;</span> <span class="dv">10</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;x is a positive single digit.&quot;</span>)</a></code></pre></div>
+</section>
+<section id="the-return-statement" class="level2">
+<h2>The <code>return</code> statement</h2>
+<p>The <code>return</code> statement, with or without a value, depending on whether the function is fruitful or void, allows us to terminate the execution of a function before (or when) we reach the end. One reason to use an <em>early return</em> is if we detect an error condition:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb75-1" data-line-number="1">def <span class="at">print_square_root</span>(x)<span class="op">:</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">    <span class="cf">if</span> x <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="at">print</span>(<span class="st">&quot;Positive numbers only, please.&quot;</span>)</a>
+<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="cf">return</span></a>
+<a class="sourceLine" id="cb75-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6">    result <span class="op">=</span> x<span class="op">**</span><span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb75-7" data-line-number="7">    <span class="at">print</span>(<span class="st">&quot;The square root of&quot;</span><span class="op">,</span> x<span class="op">,</span> <span class="st">&quot;is&quot;</span><span class="op">,</span> result)</a></code></pre></div>
+<p>it does is check whether <code>x</code> is less than or equal to 0, in which case it displays an error message and then uses <code>return</code> to exit the function. The flow of execution immediately returns to the caller, and the remaining lines of the function are not executed.</p>
+</section>
+<section id="logical-opposites" class="level2">
+<h2>Logical opposites</h2>
+<p>Each of the six relational operators has a logical opposite: for example, suppose we can get a driving licence when our age is greater or equal to 17, we can <em>not</em> get the driving licence when we are less than 17.</p>
+<p>Notice that the opposite of <code>&gt;=</code> is <code>&lt;</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>operator</th>
+<th>logical opposite</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>==</td>
+<td>!=</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>==</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>&gt;=</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td>&gt;</td>
+</tr>
+<tr class="odd">
+<td>&gt;</td>
+<td>&lt;=</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>Understanding these logical opposites allows us to sometimes get rid of <code>not</code> operators. <code>not</code> operators are often quite difficult to read in computer code, and our intentions will usually be clearer if we can eliminate them.</p>
+<p>For example, if we wrote this Javascript:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="cf">if</span> <span class="at">not</span> (age <span class="op">&gt;=</span> <span class="dv">17</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving licence!&quot;</span>)</a>
+<a class="sourceLine" id="cb76-3" data-line-number="3">  </a></code></pre></div>
+<p>write instead:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">17</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving licence!&quot;</span>)</a></code></pre></div>
+<p>helpful when dealing with complicated Boolean expressions are:</p>
+<pre><code>not (x and y)  ==  (not x) or (not y) 
+not (x or y)   ==  (not x) and (not y)</code></pre>
+<p>For example, suppose we can slay the dragon only if our magic lightsabre sword is charged to 90% or higher, and we have 100 or more energy units in our protective shield. We find this fragment of Javascript code in the game:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="cf">if</span> <span class="at">not</span> ((sword_charge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="at">and</span> (shield_energy <span class="op">&gt;=</span> <span class="dv">100</span>))<span class="op">:</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)</a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4">    <span class="at">print</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous princess!&quot;</span>)</a></code></pre></div>
+<p>rework the condition in a (perhaps) easier to understand way like this:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="cf">if</span> (sword_charge <span class="op">&lt;</span> <span class="fl">0.90</span>) <span class="at">or</span> (shield_energy <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)</a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4">    <span class="at">print</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous princess!&quot;</span>)</a></code></pre></div>
+<p><code>else</code> parts of the conditional. So here is a third version, also equivalent:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="cf">if</span> (sword_charge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="at">and</span> (shield_energy <span class="op">&gt;=</span> <span class="dv">100</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous princess!&quot;</span>)   </a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4">    <span class="at">print</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)</a></code></pre></div>
+<p>the initial English statement. Clarity of our code (for other humans), and making it easy to see that the code does what was expected should always be a high priority.</p>
+<p>As our programming skills develop we’ll find we have more than one way to solve any problem. So good programs are <em>designed</em>. We make choices that favour clarity, simplicity, and elegance. The job title <em>software architect</em> says a lot about what we do — we are <em>architects</em> who engineer our products to balance beauty, functionality, simplicity and clarity in our creations.</p>
+<aside>
+<p><strong>Tip:</strong> Once our program works, we should play around a bit trying to polish it up. Write good comments. Think about whether the code would be clearer with different variable names. Could we have done it more elegantly? Should we rather use a function? Can we simplify the conditionals?</p>
+We think of our code as our creation, our work of art! We make it great.
+</aside>
+</section>
+<section id="type-conversion-1" class="level2">
+<h2>Type conversion</h2>
+<p>We’ve had a first look at this in an earlier chapter. Seeing it again won’t hurt!</p>
+<p>Many Javascript types come with a built-in function that attempts to convert values of another type into its own type. The <code>int</code> function, for example, takes any value and converts it to an integer, if possible, or complains otherwise:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb82-1" data-line-number="1">⠕ <span class="at">int</span>(<span class="st">&quot;32&quot;</span>)</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="dv">32</span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3">⠕ <span class="at">int</span>(<span class="st">&quot;Hello&quot;</span>)</a>
+<a class="sourceLine" id="cb82-4" data-line-number="4">ValueError<span class="op">:</span> invalid literal <span class="cf">for</span> <span class="at">int</span>() <span class="cf">with</span> base <span class="dv">10</span><span class="op">:</span> <span class="st">&#39;Hello&#39;</span></a></code></pre></div>
+<p>that it truncates the fractional part:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb83-1" data-line-number="1">⠕ <span class="at">int</span>(<span class="op">-</span><span class="fl">2.3</span>)</a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="dv">-2</span></a>
+<a class="sourceLine" id="cb83-3" data-line-number="3">⠕ <span class="at">int</span>(<span class="fl">3.99999</span>)</a>
+<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="dv">3</span></a>
+<a class="sourceLine" id="cb83-5" data-line-number="5">⠕ <span class="at">int</span>(<span class="st">&quot;42&quot;</span>)</a>
+<a class="sourceLine" id="cb83-6" data-line-number="6"><span class="dv">42</span></a>
+<a class="sourceLine" id="cb83-7" data-line-number="7">⠕ <span class="at">int</span>(<span class="fl">1.0</span>)</a>
+<a class="sourceLine" id="cb83-8" data-line-number="8"><span class="dv">1</span></a></code></pre></div>
+<p>numbers:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb84-1" data-line-number="1">⠕ <span class="at">float</span>(<span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="fl">32.0</span></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">⠕ <span class="at">float</span>(<span class="st">&quot;3.14159&quot;</span>)</a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="fl">3.14159</span></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5">⠕ <span class="at">float</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="fl">1.0</span></a></code></pre></div>
+<p>floating-point value <code>1.0</code>. They may represent the same number, but they belong to different types. The reason is that they are represented differently inside the computer.</p>
+<p>The <code>str</code> function converts any argument given to it to type <code>string</code>:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb85-1" data-line-number="1">⠕ <span class="at">str</span>(<span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">&#39;32&#39;</span></a>
+<a class="sourceLine" id="cb85-3" data-line-number="3">⠕ <span class="at">str</span>(<span class="fl">3.14149</span>)</a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="st">&#39;3.14149&#39;</span></a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">⠕ <span class="at">str</span>(True)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="st">&#39;True&#39;</span></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7">⠕ <span class="at">str</span>(<span class="kw">true</span>)</a>
+<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="at">Traceback</span> (most recent call last)<span class="op">:</span></a>
+<a class="sourceLine" id="cb85-9" data-line-number="9">  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span><span class="op">,</span> line <span class="dv">1</span><span class="op">,</span> <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb85-10" data-line-number="10">NameError<span class="op">:</span> name <span class="st">&#39;true&#39;</span> is not defined</a></code></pre></div>
+<p>mentioned earlier, <code>true</code> is Boolean value; <code>true</code> is just an ordinary variable name, and is not defined here, so we get an error.</p>
+</section>
+<section id="a-turtle-bar-chart" class="level2">
+<h2>A Turtle Bar Chart</h2>
+<p>The turtle has a lot more power than we’ve seen so far. The full documentation can be found at http://docs.python.org/py3k/library/turtle.html or within PyScripter, use <em>Help</em> and search for the turtle module.</p>
+<p>Here are a couple of new tricks for our turtles:</p>
+<ul>
+<li>We can get a turtle to display text on the canvas at the turtle’s current position. The method to do that is <code>alex.write(&quot;Hello&quot;)</code>.</li>
+<li>We can fill a shape (circle, semicircle, triangle, etc.) with a color. It is a two-step process. First we call the method <code>alex.begin_fill()</code>, then we draw the shape, then we call <code>alex.end_fill()</code>.</li>
+<li>We’ve previously set the color of our turtle — we can now also set its fill color, which need not be the same as the turtle and the pen color. We use <code>alex.color(&quot;blue&quot;,&quot;red&quot;)</code> to set the turtle to draw in blue, and fill in red.</li>
+</ul>
+<p>Ok, so can we get tess to draw a bar chart? Let us start with some data to be charted,</p>
+<p><code>xs = [48, 117, 200, 240, 160, 260, 220]</code></p>
+<p>Corresponding to each data measurement, we’ll draw a simple rectangle of that height, with a fixed width.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb86-1" data-line-number="1">def <span class="at">draw_bar</span>(t<span class="op">,</span> height)<span class="op">:</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Get turtle t to draw one bar, of height. &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)   </a>
+<a class="sourceLine" id="cb86-4" data-line-number="4">    <span class="va">t</span>.<span class="at">forward</span>(height)     # Draw up the left side</a>
+<a class="sourceLine" id="cb86-5" data-line-number="5">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb86-6" data-line-number="6">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">40</span>) # Width of bar<span class="op">,</span> along the top</a>
+<a class="sourceLine" id="cb86-7" data-line-number="7">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb86-8" data-line-number="8">    <span class="va">t</span>.<span class="at">forward</span>(height)     # And down again<span class="op">!</span></a>
+<a class="sourceLine" id="cb86-9" data-line-number="9">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)    # Put the turtle facing the way we found <span class="va">it</span>.</a>
+<a class="sourceLine" id="cb86-10" data-line-number="10">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">10</span>) # Leave small gap after each bar</a>
+<a class="sourceLine" id="cb86-11" data-line-number="11">     </a>
+<a class="sourceLine" id="cb86-12" data-line-number="12">... </a>
+<a class="sourceLine" id="cb86-13" data-line-number="13"><span class="cf">for</span> v <span class="kw">in</span> xs<span class="op">:</span>      # Assume xs and tess are ready </a>
+<a class="sourceLine" id="cb86-14" data-line-number="14">    <span class="at">draw_bar</span>(tess<span class="op">,</span> v)    </a></code></pre></div>
+<p><img src="figs/tess_bar_1.png" /></p>
+<p>Ok, not fantasically impressive, but it is a nice start! The important thing here was the mental chunking, or how we broke the problem into smaller pieces. Our chunk is to draw one bar, and we wrote a function to do that. Then, for the whole chart, we repeatedly called our function.</p>
+<p>Next, at the top of each bar, we’ll print the value of the data. We’ll do this in the body of <code>draw_bar</code>, by adding <code>t.write('  ' + str(height))</code> as the new third line of the body.</p>
+<p>We’ve put a little space in front of the number, and turned the number into a string. Without this extra space we tend to cramp our text awkwardly against the bar to the left. The result looks a lot better now:</p>
+<p><img src="figs/tess_bar_2.png" /></p>
+<p>And now we’ll add two lines to fill each bar. Our final program now looks like this:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb87-1" data-line-number="1">def <span class="at">draw_bar</span>(t<span class="op">,</span> height)<span class="op">:</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Get turtle t to draw one bar, of height. &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3">    <span class="va">t</span>.<span class="at">begin_fill</span>()   # Added <span class="kw">this</span> line</a>
+<a class="sourceLine" id="cb87-4" data-line-number="4">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb87-5" data-line-number="5">    <span class="va">t</span>.<span class="at">forward</span>(height)</a>
+<a class="sourceLine" id="cb87-6" data-line-number="6">    <span class="va">t</span>.<span class="at">write</span>(<span class="st">&quot;  &quot;</span><span class="op">+</span> <span class="at">str</span>(height))   </a>
+<a class="sourceLine" id="cb87-7" data-line-number="7">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb87-8" data-line-number="8">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb87-9" data-line-number="9">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb87-10" data-line-number="10">    <span class="va">t</span>.<span class="at">forward</span>(height)</a>
+<a class="sourceLine" id="cb87-11" data-line-number="11">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb87-12" data-line-number="12">    <span class="va">t</span>.<span class="at">end_fill</span>()     # Added <span class="kw">this</span> line</a>
+<a class="sourceLine" id="cb87-13" data-line-number="13">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">10</span>) </a>
+<a class="sourceLine" id="cb87-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb87-15" data-line-number="15">wn <span class="op">=</span> <span class="va">turtle</span>.<span class="at">Screen</span>() # Set up the window and its attributes</a>
+<a class="sourceLine" id="cb87-16" data-line-number="16"><span class="va">wn</span>.<span class="at">bgcolor</span>(<span class="st">&quot;lightgreen&quot;</span>)</a>
+<a class="sourceLine" id="cb87-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb87-18" data-line-number="18">tess <span class="op">=</span> <span class="va">turtle</span>.<span class="at">Turtle</span>()       # Create tess and set some attributes</a>
+<a class="sourceLine" id="cb87-19" data-line-number="19"><span class="va">tess</span>.<span class="at">color</span>(<span class="st">&quot;blue&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb87-20" data-line-number="20"><span class="va">tess</span>.<span class="at">pensize</span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb87-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb87-22" data-line-number="22">xs <span class="op">=</span> [<span class="dv">48</span><span class="op">,</span><span class="dv">117</span><span class="op">,</span><span class="dv">200</span><span class="op">,</span><span class="dv">240</span><span class="op">,</span><span class="dv">160</span><span class="op">,</span><span class="dv">260</span><span class="op">,</span><span class="dv">220</span>]</a>
+<a class="sourceLine" id="cb87-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb87-24" data-line-number="24"><span class="cf">for</span> a <span class="kw">in</span> xs<span class="op">:</span></a>
+<a class="sourceLine" id="cb87-25" data-line-number="25">    <span class="at">draw_bar</span>(tess<span class="op">,</span> a)</a>
+<a class="sourceLine" id="cb87-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb87-27" data-line-number="27"><span class="va">wn</span>.<span class="at">mainloop</span>()</a></code></pre></div>
+<p><img src="figs/tess_bar_3.png" /></p>
+<p>Mmm. Perhaps the bars should not be joined to each other at the bottom. We’ll need to pick up the pen while making the gap between the bars. We’ll leave that as an exercise for you!</p>
+</section>
+<section id="glossary-4" class="level2">
+<h2>Glossary</h2>
+<dl>
+<dt>block</dt>
+<dd><p>A group of consecutive statements with the same indentation.</p>
+</dd>
+<dt>body</dt>
+<dd><p>The block of statements in a compound statement that follows the header.</p>
+</dd>
+<dt>Boolean algebra</dt>
+<dd><p>Some rules for rearranging and reasoning about Boolean expressions.</p>
+</dd>
+<dt>Boolean expression</dt>
+<dd><p>An expression that is either true or false.</p>
+</dd>
+<dt>Boolean value</dt>
+<dd><p>There are exactly two Boolean values: <code>true</code> and <code>false</code>. Boolean values result when a Boolean expression is evaluated by the Javascript interepreter. They have type <code>bool</code>.</p>
+</dd>
+<dt>branch</dt>
+<dd><p>One of the possible paths of the flow of execution determined by conditional execution.</p>
+</dd>
+<dt>chained conditional</dt>
+<dd><p>A conditional branch with more than two possible flows of execution. In Javascript chained conditionals are written with <code>if ... elif ... else</code> statements.</p>
+</dd>
+<dt>comparison operator</dt>
+<dd><p>One of the six operators that compares two values: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code>.</p>
+</dd>
+<dt>condition</dt>
+<dd><p>The Boolean expression in a conditional statement that determines which branch is executed.</p>
+</dd>
+<dt>conditional statement</dt>
+<dd><p>A statement that controls the flow of execution depending on some condition. In Javascript the keywords <code>if</code>, <code>elif</code>, and <code>else</code> are used for conditional statements.</p>
+</dd>
+<dt>logical operator</dt>
+<dd><p>One of the operators that combines Boolean expressions: <code>and</code>, <code>or</code>, and <code>not</code>.</p>
+</dd>
+<dt>nesting</dt>
+<dd><p>One program structure within another, such as a conditional statement inside a branch of another conditional statement.</p>
+</dd>
+<dt>prompt</dt>
+<dd><p>A visual cue that tells the user that the system is ready to accept input data.</p>
+</dd>
+<dt>truth table</dt>
+<dd><p>A concise table of Boolean values that can describe the semantics of an operator.</p>
+</dd>
+<dt>type conversion</dt>
+<dd><p>An explicit function call that takes a value of one type and computes a corresponding value of another type.</p>
+</dd>
+<dt>wrapping code in a function</dt>
+<dd><p>The process of adding a function header and parameters to a sequence of program statements is often refered to as “wrapping the code in a function”. This process is very useful whenever the program statements in question are going to be used multiple times. It is even more useful when it allows the programmer to express their mental chunking, and how they’ve broken a complex problem into pieces.</p>
+</dd>
+</dl>
+</section>
+<section id="exercises-1" class="level2">
+<h2>Exercises</h2>
+<ol>
+<li><p>Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).</p></li>
+<li><p>You go on a wonderful holiday (perhaps to jail, if you don’t like happy exercises) leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on.</p></li>
+<li><p>Give the logical opposites of these conditions</p>
+<ol>
+<li><code>a &gt; b</code></li>
+<li><code>a &gt;= b</code></li>
+<li><code>a &gt;= 18  and  day == 3</code></li>
+<li><code>a &gt;= 18  and  day != 3</code></li>
+</ol></li>
+<li><p>What do these expressions evaluate to?</p>
+<ol>
+<li><code>3 == 3</code></li>
+<li><code>3 != 3</code></li>
+<li><code>3 &gt;= 4</code></li>
+<li><code>not (3 &lt; 4)</code></li>
+</ol></li>
+<li><p>Complete this truth table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">p</th>
+<th style="text-align: left;">q</th>
+<th style="text-align: left;">r</th>
+<th>(not (p and q)) or r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+<td>?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td>?</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Write a function which is given an exam mark, and it returns a string — the grade for that mark — according to this scheme:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mark</th>
+<th style="text-align: left;">Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">&gt;= 75</td>
+<td style="text-align: left;">First</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">[70-75)</td>
+<td style="text-align: left;">Upper Second</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">[60-70)</td>
+<td style="text-align: left;">Second</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">[50-60)</td>
+<td style="text-align: left;">Third</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">[45-50)</td>
+<td style="text-align: left;">F1 Supp</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">[40-45)</td>
+<td style="text-align: left;">F2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt; 40</td>
+<td style="text-align: left;">F3</td>
+</tr>
+</tbody>
+</table>
+<p>The square and round brackets denote closed and open intervals. A closed interval includes the number, and open interval excludes it. So 39.99999 gets grade F3, but 40 gets grade F2.</p>
+<p>Assume ::</p>
+<p><code>xs = [83, 75, 74.9, 70, 69.9, 65, 60, 59.9, 55, 50, 49.9, 45, 44.9, 40, 39.9, 2, 0]</code></p>
+<p>Test your function by printing the mark and the grade for all the elements in this list.</p></li>
+<li><p>Modify the turtle bar chart program so that the pen is up for the small gaps between each bar.</p></li>
+<li><p>Modify the turtle bar chart program so that the bar for any value of 200 or more is filled with red, values between [100 and 200) are filled with yellow, and bars representing values less than 100 are filled with green.</p></li>
+<li><p>In the turtle bar chart program, what do you expect to happen if one or more of the data values in the list is negative? Try it out. Change the program so that when it prints the text value for the negative bars, it puts the text below the bottom of the bar.</p></li>
+<li><p>Write a function <code>find_hypot</code> which, given the length of two sides of a right-angled triangle, returns the length of the hypotenuse. (Hint: <code>x ** 0.5</code> will return the square root.)</p></li>
+<li><p>Write a function <code>is_rightangled</code> which, given the length of three sides of a triangle, will determine whether the triangle is right-angled. Assume that the third argument to the function is always the longest side. It will return <code>true</code> if the triangle is right-angled, or <code>false</code> otherwise.</p>
+<p>Hint: Floating point arithmetic is not always exactly accurate, so it is not safe to test floating point numbers for equality. If a good programmer wants to know whether <code>x</code> is equal or close enough to <code>y</code>, they would probably code it up as:</p></li>
+</ol>
+<div class="sourceCode" id="cb88"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="cf">if</span>  <span class="at">abs</span>(x<span class="op">-</span>y) <span class="op">&lt;</span> <span class="fl">0.000001</span><span class="op">:</span>    # If x is approximately equal to y</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">...  </a></code></pre></div>
+<ol start="12" type="1">
+<li>If you’re intrigued by why floating point arithmetic is sometimes inaccurate, on a piece of paper, divide 10 by 3 and write down the decimal result. You’ll find it does not terminate, so you’ll need an infinitely long sheet of paper. The <em>representation</em> of numbers in computer memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small inaccuracies creep in. Try this script:</li>
+</ol>
+<div class="sourceCode" id="cb89"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="im">import</span> math     </a>
+<a class="sourceLine" id="cb89-2" data-line-number="2">a <span class="op">=</span> <span class="va">math</span>.<span class="at">sqrt</span>(<span class="fl">2.0</span>)</a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="at">print</span>(a<span class="op">,</span> a<span class="op">*</span>a)</a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="at">print</span>(a<span class="op">*</span>a <span class="op">==</span> <span class="fl">2.0</span>)</a></code></pre></div>
 </section>
 </section>
 

@@ -3,6 +3,14 @@ that is why it has a style tag... -->
 
 <style type="text/css">
 
+blockquote {
+  margin-top: 1em;
+  max-width: 600px;
+  border-left: 8px solid lightgray;
+  padding-left: .5em;
+}
+
+
 h1.title 
 {
   margin:0;
@@ -27,6 +35,26 @@ h1
   padding-top: 3em;
 }
 
+/* make all tables bootstrappy */
+table {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+td, th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: bold;
+}
+
+
 #TOC {
   margin-top: 2em;
 }
@@ -35,10 +63,12 @@ h1
   counter-reset: section;
 }
 
+section.level1 {
+  counter-increment: section;
+}
 
 
 section.level2 {
-  counter-increment: section;
   counter-reset: subsection;
   max-width: 680px;
 }
