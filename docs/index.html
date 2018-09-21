@@ -144,11 +144,11 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   
   section.level1 {
     counter-increment: section;
+    counter-reset: subsection;
   }
   
   
   section.level2 {
-    counter-reset: subsection;
     max-width: 680px;
   }
   
@@ -403,11 +403,13 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#chained-conditionals">Chained conditionals</a></li>
 <li><a href="#nested-conditionals">Nested conditionals</a></li>
 <li><a href="#the-return-statement">The <code>return</code> statement</a></li>
+<li><a href="#truthy-evaluations">Truthy evaluations</a></li>
 <li><a href="#logical-opposites">Logical opposites</a></li>
-<li><a href="#type-conversion-1">Type conversion</a></li>
-<li><a href="#a-turtle-bar-chart">A Turtle Bar Chart</a></li>
 <li><a href="#glossary-4">Glossary</a></li>
-<li><a href="#exercises-1">Exercises</a></li>
+<li><a href="#conditional-exercises">Conditional Exercises</a></li>
+</ul></li>
+<li><a href="#appendices">Appendices</a><ul>
+<li><a href="#gnu-free-documentation-license">GNU Free Documentation License</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1524,19 +1526,19 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <aside data-line-number="14">
 <p><code>welcome</code> is a very simple <strong>function</strong> — it does not accept any data in the form of <strong>function parameters</strong> and it does not <strong>return</strong> any data using a <strong>return statement</strong>. It simply prints out a message to the console.</p>
 </aside>
-<aside data-line-number="28">
+<aside data-line-number="30">
 <p>The <code>calcTip</code> function defines 2 <strong>parameters</strong>: <code>bill</code> and <code>pct</code>. These parameters become variables within the <strong>function body</strong>. Line 30 uses <strong>arithmetic operators</strong> (multiplication here) to calculate a new value and store it in the <code>tip</code> <strong>variable</strong>. <code>tip</code> is converted to a float using the <strong>built-in function</strong> <code>Number.parseFloat</code>. Finally, the rounded tip amount is returned.</p>
 </aside>
-<aside data-line-number="41">
+<aside data-line-number="43">
 <p><code>askBillAmt</code> is a <strong>fruitful function</strong> because it has a <strong>return statement</strong>. It uses the <strong>built-in function</strong> <code>window.prompt</code> to ask for data from the user of the program. When this function is called, it returns the amount of the bill as a float, because it represents money.</p>
 </aside>
-<aside data-line-number="59">
+<aside data-line-number="61">
 <p><code>money</code> is a small helper function that we wrote to re-use the task of formatting numbers as currency with a dollar sign and two decimal places. It is called 3 times in <code>showResults</code> with different <strong>arguments</strong>.</p>
 </aside>
-<aside data-line-number="68">
+<aside data-line-number="70">
 <p><code>showResults</code> defines 3 <strong>parameters</strong> which are used to pass in all of the data needed to show the results of the tip calculation. Notice that the <code>console.log</code> statements use the <strong>+ operator</strong> to <abbr title="join together">concatenate</abbr> strings. Because we are joining <strong>string literals</strong> with variables of type <code>number</code>. The <code>+</code> operator automatically converts the numbers to strings.</p>
 </aside>
-<aside data-line-number="87">
+<aside data-line-number="90">
 <p><code>main</code> is the first function <strong>called</strong> for this program. It maintains the executive control of the program, calling other functions in sequence and passing data between functions. All of the other functions have been defined, but are waiting to be called.</p>
 </aside>
 <div class="listingSrcCode">
@@ -1668,12 +1670,12 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb59-7" data-line-number="7"><span class="kw">true</span></a></code></pre></div>
 <p>In the first statement, the two operands evaluate to equal values, so the expression evaluates to <code>true</code>; in the second statement, 5 is not equal to 6, so we get <code>false</code>.</p>
 <p>The <code>===</code> operator is one of six common <strong>comparison operators</strong> which all produce a <code>boolean</code> result; here are all six:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb60-1" data-line-number="1">x <span class="op">===</span> y   <span class="co">// Produce true if ... x is equal to y</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2">x <span class="op">!==</span> y   <span class="co">// Produce true if ... x is not equal to y</span></a>
-<a class="sourceLine" id="cb60-3" data-line-number="3">x <span class="op">&gt;</span> y     <span class="co">// Produce true if ... x is greater than y</span></a>
-<a class="sourceLine" id="cb60-4" data-line-number="4">x <span class="op">&lt;</span> y     <span class="co">// Produce true if ... x is less than y</span></a>
-<a class="sourceLine" id="cb60-5" data-line-number="5">x <span class="op">&gt;=</span> y    <span class="co">// Produce true if ... x is greater than or equal to y</span></a>
-<a class="sourceLine" id="cb60-6" data-line-number="6">x <span class="op">&lt;=</span> y    <span class="co">// Produce true if ... x is less than or equal to y</span></a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb60-1" data-line-number="1">x <span class="op">===</span> y   <span class="co">// Produce true if x is equal to y</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">x <span class="op">!==</span> y   <span class="co">// Produce true if x is not equal to y</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">x <span class="op">&gt;</span> y     <span class="co">// Produce true if x is greater than y</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">x <span class="op">&lt;</span> y     <span class="co">// Produce true if x is less than y</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">x <span class="op">&gt;=</span> y    <span class="co">// Produce true if x is greater than or equal to y</span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">x <span class="op">&lt;=</span> y    <span class="co">// Produce true if x is less than or equal to y</span></a></code></pre></div>
 <p>Although these operations are probably familiar, the Javascript symbols are different from the mathematical symbols. A common error is to use a single equal sign (<code>=</code>) instead of a triple equal sign (<code>===</code>). Remember that <code>=</code> is an assignment operator and <code>===</code> is a comparison operator. Also, there is no such thing as <code>=&lt;</code> or <code>=&gt;</code>.</p>
 <p>Like any other types we’ve seen so far, Boolean values can be assigned to variables, printed, etc.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb61-1" data-line-number="1">⠕ <span class="kw">let</span> age <span class="op">=</span> <span class="dv">18</span><span class="op">;</span></a>
@@ -1681,7 +1683,7 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb61-3" data-line-number="3">⠕ <span class="va">console</span>.<span class="at">log</span>(oldEnoughToGetADrivingLicence)<span class="op">;</span></a>
 <a class="sourceLine" id="cb61-4" data-line-number="4"><span class="kw">true</span></a>
 <a class="sourceLine" id="cb61-5" data-line-number="5">⠕ <span class="kw">typeof</span> oldEnoughToGetADrivingLicence<span class="op">;</span></a>
-<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="st">&#39;boolean&#39;</span></a></code></pre></div>
+<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="op">=&gt;</span> <span class="st">&#39;boolean&#39;</span></a></code></pre></div>
 <aside id="strict-equality">
 <p><strong>Equality and “sameness” in Javascript</strong></p>
 <p>Javascript, as a programming language, is a little bit quirky when it comes to testing equality. The double equal sign <code>==</code> is a “loose” equality operator, while the triple equal sign <code>===</code> used in the examples above is the “strict” equality operator.</p>
@@ -1870,15 +1872,19 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb70-9" data-line-number="9"><span class="op">}</span></a></code></pre></div>
 <p><img src="figs/flowchart_chained_conditional.png" /></p>
 <p>Again, exactly one branch will be executed. There is no limit of the number of <code>else if</code> statements but only a single (and optional) final <code>else</code> statement is allowed and it must be the last branch in the statement:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="cf">if</span> choice <span class="op">==</span> <span class="st">&quot;a&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">    <span class="at">function_one</span>()</a>
-<a class="sourceLine" id="cb71-3" data-line-number="3">elif choice <span class="op">==</span> <span class="st">&quot;b&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb71-4" data-line-number="4">    <span class="at">function_two</span>()</a>
-<a class="sourceLine" id="cb71-5" data-line-number="5">elif choice <span class="op">==</span> <span class="st">&quot;c&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb71-6" data-line-number="6">    <span class="at">function_three</span>()</a>
-<a class="sourceLine" id="cb71-7" data-line-number="7"><span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb71-8" data-line-number="8">    <span class="at">print</span>(<span class="st">&quot;Invalid choice.&quot;</span>)</a></code></pre></div>
-<p>and so on. If one of them is true, the corresponding branch executes, and the statement ends. Even if more than one condition is true, only the first true branch executes.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="cf">if</span> (choice <span class="op">===</span> <span class="st">&quot;a&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">  <span class="at">functionOne</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="cf">else</span> <span class="cf">if</span> (choice <span class="op">==</span> <span class="st">&quot;b&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">  <span class="at">functionTwo</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-6" data-line-number="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb71-7" data-line-number="7"><span class="cf">else</span> <span class="cf">if</span> (choice <span class="op">===</span> <span class="st">&quot;c&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-8" data-line-number="8">  <span class="at">functionThree</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-9" data-line-number="9"><span class="op">}</span></a>
+<a class="sourceLine" id="cb71-10" data-line-number="10"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb71-11" data-line-number="11">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Invalid choice.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb71-12" data-line-number="12"><span class="op">}</span></a></code></pre></div>
+<p>Each condition is checked in order. If the first is false, the next is checked, and so on. If one of them is true, the corresponding branch executes, and the statement ends. Even if more than one condition is true, only the first true branch executes.</p>
 </section>
 <section id="nested-conditionals" class="level2">
 <h2>Nested conditionals</h2>
@@ -1886,38 +1892,84 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <figure>
 <img src="figs/flowchart_nested_conditional.png" alt="Flowchart of this nested conditional" /><figcaption>Flowchart of this nested conditional</figcaption>
 </figure>
-<div class="sourceCode" id="cb72"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="cf">if</span> x <span class="op">&lt;</span> y<span class="op">:</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2">    STATEMENTS_A</a>
-<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb72-4" data-line-number="4">    <span class="cf">if</span> x <span class="op">&gt;</span> y<span class="op">:</span></a>
-<a class="sourceLine" id="cb72-5" data-line-number="5">STATEMENTS_B</a>
-<a class="sourceLine" id="cb72-6" data-line-number="6">    <span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb72-7" data-line-number="7">STATEMENTS_C</a></code></pre></div>
-<p>The second branch contains another <code>if</code> statement, which has two branches of its own. Those two branches could contain conditional statements as well.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="cf">if</span> (x <span class="op">&lt;</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">  STATEMENTS_A</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">  <span class="cf">if</span>(x <span class="op">&gt;</span> y) <span class="op">{</span></a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">    STATEMENTS_B</a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb72-8" data-line-number="8">  <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb72-9" data-line-number="9">    STATEMENTS_C</a>
+<a class="sourceLine" id="cb72-10" data-line-number="10">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb72-11" data-line-number="11"><span class="op">}</span></a></code></pre></div>
+<p>The outer conditional contains two branches. The second branch contains another <code>if</code> statement, which has two branches of its own. Those two branches could contain conditional statements as well.</p>
 <p>Although the indentation of the statements makes the structure apparent, nested conditionals very quickly become difficult to read. In general, it is a good idea to avoid them when we can.</p>
 <p>Logical operators often provide a way to simplify nested conditional statements. For example, we can rewrite the following code using a single conditional:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;</span> x<span class="op">:</span>    # Assume x is an int here</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2">    <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">10</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="at">print</span>(<span class="st">&quot;x is a positive single digit.&quot;</span>)</a></code></pre></div>
-<p>conditionals, so instead of the above which uses two <code>if</code> statements each with a simple condition, we could make a more complex condition using the <code>and</code> operator. Now we only need a single <code>if</code> statement:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;</span> x and x <span class="op">&lt;</span> <span class="dv">10</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;x is a positive single digit.&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="cf">if</span> (<span class="dv">0</span> <span class="op">&lt;</span> x) <span class="op">{</span>    <span class="co">// Assume x is a number here</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2">  <span class="cf">if</span> (x <span class="op">&lt;</span> <span class="dv">10</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;x is a positive single digit.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb73-4" data-line-number="4">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="op">}</span></a></code></pre></div>
+<p>The <code>console.log</code> function is called only if we make it past both the conditionals, so instead of the above which uses two <code>if</code> statements each with a simple condition, we could make a more complex condition using the <code>&amp;&amp;</code> operator. Now we only need a single <code>if</code> statement:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="cf">if</span> (<span class="dv">0</span> <span class="op">&lt;</span> x <span class="op">&amp;&amp;</span> x <span class="op">&lt;</span> <span class="dv">10</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;x is a positive single digit.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
 </section>
 <section id="the-return-statement" class="level2">
 <h2>The <code>return</code> statement</h2>
 <p>The <code>return</code> statement, with or without a value, depending on whether the function is fruitful or void, allows us to terminate the execution of a function before (or when) we reach the end. One reason to use an <em>early return</em> is if we detect an error condition:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb75-1" data-line-number="1">def <span class="at">print_square_root</span>(x)<span class="op">:</span></a>
-<a class="sourceLine" id="cb75-2" data-line-number="2">    <span class="cf">if</span> x <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="at">print</span>(<span class="st">&quot;Positive numbers only, please.&quot;</span>)</a>
-<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="cf">return</span></a>
-<a class="sourceLine" id="cb75-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb75-6" data-line-number="6">    result <span class="op">=</span> x<span class="op">**</span><span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb75-7" data-line-number="7">    <span class="at">print</span>(<span class="st">&quot;The square root of&quot;</span><span class="op">,</span> x<span class="op">,</span> <span class="st">&quot;is&quot;</span><span class="op">,</span> result)</a></code></pre></div>
-<p>it does is check whether <code>x</code> is less than or equal to 0, in which case it displays an error message and then uses <code>return</code> to exit the function. The flow of execution immediately returns to the caller, and the remaining lines of the function are not executed.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">function</span> <span class="at">printSquareRoot</span>(x) <span class="op">{</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">  <span class="cf">if</span> (x <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Positive numbers only, please.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb75-4" data-line-number="4">    <span class="cf">return</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb75-5" data-line-number="5">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The square root of&quot;</span><span class="op">,</span> x<span class="op">,</span> <span class="st">&quot;is&quot;</span><span class="op">,</span> result)</a>
+<a class="sourceLine" id="cb75-7" data-line-number="7"><span class="op">}</span></a></code></pre></div>
+<p>The function <code>printSquareRoot</code> has a parameter named <code>x</code>. The first thing it does is check whether <code>x</code> is less than or equal to 0, in which case it displays an error message and then uses <code>return</code> to exit the function. The flow of execution immediately returns to the caller, and the remaining lines of the function are not executed.</p>
+</section>
+<section id="truthy-evaluations" class="level2">
+<h2>Truthy evaluations</h2>
+<p>As you integrate Boolean logic into your programs, you will often encounter the pattern where you test if a single value evaluates to <code>true</code> or <code>false</code>. The Boolean condition can be written without a comparison operator because the value itself will be resolves to <code>true</code> or <code>false</code>.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="cf">if</span> (email) <span class="op">{</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">  <span class="co">// send an email...</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>Any value that is not <code>false</code>, <code>undefined</code>, <code>null</code>, 0, <code>NaN</code>, or an empty string (’’) actually <strong>returns true</strong> when tested as a conditional statement. Consider the following code:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">let</span> first <span class="op">=</span> <span class="st">&quot;Diego&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="kw">let</span> last <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="kw">let</span> email <span class="op">=</span> <span class="st">&quot;diego@example.com&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb77-5" data-line-number="5"><span class="cf">if</span> (email) <span class="op">{</span></a>
+<a class="sourceLine" id="cb77-6" data-line-number="6">  <span class="co">// this block will be executed because email</span></a>
+<a class="sourceLine" id="cb77-7" data-line-number="7">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Email evaluted to true&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb77-8" data-line-number="8"><span class="op">}</span></a>
+<a class="sourceLine" id="cb77-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb77-10" data-line-number="10"><span class="cf">if</span> (email <span class="op">===</span> <span class="kw">true</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb77-11" data-line-number="11">  <span class="co">// this block won&#39;t be executed because email is not equal to true</span></a>
+<a class="sourceLine" id="cb77-12" data-line-number="12">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Email doesn&#39;t equal true&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb77-13" data-line-number="13"><span class="op">}</span></a>
+<a class="sourceLine" id="cb77-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb77-15" data-line-number="15"><span class="cf">if</span> (<span class="op">!</span>last) <span class="op">{</span></a>
+<a class="sourceLine" id="cb77-16" data-line-number="16">  <span class="co">// this block (using not) executes</span></a>
+<a class="sourceLine" id="cb77-17" data-line-number="17">  <span class="co">// because last is an empty string, it evaluates to false</span></a>
+<a class="sourceLine" id="cb77-18" data-line-number="18">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Enter your last name!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb77-19" data-line-number="19"><span class="op">}</span></a></code></pre></div>
+<p>In the above example we can say that <code>email</code> is <em>truthy</em> because it evaluates to <code>true</code> even though it doesn’t equal <code>true</code>. Likewise, <code>last</code> is <em>falsy</em> — it evaluates to <code>false</code> because it’s an empty string, not equal to <code>false</code>.</p>
+<aside id="curly-braces">
+<p><strong>Optional curly braces</strong></p>
+<p>Curly braces in Javascript are optional of the block only has one statement. This is the case for all blocks — following the <code>function</code> header, <code>for</code> header, <code>if</code> and <code>else</code>, and others we haven’t seen yet. While it is uncommon for other types of blocks, it is not uncommon to see ``if``` statements without curly braces. You may see:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>oldEnoughToDrive)</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;You can&#39;t rent a car.&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>This is identical to</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>oldEnoughToDrive) <span class="op">{</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;You can&#39;t rent a car.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>Some programmers consider it bad practice to omit curly braces for single statements, because it reduces readability and can lead to bugs. We recommend always using curly braces for blocks and our examples in this book follow this style.</p>
+</aside>
 </section>
 <section id="logical-opposites" class="level2">
 <h2>Logical opposites</h2>
-<p>Each of the six relational operators has a logical opposite: for example, suppose we can get a driving licence when our age is greater or equal to 17, we can <em>not</em> get the driving licence when we are less than 17.</p>
+<p>Each of the six relational operators has a logical opposite: for example, suppose we can get a driving license when our age is greater or equal to 16, we can <em>not</em> get the driving license when we are less than 16.</p>
 <p>Notice that the opposite of <code>&gt;=</code> is <code>&lt;</code>.</p>
 <table>
 <thead>
@@ -1928,12 +1980,12 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 </thead>
 <tbody>
 <tr class="odd">
-<td>==</td>
-<td>!=</td>
+<td>===</td>
+<td>!==</td>
 </tr>
 <tr class="even">
-<td>!=</td>
-<td>==</td>
+<td>!==</td>
+<td>===</td>
 </tr>
 <tr class="odd">
 <td>&lt;</td>
@@ -1953,138 +2005,47 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 </tr>
 </tbody>
 </table>
-<p>Understanding these logical opposites allows us to sometimes get rid of <code>not</code> operators. <code>not</code> operators are often quite difficult to read in computer code, and our intentions will usually be clearer if we can eliminate them.</p>
+<p>Understanding these logical opposites allows us to sometimes get rid of <code>!</code> operators. <code>!</code> operators are often quite difficult to read in computer code, and our intentions will usually be clearer if we can eliminate them.</p>
 <p>For example, if we wrote this Javascript:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="cf">if</span> <span class="at">not</span> (age <span class="op">&gt;=</span> <span class="dv">17</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving licence!&quot;</span>)</a>
-<a class="sourceLine" id="cb76-3" data-line-number="3">  </a></code></pre></div>
-<p>write instead:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">17</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb77-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving licence!&quot;</span>)</a></code></pre></div>
-<p>helpful when dealing with complicated Boolean expressions are:</p>
-<pre><code>not (x and y)  ==  (not x) or (not y) 
-not (x or y)   ==  (not x) and (not y)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>(age <span class="op">&gt;=</span> <span class="dv">16</span>)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving license!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4">  </a></code></pre></div>
+<p>it would probably be clearer to use the simplification laws, and to write instead:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="cf">if</span> (age <span class="op">&lt;</span> <span class="dv">16</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving license!&quot;</span>)</a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>Two powerful simplification laws (called de Morgan’s laws) that are often helpful when dealing with complicated Boolean expressions are:</p>
+<pre><code>!(x &amp;&amp; y)  ===  (!x) || (!y) 
+!(x || y)   ===  (!x) &amp;&amp; (!y)</code></pre>
 <p>For example, suppose we can slay the dragon only if our magic lightsabre sword is charged to 90% or higher, and we have 100 or more energy units in our protective shield. We find this fragment of Javascript code in the game:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="cf">if</span> <span class="at">not</span> ((sword_charge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="at">and</span> (shield_energy <span class="op">&gt;=</span> <span class="dv">100</span>))<span class="op">:</span></a>
-<a class="sourceLine" id="cb79-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)</a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb79-4" data-line-number="4">    <span class="at">print</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous princess!&quot;</span>)</a></code></pre></div>
-<p>rework the condition in a (perhaps) easier to understand way like this:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="cf">if</span> (sword_charge <span class="op">&lt;</span> <span class="fl">0.90</span>) <span class="at">or</span> (shield_energy <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb80-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)</a>
-<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb80-4" data-line-number="4">    <span class="at">print</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous princess!&quot;</span>)</a></code></pre></div>
-<p><code>else</code> parts of the conditional. So here is a third version, also equivalent:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="cf">if</span> (sword_charge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="at">and</span> (shield_energy <span class="op">&gt;=</span> <span class="dv">100</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb81-2" data-line-number="2">    <span class="at">print</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous princess!&quot;</span>)   </a>
-<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb81-4" data-line-number="4">    <span class="at">print</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)</a></code></pre></div>
-<p>the initial English statement. Clarity of our code (for other humans), and making it easy to see that the code does what was expected should always be a high priority.</p>
-<p>As our programming skills develop we’ll find we have more than one way to solve any problem. So good programs are <em>designed</em>. We make choices that favour clarity, simplicity, and elegance. The job title <em>software architect</em> says a lot about what we do — we are <em>architects</em> who engineer our products to balance beauty, functionality, simplicity and clarity in our creations.</p>
-<aside>
+<div class="sourceCode" id="cb83"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="cf">if</span> <span class="op">!</span>((swordCharge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="op">&amp;&amp;</span> (shieldEnergy <span class="op">&gt;=</span> <span class="dv">100</span>)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb83-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb83-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous prince!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb83-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>de Morgan’s laws together with the logical opposites would let us rework the condition in a (perhaps) easier to understand way like this:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="cf">if</span> (swordCharge <span class="op">&lt;</span> <span class="fl">0.90</span>) <span class="op">||</span> (shieldEnergy <span class="op">&lt;</span> <span class="dv">100</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous prince!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>We could also get rid of the <code>!</code> by swapping around the <code>then</code> and <code>else</code> parts of the conditional. So here is a third version, also equivalent:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="cf">if</span> (swordCharge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="at">and</span> (shieldEnergy <span class="op">&gt;=</span> <span class="dv">100</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The dragon crumples in a heap. You rescue the gorgeous prince!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your attack has no effect, the dragon fries you to a crisp!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>This last version is probably the best of the three, because it very closely matches<br />
+the initial English statement. Clarity of our code (for other humans), and making it easy to see that the code does what we expect should always be a high priority.</p>
+<p>As our programming skills develop we’ll find we have more than one way to solve any problem. So good programs are <em>designed</em>. We make choices that favor clarity, simplicity, and elegance. The job title <em>software architect</em> says a lot about what we do — we are <em>architects</em> who engineer our products to balance beauty, functionality, simplicity and clarity in our creations.</p>
+<aside id="polish-code-tip">
 <p><strong>Tip:</strong> Once our program works, we should play around a bit trying to polish it up. Write good comments. Think about whether the code would be clearer with different variable names. Could we have done it more elegantly? Should we rather use a function? Can we simplify the conditionals?</p>
 We think of our code as our creation, our work of art! We make it great.
 </aside>
-</section>
-<section id="type-conversion-1" class="level2">
-<h2>Type conversion</h2>
-<p>We’ve had a first look at this in an earlier chapter. Seeing it again won’t hurt!</p>
-<p>Many Javascript types come with a built-in function that attempts to convert values of another type into its own type. The <code>int</code> function, for example, takes any value and converts it to an integer, if possible, or complains otherwise:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb82-1" data-line-number="1">⠕ <span class="at">int</span>(<span class="st">&quot;32&quot;</span>)</a>
-<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="dv">32</span></a>
-<a class="sourceLine" id="cb82-3" data-line-number="3">⠕ <span class="at">int</span>(<span class="st">&quot;Hello&quot;</span>)</a>
-<a class="sourceLine" id="cb82-4" data-line-number="4">ValueError<span class="op">:</span> invalid literal <span class="cf">for</span> <span class="at">int</span>() <span class="cf">with</span> base <span class="dv">10</span><span class="op">:</span> <span class="st">&#39;Hello&#39;</span></a></code></pre></div>
-<p>that it truncates the fractional part:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb83-1" data-line-number="1">⠕ <span class="at">int</span>(<span class="op">-</span><span class="fl">2.3</span>)</a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="dv">-2</span></a>
-<a class="sourceLine" id="cb83-3" data-line-number="3">⠕ <span class="at">int</span>(<span class="fl">3.99999</span>)</a>
-<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="dv">3</span></a>
-<a class="sourceLine" id="cb83-5" data-line-number="5">⠕ <span class="at">int</span>(<span class="st">&quot;42&quot;</span>)</a>
-<a class="sourceLine" id="cb83-6" data-line-number="6"><span class="dv">42</span></a>
-<a class="sourceLine" id="cb83-7" data-line-number="7">⠕ <span class="at">int</span>(<span class="fl">1.0</span>)</a>
-<a class="sourceLine" id="cb83-8" data-line-number="8"><span class="dv">1</span></a></code></pre></div>
-<p>numbers:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb84-1" data-line-number="1">⠕ <span class="at">float</span>(<span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="fl">32.0</span></a>
-<a class="sourceLine" id="cb84-3" data-line-number="3">⠕ <span class="at">float</span>(<span class="st">&quot;3.14159&quot;</span>)</a>
-<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="fl">3.14159</span></a>
-<a class="sourceLine" id="cb84-5" data-line-number="5">⠕ <span class="at">float</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="fl">1.0</span></a></code></pre></div>
-<p>floating-point value <code>1.0</code>. They may represent the same number, but they belong to different types. The reason is that they are represented differently inside the computer.</p>
-<p>The <code>str</code> function converts any argument given to it to type <code>string</code>:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb85-1" data-line-number="1">⠕ <span class="at">str</span>(<span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">&#39;32&#39;</span></a>
-<a class="sourceLine" id="cb85-3" data-line-number="3">⠕ <span class="at">str</span>(<span class="fl">3.14149</span>)</a>
-<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="st">&#39;3.14149&#39;</span></a>
-<a class="sourceLine" id="cb85-5" data-line-number="5">⠕ <span class="at">str</span>(True)</a>
-<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="st">&#39;True&#39;</span></a>
-<a class="sourceLine" id="cb85-7" data-line-number="7">⠕ <span class="at">str</span>(<span class="kw">true</span>)</a>
-<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="at">Traceback</span> (most recent call last)<span class="op">:</span></a>
-<a class="sourceLine" id="cb85-9" data-line-number="9">  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span><span class="op">,</span> line <span class="dv">1</span><span class="op">,</span> <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb85-10" data-line-number="10">NameError<span class="op">:</span> name <span class="st">&#39;true&#39;</span> is not defined</a></code></pre></div>
-<p>mentioned earlier, <code>true</code> is Boolean value; <code>true</code> is just an ordinary variable name, and is not defined here, so we get an error.</p>
-</section>
-<section id="a-turtle-bar-chart" class="level2">
-<h2>A Turtle Bar Chart</h2>
-<p>The turtle has a lot more power than we’ve seen so far. The full documentation can be found at http://docs.python.org/py3k/library/turtle.html or within PyScripter, use <em>Help</em> and search for the turtle module.</p>
-<p>Here are a couple of new tricks for our turtles:</p>
-<ul>
-<li>We can get a turtle to display text on the canvas at the turtle’s current position. The method to do that is <code>alex.write(&quot;Hello&quot;)</code>.</li>
-<li>We can fill a shape (circle, semicircle, triangle, etc.) with a color. It is a two-step process. First we call the method <code>alex.begin_fill()</code>, then we draw the shape, then we call <code>alex.end_fill()</code>.</li>
-<li>We’ve previously set the color of our turtle — we can now also set its fill color, which need not be the same as the turtle and the pen color. We use <code>alex.color(&quot;blue&quot;,&quot;red&quot;)</code> to set the turtle to draw in blue, and fill in red.</li>
-</ul>
-<p>Ok, so can we get tess to draw a bar chart? Let us start with some data to be charted,</p>
-<p><code>xs = [48, 117, 200, 240, 160, 260, 220]</code></p>
-<p>Corresponding to each data measurement, we’ll draw a simple rectangle of that height, with a fixed width.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb86-1" data-line-number="1">def <span class="at">draw_bar</span>(t<span class="op">,</span> height)<span class="op">:</span></a>
-<a class="sourceLine" id="cb86-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Get turtle t to draw one bar, of height. &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb86-3" data-line-number="3">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)   </a>
-<a class="sourceLine" id="cb86-4" data-line-number="4">    <span class="va">t</span>.<span class="at">forward</span>(height)     # Draw up the left side</a>
-<a class="sourceLine" id="cb86-5" data-line-number="5">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb86-6" data-line-number="6">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">40</span>) # Width of bar<span class="op">,</span> along the top</a>
-<a class="sourceLine" id="cb86-7" data-line-number="7">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb86-8" data-line-number="8">    <span class="va">t</span>.<span class="at">forward</span>(height)     # And down again<span class="op">!</span></a>
-<a class="sourceLine" id="cb86-9" data-line-number="9">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)    # Put the turtle facing the way we found <span class="va">it</span>.</a>
-<a class="sourceLine" id="cb86-10" data-line-number="10">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">10</span>) # Leave small gap after each bar</a>
-<a class="sourceLine" id="cb86-11" data-line-number="11">     </a>
-<a class="sourceLine" id="cb86-12" data-line-number="12">... </a>
-<a class="sourceLine" id="cb86-13" data-line-number="13"><span class="cf">for</span> v <span class="kw">in</span> xs<span class="op">:</span>      # Assume xs and tess are ready </a>
-<a class="sourceLine" id="cb86-14" data-line-number="14">    <span class="at">draw_bar</span>(tess<span class="op">,</span> v)    </a></code></pre></div>
-<p><img src="figs/tess_bar_1.png" /></p>
-<p>Ok, not fantasically impressive, but it is a nice start! The important thing here was the mental chunking, or how we broke the problem into smaller pieces. Our chunk is to draw one bar, and we wrote a function to do that. Then, for the whole chart, we repeatedly called our function.</p>
-<p>Next, at the top of each bar, we’ll print the value of the data. We’ll do this in the body of <code>draw_bar</code>, by adding <code>t.write('  ' + str(height))</code> as the new third line of the body.</p>
-<p>We’ve put a little space in front of the number, and turned the number into a string. Without this extra space we tend to cramp our text awkwardly against the bar to the left. The result looks a lot better now:</p>
-<p><img src="figs/tess_bar_2.png" /></p>
-<p>And now we’ll add two lines to fill each bar. Our final program now looks like this:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb87-1" data-line-number="1">def <span class="at">draw_bar</span>(t<span class="op">,</span> height)<span class="op">:</span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Get turtle t to draw one bar, of height. &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb87-3" data-line-number="3">    <span class="va">t</span>.<span class="at">begin_fill</span>()   # Added <span class="kw">this</span> line</a>
-<a class="sourceLine" id="cb87-4" data-line-number="4">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb87-5" data-line-number="5">    <span class="va">t</span>.<span class="at">forward</span>(height)</a>
-<a class="sourceLine" id="cb87-6" data-line-number="6">    <span class="va">t</span>.<span class="at">write</span>(<span class="st">&quot;  &quot;</span><span class="op">+</span> <span class="at">str</span>(height))   </a>
-<a class="sourceLine" id="cb87-7" data-line-number="7">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb87-8" data-line-number="8">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb87-9" data-line-number="9">    <span class="va">t</span>.<span class="at">right</span>(<span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb87-10" data-line-number="10">    <span class="va">t</span>.<span class="at">forward</span>(height)</a>
-<a class="sourceLine" id="cb87-11" data-line-number="11">    <span class="va">t</span>.<span class="at">left</span>(<span class="dv">90</span>)</a>
-<a class="sourceLine" id="cb87-12" data-line-number="12">    <span class="va">t</span>.<span class="at">end_fill</span>()     # Added <span class="kw">this</span> line</a>
-<a class="sourceLine" id="cb87-13" data-line-number="13">    <span class="va">t</span>.<span class="at">forward</span>(<span class="dv">10</span>) </a>
-<a class="sourceLine" id="cb87-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb87-15" data-line-number="15">wn <span class="op">=</span> <span class="va">turtle</span>.<span class="at">Screen</span>() # Set up the window and its attributes</a>
-<a class="sourceLine" id="cb87-16" data-line-number="16"><span class="va">wn</span>.<span class="at">bgcolor</span>(<span class="st">&quot;lightgreen&quot;</span>)</a>
-<a class="sourceLine" id="cb87-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb87-18" data-line-number="18">tess <span class="op">=</span> <span class="va">turtle</span>.<span class="at">Turtle</span>()       # Create tess and set some attributes</a>
-<a class="sourceLine" id="cb87-19" data-line-number="19"><span class="va">tess</span>.<span class="at">color</span>(<span class="st">&quot;blue&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb87-20" data-line-number="20"><span class="va">tess</span>.<span class="at">pensize</span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb87-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb87-22" data-line-number="22">xs <span class="op">=</span> [<span class="dv">48</span><span class="op">,</span><span class="dv">117</span><span class="op">,</span><span class="dv">200</span><span class="op">,</span><span class="dv">240</span><span class="op">,</span><span class="dv">160</span><span class="op">,</span><span class="dv">260</span><span class="op">,</span><span class="dv">220</span>]</a>
-<a class="sourceLine" id="cb87-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb87-24" data-line-number="24"><span class="cf">for</span> a <span class="kw">in</span> xs<span class="op">:</span></a>
-<a class="sourceLine" id="cb87-25" data-line-number="25">    <span class="at">draw_bar</span>(tess<span class="op">,</span> a)</a>
-<a class="sourceLine" id="cb87-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb87-27" data-line-number="27"><span class="va">wn</span>.<span class="at">mainloop</span>()</a></code></pre></div>
-<p><img src="figs/tess_bar_3.png" /></p>
-<p>Mmm. Perhaps the bars should not be joined to each other at the bottom. We’ll need to pick up the pen while making the gap between the bars. We’ll leave that as an exercise for you!</p>
 </section>
 <section id="glossary-4" class="level2">
 <h2>Glossary</h2>
@@ -2102,25 +2063,25 @@ We think of our code as our creation, our work of art! We make it great.
 <dd><p>An expression that is either true or false.</p>
 </dd>
 <dt>Boolean value</dt>
-<dd><p>There are exactly two Boolean values: <code>true</code> and <code>false</code>. Boolean values result when a Boolean expression is evaluated by the Javascript interepreter. They have type <code>bool</code>.</p>
+<dd><p>There are exactly two Boolean values: <code>true</code> and <code>false</code>. Boolean values result when a Boolean expression is evaluated by the Javascript interpreter. They have type <code>'boolean'</code>.</p>
 </dd>
 <dt>branch</dt>
 <dd><p>One of the possible paths of the flow of execution determined by conditional execution.</p>
 </dd>
 <dt>chained conditional</dt>
-<dd><p>A conditional branch with more than two possible flows of execution. In Javascript chained conditionals are written with <code>if ... elif ... else</code> statements.</p>
+<dd><p>A conditional branch with more than two possible flows of execution. In Javascript chained conditionals are written with <code>if ... else if ... else</code> statements.</p>
 </dd>
 <dt>comparison operator</dt>
-<dd><p>One of the six operators that compares two values: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code>.</p>
+<dd><p>Javascript operators that compare two values: <code>===</code>, <code>!==</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, and <code>&lt;=</code>.</p>
 </dd>
 <dt>condition</dt>
 <dd><p>The Boolean expression in a conditional statement that determines which branch is executed.</p>
 </dd>
 <dt>conditional statement</dt>
-<dd><p>A statement that controls the flow of execution depending on some condition. In Javascript the keywords <code>if</code>, <code>elif</code>, and <code>else</code> are used for conditional statements.</p>
+<dd><p>A statement that controls the flow of execution depending on some condition. In Javascript the keywords <code>if</code>, <code>else if</code>, and <code>else</code> are used for conditional statements.</p>
 </dd>
 <dt>logical operator</dt>
-<dd><p>One of the operators that combines Boolean expressions: <code>and</code>, <code>or</code>, and <code>not</code>.</p>
+<dd><p>One of the operators that combines Boolean expressions: (and) <code>&amp;&amp;</code>, (or) <code>||</code>, and (not) <code>!</code>.</p>
 </dd>
 <dt>nesting</dt>
 <dd><p>One program structure within another, such as a conditional statement inside a branch of another conditional statement.</p>
@@ -2135,24 +2096,24 @@ We think of our code as our creation, our work of art! We make it great.
 <dd><p>An explicit function call that takes a value of one type and computes a corresponding value of another type.</p>
 </dd>
 <dt>wrapping code in a function</dt>
-<dd><p>The process of adding a function header and parameters to a sequence of program statements is often refered to as “wrapping the code in a function”. This process is very useful whenever the program statements in question are going to be used multiple times. It is even more useful when it allows the programmer to express their mental chunking, and how they’ve broken a complex problem into pieces.</p>
+<dd><p>The process of adding a function header and parameters to a sequence of program statements is often referred to as “wrapping the code in a function”. This process is very useful whenever the program statements in question are going to be used multiple times. It is even more useful when it allows the programmer to express their mental chunking, and how they’ve broken a complex problem into pieces.</p>
 </dd>
 </dl>
 </section>
-<section id="exercises-1" class="level2">
-<h2>Exercises</h2>
-<ol>
+<section id="conditional-exercises" class="level2">
+<h2>Conditional Exercises</h2>
+<ol type="1">
 <li><p>Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).</p></li>
-<li><p>You go on a wonderful holiday (perhaps to jail, if you don’t like happy exercises) leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on.</p></li>
-<li><p>Give the logical opposites of these conditions</p>
-<ol>
+<li><p>You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the <code>%</code> mod operator. You can compose this function from the one you wrote in exercise 1.</p></li>
+<li>Give the logical opposites of these conditions
+<ol type="a">
 <li><code>a &gt; b</code></li>
 <li><code>a &gt;= b</code></li>
 <li><code>a &gt;= 18  and  day == 3</code></li>
 <li><code>a &gt;= 18  and  day != 3</code></li>
 </ol></li>
-<li><p>What do these expressions evaluate to?</p>
-<ol>
+<li>What do these expressions evaluate to?
+<ol type="a">
 <li><code>3 == 3</code></li>
 <li><code>3 != 3</code></li>
 <li><code>3 &gt;= 4</code></li>
@@ -2165,7 +2126,7 @@ We think of our code as our creation, our work of art! We make it great.
 <th style="text-align: left;">p</th>
 <th style="text-align: left;">q</th>
 <th style="text-align: left;">r</th>
-<th>(not (p and q)) or r</th>
+<th style="text-align: left;">(! (p &amp;&amp; q)) || r</th>
 </tr>
 </thead>
 <tbody>
@@ -2173,111 +2134,218 @@ We think of our code as our creation, our work of art! We make it great.
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">F</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">T</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">F</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">T</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">F</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">F</td>
 <td style="text-align: left;">T</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">F</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">T</td>
 <td style="text-align: left;">T</td>
-<td>?</td>
+<td style="text-align: left;">?</td>
 </tr>
 </tbody>
 </table></li>
-<li><p>Write a function which is given an exam mark, and it returns a string — the grade for that mark — according to this scheme:</p>
+<li><p>Write a function which is given an exam score, and it returns a string — the letter grade for that mark — according to this scheme:</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Mark</th>
+<th style="text-align: left;">Score</th>
 <th style="text-align: left;">Grade</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">&gt;= 75</td>
-<td style="text-align: left;">First</td>
+<td style="text-align: left;">90-100</td>
+<td style="text-align: left;">A</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">[70-75)</td>
-<td style="text-align: left;">Upper Second</td>
+<td style="text-align: left;">80-89</td>
+<td style="text-align: left;">B</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">[60-70)</td>
-<td style="text-align: left;">Second</td>
+<td style="text-align: left;">70-79</td>
+<td style="text-align: left;">C</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">[50-60)</td>
-<td style="text-align: left;">Third</td>
+<td style="text-align: left;">65-69</td>
+<td style="text-align: left;">D</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">[45-50)</td>
-<td style="text-align: left;">F1 Supp</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">[40-45)</td>
-<td style="text-align: left;">F2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">&lt; 40</td>
-<td style="text-align: left;">F3</td>
+<td style="text-align: left;">&lt;65</td>
+<td style="text-align: left;">F</td>
 </tr>
 </tbody>
-</table>
-<p>The square and round brackets denote closed and open intervals. A closed interval includes the number, and open interval excludes it. So 39.99999 gets grade F3, but 40 gets grade F2.</p>
-<p>Assume ::</p>
-<p><code>xs = [83, 75, 74.9, 70, 69.9, 65, 60, 59.9, 55, 50, 49.9, 45, 44.9, 40, 39.9, 2, 0]</code></p>
-<p>Test your function by printing the mark and the grade for all the elements in this list.</p></li>
-<li><p>Modify the turtle bar chart program so that the pen is up for the small gaps between each bar.</p></li>
-<li><p>Modify the turtle bar chart program so that the bar for any value of 200 or more is filled with red, values between [100 and 200) are filled with yellow, and bars representing values less than 100 are filled with green.</p></li>
-<li><p>In the turtle bar chart program, what do you expect to happen if one or more of the data values in the list is negative? Try it out. Change the program so that when it prints the text value for the negative bars, it puts the text below the bottom of the bar.</p></li>
-<li><p>Write a function <code>find_hypot</code> which, given the length of two sides of a right-angled triangle, returns the length of the hypotenuse. (Hint: <code>x ** 0.5</code> will return the square root.)</p></li>
-<li><p>Write a function <code>is_rightangled</code> which, given the length of three sides of a triangle, will determine whether the triangle is right-angled. Assume that the third argument to the function is always the longest side. It will return <code>true</code> if the triangle is right-angled, or <code>false</code> otherwise.</p>
-<p>Hint: Floating point arithmetic is not always exactly accurate, so it is not safe to test floating point numbers for equality. If a good programmer wants to know whether <code>x</code> is equal or close enough to <code>y</code>, they would probably code it up as:</p></li>
+</table></li>
+<li><p>Write a function <code>isRightAngled</code> which, given the length of three sides of a triangle, will determine whether the triangle is right-angled. Assume that the third argument to the function is always the longest side. It will return <code>true</code> if the triangle is right-angled, or <code>false</code> otherwise.<br> Hint: Floating point arithmetic is not always exactly accurate, so it is not safe to test floating point numbers for equality. If a good programmer wants to know whether <code>x</code> is equal or close enough to <code>y</code>, they would probably code it up as:<br></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="cf">if</span> (<span class="va">Math</span>.<span class="at">abs</span>(x<span class="op">-</span>y) <span class="op">&lt;</span> <span class="fl">0.000001</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">  <span class="co">// x is approximately equal to y</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="op">}</span>     </a></code></pre></div></li>
 </ol>
-<div class="sourceCode" id="cb88"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="cf">if</span>  <span class="at">abs</span>(x<span class="op">-</span>y) <span class="op">&lt;</span> <span class="fl">0.000001</span><span class="op">:</span>    # If x is approximately equal to y</a>
-<a class="sourceLine" id="cb88-2" data-line-number="2">...  </a></code></pre></div>
-<ol start="12" type="1">
-<li>If you’re intrigued by why floating point arithmetic is sometimes inaccurate, on a piece of paper, divide 10 by 3 and write down the decimal result. You’ll find it does not terminate, so you’ll need an infinitely long sheet of paper. The <em>representation</em> of numbers in computer memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small inaccuracies creep in. Try this script:</li>
-</ol>
-<div class="sourceCode" id="cb89"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="im">import</span> math     </a>
-<a class="sourceLine" id="cb89-2" data-line-number="2">a <span class="op">=</span> <span class="va">math</span>.<span class="at">sqrt</span>(<span class="fl">2.0</span>)</a>
-<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="at">print</span>(a<span class="op">,</span> a<span class="op">*</span>a)</a>
-<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="at">print</span>(a<span class="op">*</span>a <span class="op">==</span> <span class="fl">2.0</span>)</a></code></pre></div>
+<aside id="float-precision">
+<p><strong>Floating point inaccuracies</strong></p>
+<p>If you’re intrigued by why floating point arithmetic is sometimes inaccurate, on a piece of paper, divide 10 by 3 and write down the decimal result. You’ll find it does not terminate, so you’ll need an infinitely long sheet of paper. The <em>representation</em> of numbers in computer memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small inaccuracies creep in. Try this script:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">let</span> a <span class="op">=</span> <span class="va">Math</span>.<span class="at">sqrt</span>(<span class="fl">2.0</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(a<span class="op">,</span> a<span class="op">*</span>a)<span class="op">;</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(a<span class="op">*</span>a <span class="op">===</span> <span class="fl">2.0</span>)<span class="op">;</span></a></code></pre></div>
+</aside>
+</section>
+</section>
+<section id="appendices" class="level1">
+<h1>Appendices</h1>
+<section id="gnu-free-documentation-license" class="level2">
+<h2>GNU Free Documentation License</h2>
+<p>Version 1.3, 3 November 2008</p>
+<p>Copyright (C) 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc. <a href="https://fsf.org/" class="uri">https://fsf.org/</a></p>
+<p>Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.</p>
+<section id="preamble" class="level4">
+<h4>0. PREAMBLE</h4>
+<p>The purpose of this License is to make a manual, textbook, or other functional and useful document “free” in the sense of freedom: to assure everyone the effective freedom to copy and redistribute it, with or without modifying it, either commercially or noncommercially. Secondarily, this License preserves for the author and publisher a way to get credit for their work, while not being considered responsible for modifications made by others.</p>
+<p>This License is a kind of “copyleft”, which means that derivative works of the document must themselves be free in the same sense. It complements the GNU General Public License, which is a copyleft license designed for free software.</p>
+<p>We have designed this License in order to use it for manuals for free software, because free software needs free documentation: a free program should come with manuals providing the same freedoms that the software does. But this License is not limited to software manuals; it can be used for any textual work, regardless of subject matter or whether it is published as a printed book. We recommend this License principally for works whose purpose is instruction or reference.</p>
+</section>
+<section id="applicability-and-definitions" class="level4">
+<h4>1. APPLICABILITY AND DEFINITIONS</h4>
+<p>This License applies to any manual or other work, in any medium, that contains a notice placed by the copyright holder saying it can be distributed under the terms of this License. Such a notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under the conditions stated herein. The “Document”, below, refers to any such manual or work. Any member of the public is a licensee, and is addressed as “you”. You accept the license if you copy, modify or distribute the work in a way requiring permission under copyright law.</p>
+<p>A “Modified Version” of the Document means any work containing the Document or a portion of it, either copied verbatim, or with modifications and/or translated into another language.</p>
+<p>A “Secondary Section” is a named appendix or a front-matter section of the Document that deals exclusively with the relationship of the publishers or authors of the Document to the Document’s overall subject (or to related matters) and contains nothing that could fall directly within that overall subject. (Thus, if the Document is in part a textbook of mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a matter of historical connection with the subject or with related matters, or of legal, commercial, philosophical, ethical or political position regarding them.</p>
+<p>The “Invariant Sections” are certain Secondary Sections whose titles are designated, as being those of Invariant Sections, in the notice that says that the Document is released under this License. If a section does not fit the above definition of Secondary then it is not allowed to be designated as Invariant. The Document may contain zero Invariant Sections. If the Document does not identify any Invariant Sections then there are none.</p>
+<p>The “Cover Texts” are certain short passages of text that are listed, as Front-Cover Texts or Back-Cover Texts, in the notice that says that the Document is released under this License. A Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.</p>
+<p>A “Transparent” copy of the Document means a machine-readable copy, represented in a format whose specification is available to the general public, that is suitable for revising the document straightforwardly with generic text editors or (for images composed of pixels) generic paint programs or (for drawings) some widely available drawing editor, and that is suitable for input to text formatters or for automatic translation to a variety of formats suitable for input to text formatters. A copy made in an otherwise Transparent file format whose markup, or absence of markup, has been arranged to thwart or discourage subsequent modification by readers is not Transparent. An image format is not Transparent if used for any substantial amount of text. A copy that is not “Transparent” is called “Opaque”.</p>
+<p>Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo input format, LaTeX input format, SGML or XML using a publicly available DTD, and standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats that can be read and edited only by proprietary word processors, SGML or XML for which the DTD and/or processing tools are not generally available, and the machine-generated HTML, PostScript or PDF produced by some word processors for output purposes only.</p>
+<p>The “Title Page” means, for a printed book, the title page itself, plus such following pages as are needed to hold, legibly, the material this License requires to appear in the title page. For works in formats which do not have any title page as such, “Title Page” means the text near the most prominent appearance of the work’s title, preceding the beginning of the body of the text.</p>
+<p>The “publisher” means any person or entity that distributes copies of the Document to the public.</p>
+<p>A section “Entitled XYZ” means a named subunit of the Document whose title either is precisely XYZ or contains XYZ in parentheses following text that translates XYZ in another language. (Here XYZ stands for a specific section name mentioned below, such as “Acknowledgements”, “Dedications”, “Endorsements”, or “History”.) To “Preserve the Title” of such a section when you modify the Document means that it remains a section “Entitled XYZ” according to this definition.</p>
+<p>The Document may include Warranty Disclaimers next to the notice which states that this License applies to the Document. These Warranty Disclaimers are considered to be included by reference in this License, but only as regards disclaiming warranties: any other implication that these Warranty Disclaimers may have is void and has no effect on the meaning of this License.</p>
+</section>
+<section id="verbatim-copying" class="level4">
+<h4>2. VERBATIM COPYING</h4>
+<p>You may copy and distribute the Document in any medium, either commercially or noncommercially, provided that this License, the copyright notices, and the license notice saying this License applies to the Document are reproduced in all copies, and that you add no other conditions whatsoever to those of this License. You may not use technical measures to obstruct or control the reading or further copying of the copies you make or distribute. However, you may accept compensation in exchange for copies. If you distribute a large enough number of copies you must also follow the conditions in section 3.</p>
+<p>You may also lend copies, under the same conditions stated above, and you may publicly display copies.</p>
+</section>
+<section id="copying-in-quantity" class="level4">
+<h4>3. COPYING IN QUANTITY</h4>
+<p>If you publish printed copies (or copies in media that commonly have printed covers) of the Document, numbering more than 100, and the Document’s license notice requires Cover Texts, you must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must also clearly and legibly identify you as the publisher of these copies. The front cover must present the full title with all words of the title equally prominent and visible. You may add other material on the covers in addition. Copying with changes limited to the covers, as long as they preserve the title of the Document and satisfy these conditions, can be treated as verbatim copying in other respects.</p>
+<p>If the required texts for either cover are too voluminous to fit legibly, you should put the first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto adjacent pages.</p>
+<p>If you publish or distribute Opaque copies of the Document numbering more than 100, you must either include a machine-readable Transparent copy along with each Opaque copy, or state in or with each Opaque copy a computer-network location from which the general network-using public has access to download using public-standard network protocols a complete Transparent copy of the Document, free of added material. If you use the latter option, you must take reasonably prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this Transparent copy will remain thus accessible at the stated location until at least one year after the last time you distribute an Opaque copy (directly or through your agents or retailers) of that edition to the public.</p>
+<p>It is requested, but not required, that you contact the authors of the Document well before redistributing any large number of copies, to give them a chance to provide you with an updated version of the Document.</p>
+</section>
+<section id="modifications" class="level4">
+<h4>4. MODIFICATIONS</h4>
+<p>You may copy and distribute a Modified Version of the Document under the conditions of sections 2 and 3 above, provided that you release the Modified Version under precisely this License, with the Modified Version filling the role of the Document, thus licensing distribution and modification of the Modified Version to whoever possesses a copy of it. In addition, you must do these things in the Modified Version:</p>
+<ul>
+<li>A. Use in the Title Page (and on the covers, if any) a title distinct from that of the Document, and from those of previous versions (which should, if there were any, be listed in the History section of the Document). You may use the same title as a previous version if the original publisher of that version gives permission.</li>
+<li>B. List on the Title Page, as authors, one or more persons or entities responsible for authorship of the modifications in the Modified Version, together with at least five of the principal authors of the Document (all of its principal authors, if it has fewer than five), unless they release you from this requirement.</li>
+<li>C. State on the Title page the name of the publisher of the Modified Version, as the publisher.</li>
+<li>D. Preserve all the copyright notices of the Document.</li>
+<li>E. Add an appropriate copyright notice for your modifications adjacent to the other copyright notices.</li>
+<li>F. Include, immediately after the copyright notices, a license notice giving the public permission to use the Modified Version under the terms of this License, in the form shown in the Addendum below.</li>
+<li>G. Preserve in that license notice the full lists of Invariant Sections and required Cover Texts given in the Document’s license notice.</li>
+<li>H. Include an unaltered copy of this License.</li>
+<li>I. Preserve the section Entitled “History”, Preserve its Title, and add to it an item stating at least the title, year, new authors, and publisher of the Modified Version as given on the Title Page. If there is no section Entitled “History” in the Document, create one stating the title, year, authors, and publisher of the Document as given on its Title Page, then add an item describing the Modified Version as stated in the previous sentence.</li>
+<li>J. Preserve the network location, if any, given in the Document for public access to a Transparent copy of the Document, and likewise the network locations given in the Document for previous versions it was based on. These may be placed in the “History” section. You may omit a network location for a work that was published at least four years before the Document itself, or if the original publisher of the version it refers to gives permission.</li>
+<li>K. For any section Entitled “Acknowledgements” or “Dedications”, Preserve the Title of the section, and preserve in the section all the substance and tone of each of the contributor acknowledgements and/or dedications given therein.</li>
+<li>L. Preserve all the Invariant Sections of the Document, unaltered in their text and in their titles. Section numbers or the equivalent are not considered part of the section titles.</li>
+<li>M. Delete any section Entitled “Endorsements”. Such a section may not be included in the Modified Version.</li>
+<li>N. Do not retitle any existing section to be Entitled “Endorsements” or to conflict in title with any Invariant Section.</li>
+<li>O. Preserve any Warranty Disclaimers.</li>
+</ul>
+<p>If the Modified Version includes new front-matter sections or appendices that qualify as Secondary Sections and contain no material copied from the Document, you may at your option designate some or all of these sections as invariant. To do this, add their titles to the list of Invariant Sections in the Modified Version’s license notice. These titles must be distinct from any other section titles.</p>
+<p>You may add a section Entitled “Endorsements”, provided it contains nothing but endorsements of your Modified Version by various parties—for example, statements of peer review or that the text has been approved by an organization as the authoritative definition of a standard.</p>
+<p>You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25 words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through arrangements made by) any one entity. If the Document already includes a cover text for the same cover, previously added by you or by arrangement made by the same entity you are acting on behalf of, you may not add another; but you may replace the old one, on explicit permission from the previous publisher that added the old one.</p>
+<p>The author(s) and publisher(s) of the Document do not by this License give permission to use their names for publicity for or to assert or imply endorsement of any Modified Version.</p>
+</section>
+<section id="combining-documents" class="level4">
+<h4>5. COMBINING DOCUMENTS</h4>
+<p>You may combine the Document with other documents released under this License, under the terms defined in section 4 above for modified versions, provided that you include in the combination all of the Invariant Sections of all of the original documents, unmodified, and list them all as Invariant Sections of your combined work in its license notice, and that you preserve all their Warranty Disclaimers.</p>
+<p>The combined work need only contain one copy of this License, and multiple identical Invariant Sections may be replaced with a single copy. If there are multiple Invariant Sections with the same name but different contents, make the title of each such section unique by adding at the end of it, in parentheses, the name of the original author or publisher of that section if known, or else a unique number. Make the same adjustment to the section titles in the list of Invariant Sections in the license notice of the combined work.</p>
+<p>In the combination, you must combine any sections Entitled “History” in the various original documents, forming one section Entitled “History”; likewise combine any sections Entitled “Acknowledgements”, and any sections Entitled “Dedications”. You must delete all sections Entitled “Endorsements”.</p>
+</section>
+<section id="collections-of-documents" class="level4">
+<h4>6. COLLECTIONS OF DOCUMENTS</h4>
+<p>You may make a collection consisting of the Document and other documents released under this License, and replace the individual copies of this License in the various documents with a single copy that is included in the collection, provided that you follow the rules of this License for verbatim copying of each of the documents in all other respects.</p>
+<p>You may extract a single document from such a collection, and distribute it individually under this License, provided you insert a copy of this License into the extracted document, and follow this License in all other respects regarding verbatim copying of that document.</p>
+</section>
+<section id="aggregation-with-independent-works" class="level4">
+<h4>7. AGGREGATION WITH INDEPENDENT WORKS</h4>
+<p>A compilation of the Document or its derivatives with other separate and independent documents or works, in or on a volume of a storage or distribution medium, is called an “aggregate” if the copyright resulting from the compilation is not used to limit the legal rights of the compilation’s users beyond what the individual works permit. When the Document is included in an aggregate, this License does not apply to the other works in the aggregate which are not themselves derivative works of the Document.</p>
+<p>If the Cover Text requirement of section 3 is applicable to these copies of the Document, then if the Document is less than one half of the entire aggregate, the Document’s Cover Texts may be placed on covers that bracket the Document within the aggregate, or the electronic equivalent of covers if the Document is in electronic form. Otherwise they must appear on printed covers that bracket the whole aggregate.</p>
+</section>
+<section id="translation" class="level4">
+<h4>8. TRANSLATION</h4>
+<p>Translation is considered a kind of modification, so you may distribute translations of the Document under the terms of section 4. Replacing Invariant Sections with translations requires special permission from their copyright holders, but you may include translations of some or all Invariant Sections in addition to the original versions of these Invariant Sections. You may include a translation of this License, and all the license notices in the Document, and any Warranty Disclaimers, provided that you also include the original English version of this License and the original versions of those notices and disclaimers. In case of a disagreement between the translation and the original version of this License or a notice or disclaimer, the original version will prevail.</p>
+<p>If a section in the Document is Entitled “Acknowledgements”, “Dedications”, or “History”, the requirement (section 4) to Preserve its Title (section 1) will typically require changing the actual title.</p>
+</section>
+<section id="termination" class="level4">
+<h4>9. TERMINATION</h4>
+<p>You may not copy, modify, sublicense, or distribute the Document except as expressly provided under this License. Any attempt otherwise to copy, modify, sublicense, or distribute it is void, and will automatically terminate your rights under this License.</p>
+<p>However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.</p>
+<p>Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.</p>
+<p>Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, receipt of a copy of some or all of the same material does not give you any rights to use it.</p>
+</section>
+<section id="future-revisions-of-this-license" class="level4">
+<h4>10. FUTURE REVISIONS OF THIS LICENSE</h4>
+<p>The Free Software Foundation may publish new, revised versions of the GNU Free Documentation License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns. See <a href="https://www.gnu.org/licenses/" class="uri">https://www.gnu.org/licenses/</a>.</p>
+<p>Each version of the License is given a distinguishing version number. If the Document specifies that a particular numbered version of this License “or any later version” applies to it, you have the option of following the terms and conditions either of that specified version or of any later version that has been published (not as a draft) by the Free Software Foundation. If the Document does not specify a version number of this License, you may choose any version ever published (not as a draft) by the Free Software Foundation. If the Document specifies that a proxy can decide which future versions of this License can be used, that proxy’s public statement of acceptance of a version permanently authorizes you to choose that version for the Document.</p>
+</section>
+<section id="relicensing" class="level4">
+<h4>11. RELICENSING</h4>
+<p>“Massive Multiauthor Collaboration Site” (or “MMC Site”) means any World Wide Web server that publishes copyrightable works and also provides prominent facilities for anybody to edit those works. A public wiki that anybody can edit is an example of such a server. A “Massive Multiauthor Collaboration” (or “MMC”) contained in the site means any set of copyrightable works thus published on the MMC site.</p>
+<p>“CC-BY-SA” means the Creative Commons Attribution-Share Alike 3.0 license published by Creative Commons Corporation, a not-for-profit corporation with a principal place of business in San Francisco, California, as well as future copyleft versions of that license published by that same organization.</p>
+<p>“Incorporate” means to publish or republish a Document, in whole or in part, as part of another Document.</p>
+<p>An MMC is “eligible for relicensing” if it is licensed under this License, and if all works that were first published under this License somewhere other than this MMC, and subsequently incorporated in whole or in part into the MMC, (1) had no cover texts or invariant sections, and (2) were thus incorporated prior to November 1, 2008.</p>
+<p>The operator of an MMC Site may republish an MMC contained in the site under CC-BY-SA on the same site at any time before August 1, 2009, provided the MMC is eligible for relicensing.</p>
+</section>
+<section id="addendum-how-to-use-this-license-for-your-documents" class="level3">
+<h3>ADDENDUM: How to use this License for your documents</h3>
+<p>To use this License in a document you have written, include a copy of the License in the document and put the following copyright and license notices just after the title page:</p>
+<pre><code>    Copyright (C)  YEAR  YOUR NAME.
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.3
+    or any later version published by the Free Software Foundation;
+    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+    A copy of the license is included in the section entitled &quot;GNU
+    Free Documentation License&quot;.</code></pre>
+<p>If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the “with … Texts.” line with this:</p>
+<pre><code>    with the Invariant Sections being LIST THEIR TITLES, with the
+    Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</code></pre>
+<p>If you have Invariant Sections without Cover Texts, or some other combination of the three, merge those two alternatives to suit the situation.</p>
+<p>If your document contains nontrivial examples of program code, we recommend releasing these examples in parallel under your choice of free software license, such as the GNU General Public License, to permit their use in free software.</p>
+</section>
 </section>
 </section>
 

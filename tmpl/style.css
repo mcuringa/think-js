@@ -65,11 +65,11 @@ thead th {
 
 section.level1 {
   counter-increment: section;
+  counter-reset: subsection;
 }
 
 
 section.level2 {
-  counter-reset: subsection;
   max-width: 680px;
 }
 

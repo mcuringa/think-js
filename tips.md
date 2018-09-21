@@ -44,7 +44,7 @@ message to the console.
 </aside>
 
 
-<aside data-line-number="28">
+<aside data-line-number="30">
 
 The ``calcTip`` function defines 2 **parameters**:
 `bill` and `pct`. These parameters become
@@ -57,7 +57,7 @@ calculate a new value and store it in the `tip` **variable**.
 
 </aside>
 
-<aside data-line-number="41">
+<aside data-line-number="43">
 
 ``askBillAmt`` is a **fruitful function** because
 it has a **return statement**. It uses the
@@ -67,7 +67,7 @@ the amount of the bill as a float, because it represents money.
 
 </aside>
 
-<aside data-line-number="59">
+<aside data-line-number="61">
 
 ``money`` is a small helper function that we
 wrote to re-use the task of formatting numbers
@@ -80,7 +80,7 @@ different **arguments**.
 
 
 
-<aside data-line-number="68">
+<aside data-line-number="70">
 
 ``showResults`` defines 3 **parameters** which are used
 to pass in all of the data needed to show the results
@@ -91,7 +91,7 @@ type `number`. The ``+`` operator automatically converts the numbers to strings.
 
 </aside>
 
-<aside data-line-number="87">
+<aside data-line-number="90">
 
 ``main`` is the first function **called** for
 this program. It maintains the executive control of the

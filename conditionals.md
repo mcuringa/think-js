@@ -46,14 +46,13 @@ to ``true``; in the second statement, 5 is not equal to 6, so we get ``false``.
 The ``===`` operator is one of six common **comparison operators** which all produce 
 a ``boolean`` result; here are all six:
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-x === y   // Produce true if ... x is equal to y
-x !== y   // Produce true if ... x is not equal to y
-x > y     // Produce true if ... x is greater than y
-x < y     // Produce true if ... x is less than y
-x >= y    // Produce true if ... x is greater than or equal to y
-x <= y    // Produce true if ... x is less than or equal to y
+x === y   // Produce true if x is equal to y
+x !== y   // Produce true if x is not equal to y
+x > y     // Produce true if x is greater than y
+x < y     // Produce true if x is less than y
+x >= y    // Produce true if x is greater than or equal to y
+x <= y    // Produce true if x is less than or equal to y
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -72,7 +71,7 @@ variables, printed, etc.
 ⠕ console.log(oldEnoughToGetADrivingLicence);
 true
 ⠕ typeof oldEnoughToGetADrivingLicence;
-'boolean'
+=> 'boolean'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <aside id="strict-equality">
@@ -381,7 +380,7 @@ if (0 < x) {    // Assume x is a number here
   }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The ``log`` function is called only if we make it past both the
+The ``console.log`` function is called only if we make it past both the
 conditionals, so instead of the above which uses two ``if`` statements each with
 a simple condition, we could make a more complex condition using the ``&&`` operator. Now we only
 need a single ``if`` statement:
@@ -415,6 +414,79 @@ it does is check whether ``x`` is less than or equal to 0, in which case it
 displays an error message and then uses ``return`` to exit the function. The
 flow of execution immediately returns to the caller, and the remaining lines of
 the function are not executed.
+
+Truthy evaluations 
+------------------
+
+As you integrate Boolean logic into your programs, you will often encounter
+the pattern where you test if a single value evaluates to ``true`` or ``false``.
+The Boolean condition can be written without a comparison operator because
+the value itself will be resolves to ``true`` or ``false``.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+if (email) {
+  // send an email...
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Any value that is not ``false``, ``undefined``, ``null``, 0, ``NaN``, or an empty string ('')
+actually **returns true** when tested as a conditional statement. Consider the following code:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+let first = "Diego";
+let last = "";
+let email = "diego@example.com";
+
+if (email) {
+  // this block will be executed because email
+  console.log("Email evaluted to true");
+}
+
+if (email === true) {
+  // this block won't be executed because email is not equal to true
+  console.log("Email doesn't equal true");
+}
+
+if (!last) {
+  // this block (using not) executes
+  // because last is an empty string, it evaluates to false
+  console.log("Enter your last name!");
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the above example we can say that ``email`` is _truthy_ because it evaluates to ``true``
+even though it doesn't equal ``true``. Likewise, ``last`` is _falsy_ --- it evaluates to ``false``
+because it's an empty string, not equal to ``false``.
+
+
+<aside id="curly-braces">
+
+**Optional curly braces**
+
+Curly braces in Javascript are optional of the block only has one statement.
+This is the case for all blocks --- following the ``function`` header, ``for`` header,
+``if`` and ``else``, and others we haven't seen yet. While it is uncommon for
+other types of blocks, it is not uncommon to see ``if``` statements
+without curly braces. You may see:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+if (!oldEnoughToDrive)
+  console.log("You can't rent a car.");
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is identical to
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+if (!oldEnoughToDrive) {
+  console.log("You can't rent a car.");
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some programmers consider it bad practice to omit curly braces for single statements,
+because it reduces readability and can lead to bugs. We recommend always
+using curly braces for blocks and our examples in this book follow this style.
+
+</aside>
 
 Logical opposites
 -----------------
@@ -520,168 +592,6 @@ we rather use a function?  Can we simplify the conditionals?
 We think of our code as our creation, our work of art! We make it great.
 </aside>
 
-Type conversion
----------------
-
-We've had a first look at this in an earlier chapter. Seeing it again won't hurt! 
-
-Many Javascript types come with a built-in function that attempts to convert values
-of another type into its own type. The ``int`` function, for example,
-takes any value and converts it to an integer, if possible, or complains
-otherwise:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ int("32")
-32
-⠕ int("Hello")
-ValueError: invalid literal for int() with base 10: 'Hello'
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-that it truncates the fractional part:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ int(-2.3)
--2
-⠕ int(3.99999)
-3
-⠕ int("42")
-42
-⠕ int(1.0)
-1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-numbers:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ float(32)
-32.0
-⠕ float("3.14159")
-3.14159
-⠕ float(1)
-1.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-floating-point value ``1.0``. They may represent the same number, but they
-belong to different types. The reason is that they are represented differently
-inside the computer.
-
-The ``str`` function converts any argument given to it to type
-``string``:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ str(32)
-'32'
-⠕ str(3.14149)
-'3.14149'
-⠕ str(True)
-'True'
-⠕ str(true)
-Traceback (most recent call last):
-  File "<interactive input>", line 1, in <module>
-NameError: name 'true' is not defined
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-``str`` will work with any value and convert it into a string.  As
-mentioned earlier, ``true`` is Boolean value; ``true`` is just an ordinary variable name,
-and is not defined here, so we get an error.
-
-A Turtle Bar Chart
-------------------
-
-The turtle has a lot more power than we've seen so far. The full
-documentation can be found at
-http://docs.python.org/py3k/library/turtle.html
-or within PyScripter, use *Help* and search for the turtle module.
-
-Here are a couple of new tricks for our turtles: 
-
-* We can get a turtle to display text on the canvas at the turtle's current position. The method to do that is
-  ``alex.write("Hello")``.
-* We can fill a shape (circle, semicircle, triangle, etc.) with a color. It is a two-step process.
-  First we call the method ``alex.begin_fill()``, then we draw the shape, then we call ``alex.end_fill()``. 
-* We've previously set the color of our turtle --- we can now also set its fill color, which need not
-  be the same as the turtle and the pen color. We use ``alex.color("blue","red")`` to set the turtle
-  to draw in blue, and fill in red. 
-  
-  
-Ok, so can we get tess to draw a bar chart?  Let us start with some data to be charted,
-
-``xs = [48, 117, 200, 240, 160, 260, 220]``
-
-Corresponding to each data measurement, we'll draw a simple rectangle of that height, with a fixed width.
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-def draw_bar(t, height):
-    """ Get turtle t to draw one bar, of height. """
-    t.left(90)   
-    t.forward(height)     # Draw up the left side
-    t.right(90)
-    t.forward(40) # Width of bar, along the top
-    t.right(90)
-    t.forward(height)     # And down again!
-    t.left(90)    # Put the turtle facing the way we found it.
-    t.forward(10) # Leave small gap after each bar
-     
-... 
-for v in xs:      # Assume xs and tess are ready 
-    draw_bar(tess, v)    
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        
-![](figs/tess_bar_1.png)
-
-Ok, not fantastically impressive, but it is a nice start!  The important thing here
-was the mental chunking, or how we broke the problem into smaller pieces. Our chunk
-is to draw one bar, and we wrote a function to do that. Then, for the whole
-chart, we repeatedly called our function.
-
-Next, at the top of each bar, we'll print the value of the data.
-We'll do this in the body of ``draw_bar``, by adding   ``t.write('  ' + str(height))`` 
-as the new third line of the body.
-
-We've put a little space in front of the number, and turned the 
-number into a string. Without this extra space we tend
-to cramp our text awkwardly against the bar to the left. 
-The result looks a lot better now:
-
-![](figs/tess_bar_2.png)
-
-And now we'll add two lines to fill each bar. Our final program now looks like this:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}       
-def draw_bar(t, height):
-    """ Get turtle t to draw one bar, of height. """
-    t.begin_fill()   # Added this line
-    t.left(90)
-    t.forward(height)
-    t.write("  "+ str(height))   
-    t.right(90)
-    t.forward(40)
-    t.right(90)
-    t.forward(height)
-    t.left(90)
-    t.end_fill()     # Added this line
-    t.forward(10) 
-
-wn = turtle.Screen() # Set up the window and its attributes
-wn.bgcolor("lightgreen")
-
-tess = turtle.Turtle()       # Create tess and set some attributes
-tess.color("blue", "red")
-tess.pensize(3)
-
-xs = [48,117,200,240,160,260,220]
-
-for a in xs:
-    draw_bar(tess, a)
-
-wn.mainloop()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-![](figs/tess_bar_3.png)
-
-Mmm. Perhaps the bars should not be joined to each other at the bottom. We'll need to pick up the pen while making the gap between the bars. We'll leave that as an exercise for you!
-
 Glossary
 --------
 
@@ -772,52 +682,48 @@ wrapping code in a function
 Conditional Exercises
 ---------------------
    
-#. Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).
+1. Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).
  
-#. You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the ``%`` mod operator. You can compose this function from the one you wrote in exercise 1.
+2. You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the ``%`` mod operator. You can compose this function from the one you wrote in exercise 1.
    
-#. Give the logical opposites of these conditions
-  #. ``a > b`` 
-  #. ``a >= b``
-  #. ``a >= 18  and  day == 3``
-  #. ``a >= 18  and  day != 3``
+3. Give the logical opposites of these conditions
+    a. ``a > b`` 
+    b. ``a >= b``
+    c. ``a >= 18  and  day == 3``
+    d. ``a >= 18  and  day != 3``
     
-#. What do these expressions evaluate to?
-  #. ``3 == 3``
-  #. ``3 != 3``
-  #. ``3 >= 4``
-  #. ``not (3 < 4)``
+4. What do these expressions evaluate to?
+    a. ``3 == 3``
+    b. ``3 != 3``
+    c. ``3 >= 4``
+    d. ``not (3 < 4)``
     
-#. Complete this truth table:
+5. Complete this truth table:
 
-p   q   r       (! (p && q)) || r
---- --- ------  --------------------
-F   F   F        ?
-F   F   T        ?
-F   T   F        ?
-F   T   T        ?
-T   F   F        ?
-T   F   T        ?
-T   T   F        ?
-T   T   T        ?
+    p   q   r       (! (p && q)) || r
+    --- --- ------  --------------------
+    F   F   F        ?
+    F   F   T        ?
+    F   T   F        ?
+    F   T   T        ?
+    T   F   F        ?
+    T   F   T        ?
+    T   T   F        ?
+    T   T   T        ?
    
-#. Write a function which is given an exam score, and it returns a string --- the letter grade for that mark --- according to this scheme:   
-    
-Score     Grade
--------   --------------
-90-100    A
-80-89     B
-70-79     C
-65-69     D
-<65       F
-    
-#. Modify the turtle bar chart program so that the pen is up for the small gaps between each bar.
+6. Write a function which is given an exam score, and it returns a string --- the letter grade for that mark --- according to this scheme:   
+   
+    Score     Grade
+    -------   --------------
+    90-100    A
+    80-89     B
+    70-79     C
+    65-69     D
+    <65       F
 
-#. Modify the turtle bar chart program so that the bar for any value of 200 or more is filled with red, values between [100 and 200) are filled with yellow, and bars representing values less than 100 are filled with green.
-  
-#. In the turtle bar chart program, what do you expect to happen if one or more of the data values in the list is negative? Try it out. Change the program so that when it prints the text value for the negative bars, it puts the text below the bottom of the bar.
+
    
-#. Write a function ``isRightAngled`` which, given the length of three sides
+7. Write a function ``isRightAngled`` which, given the length of three sides
 of a triangle, will determine whether the triangle is right-angled. Assume
 that the third argument to the function is always the longest side. It will
 return ``true`` if the triangle  is right-angled, or ``false`` otherwise.<br>
@@ -826,22 +732,25 @@ so it is not safe to test floating point numbers for equality.
 If a good programmer wants to know whether
 ``x`` is equal or close enough to ``y``, they would probably code it up as:<br>
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
-if (Math.abs(x-y) < 0.000001) {
-  // x is approximately equal to y
-}     
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
+     if (Math.abs(x-y) < 0.000001) {
+       // x is approximately equal to y
+     }     
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-12. If you're intrigued by why floating point arithmetic is sometimes inaccurate, on a piece
-    of paper, divide 10 by 3 and write down the decimal result. You'll find it does not terminate,
-    so you'll need an infinitely long sheet of paper. The *representation* of numbers in computer 
-    memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small
-    inaccuracies creep in. Try this script:
-    
+<aside id="float-precision">
+
+**Floating point inaccuracies**
+
+If you're intrigued by why floating point arithmetic is sometimes inaccurate, on a piece
+of paper, divide 10 by 3 and write down the decimal result. You'll find it does not terminate,
+so you'll need an infinitely long sheet of paper. The *representation* of numbers in computer 
+memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small inaccuracies creep in. Try this script:    
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}   
-
 let a = Math.sqrt(2.0);
 console.log(a, a*a);
 console.log(a*a === 2.0);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+</aside>
