@@ -138,7 +138,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     margin-top: 2em;
   }
   
-  #foreword, #the-way-of-the-program {
+  #foreword, #the-way-of-the-program, #appendices {
     counter-reset: section;
   }
   
@@ -163,8 +163,22 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   }
   
   
+  #appendices h2:before {
+    content: counter(section, upper-alpha ) ". ";
+  }
   
-  h1.title:before, h2.author:before, nav#TOC h2:before, #forward h2:before, #preface h2:before {
+  section.#appendices h1 {
+    counter-reset: section;
+    counter-reset: subsection;
+  }
+  
+  
+  
+  h1.title:before, 
+  h2.author:before, 
+  nav#TOC h2:before, 
+  #forward h2:before, 
+  #preface h2:before {
     content: "";
   }
   
@@ -2104,7 +2118,7 @@ We think of our code as our creation, our work of art! We make it great.
 <h2>Conditional Exercises</h2>
 <ol type="1">
 <li><p>Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).</p></li>
-<li><p>You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the <code>%</code> mod operator. You can compose this function from the one you wrote in exercise 1.</p></li>
+<li><p>You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 22 nights sleep. What day of the week is it? Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the <code>%</code> mod operator. You can compose this function from the one you wrote in exercise 1.</p></li>
 <li>Give the logical opposites of these conditions
 <ol type="a">
 <li><code>a &gt; b</code></li>
@@ -2211,18 +2225,15 @@ We think of our code as our creation, our work of art! We make it great.
 </tr>
 </tbody>
 </table></li>
-<li><p>Write a function <code>isRightAngled</code> which, given the length of three sides of a triangle, will determine whether the triangle is right-angled. Assume that the third argument to the function is always the longest side. It will return <code>true</code> if the triangle is right-angled, or <code>false</code> otherwise.<br> Hint: Floating point arithmetic is not always exactly accurate, so it is not safe to test floating point numbers for equality. If a good programmer wants to know whether <code>x</code> is equal or close enough to <code>y</code>, they would probably code it up as:<br></p>
+<li><p>(hard bonus) Write a function <code>isRightAngled</code> which, given the length of three sides of a triangle, will determine whether the triangle is right-angled. Assume that the third argument to the function is always the longest side. It will return <code>true</code> if the triangle is right-angled, or <code>false</code> otherwise.<br> Hint: Floating point arithmetic is not always exactly accurate, so it is not safe to test floating point numbers for equality. If a good programmer wants to know whether <code>x</code> is equal or close enough to <code>y</code>, they would probably code it up as:<br></p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="cf">if</span> (<span class="va">Math</span>.<span class="at">abs</span>(x<span class="op">-</span>y) <span class="op">&lt;</span> <span class="fl">0.000001</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb86-2" data-line-number="2">  <span class="co">// x is approximately equal to y</span></a>
-<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="op">}</span>     </a></code></pre></div></li>
-</ol>
-<aside id="float-precision">
-<p><strong>Floating point inaccuracies</strong></p>
-<p>If you’re intrigued by why floating point arithmetic is sometimes inaccurate, on a piece of paper, divide 10 by 3 and write down the decimal result. You’ll find it does not terminate, so you’ll need an infinitely long sheet of paper. The <em>representation</em> of numbers in computer memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small inaccuracies creep in. Try this script:</p>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="op">}</span>     </a></code></pre></div>
+<p>If you’re intrigued by why floating point arithmetic is sometimes inaccurate, on a piece of paper, divide 10 by 3 and write down the decimal result. You’ll find it does not terminate, so you’ll need an infinitely long sheet of paper. The <em>representation</em> of numbers in computer memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded, so small inaccuracies creep in. Try this script:</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">let</span> a <span class="op">=</span> <span class="va">Math</span>.<span class="at">sqrt</span>(<span class="fl">2.0</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb87-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(a<span class="op">,</span> a<span class="op">*</span>a)<span class="op">;</span></a>
-<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(a<span class="op">*</span>a <span class="op">===</span> <span class="fl">2.0</span>)<span class="op">;</span></a></code></pre></div>
-</aside>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(a<span class="op">*</span>a <span class="op">===</span> <span class="fl">2.0</span>)<span class="op">;</span></a></code></pre></div></li>
+</ol>
 </section>
 </section>
 <section id="appendices" class="level1">

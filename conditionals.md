@@ -682,9 +682,15 @@ wrapping code in a function
 Conditional Exercises
 ---------------------
    
-1. Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).
+1. Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. 
+   Write a function which is given the day number, and it returns the day name (a string).
  
-2. You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 137 sleeps. Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the ``%`` mod operator. You can compose this function from the one you wrote in exercise 1.
+2. You go on a wonderful vacation leaving on day number 3 (a Wednesday). You
+   return home after 22 nights sleep. What day of the week is it? Write a general
+   version of the program which asks for the starting day number, and the length
+   of your stay, and it will tell you the name of day of the week you will return
+   on. You might want to use the ``%`` mod operator. You can compose this
+   function from the one you wrote in exercise 1.
    
 3. Give the logical opposites of these conditions
     a. ``a > b`` 
@@ -711,7 +717,8 @@ Conditional Exercises
     T   T   F        ?
     T   T   T        ?
    
-6. Write a function which is given an exam score, and it returns a string --- the letter grade for that mark --- according to this scheme:   
+6. Write a function which is given an exam score, 
+   and it returns a string --- the letter grade for that mark --- according to this scheme:   
    
     Score     Grade
     -------   --------------
@@ -721,16 +728,14 @@ Conditional Exercises
     65-69     D
     <65       F
 
-
-   
-7. Write a function ``isRightAngled`` which, given the length of three sides
-of a triangle, will determine whether the triangle is right-angled. Assume
-that the third argument to the function is always the longest side. It will
-return ``true`` if the triangle  is right-angled, or ``false`` otherwise.<br>
-Hint: Floating point arithmetic is not always exactly accurate,
-so it is not safe to test floating point numbers for equality. 
-If a good programmer wants to know whether
-``x`` is equal or close enough to ``y``, they would probably code it up as:<br>
+7. (hard bonus) Write a function ``isRightAngled`` which, given the length of three sides
+   of a triangle, will determine whether the triangle is right-angled. Assume
+   that the third argument to the function is always the longest side. It will
+   return ``true`` if the triangle  is right-angled, or ``false`` otherwise.<br>
+   Hint: Floating point arithmetic is not always exactly accurate,
+   so it is not safe to test floating point numbers for equality. 
+   If a good programmer wants to know whether
+   ``x`` is equal or close enough to ``y``, they would probably code it up as:<br>
 
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
      if (Math.abs(x-y) < 0.000001) {
@@ -738,19 +743,15 @@ If a good programmer wants to know whether
      }     
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<aside id="float-precision">
+   If you're intrigued by why floating point arithmetic is sometimes inaccurate, on a piece
+   of paper, divide 10 by 3 and write down the decimal result. You'll find it does not terminate,
+   so you'll need an infinitely long sheet of paper. The *representation* of numbers in computer 
+   memory or on your calculator has similar problems: memory is finite, and some digits may have
+   to be  discarded, so small inaccuracies creep in. Try this script:
 
-**Floating point inaccuracies**
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}   
+     let a = Math.sqrt(2.0);
+     console.log(a, a*a);
+     console.log(a*a === 2.0);
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you're intrigued by why floating point arithmetic is sometimes inaccurate, on a piece
-of paper, divide 10 by 3 and write down the decimal result. You'll find it does not terminate,
-so you'll need an infinitely long sheet of paper. The *representation* of numbers in computer 
-memory or on your calculator has similar problems: memory is finite, and some digits may have to be discarded. So small inaccuracies creep in. Try this script:    
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}   
-let a = Math.sqrt(2.0);
-console.log(a, a*a);
-console.log(a*a === 2.0);
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-</aside>

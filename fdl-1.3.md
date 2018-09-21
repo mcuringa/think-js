@@ -1,8 +1,8 @@
 Appendices
 ==========
 
-## GNU Free Documentation License
-
+GNU Free Documentation License
+-------------------------------
 Version 1.3, 3 November 2008
 
 Copyright (C) 2000, 2001, 2002, 2007, 2008 Free Software Foundation,

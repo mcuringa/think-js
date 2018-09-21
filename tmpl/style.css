@@ -59,7 +59,7 @@ thead th {
   margin-top: 2em;
 }
 
-#foreword, #the-way-of-the-program {
+#foreword, #the-way-of-the-program, #appendices {
   counter-reset: section;
 }
 
@@ -84,8 +84,22 @@ h2:before {
 }
 
 
+#appendices h2:before {
+  content: counter(section, upper-alpha ) ". ";
+}
 
-h1.title:before, h2.author:before, nav#TOC h2:before, #forward h2:before, #preface h2:before {
+section.#appendices h1 {
+  counter-reset: section;
+  counter-reset: subsection;
+}
+
+
+
+h1.title:before, 
+h2.author:before, 
+nav#TOC h2:before, 
+#forward h2:before, 
+#preface h2:before {
   content: "";
 }
 
