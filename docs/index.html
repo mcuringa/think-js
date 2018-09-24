@@ -1827,7 +1827,7 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb65-5" data-line-number="5"><span class="kw">true</span> <span class="op">||</span> x <span class="op">===</span> <span class="kw">true</span></a>
 <a class="sourceLine" id="cb65-6" data-line-number="6">x <span class="op">||</span> x <span class="op">===</span> x</a></code></pre></div>
 <p>Two <code>!</code> operators cancel each other:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="op">!</span>(<span class="op">!</span>x) <span class="op">==</span> x</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="op">!</span>(<span class="op">!</span>x) <span class="op">===</span> x</a></code></pre></div>
 </section>
 <section id="conditional-execution" class="level2">
 <h2>Conditional execution</h2>
@@ -1971,7 +1971,7 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <p>In the above example we can say that <code>email</code> is <em>truthy</em> because it evaluates to <code>true</code> even though it doesn’t equal <code>true</code>. Likewise, <code>last</code> is <em>falsy</em> — it evaluates to <code>false</code> because it’s an empty string, not equal to <code>false</code>.</p>
 <aside id="curly-braces">
 <p><strong>Optional curly braces</strong></p>
-<p>Curly braces in Javascript are optional of the block only has one statement. This is the case for all blocks — following the <code>function</code> header, <code>for</code> header, <code>if</code> and <code>else</code>, and others we haven’t seen yet. While it is uncommon for other types of blocks, it is not uncommon to see ``if``` statements without curly braces. You may see:</p>
+<p>Curly braces in Javascript are optional of the block only has one statement. This is the case for all blocks — following the <code>function</code> header, <code>for</code> header, <code>if</code> and <code>else</code>, and others we haven’t seen yet. While it is uncommon for other types of blocks, it is not uncommon to see <code>if</code> statements without curly braces. You may see:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>oldEnoughToDrive)</a>
 <a class="sourceLine" id="cb78-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;You can&#39;t rent a car.&quot;</span>)<span class="op">;</span></a></code></pre></div>
 <p>This is identical to</p>

@@ -211,7 +211,7 @@ x || x === x
 Two ``!`` operators cancel each other:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-!(!x) == x
+!(!x) === x
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Conditional execution
@@ -466,7 +466,7 @@ because it's an empty string, not equal to ``false``.
 Curly braces in Javascript are optional of the block only has one statement.
 This is the case for all blocks --- following the ``function`` header, ``for`` header,
 ``if`` and ``else``, and others we haven't seen yet. While it is uncommon for
-other types of blocks, it is not uncommon to see ``if``` statements
+other types of blocks, it is not uncommon to see ``if`` statements
 without curly braces. You may see:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -699,25 +699,12 @@ Conditional Exercises
     d. ``a >= 18  and  day != 3``
     
 4. What do these expressions evaluate to?
-    a. ``3 == 3``
-    b. ``3 != 3``
+    a. ``3 === 3``
+    b. ``3 !== 3``
     c. ``3 >= 4``
-    d. ``not (3 < 4)``
+    d. ``!(3 < 4)``
     
-5. Complete this truth table:
-
-    p   q   r       (! (p && q)) || r
-    --- --- ------  --------------------
-    F   F   F        ?
-    F   F   T        ?
-    F   T   F        ?
-    F   T   T        ?
-    T   F   F        ?
-    T   F   T        ?
-    T   T   F        ?
-    T   T   T        ?
-   
-6. Write a function which is given an exam score, 
+5. Write a function which is given an exam score, 
    and it returns a string --- the letter grade for that mark --- according to this scheme:   
    
     Score     Grade
@@ -728,7 +715,7 @@ Conditional Exercises
     65-69     D
     <65       F
 
-7. (hard bonus) Write a function ``isRightAngled`` which, given the length of three sides
+6. (hard bonus) Write a function ``isRightAngled`` which, given the length of three sides
    of a triangle, will determine whether the triangle is right-angled. Assume
    that the third argument to the function is always the longest side. It will
    return ``true`` if the triangle  is right-angled, or ``false`` otherwise.<br>
