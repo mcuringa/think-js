@@ -1,12 +1,14 @@
 Iteration
 =========
 
+Running loops
+-------------
 Computers are often used to automate repetitive tasks. Repeating
 identical or similar tasks without making errors is something that
 computers do well and people do poorly.
 
 Repeated execution of a set of statements is called **iteration**.
-Because iteration is so common, Python provides several language
+Because iteration is so common, Javascript provides several language
 features to make it easier. The `for` loop is the form of iteration
 you'll likely be using most often, and we will look at that first.
 But in this chapter we've going to look at the `while` statement —
@@ -17,36 +19,42 @@ The `for` loop
 ----------------
 
 A basic building block of all programs is to be able to repeat some
-code, over and over again. Python's **for** loop solves this for
-us. Let's say we have some friends, and we'd like to send them each
-an email inviting them to our party. We don't quite know how to
-send email yet, so for the moment we'll just print a message for
-each friend:
+code, over and over again. Javascript's **for** loop solves this for
+us. We have already played around with the `for` loop with out
+turtle graphics when we were looking at the variables in a spiral.
+Recall:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-for f in ["Joe","Zoe","Brad","Angelina","Zuki","Thandi","Paris"]:
-    invite = "Hi " + f + ".  Please come to my party on Saturday!"
-    print(invite)
-# more code can follow here …            
+function spiral() {
+  setColor("deeppink")
+  let distance=2;
+  let angle=91;
+  for (let i=0; i<500; i++){
+    fd(distance);
+    distance += 2;
+    rt(angle);
+  }
+}
+
+spiral();        
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~      
 
 When we run this, the output looks like this:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Hi Joe.  Please come to my party on Saturday!
-Hi Zoe.  Please come to my party on Saturday!
-Hi Brad.  Please come to my party on Saturday!
-Hi Angelina.  Please come to my party on Saturday!
-Hi Zuki.  Please come to my party on Saturday!
-Hi Thandi.  Please come to my party on Saturday!
-Hi Paris.  Please come to my party on Saturday! 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<figure class="figure">
+<img src="figs/turtle-spiral.png" class="figure-img img-fluid" alt="Square spiral created with turtle graphics code.">
+<figcaption class="figure-caption">
+Our code draws this spiral. [Try it and remix it here.](https://repl.it/@mcuringa/turtle-spiral)
+</figcaption>
+</figure>
+
 
 * The variable ``f`` in the ``for`` statement at line 1 is called the **loop variable**.  
   We could have chosen any other variable name instead.
 * Lines 2 and 3 are the **loop body**.  The loop body is always
   indented. The indentation determines exactly what statements are "in the body of the loop".
-* On each *iteration* or *pass* of the loop, first a check is done to see if there are 
+* On each _iteration_ or _pass_ of the loop, first a check is done to see if there are 
   still more items to be processed. If there are none left (this is called
   the **terminating condition** of the loop), the loop has finished.
   Program execution continues at the next statement after the loop body, (e.g. in this case
@@ -54,7 +62,7 @@ Hi Paris.  Please come to my party on Saturday!
 * If there are items still to be processed, the loop variable is updated to refer to the
   next item in the list. This means, in this case, that the loop body is executed 
   here 7 times, and each time ``f`` will refer to a different friend. 
-* At the end of each execution of the body of the loop, Python returns 
+* At the end of each execution of the body of the loop, Javascript returns 
   to the ``for`` statement, to see if there are more items to be handled, and to assign the
   next one to ``f``.
 
@@ -64,7 +72,7 @@ Flow of Execution of the for loop
 As a program executes, the interpreter always keeps track of which statement is
 about to be executed. We call this the **control flow**, of the **flow of execution** 
 of the program. When humans execute programs, they often use their finger to point 
-to each statement in turn. So we could think of control flow as "Python's moving finger". 
+to each statement in turn. So we could think of control flow as "Javascript's moving finger". 
 
 Control flow until now has been strictly
 top to bottom, one statement at a time. The ``for`` loop changes this. 
@@ -105,16 +113,16 @@ printed, its value is 15, and the second time, its value is 7.
 
 It is especially important to distinguish between an
 assignment statement and a Boolean expression that tests for equality. 
-Because Python uses the equal token (``=``) for assignment, 
+Because Javascript uses the equal token (``=``) for assignment, 
 it is tempting to interpret a statement like
-``a = b`` as a Boolean test.  Unlike mathematics, it is not!  Remember that the Python token
+``a = b`` as a Boolean test.  Unlike mathematics, it is not!  Remember that the Javascript token
 for the equality operator is ``==``.
 
 Note too that an equality test is symmetric, but assignment is not. For example, 
-if ``a == 7`` then ``7 == a``. But in Python, the statement ``a = 7``
+if ``a == 7`` then ``7 == a``. But in Javascript, the statement ``a = 7``
 is legal and ``7 = a`` is not.
 
-In Python, an assignment statement can make
+In Javascript, an assignment statement can make
 two variables equal, but because further assignments can change either of them, 
 they don't have to stay that way:
 
@@ -129,7 +137,7 @@ value of ``b``, so they are no longer equal. (In some programming
 languages, a different symbol is used for assignment, such as ``<-`` 
 or ``:=``, to avoid confusion.  Some people also think that 
 *variable* was an unfortunae word to choose, and instead we should 
-have called them *assignables*.  Python chooses to follow common 
+have called them *assignables*.  Javascript chooses to follow common 
 terminology and token usage, also found in languages like C, C++, 
 Java, and C#, so we use the tokens ``=`` for assignment, ``==`` for 
 equality, and we talk of *variables*.
@@ -224,7 +232,7 @@ test(mysum(range(11)) == 55)  # 11 is not included in the list.
 Abbreviated assignment
 ----------------------
 
-Incrementing a variable is so common that Python provides an abbreviated syntax
+Incrementing a variable is so common that Javascript provides an abbreviated syntax
 for it:
 
 ~~~~~~~~~~~~~~~{.python}        
@@ -267,17 +275,17 @@ There are similar abbreviations for ``-=``, ``*=``, ``/=``, ``//=`` and ``%=``:
 Help and meta-notation
 ----------------------
 
-Python comes with extensive documentation for all its built-in 
+Javascript comes with extensive documentation for all its built-in 
 functions, and its libraries. Different systems have different ways 
 of accessing this help.  In PyScripter, click on the *Help* menu 
-item, and select *Python Manuals*. Then search for help on the 
+item, and select *Javascript Manuals*. Then search for help on the 
 built-in function **range**. You'll get something like this:
 
 ![](figs/help_range.png)  
 
 Notice the square brackets in the description of the arguments. 
 These are examples of **meta-notation** — notation that describes 
-Python syntax, but is not part of it. The square brackets in this 
+Javascript syntax, but is not part of it. The square brackets in this 
 documentation mean that the argument is *optional* — the programmer 
 can omit it.  So what this first line of help tells us is that 
 ``range`` must always have a ``stop`` argument, but it may have an 
@@ -292,14 +300,14 @@ that the arguments must be integers.
 
 Other meta-notation you'll frequently encounter is the use of bold 
 and italics.  The bold means that these are tokens  — keywords or 
-symbols — typed into your Python code exactly as they are, whereas 
+symbols — typed into your Javascript code exactly as they are, whereas 
 the italic terms stand for "something of this type". So the syntax 
 description
 
 **for** *variable* **in** *list* **:** 
     
 means you can substitute any legal variable and any legal list when 
-you write your Python code.
+you write your Javascript code.
 
 This (simplified) description of the ``print`` function, shows another example
 of meta-notation in which the ellipses (``...``) mean that you can have as many
@@ -321,8 +329,8 @@ listing the values of these functions. Creating the tables was slow
 and boring, and they tended to be full of errors.
 
 When computers appeared on the scene, one of the initial reactions 
-was, *"This is great! We can use the computers to generate the 
-tables, so there will be no errors."* That turned out to be true 
+was, _"This is great! We can use the computers to generate the 
+tables, so there will be no errors."_ That turned out to be true 
 (mostly) but shortsighted. Soon thereafter, computers and 
 calculators were so pervasive that the tables became obsolete.
 
@@ -343,7 +351,7 @@ for x in range(13):   # Generate numbers 0 to 12
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The string ``"\t"`` represents a **tab character**. The backslash character in
-``"\t"`` indicates the beginning of an **escape sequence**.  Escape sequences
+``"\t"`` indicates the beginning of an **escape sequence**. Escape sequences
 are used to represent invisible characters like tabs and newlines. The sequence
 ``\n`` represents a **newline**.
 
@@ -375,7 +383,6 @@ of the previous program:
 11      2048
 12      4096
 ~~~~~~~~~~~~~~~~~~~~
-
 
 Because of the tab characters between the columns, the position of the second
 column does not depend on the number of digits in the first column.
@@ -510,8 +517,8 @@ local variable from outside its home function. That means you are free to have
 multiple variables with the same name as long as they are not in the same
 function.
 
-Python examines all the statements in a function — if any of them assign a value
-to a variable, that is the clue that Python uses to make the variable a local variable.
+Javascript examines all the statements in a function — if any of them assign a value
+to a variable, that is the clue that Javascript uses to make the variable a local variable.
 
 The stack diagram for this program shows that the two variables named ``i`` are
 not the same variable. They can refer to different values, and changing one
@@ -712,9 +719,9 @@ them:
 Paired Data 
 ----------- 
 
-We've already seen lists of names and lists of numbers in Python. We're going to peek ahead in
+We've already seen lists of names and lists of numbers in Javascript. We're going to peek ahead in
 the textbook a little, and show a more advanced way of representing our data.
-Making a pair of things in Python is as simple as putting them into parentheses,
+Making a pair of things in Javascript is as simple as putting them into parentheses,
 like this:
 
 ~~~~~~~~~~~~~~~~~~~~{.python}
@@ -784,7 +791,7 @@ for (name, subjects) in students:
     print(name, "takes", len(subjects), "courses")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         
-Python agreeably responds with the following output: 
+Javascript agreeably responds with the following output: 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 John takes 2 courses
@@ -858,7 +865,7 @@ invoke
     
 module
 :  module
-   Python programs. The contents of a module are made available to the other 
+   Javascript programs. The contents of a module are made available to the other 
    program by using the ``import`` statement.
    
 object
@@ -878,7 +885,7 @@ terminating condition
 Exercises
 ---------
 
-#. Write a program that prints ``We like Python's turtles!`` 1000 times. 
+#. Write a program that prints ``We like Javascript's turtles!`` 1000 times. 
 
 #. Give three attributes of your cellphone object. Give three methods of your cellphone.  
 
