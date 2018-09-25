@@ -2128,72 +2128,11 @@ We think of our code as our creation, our work of art! We make it great.
 </ol></li>
 <li>What do these expressions evaluate to?
 <ol type="a">
-<li><code>3 == 3</code></li>
-<li><code>3 != 3</code></li>
+<li><code>3 === 3</code></li>
+<li><code>3 !== 3</code></li>
 <li><code>3 &gt;= 4</code></li>
-<li><code>not (3 &lt; 4)</code></li>
+<li><code>!(3 &lt; 4)</code></li>
 </ol></li>
-<li><p>Complete this truth table:</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">p</th>
-<th style="text-align: left;">q</th>
-<th style="text-align: left;">r</th>
-<th style="text-align: left;">(! (p &amp;&amp; q)) || r</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">F</td>
-<td style="text-align: left;">?</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">T</td>
-<td style="text-align: left;">?</td>
-</tr>
-</tbody>
-</table></li>
 <li><p>Write a function which is given an exam score, and it returns a string — the letter grade for that mark — according to this scheme:</p>
 <table>
 <thead>
