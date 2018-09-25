@@ -2178,8 +2178,8 @@ We think of our code as our creation, our work of art! We make it great.
 <section id="conditionals-lab" class="level2">
 <h2>Conditionals Lab</h2>
 <p>This section describes three lab assignments that ask you to write larger programs that are organized into several functions. To complete these labs you will combine what you have learned about variables and expressions, functions, and conditional Boolean expressions.</p>
-<section id="bmi-calculator-lab" class="level3">
-<h3>BMI Calculator Lab</h3>
+<section id="lab-1-bmi-calculator-lab" class="level3">
+<h3>Lab 1: BMI Calculator Lab</h3>
 <p><a href="https://en.wikipedia.org/wiki/Body_mass_index">Body Mass Index (BMI)</a> is a [ratio of weight to height that public health and other organizations use as a [guide for healthy weights. In this lab you will write a BMI calculator that [asks the user for their age, height, and weight. You will calculate their BMI [and then report a message indicating if they are at risk for being [underweight, healthy weight, overweight, or obese.</p>
 <p>BMI is calculated by using the formula <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (kg)}{height (m)^{2}} =
 BMI</annotation></semantics></math> If you choose to use standard rather than metric measurements, you can use inches as the units for height and pounds as the unit for weight, and then convert the result by multiplying by the constant <code>703</code>. The formula would be: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mi>b</mi><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mi>n</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>×</mo><mn>703</mn><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (lbs)}{height (in)^{2}} \times 703 = BMI</annotation></semantics></math></p>
@@ -2211,6 +2211,78 @@ BMI</annotation></semantics></math> If you choose to use standard rather than me
 </tr>
 </tbody>
 </table>
+</section>
+<section id="lab-2-simplified-chinese-birth-animals" class="level3">
+<h3>Lab 2: Simplified Chinese Birth Animals</h3>
+<p>Chinese animal signs are determined based on the year of birth and repeat on a 12 year cycle. For this lab, we are going to write a program that asks the user the year they were born and then tells them their animal sign. We will use a simplified version of the calendar which matches animal-year to the Western calendar year. Use the table below for the starting years (and then each animal repeats 12 years later). You will want to use the mod <code>%</code> operator for this problem.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Animal</th>
+<th style="text-align: left;">Birth Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Rat</td>
+<td style="text-align: left;">1924</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ox</td>
+<td style="text-align: left;">1925</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tiger</td>
+<td style="text-align: left;">1926</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rabbit</td>
+<td style="text-align: left;">1927</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dragon</td>
+<td style="text-align: left;">1928</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Snake</td>
+<td style="text-align: left;">1929</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Horse</td>
+<td style="text-align: left;">1930</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Goat</td>
+<td style="text-align: left;">1931</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Monkey</td>
+<td style="text-align: left;">1932</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rooster</td>
+<td style="text-align: left;">1933</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dog</td>
+<td style="text-align: left;">1934</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pig</td>
+<td style="text-align: left;">1935</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-3-bouncing-turtle" class="level3">
+<h3>Lab 3: Bouncing turtle</h3>
+<p>This may be an interesting problem if you are comfortable with geometry and trigonometry. In this lab you’ll revisit the <code>randomWalk</code> program that we worked on in our <em>turtle graphics</em>. You will modify <code>randomWalk</code> so that the turtle “bounces” when it reaches the edge of the screen. By bounce, the turtle should advance to the edge of the screen (aka canvas) and then choose a random angle away from the edge. It should choose a new random distance in this heading. Some hints:</p>
+<ul>
+<li>Determine the maximum and minimum <code>x</code> and <code>y</code> that allow the turtle to stay on the screen. The turtle canvas dimensions are <code>1920 x 1280</code></li>
+<li><em>Before</em> the turtle moves forward, you will have to calculate the ending <code>x</code>, <code>y</code> and determine if it’s on the screen or off the screen</li>
+<li>you will need to use <code>getHeading()</code> to make this calculation</li>
+<li>you will need to use the trigonometry functions in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">the Javascript Math library</a></li>
+</ul>
 </section>
 </section>
 </section>

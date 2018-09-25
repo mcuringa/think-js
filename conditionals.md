@@ -804,7 +804,6 @@ Dog             1934
 Pig             1935
 
 
-
 ### Lab 3: Bouncing turtle
 
 This may be an interesting problem if you are comfortable with geometry and
