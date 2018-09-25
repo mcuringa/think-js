@@ -20,7 +20,7 @@ listing ./examples/tip-calculator.js tip-notes.md  ./work/tip-src.md;
 
 CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md ./work/tip-src.md conditionals.md fdl-1.3.md";
 
-pandoc -o ./docs/index.html --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
+pandoc -o ./docs/index.html --mathml --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 
 # cp index.html ./docs/;
 # cp -r figs ./docs/figs;

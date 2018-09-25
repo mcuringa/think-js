@@ -742,3 +742,44 @@ Conditional Exercises
      console.log(a*a === 2.0);
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Conditionals Lab
+----------------
+
+This section describes three lab assignments that ask you to write larger programs
+that are organized into several functions. To complete these labs you will combine
+what you have learned about variables and expressions, functions, and conditional
+Boolean expressions.
+
+### BMI Calculator Lab
+
+[Body Mass Index (BMI)](https://en.wikipedia.org/wiki/Body_mass_index) is a
+[ratio of weight to height that public health and other organizations use as a
+[guide for healthy weights. In this lab you will write a BMI calculator that
+[asks the user for their age, height, and weight. You will calculate their BMI
+[and then report a message indicating if they are at risk for being
+[underweight, healthy weight, overweight, or obese.
+
+BMI is calculated by using the formula $$\frac{mass (kg)}{height (m)^{2}} =
+BMI$$ If you choose to use standard rather than metric measurements, you can
+use inches as the units for height and pounds as the unit for weight, and then
+convert the result by multiplying by the constant `703`. The formula would be:
+$$\frac{mass (lbs)}{height (in)^{2}} \times 703 = BMI$$
+
+BMI for children and teens is more complicated, so you will not calculate it
+for this lab. Instead, if the age is < 20, you should show the user a message
+that indicates that your calculator is only for adults.
+
+Once you have calculate the user's BMI, you should use the following chart to
+determine which weight category they are in. Use this table:
+
+BMI           Category
+-------       ----------
+< 18.5        underweight
+18.5-24.9     normal weight
+25-29.9       overweight
+> 29.9        obese
+
+
+
+
+
