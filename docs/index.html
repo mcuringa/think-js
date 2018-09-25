@@ -2180,15 +2180,37 @@ We think of our code as our creation, our work of art! We make it great.
 <p>This section describes three lab assignments that ask you to write larger programs that are organized into several functions. To complete these labs you will combine what you have learned about variables and expressions, functions, and conditional Boolean expressions.</p>
 <section id="bmi-calculator-lab" class="level3">
 <h3>BMI Calculator Lab</h3>
-<p><a href="https://en.wikipedia.org/wiki/Body_mass_index">Body Mass Index (BMI)</a> is a ratio of weight to height that public health and other organizations use as a guide for healthy weights. In this lab you will write a BMI calculator that asks the user for their:</p>
-<ul>
-<li>height</li>
-<li>weight</li>
-<li>age</li>
-<li>and gender</li>
-</ul>
-<p>You will calculate their BMI and then report a message indicating if they are at risk for being underweight, healthy weight, overweight, or obese.</p>
-<p>The BMI is calculated by using the formula <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (kg)}{height (m)^{2}} = BMI</annotation></semantics></math> If you choose to use standard rather than metric measurements, you can uses inches as the units for height and pounds as the unit for weight, and then convert the result by multiplying by the constant <code>703</code>. The formula would be: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mi>b</mi><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mi>n</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>×</mo><mn>703</mn><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (lbs)}{height (in)^{2}} \times 703 = BMI</annotation></semantics></math></p>
+<p><a href="https://en.wikipedia.org/wiki/Body_mass_index">Body Mass Index (BMI)</a> is a [ratio of weight to height that public health and other organizations use as a [guide for healthy weights. In this lab you will write a BMI calculator that [asks the user for their age, height, and weight. You will calculate their BMI [and then report a message indicating if they are at risk for being [underweight, healthy weight, overweight, or obese.</p>
+<p>BMI is calculated by using the formula <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (kg)}{height (m)^{2}} =
+BMI</annotation></semantics></math> If you choose to use standard rather than metric measurements, you can use inches as the units for height and pounds as the unit for weight, and then convert the result by multiplying by the constant <code>703</code>. The formula would be: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mi>b</mi><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mi>n</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>×</mo><mn>703</mn><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (lbs)}{height (in)^{2}} \times 703 = BMI</annotation></semantics></math></p>
+<p>BMI for children and teens is more complicated, so you will not calculate it for this lab. Instead, if the age is &lt; 20, you should show the user a message that indicates that your calculator is only for adults.</p>
+<p>Once you have calculated the user’s BMI, you should use the following chart to determine which weight category they are in. Use this table:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">BMI</th>
+<th style="text-align: left;">Category</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">&lt; 18.5</td>
+<td style="text-align: left;">underweight</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18.5-24.9</td>
+<td style="text-align: left;">normal weight</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25-29.9</td>
+<td style="text-align: left;">overweight</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&gt; 29.9</td>
+<td style="text-align: left;">obese</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 </section>

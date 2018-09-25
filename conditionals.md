@@ -750,7 +750,7 @@ that are organized into several functions. To complete these labs you will combi
 what you have learned about variables and expressions, functions, and conditional
 Boolean expressions.
 
-### BMI Calculator Lab
+### Lab 1: BMI Calculator Lab
 
 [Body Mass Index (BMI)](https://en.wikipedia.org/wiki/Body_mass_index) is a
 [ratio of weight to height that public health and other organizations use as a
@@ -769,7 +769,7 @@ BMI for children and teens is more complicated, so you will not calculate it
 for this lab. Instead, if the age is < 20, you should show the user a message
 that indicates that your calculator is only for adults.
 
-Once you have calculate the user's BMI, you should use the following chart to
+Once you have calculated the user's BMI, you should use the following chart to
 determine which weight category they are in. Use this table:
 
 BMI           Category
@@ -778,6 +778,48 @@ BMI           Category
 18.5-24.9     normal weight
 25-29.9       overweight
 > 29.9        obese
+
+### Lab 2: Simplified Chinese Birth Animals
+
+Chinese animal signs are determined based on the year of birth and repeat on a 12 year
+cycle. For this lab, we are going to write a program that asks the user the year they
+were born and then tells them their animal sign. We will use a simplified version
+of the calendar which matches animal-year to the Western calendar year. Use the table
+below for the starting years (and then each animal repeats 12 years later). You will
+want to use the mod ``%`` operator for this problem.
+
+Animal          Birth Year
+-------------   -----------
+Rat             1924
+Ox              1925
+Tiger           1926
+Rabbit          1927
+Dragon          1928
+Snake           1929
+Horse           1930
+Goat            1931
+Monkey          1932
+Rooster         1933 
+Dog             1934
+Pig             1935
+
+
+
+### Lab 3: Bouncing turtle
+
+This may be an interesting problem if you are comfortable with geometry and
+trigonometry. In this lab you'll revisit the `randomWalk` program that we
+worked on in our _turtle graphics_. You will modify `randomWalk` so that the
+turtle "bounces" when it reaches the edge of the screen. By bounce, the turtle
+should advance to the edge of the screen (aka canvas) and then choose a random angle
+away from the edge. It should choose a new random distance in this heading. Some hints:
+
+- Determine the maximum and minimum `x` and `y` that allow the turtle to stay on the screen.
+  The turtle canvas dimensions are ``1920 x 1280``
+- _Before_ the turtle moves forward, you will have to calculate the ending `x`, `y`
+  and determine if it's on the screen or off the screen
+- you will need to use `getHeading()` to make this calculation
+- you will need to use the trigonometry functions in [the Javascript Math library](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 
 
