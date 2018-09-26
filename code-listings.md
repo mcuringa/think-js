@@ -14,7 +14,9 @@ easily **forked** (remixed) and shared. Several types of repls are available:
 blank templates for working on practice exercises and labs, solutions to
 exercise problems, and longer code listings that appear in the book.
 
-We recommend that you make a free account on repl.it to fully work with the examples, however, you can run and edit the programs as an anonymous user. You cannot save your work without an account.
+We recommend that you make a free account on repl.it to fully work with the
+examples, however, you can run and edit the programs as an anonymous user. You
+cannot save your work without an account.
 
 
 ### Turtle Graphics
