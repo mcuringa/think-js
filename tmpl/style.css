@@ -85,10 +85,10 @@ h2:before {
 
 
 #appendices h2:before {
-  content: counter(section, upper-alpha ) ". ";
+  content: counter(subsection, upper-alpha ) ". ";
 }
 
-section.#appendices h1 {
+#appendices {
   counter-reset: section;
   counter-reset: subsection;
 }
