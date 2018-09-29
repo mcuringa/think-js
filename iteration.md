@@ -12,59 +12,76 @@ Because iteration is so common, Javascript provides several language
 features to make it easier. The `for` loop is the form of iteration
 you'll likely be using most often, and we will look at that first.
 But in this chapter we've going to look at the `while` statement —
-another way to have your program do iteration, useful in slightly
-different circumstances.
+another way to have your program repeat code. After you understand
+both `for` and `while` loops, you will be able to use them both
+to solve problems.
 
 The `for` loop
 ----------------
 
 A basic building block of all programs is to be able to repeat some
 code, over and over again. Javascript's **for** loop solves this for
-us. We have already played around with the `for` loop with out
-turtle graphics when we were looking at the variables in a spiral.
-Recall:
+us. The syntax for the `for` loop is:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
-function spiral() {
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+for ([initialization]; [loop condition]; [final-expression]) {
+  loop body
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We can see that `for` follows the familiar **block statements** that
+we have already seen for _functions_ and _if_/_else_ statements,
+with a header and then body between opening and closing curly braces ({});
+In the case of `for`, the header contains 3 statements inside the 
+parenthesis. The **initialization** statement is called exactly once: the
+first time the program reaches the for statement. The **loop condition**
+is tested before each iteration of the loop. If `true`, the **loop body**
+executes. The loop body may contain any number of Javascript statements.
+After the loop body statements are executed, the **final expression** is
+called. Typically this expression _increments_ (adds to) or _decrements_ (subtracts from)
+the loop variable. After the final expression is called, the loop condition is checked
+again to see if the loop should continue or _terminate_.
+
+We have already played around with the `for` loop with our
+turtle graphics when we were looking at the variables in a spiral. Let's take
+a closer look at this function which contains a for loop.
+
+<figure class="figure">
+<img src="figs/turtle-spiral.png" class="figure-img img-fluid" alt="Square spiral created with turtle graphics code.">
+<figcaption class="figure-caption">
+Our `spiral` function draws this design. [Try it and remix it here.](https://repl.it/@mcuringa/turtle-spiral)
+</figcaption>
+</figure>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+function spiral () {
   setColor("deeppink")
-  let distance=2;
-  let angle=91;
-  for (let i=0; i<500; i++){
+  let distance = 2;
+  let angle = 91;
+  for (let i=0; i<500; i++) {
     fd(distance);
     distance += 2;
     rt(angle);
   }
 }
-
-spiral();        
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~      
-
-When we run this, the output looks like this:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-<figure class="figure">
-<img src="figs/turtle-spiral.png" class="figure-img img-fluid" alt="Square spiral created with turtle graphics code.">
-<figcaption class="figure-caption">
-Our code draws this spiral. [Try it and remix it here.](https://repl.it/@mcuringa/turtle-spiral)
-</figcaption>
-</figure>
-
-
-* The variable ``f`` in the ``for`` statement at line 1 is called the **loop variable**.  
-  We could have chosen any other variable name instead.
-* Lines 2 and 3 are the **loop body**.  The loop body is always
-  indented. The indentation determines exactly what statements are "in the body of the loop".
-* On each _iteration_ or _pass_ of the loop, first a check is done to see if there are 
-  still more items to be processed. If there are none left (this is called
-  the **terminating condition** of the loop), the loop has finished.
-  Program execution continues at the next statement after the loop body, (e.g. in this case
-  the next statement below the comment in line 4).  
-* If there are items still to be processed, the loop variable is updated to refer to the
-  next item in the list. This means, in this case, that the loop body is executed 
-  here 7 times, and each time ``f`` will refer to a different friend. 
+* The variable `i` in the `for` statement at line 5 is called the **loop variable**.
+  We could have chosen any other variable name instead, but `i` is a common convention,
+  being short for the loop _index_.
+* The **loop initialization** assigns the loop variable its initial value: `let i = 0;`
+* The indented lines between the curly braces form the **loop body**. `spiral`'s loop body
+  contains 3 statements which move the turtle forward, increment the `distance` variable,
+  and rotate the turtle.
+* Each _iteration_ or _pass_ of the loop, checks the **loop condition**. If `true` the loop
+  runs for another iteration. If it is `false`, it terminates.
 * At the end of each execution of the body of the loop, Javascript returns 
-  to the ``for`` statement, to see if there are more items to be handled, and to assign the
-  next one to ``f``.
+  to the `for` statement to run the **final expression**. The final expression
+  here increments `i` by one, using the special `++` operator.
+* Finally, when the loop condition is false, the program continues beyond the closing
+  curly brace. In `spiral`, since there are no other statements in the function body,
+  the function returns `undefined` since it is a _void function_.
 
 Flow of Execution of the for loop
 ---------------------------------
@@ -75,13 +92,13 @@ of the program. When humans execute programs, they often use their finger to poi
 to each statement in turn. So we could think of control flow as "Javascript's moving finger". 
 
 Control flow until now has been strictly
-top to bottom, one statement at a time. The ``for`` loop changes this. 
+top to bottom, one statement at a time. The `for` loop changes this. 
 
 <aside id="for-loop-flow">
-**Flowchart of a ``for`` loop**
+**Flowchart of a `for` loop**
 
 Control flow is often easy to visualize and understand if we draw a flowchart.
-This shows the exact steps and logic of how the ``for`` statement executes.
+This shows the exact steps and logic of how the `for` statement executes.
 
 ![](figs/flowchart_for.png)
 
@@ -94,52 +111,52 @@ As we have mentioned previously, it is legal to make more than one assignment to
 same variable. A new assignment makes an existing variable refer to a new value
 (and stop referring to the old value).
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
-airtime_remaining = 15
-print(airtime_remaining)
-airtime_remaining = 7
-print(airtime_remaining)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
+let airTimeRemaining = 15;
+console.log(airTimeRemaining);
+airTimeRemaining = 7;
+console.log(airTimeRemaining);
+~~~~~~~~~~~~~~~~~~~~
 
 The output of this program is:
 
 ~~~~~~~~~~~~~~~~~~~~
 15
 7
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
-because the first time ``airtime_remaining`` is
+because the first time `airtime_remaining` is
 printed, its value is 15, and the second time, its value is 7.  
 
 It is especially important to distinguish between an
 assignment statement and a Boolean expression that tests for equality. 
-Because Javascript uses the equal token (``=``) for assignment, 
+Because Javascript uses the equal token (`=`) for assignment, 
 it is tempting to interpret a statement like
-``a = b`` as a Boolean test.  Unlike mathematics, it is not!  Remember that the Javascript token
-for the equality operator is ``==``.
+`a = b` as a Boolean test.  Unlike mathematics, it is not!  Remember that the Javascript token
+for the equality operator is `==`.
 
 Note too that an equality test is symmetric, but assignment is not. For example, 
-if ``a == 7`` then ``7 == a``. But in Javascript, the statement ``a = 7``
-is legal and ``7 = a`` is not.
+if `a == 7` then `7 == a`. But in Javascript, the statement `a = 7`
+is legal and `7 = a` is not.
 
 In Javascript, an assignment statement can make
 two variables equal, but because further assignments can change either of them, 
 they don't have to stay that way:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 a = 5
 b = a    # After executing this line, a and b are now equal
 a = 3    # After executing this line, a and b are no longer equal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
-The third line changes the value of ``a`` but does not change the 
-value of ``b``, so they are no longer equal. (In some programming 
-languages, a different symbol is used for assignment, such as ``<-`` 
-or ``:=``, to avoid confusion.  Some people also think that 
-*variable* was an unfortunae word to choose, and instead we should 
-have called them *assignables*.  Javascript chooses to follow common 
+The third line changes the value of `a` but does not change the 
+value of `b`, so they are no longer equal. (In some programming 
+languages, a different symbol is used for assignment, such as `<-` 
+or `:=`, to avoid confusion.  Some people also think that 
+*variable* was an unfortunate word to choose, and instead we should 
+have called them *assignables*. Javascript chooses to follow common 
 terminology and token usage, also found in languages like C, C++, 
-Java, and C#, so we use the tokens ``=`` for assignment, ``==`` for 
+Java, and C#, so we use the tokens `=` for assignment, `==` for 
 equality, and we talk of *variables*.
 
 
@@ -156,50 +173,50 @@ One of the most common forms of assignment is an update, where the new
 value of the variable depends on its old value.   Deduct 40 cents from
 my airtime balance, or add one run to the scoreboard. 
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 n = 5
 n = 3 * n + 1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 Line 2 means `get the current value of n, multiply it by three and add
 one, and assign the answer to n, thus making n refer to the value`.  
-So after executing the two lines above, ``n`` will point/refer to the
+So after executing the two lines above, `n` will point/refer to the
 integer 16.
 
 If you try to get the value of a variable that has never been assigned to, you'll get an error:
 
-~~~~~~~~~~~~~~~{.python}        
+~~~~~~~~~~~~~~~{.javascript}        
 >>> w = x + 1
 Traceback (most recent call last):
   File "<interactive input>", line 1, in 
 NameError: name 'x' is not defined
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Before you can update a variable, you have to **initialize** it to some starting value, 
 usually with a simple assignment:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 runs_scored = 0
 ...
 runs_scored = runs_scored + 1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Line 3 — updating a variable by adding 1 to it — is very common.  
 It is called an **increment** of the variable; subtracting 1 is called a **decrement**.  
 Sometimes programmers also talk about *bumping* a variable, which means the same 
 as incrementing it by 1.
 
-The ``for`` loop revisited
+The `for` loop revisited
 --------------------------
 
-Recall that the ``for`` loop processes each item in a list.  Each item in
+Recall that the `for` loop processes each item in a list.  Each item in
 turn is (re-)assigned to the loop variable, and the body of the loop is executed.
 We saw this example earlier:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 for f in ["Joe", "Zoe", "Brad", "Angelina", "Zuki", "Thandi", "Paris"]:
     invitation = "Hi " + f + ".  Please come to my party on Saturday!"
-    print(invitation) 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log(invitation) 
+~~~~~~~~~~~~~~~~~~~~
 
 Running through all the items in a list is called **traversing** the list,
 or **traversal**.      
@@ -213,7 +230,7 @@ to remember the "running total".  It should be initialized with a value of zero,
 and then we need to traverse the items in the list.  For each item, we'll want
 to update the running total by adding the next number to it.
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 def mysum(xs):
     """ Sum all the numbers in the list xs, and return the total. """
     running_total = 0
@@ -227,7 +244,7 @@ test(mysum([1.25, 2.5, 1.75]) == 5.5)
 test(mysum([1, -2, 3]) == 2)
 test(mysum([ ]) == 0)
 test(mysum(range(11)) == 55)  # 11 is not included in the list.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
 Abbreviated assignment
 ----------------------
@@ -235,7 +252,7 @@ Abbreviated assignment
 Incrementing a variable is so common that Javascript provides an abbreviated syntax
 for it:
 
-~~~~~~~~~~~~~~~{.python}        
+~~~~~~~~~~~~~~~{.javascript}        
 >>> count = 0
 >>> count += 1
 >>> count
@@ -245,18 +262,18 @@ for it:
 2
 ~~~~~~~~~~~~~~~~~~~~
 
-``count += 1`` is an abreviation for ``count = count + 1`` . We pronounce the operator
+`count += 1` is an abreviation for `count = count + 1` . We pronounce the operator
 as *"plus-equals"*.  The increment value does not have to be 1:
 
-~~~~~~~~~~~~~~~{.python}        
+~~~~~~~~~~~~~~~{.javascript}        
 >>> n = 2
 >>> n += 5
 >>> n
 7
 ~~~~~~~~~~~~~~~~~~~~
-There are similar abbreviations for ``-=``, ``*=``, ``/=``, ``//=`` and ``%=``:
+There are similar abbreviations for `-=`, `*=`, `/=`, `//=` and `%=`:
 
-~~~~~~~~~~~~~~~{.python}        
+~~~~~~~~~~~~~~~{.javascript}        
 >>> n = 2
 >>> n *= 5
 >>> n
@@ -288,12 +305,12 @@ These are examples of **meta-notation** — notation that describes
 Javascript syntax, but is not part of it. The square brackets in this 
 documentation mean that the argument is *optional* — the programmer 
 can omit it.  So what this first line of help tells us is that 
-``range`` must always have a ``stop`` argument, but it may have an 
-optional ``start`` argument (which must be followed by a comma if it 
-is present), and it can also have an optional ``step`` argument, 
+`range` must always have a `stop` argument, but it may have an 
+optional `start` argument (which must be followed by a comma if it 
+is present), and it can also have an optional `step` argument, 
 preceded by a comma if it is present.
 
-The examples from help show that ``range`` can have either 1, 2 or 3 
+The examples from help show that `range` can have either 1, 2 or 3 
 arguments. The list can start at any starting value, and go up or 
 down in increments other than 1. The documentation here also says 
 that the arguments must be integers.
@@ -309,11 +326,11 @@ description
 means you can substitute any legal variable and any legal list when 
 you write your Javascript code.
 
-This (simplified) description of the ``print`` function, shows another example
-of meta-notation in which the ellipses (``...``) mean that you can have as many
+This (simplified) description of the `print` function, shows another example
+of meta-notation in which the ellipses (`...`) mean that you can have as many
 objects as you like (even zero), separated by commas:
    
-**print( [**\ *object,* ... **] )**
+**console.log( [**\ *object,* ... **] )**
    
 Meta-notation gives us a concise and powerful way to describe the *pattern* of some syntax
 or feature.  
@@ -345,15 +362,15 @@ a good example of iteration. The following program outputs a
 sequence of values in the left column and 2 raised to the power of 
 that value in the right column:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 for x in range(13):   # Generate numbers 0 to 12
-    print(x, "\t", 2**x)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log(x, "\t", 2**x)
+~~~~~~~~~~~~~~~~~~~~
 
-The string ``"\t"`` represents a **tab character**. The backslash character in
-``"\t"`` indicates the beginning of an **escape sequence**. Escape sequences
+The string `"\t"` represents a **tab character**. The backslash character in
+`"\t"` indicates the beginning of an **escape sequence**. Escape sequences
 are used to represent invisible characters like tabs and newlines. The sequence
-``\n`` represents a **newline**.
+`\n` represents a **newline**.
 
 An escape sequence can appear anywhere in a string; in this example, the tab
 escape sequence is the only thing in the string. How do you think you represent
@@ -361,7 +378,7 @@ a backslash in a string?
 
 As characters and strings are displayed on the screen, an invisible marker
 called the **cursor** keeps track of where the next character will go. After a
-``print`` function, the cursor normally goes to the beginning of the next
+`print` function, the cursor normally goes to the beginning of the next
 line.
 
 The tab character shifts the cursor to the right until it reaches one of the
@@ -397,27 +414,27 @@ want to print a multiplication table for the values from 1 to 6.
 A good way to start is to write a loop that prints the multiples of 2, all on
 one line:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 for i in range(1, 7):
-    print(2 * i, end="   ")
-print()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log(2 * i, end="   ")
+console.log()
+~~~~~~~~~~~~~~~~~~~~
 
-Here we've used the ``range`` function, but made it start its sequence at 1. 
-As the loop executes, the value of ``i`` changes from 1 to
-6. When all the elements of the range have been assigned to ``i``, the loop terminates. 
+Here we've used the `range` function, but made it start its sequence at 1. 
+As the loop executes, the value of `i` changes from 1 to
+6. When all the elements of the range have been assigned to `i`, the loop terminates. 
 Each time through the loop, it
-displays the value of ``2 * i``, followed by three spaces.
+displays the value of `2 * i`, followed by three spaces.
 
-Again, the extra ``end="   "`` argument in the ``print`` function suppresses the newline, and
+Again, the extra `end="   "` argument in the `print` function suppresses the newline, and
 uses three spaces instead.  After the
-loop completes, the call to ``print`` at line 3 finishes the current line, and starts a new line.
+loop completes, the call to `print` at line 3 finishes the current line, and starts a new line.
 
 The output of the program is:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 2      4      6      8      10     12Z
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 So far, so good. The next step is to **encapsulate** and **generalize**.
 
@@ -427,60 +444,60 @@ Encapsulation and generalization
 Encapsulation is the process of wrapping a piece of code in a 
 function, allowing you to take advantage of all the things functions 
 are good for. You have already seen some examples of encapsulation, 
-including ``is_divisible`` in a previous chapter.
+including `is_divisible` in a previous chapter.
 
 Generalization means taking something specific, such as printing the 
 multiples of 2, and making it more general, such as printing the 
 multiples of any integer.
 
 This function encapsulates the previous loop and generalizes it to print
-multiples of ``n``:
+multiples of `n`:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 def print_multiples(n):
     for i in range(1, 7):
-        print(n * i, end="   ")
-    print()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        console.log(n * i, end="   ")
+    console.log()
+~~~~~~~~~~~~~~~~~~~~
 
 To encapsulate, all we had to do was add the first line, which declares the
 name of the function and the parameter list. To generalize, all we had to do
-was replace the value 2 with the parameter ``n``.
+was replace the value 2 with the parameter `n`.
 
 If we call this function with the argument 2, we get the same output as before.
 With the argument 3, the output is:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 3      6      9      12     15     18
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 With the argument 4, the output is:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 4      8      12     16     20     24
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 By now you can probably guess how to print a multiplication table — by
-calling ``print_multiples`` repeatedly with different arguments. In fact, we
+calling `print_multiples` repeatedly with different arguments. In fact, we
 can use another loop:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 for i in range(1, 7):
     print_multiples(i)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Notice how similar this loop is to the one inside ``print_multiples``.  All we
-did was replace the ``print`` function with a function call.
+~~~~~~~~~~~~~~~~~~~~
+Notice how similar this loop is to the one inside `print_multiples`.  All we
+did was replace the `print` function with a function call.
 
 The output of this program is a multiplication table:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 1      2      3      4      5      6
 2      4      6      8      10     12
 3      6      9      12     15     18
 4      8      12     16     20     24
 5      10     15     20     25     30
 6      12     18     24     30     36
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 More encapsulation
 ------------------
@@ -488,7 +505,7 @@ More encapsulation
 To demonstrate encapsulation again, let's take the code from the last section
 and wrap it up in a function:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 def print_mult_table():
     for i in range(1, 7):
         print_multiples(i)
@@ -505,12 +522,12 @@ design as you go along.
 Local variables
 ---------------
 
-You might be wondering how we can use the same variable, ``i``, in both
-``print_multiples`` and ``print_mult_table``. Doesn't it cause problems when
+You might be wondering how we can use the same variable, `i`, in both
+`print_multiples` and `print_mult_table`. Doesn't it cause problems when
 one of the functions changes the value of the variable?
 
-The answer is no, because the ``i`` in ``print_multiples`` and the ``i`` in
-``print_mult_table`` are *not* the same variable.
+The answer is no, because the `i` in `print_multiples` and the `i` in
+`print_mult_table` are *not* the same variable.
 
 Variables created inside a function definition are local; you can't access a
 local variable from outside its home function. That means you are free to have
@@ -520,62 +537,62 @@ function.
 Javascript examines all the statements in a function — if any of them assign a value
 to a variable, that is the clue that Javascript uses to make the variable a local variable.
 
-The stack diagram for this program shows that the two variables named ``i`` are
+The stack diagram for this program shows that the two variables named `i` are
 not the same variable. They can refer to different values, and changing one
 does not affect the other.
 
 ![](figs/stack2.png "Stack 2 diagram ")
 
-The value of ``i`` in ``print_mult_table`` goes from 1 to 6. In the diagram it
+The value of `i` in `print_mult_table` goes from 1 to 6. In the diagram it
 happens to be 3. The next time through the loop it will be 4. Each time through
-the loop, ``print_mult_table`` calls ``print_multiples`` with the current value
-of ``i`` as an argument. That value gets assigned to the parameter ``n``.
+the loop, `print_mult_table` calls `print_multiples` with the current value
+of `i` as an argument. That value gets assigned to the parameter `n`.
 
-Inside ``print_multiples``, the value of ``i`` goes from 1 to 6. In the
+Inside `print_multiples`, the value of `i` goes from 1 to 6. In the
 diagram, it happens to be 2. Changing this variable has no effect on the value
-of ``i`` in ``print_mult_table``.
+of `i` in `print_mult_table`.
 
 It is common and perfectly legal to have different local variables with the
-same name. In particular, names like ``i`` and ``j`` are used frequently as
+same name. In particular, names like `i` and `j` are used frequently as
 loop variables. If you avoid using them in one function just because you used
 them somewhere else, you will probably make the program harder to read.
 
 The visualizer at http://netserv.ict.ru.ac.za/python3_viz/ shows very clearly how the 
-two variables ``i`` are distinct variables, and how they have independent values.
+two variables `i` are distinct variables, and how they have independent values.
 
 .. index:: break statement,  statement: break
 
-The ``break`` statement 
+The `break` statement 
 -----------------------
 
 The **break** statement is used to immediately leave the body of its loop.  The next
 statement to be executed is the first one after the body: 
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 for i in [12, 16, 17, 24, 29]: 
     if i % 2 == 1:  # If the number is odd
        break        #  ... immediately exit the loop
-    print(i)
-print("done")
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log(i)
+console.log("done")
+~~~~~~~~~~~~~~~~~~~~
     
 This prints: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 12
 16
 done
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 <aside id="loop-pretest">
 
 **The pre-test loop — standard loop behaviour**
 
-``for`` loops do their tests at the start, before executing
+`for` loops do their tests at the start, before executing
 any part of the body. This is called a **pre-test** loops, because the test
 happens before (pre) the body.
 
-``break`` and ``return`` are our tools for adapting this standard 
+`break` and `return` are our tools for adapting this standard 
 behaviour by enabling us to test a condition in the body of the loop 
 that allows us to exit the loop.
 
@@ -583,20 +600,20 @@ that allows us to exit the loop.
 
 </aside>
     
-The ``continue`` statement
+The `continue` statement
 --------------------------
 
 This is a control flow statement that causes the program to immediately skip the
 processing of the rest of the body of the loop, *for the current iteration*.  But
 the loop still carries on running for its remaining iterations: 
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 for i in [12, 16, 17, 24, 29, 30]: 
     if i % 2 == 1:      # If the number is odd
        continue         # Don't process it
-    print(i)
-print("done")
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log(i)
+console.log("done")
+~~~~~~~~~~~~~~~~~~~~
 
 This prints:
 
@@ -613,17 +630,17 @@ More generalization
 
 As another example of generalization, imagine you wanted a program that would
 print a multiplication table of any size, not just the six-by-six table. You
-could add a parameter to ``print_mult_table``:
+could add a parameter to `print_mult_table`:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 def print_mult_table(high):
     for i in range(1, high+1):
         print_multiples(i)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We replaced the value 7 with the expression ``high+1``. If we call
-``print_mult_table`` with the argument 7, it displays: 
+~~~~~~~~~~~~~~~~~~~~
+We replaced the value 7 with the expression `high+1`. If we call
+`print_mult_table` with the argument 7, it displays: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+~~~~~~~~~~~~~~~~~~~~  
 1      2      3      4      5      6
 2      4      6      8      10     12
 3      6      9      12     15     18
@@ -631,34 +648,34 @@ We replaced the value 7 with the expression ``high+1``. If we call
 5      10     15     20     25     30
 6      12     18     24     30     36
 7      14     21     28     35     42
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 This is fine, except that we probably want the table to be square — with the
 same number of rows and columns. To do that, we add another parameter to
-``print_multiples`` to specify how many columns the table should have.
+`print_multiples` to specify how many columns the table should have.
 
-Just to be annoying, we call this parameter ``high``, demonstrating that
+Just to be annoying, we call this parameter `high`, demonstrating that
 different functions can have parameters with the same name (just like local
 variables). Here's the whole program:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 def print_multiples(n, high):
     for i in range(1, high+1):
-        print(n * i, end="   ")
-    print()
+        console.log(n * i, end="   ")
+    console.log()
    
 def print_mult_table(high):
     for i in range(1, high+1):
         print_multiples(i, high)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Notice that when we added a new parameter, we had to change the first line of
 the function (the function heading), and we also had to change the place where
-the function is called in ``print_mult_table``.
+the function is called in `print_mult_table`.
 
-Now, when we call ``print_mult_table(7)``: 
+Now, when we call `print_mult_table(7)`: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 1      2      3      4      5      6      7
 2      4      6      8      10     12     14
 3      6      9      12     15     18     21
@@ -666,27 +683,27 @@ Now, when we call ``print_mult_table(7)``:
 5      10     15     20     25     30     35
 6      12     18     24     30     36     42
 7      14     21     28     35     42     49
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 
 When you generalize a function appropriately, you often get a program with
 capabilities you didn't plan. For example, you might notice that, because ab =
 ba, all the entries in the table appear twice. You could save ink by printing
 only half the table. To do that, you only have to change one line of
-``print_mult_table``. Change
+`print_mult_table`. Change
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}    
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
 print_multiples(i, high+1)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 to
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}    
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
 print_multiples(i, i+1)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 and you get:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 1
 2      4
 3      6      9
@@ -694,7 +711,7 @@ and you get:
 5      10     15     20     25
 6      12     18     24     30     36
 7      14     21     28     35     42     49
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Functions
 ---------
@@ -706,7 +723,7 @@ them:
 #. Capturing your mental chunking. Breaking your complex tasks into sub-tasks, and
    giving the sub-tasks a meaningful name is a powerful mental technique.  Look back
    at the example that illustrated the post-test loop: we assumed that we had a function
-   called ``play_the_game_once``.  This chunking allowed us to put aside the details
+   called `play_the_game_once`.  This chunking allowed us to put aside the details
    of the particular game — is it a card game, or noughts and crosses, or a role playing
    game — and simply focus on one isolated part of our program logic — letting the player
    choose whether they want to play again.   
@@ -724,36 +741,36 @@ the textbook a little, and show a more advanced way of representing our data.
 Making a pair of things in Javascript is as simple as putting them into parentheses,
 like this:
 
-~~~~~~~~~~~~~~~~~~~~{.python}
+~~~~~~~~~~~~~~~~~~~~{.javascript}
 year_born = ("Paris Hilton", 1981) 
 ~~~~~~~~~~~~~~~~~~~~
 
 We can put many pairs into a list of pairs:
 
-~~~~~~~~~~~~~~~~~~~~{.python}
+~~~~~~~~~~~~~~~~~~~~{.javascript}
 celebs = [("Brad Pitt", 1963), ("Jack Nicholson", 1937), 
                                 ("Justin Bieber", 1994)] 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
  
 Here is a quick sample of things we can do with structured data like this.  First,
 print all the celebs: 
 
-~~~~~~~~~~~~~~~~~~~~{.python}
-print(celebs)
-print(len(celebs))    
+~~~~~~~~~~~~~~~~~~~~{.javascript}
+console.log(celebs)
+console.log(len(celebs))    
 ~~~~~~~~~~~~~~~~~~~~
               
         [("Brad Pitt", 1963), ("Jack Nicholson", 1937), ("Justin Bieber", 1994)]
         3
  
-Notice that the ``celebs`` list has just 3 elements, each of them pairs.  
+Notice that the `celebs` list has just 3 elements, each of them pairs.  
  
 Now we print the names of those celebrities born before 1980:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 for (nm, yr) in celebs:
    if yr < 1980:
-        print(nm)
+        console.log(nm)
 ~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~
@@ -761,8 +778,8 @@ Brad Pitt
 Jack Nicholson
 ~~~~~~~~~~~~~~~~~~~~
     
-This demonstrates something we have not seen yet in the ``for`` loop: instead of using a single 
-loop control variable, we've used a pair of variable names, ``(nm, yr)``,  instead. 
+This demonstrates something we have not seen yet in the `for` loop: instead of using a single 
+loop control variable, we've used a pair of variable names, `(nm, yr)`,  instead. 
 The loop is executed three times — once for each pair in the list, and on each iteration both the 
 variables are assigned values from the pair of data that is being handled. 
   
@@ -773,38 +790,38 @@ Now we'll come up with an even more adventurous list of structured data.  In thi
 we have a list of students.  Each student has a name which is paired up with another list
 of subjects that they are enrolled for: 
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 students = [
     ("John", ["CompSci", "Physics"]),
     ("Vusi", ["Maths", "CompSci", "Stats"]),
     ("Jess", ["CompSci", "Accounting", "Economics", "Management"]),
     ("Sarah", ["InfSys", "Accounting", "Economics", "CommLaw"]),
     ("Zuki", ["Sociology", "Economics", "Law", "Stats", "Music"])]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Here we've assigned a list of five elements to the variable ``students``.  Let's print
+Here we've assigned a list of five elements to the variable `students`.  Let's print
 out each student name, and the number of subjects they are enrolled for:
  
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 # Print all students with a count of their courses.
 for (name, subjects) in students:
-    print(name, "takes", len(subjects), "courses")
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log(name, "takes", len(subjects), "courses")
+~~~~~~~~~~~~~~~~~~~~~~~
         
 Javascript agreeably responds with the following output: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 John takes 2 courses
 Vusi takes 3 courses
 Jess takes 4 courses
 Sarah takes 4 courses
 Zuki takes 5 courses
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we'd like to ask how many students are taking CompSci. This needs a counter,
 and for each student we need a second loop that tests each of the subjects in turn:
 
-~~~~~~~~~~~~~~~~~~~~{.python .numberLines}        
+~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 # Count how many students are taking CompSci
 counter = 0
 for (name, subjects) in students:
@@ -812,12 +829,12 @@ for (name, subjects) in students:
         if s == "CompSci":
            counter += 1
            
-print("The number of students taking CompSci is", counter)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+console.log("The number of students taking CompSci is", counter)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 The number of students taking CompSci is 3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 You should set up a list of your own data that interests you  — 
 perhaps a list of your CDs, each containing a list of song titles on the CD,
@@ -850,23 +867,23 @@ loop variable
 
 instance
 :  instance
-   the class ``Turtle``.  
+   the class `Turtle`.  
 
 method
 :  method
-   causes the object to respond in some way, e.g. ``forward`` is the method
-   when we say ``tess.forward(100)``.
+   causes the object to respond in some way, e.g. `forward` is the method
+   when we say `tess.forward(100)`.
 
 invoke
 :  invoke
    method*.  Invoking a method is done by putting parentheses after the method
-   name, with some possible arguments. So  ``tess.forward()`` is an invocation
-   of the ``forward`` method.  
+   name, with some possible arguments. So  `tess.forward()` is an invocation
+   of the `forward` method.  
     
 module
 :  module
    Javascript programs. The contents of a module are made available to the other 
-   program by using the ``import`` statement.
+   program by using the `import` statement.
    
 object
 :  object
@@ -878,36 +895,36 @@ range
 
 terminating condition
 :  terminating condition
-   In the ``for`` loops we saw in this chapter, the terminating condition 
+   In the `for` loops we saw in this chapter, the terminating condition 
    has been when there are no more elements to assign to the loop variable.
 
 
 Exercises
 ---------
 
-#. Write a program that prints ``We like Javascript's turtles!`` 1000 times. 
+#. Write a program that prints `We like Javascript's turtles!` 1000 times. 
 
 #. Give three attributes of your cellphone object. Give three methods of your cellphone.  
 
 #. Write a program that uses a for loop to print
-     |  ``One of the months of the year is January``
-     |  ``One of the months of the year is February``
+     |  `One of the months of the year is January`
+     |  `One of the months of the year is February`
      |  …
      
-#. Suppose our turtle ``tess`` is at heading 0 — facing east. We execute the statement
-   ``tess.left(3645)``.  What does ``tess`` do, and what is her final heading?
+#. Suppose our turtle `tess` is at heading 0 — facing east. We execute the statement
+   `tess.left(3645)`.  What does `tess` do, and what is her final heading?
      
-#. Assume you have the assignment ``xs = [12, 10, 32, 3, 66, 17, 42, 99, 20]``
+#. Assume you have the assignment `xs = [12, 10, 32, 3, 66, 17, 42, 99, 20]`
     
    a. Write a loop that prints each of the numbers on a new line.
    b. Write a loop that prints each number and its square on a new line.
    c. Write a loop that adds all the numbers from the list into a variable called `total`.
       You should set the `total` variable to have the value 0 before you start adding them up,
-      and print the value in ``total`` after the loop has completed.  
+      and print the value in `total` after the loop has completed.  
    d. Print the product of all the numbers in the list. 
       (product means all multiplied together)   
       
-#. Use ``for`` loops to make a turtle draw these regular polygons 
+#. Use `for` loops to make a turtle draw these regular polygons 
    (regular means all sides the same lengths, all angles the same):  
   
    * An equilateral triangle    

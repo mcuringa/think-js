@@ -18,11 +18,7 @@ listing ./examples/tip-calculator.js tip-notes.md  ./work/tip-src.md;
 
 #CHAPTERS="forward.md preface.md way_of_the_program.md variables.md turtles.md functions.md conditionals.md iteration.md lists.md tuples.md dictionaries.md schools.md while.md";
 
-<<<<<<< HEAD
-CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md ./work/tip-src.md conditionals.md iteration.md while.md fdl-1.3.md";
-=======
-CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md ./work/tip-src.md conditionals.md code-listings.md fdl-1.3.md";
->>>>>>> 631100e65109ba54fc3f32eb87cc737a83868119
+CHAPTERS="forward.md preface.md way_of_the_program.md variables.md functions.md ./work/tip-src.md conditionals.md iteration.md while.md code-listings.md fdl-1.3.md";
 
 pandoc -o ./docs/index.html --mathml --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 
