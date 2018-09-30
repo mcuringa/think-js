@@ -423,26 +423,19 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#conditional-exercises">Conditional Exercises</a></li>
 <li><a href="#conditionals-lab">Conditionals Lab</a></li>
 </ul></li>
-<li><a href="#iteration">Iteration</a><ul>
+<li><a href="#iteration-with-for-loops">Iteration with <code>for</code> loops</a><ul>
 <li><a href="#running-loops">Running loops</a></li>
 <li><a href="#the-for-loop">The <code>for</code> loop</a></li>
-<li><a href="#flow-of-execution-of-the-for-loop">Flow of Execution of the for loop</a></li>
 <li><a href="#assignment">Assignment</a></li>
 <li><a href="#updating-variables">Updating variables</a></li>
-<li><a href="#the-for-loop-revisited">The <code>for</code> loop revisited</a></li>
 <li><a href="#abbreviated-assignment">Abbreviated assignment</a></li>
-<li><a href="#help-and-meta-notation">Help and meta-notation</a></li>
 <li><a href="#tables">Tables</a></li>
 <li><a href="#two-dimensional-tables">Two-dimensional tables</a></li>
 <li><a href="#encapsulation-and-generalization">Encapsulation and generalization</a></li>
-<li><a href="#more-encapsulation">More encapsulation</a></li>
+<li><a href="#more-encapsulation-and-generalization">More encapsulation and generalization</a></li>
 <li><a href="#local-variables">Local variables</a></li>
-<li><a href="#the-break-statement">The <code>break</code> statement</a></li>
-<li><a href="#the-continue-statement">The <code>continue</code> statement</a></li>
 <li><a href="#more-generalization">More generalization</a></li>
 <li><a href="#functions-2">Functions</a></li>
-<li><a href="#paired-data">Paired Data</a></li>
-<li><a href="#nested-loops-for-nested-data">Nested Loops for Nested Data</a></li>
 <li><a href="#glossary-5">Glossary</a></li>
 <li><a href="#exercises-1">Exercises</a></li>
 </ul></li>
@@ -2318,8 +2311,8 @@ BMI</annotation></semantics></math> If you choose to use standard rather than me
 </section>
 </section>
 </section>
-<section id="iteration" class="level1">
-<h1>Iteration</h1>
+<section id="iteration-with-for-loops" class="level1">
+<h1>Iteration with <code>for</code> loops</h1>
 <section id="running-loops" class="level2">
 <h2>Running loops</h2>
 <p>Computers are often used to automate repetitive tasks. Repeating identical or similar tasks without making errors is something that computers do well and people do poorly.</p>
@@ -2328,15 +2321,20 @@ BMI</annotation></semantics></math> If you choose to use standard rather than me
 <section id="the-for-loop" class="level2">
 <h2>The <code>for</code> loop</h2>
 <p>A basic building block of all programs is to be able to repeat some code, over and over again. Javascript’s <strong>for</strong> loop solves this for us. The syntax for the <code>for</code> loop is:</p>
-<pre><code>for ([initialization]; [loop condition]; [final-expression]) {
-  loop body
-}</code></pre>
-<p>We can see that <code>for</code> follows the familiar <strong>block statements</strong> that we have already seen for <em>functions</em> and <em>if</em>/<em>else</em> statements, with a header and then body between opening and closing curly braces ({}); In the case of <code>for</code>, the header contains 3 statements inside the parenthesis. The <strong>initialization</strong> statement is called exactly once: the first time the program reaches the for statement. The <strong>loop condition</strong> is tested before each iteration of the loop. If <code>true</code>, the <strong>loop body</strong> executes. The loop body may contain any number of Javascript statements. After the loop body statements are executed, the <strong>final expression</strong> is called. Typically this expression <em>increments</em> (adds to) or <em>decrements</em> (subtracts from) the loop variable. After the final expression is called, the loop condition is checked again to see if the loop should continue or <em>terminate</em>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">for</span> <span class="kw">(</span>[<span class="ex">initialization</span>]<span class="kw">;</span> [<span class="ex">loop</span> condition]<span class="kw">;</span> [<span class="ex">final-expression</span>]<span class="kw">)</span> <span class="kw">{</span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">  <span class="ex">loop</span> body</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="kw">}</span></a></code></pre></div>
+<p>We can see that <code>for</code> follows the familiar pattern for <strong>block statements</strong> that we have already seen for <em>functions</em> and <em>if</em>/<em>else</em> statements, with a header and then body between opening and closing curly braces ({}); In the case of <code>for</code>, the header contains 3 statements inside the parenthesis.</p>
+<ol type="1">
+<li>The <strong>initialization</strong> statement is called exactly once: the first time the program reaches the for statement.</li>
+<li>The <strong>loop condition</strong> is tested before each iteration of the loop. If <code>true</code>, the <strong>loop body</strong> executes. The loop body may contain any number of Javascript statements.</li>
+<li>After the loop body statements are executed, the <strong>final expression</strong> is called. Typically this expression <em>increments</em> (adds to) or <em>decrements</em> (subtracts from) the loop variable. After the final expression is called, the loop condition is checked again to see if the loop should continue or <em>terminate</em>.</li>
+</ol>
 <p>We have already played around with the <code>for</code> loop with our turtle graphics when we were looking at the variables in a spiral. Let’s take a closer look at this function which contains a for loop.</p>
 <figure class="figure">
 <img src="figs/turtle-spiral.png" class="figure-img img-fluid" alt="Square spiral created with turtle graphics code.">
 <figcaption class="figure-caption">
-Our <code>spiral</code> function draws this design. <a href="https://repl.it/@mcuringa/turtle-spiral">Try it and remix it here.</a>
+Our <code>spiral</code> function (below) uses a <code>for</code> loop to draw this design. <a href="https://repl.it/@mcuringa/turtle-spiral">Try it and remix it here.</a>
 </figcaption>
 </figure>
 <div class="sourceCode" id="cb89"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">function</span> <span class="at">spiral</span> () <span class="op">{</span></a>
@@ -2350,23 +2348,13 @@ Our <code>spiral</code> function draws this design. <a href="https://repl.it/@mc
 <a class="sourceLine" id="cb89-9" data-line-number="9">  <span class="op">}</span></a>
 <a class="sourceLine" id="cb89-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
 <ul>
-<li>The variable <code>i</code> in the <code>for</code> statement at line 5 is called the <strong>loop variable</strong>. We could have chosen any other variable name instead, but <code>i</code> is a common convention, being short for the loop <em>index</em>.</li>
-<li>The <strong>loop initialization</strong> assigns the loop variable its initial value: <code>let i = 0;</code></li>
-<li>The indented lines between the curly braces form the <strong>loop body</strong>. <code>spiral</code>’s loop body contains 3 statements which move the turtle forward, increment the <code>distance</code> variable, and rotate the turtle.</li>
-<li>Each <em>iteration</em> or <em>pass</em> of the loop, checks the <strong>loop condition</strong>. If <code>true</code> the loop runs for another iteration. If it is <code>false</code>, it terminates.</li>
-<li>At the end of each execution of the body of the loop, Javascript returns to the <code>for</code> statement to run the <strong>final expression</strong>. The final expression here increments <code>i</code> by one, using the special <code>++</code> operator.</li>
+<li>The variable <code>i</code> in the <code>for</code> statement at line 5 is the <strong>loop variable</strong>. We could have chosen any other variable name instead, but <code>i</code> is a common convention, being short for the loop <em>index</em>.</li>
+<li>The <strong>loop initialization</strong> assigns the loop variable its starting value: <code>let i = 0;</code></li>
+<li>The indented lines between the curly braces form the <strong>loop body</strong>. <code>spiral</code>’s loop body contains 3 statements which (line 5) move the turtle forward, (line 6) increment the <code>distance</code> variable, and (line 7) rotate the turtle.</li>
+<li>At the <em>beginning</em> of each <em>iteration</em> or <em>pass</em> of the loop, the Javascript interpreter checks the <strong>loop condition</strong>. If <code>true</code> the loop runs for another iteration. If <code>false</code>, the loop terminates.</li>
+<li>At the <em>end</em> of each execution of the body of the loop, Javascript returns to the <code>for</code> header to run the <strong>final expression</strong>. The final expression here increments <code>i</code> by one, using the special <code>++</code> operator.</li>
 <li>Finally, when the loop condition is false, the program continues beyond the closing curly brace. In <code>spiral</code>, since there are no other statements in the function body, the function returns <code>undefined</code> since it is a <em>void function</em>.</li>
 </ul>
-</section>
-<section id="flow-of-execution-of-the-for-loop" class="level2">
-<h2>Flow of Execution of the for loop</h2>
-<p>As a program executes, the interpreter always keeps track of which statement is about to be executed. We call this the <strong>control flow</strong>, of the <strong>flow of execution</strong> of the program. When humans execute programs, they often use their finger to point to each statement in turn. So we could think of control flow as “Javascript’s moving finger”.</p>
-<p>Control flow until now has been strictly top to bottom, one statement at a time. The <code>for</code> loop changes this.</p>
-<aside id="for-loop-flow">
-<p><strong>Flowchart of a <code>for</code> loop</strong></p>
-<p>Control flow is often easy to visualize and understand if we draw a flowchart. This shows the exact steps and logic of how the <code>for</code> statement executes.</p>
-<p><img src="figs/flowchart_for.png" /></p>
-</aside>
 </section>
 <section id="assignment" class="level2">
 <h2>Assignment</h2>
@@ -2376,102 +2364,62 @@ Our <code>spiral</code> function draws this design. <a href="https://repl.it/@mc
 <a class="sourceLine" id="cb90-3" data-line-number="3">airTimeRemaining <span class="op">=</span> <span class="dv">7</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb90-4" data-line-number="4"><span class="va">console</span>.<span class="at">log</span>(airTimeRemaining)<span class="op">;</span></a></code></pre></div>
 <p>The output of this program is:</p>
-<pre><code>15
-7</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="ex">15</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="ex">7</span></a></code></pre></div>
 <p>because the first time <code>airtime_remaining</code> is printed, its value is 15, and the second time, its value is 7.</p>
-<p>It is especially important to distinguish between an assignment statement and a Boolean expression that tests for equality. Because Javascript uses the equal token (<code>=</code>) for assignment, it is tempting to interpret a statement like <code>a = b</code> as a Boolean test. Unlike mathematics, it is not! Remember that the Javascript token for the equality operator is <code>==</code>.</p>
-<p>Note too that an equality test is symmetric, but assignment is not. For example, if <code>a == 7</code> then <code>7 == a</code>. But in Javascript, the statement <code>a = 7</code> is legal and <code>7 = a</code> is not.</p>
+<p>It is especially important to distinguish between an assignment statement and a Boolean expression that tests for equality. Because Javascript uses the equal token (<code>=</code>) for assignment, it is tempting to interpret a statement like <code>a = b</code> as a Boolean test. Unlike mathematics, it is not! Remember that the Javascript token for the equality operator is <code>===</code>.</p>
+<p>Note too that an equality test is symmetric, but assignment is not. For example, if <code>a === 7</code> then <code>7 === a</code>. But in Javascript, the statement <code>a = 7</code> is legal and <code>7 = a</code> is not.</p>
 <p>In Javascript, an assignment statement can make two variables equal, but because further assignments can change either of them, they don’t have to stay that way:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb92-1" data-line-number="1">a <span class="op">=</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb92-2" data-line-number="2">b <span class="op">=</span> a    # After executing <span class="kw">this</span> line<span class="op">,</span> a and b are now equal</a>
-<a class="sourceLine" id="cb92-3" data-line-number="3">a <span class="op">=</span> <span class="dv">3</span>    # After executing <span class="kw">this</span> line<span class="op">,</span> a and b are no longer equal</a></code></pre></div>
-<p>The third line changes the value of <code>a</code> but does not change the value of <code>b</code>, so they are no longer equal. (In some programming languages, a different symbol is used for assignment, such as <code>&lt;-</code> or <code>:=</code>, to avoid confusion. Some people also think that <em>variable</em> was an unfortunate word to choose, and instead we should have called them <em>assignables</em>. Javascript chooses to follow common terminology and token usage, also found in languages like C, C++, Java, and C#, so we use the tokens <code>=</code> for assignment, <code>==</code> for equality, and we talk of <em>variables</em>.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">let</span> a <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2"><span class="kw">let</span> b <span class="op">=</span> a<span class="op">;</span>    <span class="co">// After executing this line, a and b are now equal</span></a>
+<a class="sourceLine" id="cb92-3" data-line-number="3">a <span class="op">=</span> <span class="dv">3</span><span class="op">;</span>    <span class="co">// After executing this line, a and b are no longer equal</span></a></code></pre></div>
+<p>The third line changes the value of <code>a</code> but does not change the value of <code>b</code>, so they are no longer equal. (In some programming languages, a different symbol is used for assignment, such as <code>&lt;-</code> or <code>:=</code>, to avoid confusion. Some people also think that <em>variable</em> was an unfortunate word to choose, and instead we should have called them <em>assignables</em>. Javascript chooses to follow common terminology and token usage, also found in languages like C, C++, Java, and C#, so we use the tokens <code>=</code> for assignment, <code>==</code> (or <code>===</code> which we prefer in Javascript) for equality, and we talk of <em>variables</em>.</p>
 </section>
 <section id="updating-variables" class="level2">
 <h2>Updating variables</h2>
 <p>When an assignment statement is executed, the right-hand side expression (i.e. the expression that comes after the assignment token) is evaluated first. This produces a value. Then the assignment is made, so that the variable on the left-hand side now refers to the new value.</p>
 <p>One of the most common forms of assignment is an update, where the new value of the variable depends on its old value. Deduct 40 cents from my airtime balance, or add one run to the scoreboard.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb93-1" data-line-number="1">n <span class="op">=</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2">n <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> n <span class="op">+</span> <span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">let</span> n <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb93-2" data-line-number="2">n <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> n <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></a></code></pre></div>
 <p>Line 2 means <code>get the current value of n, multiply it by three and add one, and assign the answer to n, thus making n refer to the value</code>.<br />
 So after executing the two lines above, <code>n</code> will point/refer to the integer 16.</p>
 <p>If you try to get the value of a variable that has never been assigned to, you’ll get an error:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> w <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="at">Traceback</span> (most recent call last)<span class="op">:</span></a>
-<a class="sourceLine" id="cb94-3" data-line-number="3">  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span><span class="op">,</span> line <span class="dv">1</span><span class="op">,</span> <span class="kw">in</span> </a>
-<a class="sourceLine" id="cb94-4" data-line-number="4">NameError<span class="op">:</span> name <span class="st">&#39;x&#39;</span> is not defined</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb94-1" data-line-number="1">⠕ <span class="kw">let</span> w <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">ReferenceError<span class="op">:</span> x is not defined</a></code></pre></div>
 <p>Before you can update a variable, you have to <strong>initialize</strong> it to some starting value, usually with a simple assignment:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb95-1" data-line-number="1">runs_scored <span class="op">=</span> <span class="dv">0</span></a>
+<div class="sourceCode" id="cb95"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">let</span> runsScored <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb95-2" data-line-number="2">...</a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">runs_scored <span class="op">=</span> runs_scored <span class="op">+</span> <span class="dv">1</span></a></code></pre></div>
+<a class="sourceLine" id="cb95-3" data-line-number="3">runsScored <span class="op">=</span> runsScored <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></a></code></pre></div>
 <p>Line 3 — updating a variable by adding 1 to it — is very common.<br />
 It is called an <strong>increment</strong> of the variable; subtracting 1 is called a <strong>decrement</strong>.<br />
 Sometimes programmers also talk about <em>bumping</em> a variable, which means the same as incrementing it by 1.</p>
 </section>
-<section id="the-for-loop-revisited" class="level2">
-<h2>The <code>for</code> loop revisited</h2>
-<p>Recall that the <code>for</code> loop processes each item in a list. Each item in turn is (re-)assigned to the loop variable, and the body of the loop is executed. We saw this example earlier:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="cf">for</span> f <span class="kw">in</span> [<span class="st">&quot;Joe&quot;</span><span class="op">,</span> <span class="st">&quot;Zoe&quot;</span><span class="op">,</span> <span class="st">&quot;Brad&quot;</span><span class="op">,</span> <span class="st">&quot;Angelina&quot;</span><span class="op">,</span> <span class="st">&quot;Zuki&quot;</span><span class="op">,</span> <span class="st">&quot;Thandi&quot;</span><span class="op">,</span> <span class="st">&quot;Paris&quot;</span>]<span class="op">:</span></a>
-<a class="sourceLine" id="cb96-2" data-line-number="2">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
-<a class="sourceLine" id="cb96-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(invitation) </a></code></pre></div>
-<p>Running through all the items in a list is called <strong>traversing</strong> the list, or <strong>traversal</strong>.</p>
-<p>Let us write a function now to sum up all the elements in a list of numbers. Do this by hand first, and try to isolate exactly what steps you take. You’ll find you need to keep some “running total” of the sum so far, either on a piece of paper, in your head, or in your calculator. Remembering things from one step to the next is precisely why we have variables in a program: so we’ll need some variable to remember the “running total”. It should be initialized with a value of zero, and then we need to traverse the items in the list. For each item, we’ll want to update the running total by adding the next number to it.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb97-1" data-line-number="1">def <span class="at">mysum</span>(xs)<span class="op">:</span></a>
-<a class="sourceLine" id="cb97-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Sum all the numbers in the list xs, and return the total. &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb97-3" data-line-number="3">    running_total <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb97-4" data-line-number="4">    <span class="cf">for</span> x <span class="kw">in</span> xs<span class="op">:</span></a>
-<a class="sourceLine" id="cb97-5" data-line-number="5">        running_total <span class="op">=</span> running_total <span class="op">+</span> x</a>
-<a class="sourceLine" id="cb97-6" data-line-number="6">    <span class="cf">return</span> running_total</a>
-<a class="sourceLine" id="cb97-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb97-8" data-line-number="8"># Add tests like these to your test <span class="va">suite</span> ...</a>
-<a class="sourceLine" id="cb97-9" data-line-number="9"><span class="at">test</span>(<span class="at">mysum</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]) <span class="op">==</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb97-10" data-line-number="10"><span class="at">test</span>(<span class="at">mysum</span>([<span class="fl">1.25</span><span class="op">,</span> <span class="fl">2.5</span><span class="op">,</span> <span class="fl">1.75</span>]) <span class="op">==</span> <span class="fl">5.5</span>)</a>
-<a class="sourceLine" id="cb97-11" data-line-number="11"><span class="at">test</span>(<span class="at">mysum</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">-2</span><span class="op">,</span> <span class="dv">3</span>]) <span class="op">==</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb97-12" data-line-number="12"><span class="at">test</span>(<span class="at">mysum</span>([ ]) <span class="op">==</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb97-13" data-line-number="13"><span class="at">test</span>(<span class="at">mysum</span>(<span class="at">range</span>(<span class="dv">11</span>)) <span class="op">==</span> <span class="dv">55</span>)  # <span class="dv">11</span> is not included <span class="kw">in</span> the <span class="va">list</span>.</a></code></pre></div>
-</section>
 <section id="abbreviated-assignment" class="level2">
 <h2>Abbreviated assignment</h2>
 <p>Incrementing a variable is so common that Javascript provides an abbreviated syntax for it:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> count <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> count <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> count</a>
-<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="dv">1</span></a>
-<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> count <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> count</a>
-<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="dv">2</span></a></code></pre></div>
-<p><code>count += 1</code> is an abreviation for <code>count = count + 1</code> . We pronounce the operator as <em>“plus-equals”</em>. The increment value does not have to be 1:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> n <span class="op">=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> n <span class="op">+=</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> n</a>
-<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="dv">7</span></a></code></pre></div>
-<p>There are similar abbreviations for <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>//=</code> and <code>%=</code>:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> n <span class="op">=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="op">&gt;&gt;&gt;</span> n <span class="op">*=</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> n</a>
-<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="dv">10</span></a>
-<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="op">&gt;&gt;&gt;</span> n <span class="op">-=</span> <span class="dv">4</span></a>
-<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> n</a>
-<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="dv">6</span></a>
-<a class="sourceLine" id="cb100-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> n <span class="co">//= 2</span></a>
-<a class="sourceLine" id="cb100-9" data-line-number="9"><span class="op">&gt;&gt;&gt;</span> n</a>
-<a class="sourceLine" id="cb100-10" data-line-number="10"><span class="dv">3</span></a>
-<a class="sourceLine" id="cb100-11" data-line-number="11"><span class="op">&gt;&gt;&gt;</span> n <span class="op">%=</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb100-12" data-line-number="12"><span class="op">&gt;&gt;&gt;</span> n</a>
-<a class="sourceLine" id="cb100-13" data-line-number="13"><span class="dv">1</span></a></code></pre></div>
-</section>
-<section id="help-and-meta-notation" class="level2">
-<h2>Help and meta-notation</h2>
-<p>Javascript comes with extensive documentation for all its built-in functions, and its libraries. Different systems have different ways of accessing this help. In PyScripter, click on the <em>Help</em> menu item, and select <em>Javascript Manuals</em>. Then search for help on the built-in function <strong>range</strong>. You’ll get something like this:</p>
-<p><img src="figs/help_range.png" /></p>
-<p>Notice the square brackets in the description of the arguments. These are examples of <strong>meta-notation</strong> — notation that describes Javascript syntax, but is not part of it. The square brackets in this documentation mean that the argument is <em>optional</em> — the programmer can omit it. So what this first line of help tells us is that <code>range</code> must always have a <code>stop</code> argument, but it may have an optional <code>start</code> argument (which must be followed by a comma if it is present), and it can also have an optional <code>step</code> argument, preceded by a comma if it is present.</p>
-<p>The examples from help show that <code>range</code> can have either 1, 2 or 3 arguments. The list can start at any starting value, and go up or down in increments other than 1. The documentation here also says that the arguments must be integers.</p>
-<p>Other meta-notation you’ll frequently encounter is the use of bold and italics. The bold means that these are tokens — keywords or symbols — typed into your Javascript code exactly as they are, whereas the italic terms stand for “something of this type”. So the syntax description</p>
-<p><strong>for</strong> <em>variable</em> <strong>in</strong> <em>list</em> <strong>:</strong></p>
-<p>means you can substitute any legal variable and any legal list when you write your Javascript code.</p>
-<p>This (simplified) description of the <code>print</code> function, shows another example of meta-notation in which the ellipses (<code>...</code>) mean that you can have as many objects as you like (even zero), separated by commas:</p>
-<p><strong>console.log( [<strong> <em>object,</em> … </strong>] )</strong></p>
-<p>Meta-notation gives us a concise and powerful way to describe the <em>pattern</em> of some syntax or feature.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb96-1" data-line-number="1">⠕ count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">⠕ count<span class="op">++;</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3">⠕ count<span class="op">;</span></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="dv">1</span></a></code></pre></div>
+<p><code>count++</code> is an abreviation for <code>count = count + 1</code>. We pronounce the operator as <em>“plus-plus”</em>. Javascript offers a different operator (<code>+=</code> pronounced <em>“plus-equals”</em>) for increment values other than 1:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb97-1" data-line-number="1">⠕ n <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2">⠕ n <span class="op">+=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">⠕ n<span class="op">;</span></a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"><span class="dv">7</span></a></code></pre></div>
+<p>There are similar abbreviations for <code>--</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, and <code>%=</code>:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb98-1" data-line-number="1">⠕ n <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">⠕ n<span class="op">--;</span></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3">⠕ n<span class="op">;</span></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="dv">2</span></a>
+<a class="sourceLine" id="cb98-5" data-line-number="5">⠕ n <span class="op">*=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb98-6" data-line-number="6">⠕ n<span class="op">;</span></a>
+<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="dv">10</span></a>
+<a class="sourceLine" id="cb98-8" data-line-number="8">⠕ n <span class="op">-=</span> <span class="dv">4</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb98-9" data-line-number="9">⠕ n<span class="op">;</span></a>
+<a class="sourceLine" id="cb98-10" data-line-number="10"><span class="dv">6</span></a>
+<a class="sourceLine" id="cb98-11" data-line-number="11">⠕ n <span class="op">%=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb98-12" data-line-number="12">⠕ n<span class="op">;</span></a>
+<a class="sourceLine" id="cb98-13" data-line-number="13"><span class="dv">1</span></a></code></pre></div>
 </section>
 <section id="tables" class="level2">
 <h2>Tables</h2>
@@ -2479,231 +2427,142 @@ Sometimes programmers also talk about <em>bumping</em> a variable, which means t
 <p>When computers appeared on the scene, one of the initial reactions was, <em>“This is great! We can use the computers to generate the tables, so there will be no errors.”</em> That turned out to be true (mostly) but shortsighted. Soon thereafter, computers and calculators were so pervasive that the tables became obsolete.</p>
 <p>Well, almost. For some operations, computers use tables of values to get an approximate answer and then perform computations to improve the approximation. In some cases, there have been errors in the underlying tables, most famously in the table the Intel Pentium processor chip used to perform floating-point division.</p>
 <p>Although a log table is not as useful as it once was, it still makes a good example of iteration. The following program outputs a sequence of values in the left column and 2 raised to the power of that value in the right column:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="cf">for</span> x <span class="kw">in</span> <span class="at">range</span>(<span class="dv">13</span>)<span class="op">:</span>   # Generate numbers <span class="dv">0</span> to <span class="dv">12</span></a>
-<a class="sourceLine" id="cb101-2" data-line-number="2">    <span class="va">console</span>.<span class="at">log</span>(x<span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">**</span>x)</a></code></pre></div>
-<p>The string <code>&quot;\t&quot;</code> represents a <strong>tab character</strong>. The backslash character in <code>&quot;\t&quot;</code> indicates the beginning of an <strong>escape sequence</strong>. Escape sequences are used to represent invisible characters like tabs and newlines. The sequence <code>\n</code> represents a <strong>newline</strong>.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">13</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span>  <span class="co">// Generate numbers 0 to 12</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(i <span class="op">+</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span> <span class="op">+</span> <span class="dv">2</span><span class="op">**</span>i)<span class="op">;</span></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>The string <code>&quot;\t&quot;</code> represents a <strong>tab character</strong>. The backslash character in <code>&quot;\t&quot;</code> indicates the beginning of an <strong>escape sequence</strong>. Escape sequences are used to represent invisible characters like tabs and newlines. The sequence <code>\n</code> represents a <strong>newline</strong>, breaking a string onto the next line.</p>
 <p>An escape sequence can appear anywhere in a string; in this example, the tab escape sequence is the only thing in the string. How do you think you represent a backslash in a string?</p>
-<p>As characters and strings are displayed on the screen, an invisible marker called the <strong>cursor</strong> keeps track of where the next character will go. After a <code>print</code> function, the cursor normally goes to the beginning of the next line.</p>
+<p>As characters and strings are displayed on the screen, an invisible marker called the <strong>cursor</strong> keeps track of where the next character will go. After calling <code>console.log</code>, the cursor normally goes to the beginning of the next line.</p>
 <p>The tab character shifts the cursor to the right until it reaches one of the tab stops. Tabs are useful for making columns of text line up, as in the output of the previous program:</p>
-<pre><code>0       1
-1       2
-2       4
-3       8
-4       16
-5       32
-6       64
-7       128
-8       256
-9       512
-10      1024
-11      2048
-12      4096</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="ex">0</span>     1</a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="ex">1</span>     2</a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="ex">2</span>     4</a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="ex">3</span>     8</a>
+<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="ex">4</span>     16</a>
+<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="ex">5</span>     32</a>
+<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="ex">6</span>     64</a>
+<a class="sourceLine" id="cb100-8" data-line-number="8"><span class="ex">7</span>     128</a>
+<a class="sourceLine" id="cb100-9" data-line-number="9"><span class="ex">8</span>     256</a>
+<a class="sourceLine" id="cb100-10" data-line-number="10"><span class="ex">9</span>     512</a>
+<a class="sourceLine" id="cb100-11" data-line-number="11"><span class="ex">10</span>    1024</a>
+<a class="sourceLine" id="cb100-12" data-line-number="12"><span class="ex">11</span>    2048</a>
+<a class="sourceLine" id="cb100-13" data-line-number="13"><span class="ex">12</span>    4096</a></code></pre></div>
 <p>Because of the tab characters between the columns, the position of the second column does not depend on the number of digits in the first column.</p>
 </section>
 <section id="two-dimensional-tables" class="level2">
 <h2>Two-dimensional tables</h2>
 <p>A two-dimensional table is a table where you read the value at the intersection of a row and a column. A multiplication table is a good example. Let’s say you want to print a multiplication table for the values from 1 to 6.</p>
-<p>A good way to start is to write a loop that prints the multiples of 2, all on one line:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">7</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">    <span class="va">console</span>.<span class="at">log</span>(<span class="dv">2</span> <span class="op">*</span> i<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;   &quot;</span>)</a>
-<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>()</a></code></pre></div>
-<p>Here we’ve used the <code>range</code> function, but made it start its sequence at 1. As the loop executes, the value of <code>i</code> changes from 1 to 6. When all the elements of the range have been assigned to <code>i</code>, the loop terminates. Each time through the loop, it displays the value of <code>2 * i</code>, followed by three spaces.</p>
-<p>Again, the extra <code>end=&quot;   &quot;</code> argument in the <code>print</code> function suppresses the newline, and uses three spaces instead. After the loop completes, the call to <code>print</code> at line 3 finishes the current line, and starts a new line.</p>
+<p>A good way to start is to write a loop that prints the multiples of 2, all on one line. Because <code>console.log</code> moves the cursor to the next line, we’re going to accumulate our data into a string variable, and then print out the whole row with a call to <code>console.log</code>.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">let</span> row <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>     </a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">7</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3">  row <span class="op">+=</span> (<span class="dv">2</span> <span class="op">*</span> i) <span class="op">+</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="op">}</span></a>
+<a class="sourceLine" id="cb101-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(row)<span class="op">;</span></a></code></pre></div>
+<p>Here we initialized our loop variable <code>i</code> to 1 rather than 0 because we want to start counting from 1. As the loop executes, the value of <code>i</code> changes from 1 to 6. When <code>i</code> is incremented to 7, the loop terminates. Each time through the loop, it displays the value of <code>2 * i</code>, followed by the tab escape character.</p>
+<p>We use the <code>+=</code> operator to <strong>concatenate</strong> each value of <code>i * 2</code> to the string <code>row</code>. After our <code>for</code> statement terminates, we print the results with <code>console.log</code>.</p>
 <p>The output of the program is:</p>
-<pre><code>2      4      6      8      10     12Z</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="ex">2</span>   4   6  8    10    12</a></code></pre></div>
 <p>So far, so good. The next step is to <strong>encapsulate</strong> and <strong>generalize</strong>.</p>
 </section>
 <section id="encapsulation-and-generalization" class="level2">
 <h2>Encapsulation and generalization</h2>
-<p>Encapsulation is the process of wrapping a piece of code in a function, allowing you to take advantage of all the things functions are good for. You have already seen some examples of encapsulation, including <code>is_divisible</code> in a previous chapter.</p>
-<p>Generalization means taking something specific, such as printing the multiples of 2, and making it more general, such as printing the multiples of any integer.</p>
+<p><strong>Encapsulation</strong> is the process of wrapping a piece of code in a function, allowing you to take advantage of all the things functions are good for. You have already seen some examples of encapsulation, including including the <code>square</code> function for our turtle graphics.</p>
+<p><strong>Generalization</strong> means taking something specific, such as printing the multiples of 2, and making it more general or <strong>abstract</strong>, such as printing the multiples of any integer. We can use function parameters to accomplish generalization and abstraction.</p>
 <p>This function encapsulates the previous loop and generalizes it to print multiples of <code>n</code>:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb105-1" data-line-number="1">def <span class="at">print_multiples</span>(n)<span class="op">:</span></a>
-<a class="sourceLine" id="cb105-2" data-line-number="2">    <span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">7</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb105-3" data-line-number="3">        <span class="va">console</span>.<span class="at">log</span>(n <span class="op">*</span> i<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;   &quot;</span>)</a>
-<a class="sourceLine" id="cb105-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">function</span> <span class="at">printMultiples</span> (n) <span class="op">{</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2">  <span class="kw">let</span> row <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>     </a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">  <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">7</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">    row <span class="op">+=</span> (n <span class="op">*</span> i) <span class="op">+</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">  <span class="va">console</span>.<span class="at">log</span>(row)<span class="op">;</span></a>
+<a class="sourceLine" id="cb103-7" data-line-number="7"><span class="op">}</span></a></code></pre></div>
 <p>To encapsulate, all we had to do was add the first line, which declares the name of the function and the parameter list. To generalize, all we had to do was replace the value 2 with the parameter <code>n</code>.</p>
 <p>If we call this function with the argument 2, we get the same output as before. With the argument 3, the output is:</p>
-<pre><code>3      6      9      12     15     18</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="ex">3</span>   6   9  12   15  18</a></code></pre></div>
 <p>With the argument 4, the output is:</p>
-<pre><code>4      8      12     16     20     24</code></pre>
-<p>By now you can probably guess how to print a multiplication table — by calling <code>print_multiples</code> repeatedly with different arguments. In fact, we can use another loop:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">7</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb108-2" data-line-number="2">    <span class="at">print_multiples</span>(i)</a></code></pre></div>
-<p>Notice how similar this loop is to the one inside <code>print_multiples</code>. All we did was replace the <code>print</code> function with a function call.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="ex">4</span>   8   12   16   20   24</a></code></pre></div>
+<p>By now you can probably guess how to print a multiplication table — by calling <code>printMultiples</code> repeatedly with different arguments. In fact, we can use another loop:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">7</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">  <span class="at">printMultiples</span>(i)<span class="op">;</span></a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>Notice how similar this loop is to the one inside <code>printMultiples</code>. All we did was replace the <code>print</code> function with a function call.</p>
 <p>The output of this program is a multiplication table:</p>
-<pre><code>1      2      3      4      5      6
-2      4      6      8      10     12
-3      6      9      12     15     18
-4      8      12     16     20     24
-5      10     15     20     25     30
-6      12     18     24     30     36</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="ex">1</span>    2     3     4     5     6</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="ex">2</span>    4     6     8     10    12</a>
+<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="ex">3</span>    6     9     12    15    18</a>
+<a class="sourceLine" id="cb107-4" data-line-number="4"><span class="ex">4</span>    8     12    16    20    24</a>
+<a class="sourceLine" id="cb107-5" data-line-number="5"><span class="ex">5</span>    10    15    20    25    30</a>
+<a class="sourceLine" id="cb107-6" data-line-number="6"><span class="ex">6</span>    12    18    24    30    36</a></code></pre></div>
 </section>
-<section id="more-encapsulation" class="level2">
-<h2>More encapsulation</h2>
+<section id="more-encapsulation-and-generalization" class="level2">
+<h2>More encapsulation and generalization</h2>
 <p>To demonstrate encapsulation again, let’s take the code from the last section and wrap it up in a function:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb110-1" data-line-number="1">def <span class="at">print_mult_table</span>()<span class="op">:</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">    <span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">7</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3">        <span class="at">print_multiples</span>(i)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">function</span> <span class="at">printMultTable</span> () <span class="op">{</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">  <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">7</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb108-3" data-line-number="3">    <span class="at">printMultiples</span>(i)<span class="op">;</span></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="op">}</span></a></code></pre></div>
+<p>With our <code>printMultTable</code> we encapsulate the code for printing the multiplication table.</p>
 <p>This process is a common <strong>development plan</strong>. We develop code by writing lines of code outside any function, or typing them in to the interpreter. When we get the code working, we extract it and wrap it up in a function.</p>
 <p>This development plan is particularly useful if you don’t know how to divide the program into functions when you start writing. This approach lets you design as you go along.</p>
 </section>
 <section id="local-variables" class="level2">
 <h2>Local variables</h2>
-<p>You might be wondering how we can use the same variable, <code>i</code>, in both <code>print_multiples</code> and <code>print_mult_table</code>. Doesn’t it cause problems when one of the functions changes the value of the variable?</p>
-<p>The answer is no, because the <code>i</code> in <code>print_multiples</code> and the <code>i</code> in <code>print_mult_table</code> are <em>not</em> the same variable.</p>
-<p>Variables created inside a function definition are local; you can’t access a local variable from outside its home function. That means you are free to have multiple variables with the same name as long as they are not in the same function.</p>
-<p>Javascript examines all the statements in a function — if any of them assign a value to a variable, that is the clue that Javascript uses to make the variable a local variable.</p>
-<p>The stack diagram for this program shows that the two variables named <code>i</code> are not the same variable. They can refer to different values, and changing one does not affect the other.</p>
-<p><img src="figs/stack2.png" title="Stack 2 diagram" /></p>
-<p>The value of <code>i</code> in <code>print_mult_table</code> goes from 1 to 6. In the diagram it happens to be 3. The next time through the loop it will be 4. Each time through the loop, <code>print_mult_table</code> calls <code>print_multiples</code> with the current value of <code>i</code> as an argument. That value gets assigned to the parameter <code>n</code>.</p>
-<p>Inside <code>print_multiples</code>, the value of <code>i</code> goes from 1 to 6. In the diagram, it happens to be 2. Changing this variable has no effect on the value of <code>i</code> in <code>print_mult_table</code>.</p>
+<p>You might be wondering how we can use the same variable, <code>i</code>, in both <code>printMultiples</code> and <code>printMultTable</code>. Doesn’t it cause problems when one of the functions changes the value of the variable?</p>
+<p>The answer is no, because the <code>i</code> in <code>printMultiples</code> and the <code>i</code> in <code>printMultTable</code> are <em>not</em> the same variable.</p>
+<p>Variables declared with <code>let</code> inside a function definition are local; you can’t access a local variable from outside its home function. That means you are free to have multiple variables with the same name as long as they are not in the same function.</p>
 <p>It is common and perfectly legal to have different local variables with the same name. In particular, names like <code>i</code> and <code>j</code> are used frequently as loop variables. If you avoid using them in one function just because you used them somewhere else, you will probably make the program harder to read.</p>
-<p>The visualizer at http://netserv.ict.ru.ac.za/python3_viz/ shows very clearly how the two variables <code>i</code> are distinct variables, and how they have independent values.</p>
-<p>.. index:: break statement, statement: break</p>
-</section>
-<section id="the-break-statement" class="level2">
-<h2>The <code>break</code> statement</h2>
-<p>The <strong>break</strong> statement is used to immediately leave the body of its loop. The next statement to be executed is the first one after the body:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">12</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">24</span><span class="op">,</span> <span class="dv">29</span>]<span class="op">:</span> </a>
-<a class="sourceLine" id="cb111-2" data-line-number="2">    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span><span class="op">:</span>  # If the number is odd</a>
-<a class="sourceLine" id="cb111-3" data-line-number="3">       <span class="cf">break</span>        #  ... <span class="at">immediately</span> <span class="at">exit</span> <span class="at">the</span> <span class="at">loop</span></a>
-<a class="sourceLine" id="cb111-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>(i)</a>
-<a class="sourceLine" id="cb111-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;done&quot;</span>)</a></code></pre></div>
-<p>This prints:</p>
-<pre><code>12
-16
-done</code></pre>
-<aside id="loop-pretest">
-<p><strong>The pre-test loop — standard loop behaviour</strong></p>
-<p><code>for</code> loops do their tests at the start, before executing any part of the body. This is called a <strong>pre-test</strong> loops, because the test happens before (pre) the body.</p>
-<p><code>break</code> and <code>return</code> are our tools for adapting this standard behaviour by enabling us to test a condition in the body of the loop that allows us to exit the loop.</p>
-<p><img src="figs/pre_test_loop.png" /></p>
-</aside>
-</section>
-<section id="the-continue-statement" class="level2">
-<h2>The <code>continue</code> statement</h2>
-<p>This is a control flow statement that causes the program to immediately skip the processing of the rest of the body of the loop, <em>for the current iteration</em>. But the loop still carries on running for its remaining iterations:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">12</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">24</span><span class="op">,</span> <span class="dv">29</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">:</span> </a>
-<a class="sourceLine" id="cb113-2" data-line-number="2">    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span><span class="op">:</span>      # If the number is odd</a>
-<a class="sourceLine" id="cb113-3" data-line-number="3">       <span class="cf">continue</span>         # Don<span class="st">&#39;t process it</span></a>
-<a class="sourceLine" id="cb113-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>(i)</a>
-<a class="sourceLine" id="cb113-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;done&quot;</span>)</a></code></pre></div>
-<p>This prints:</p>
-<pre><code>12
-16
-24
-30
-done</code></pre>
 </section>
 <section id="more-generalization" class="level2">
 <h2>More generalization</h2>
-<p>As another example of generalization, imagine you wanted a program that would print a multiplication table of any size, not just the six-by-six table. You could add a parameter to <code>print_mult_table</code>:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb115-1" data-line-number="1">def <span class="at">print_mult_table</span>(high)<span class="op">:</span></a>
-<a class="sourceLine" id="cb115-2" data-line-number="2">    <span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> high<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb115-3" data-line-number="3">        <span class="at">print_multiples</span>(i)</a></code></pre></div>
-<p>We replaced the value 7 with the expression <code>high+1</code>. If we call <code>print_mult_table</code> with the argument 7, it displays:</p>
-<pre><code>1      2      3      4      5      6
-2      4      6      8      10     12
-3      6      9      12     15     18
-4      8      12     16     20     24
-5      10     15     20     25     30
-6      12     18     24     30     36
-7      14     21     28     35     42</code></pre>
-<p>This is fine, except that we probably want the table to be square — with the same number of rows and columns. To do that, we add another parameter to <code>print_multiples</code> to specify how many columns the table should have.</p>
+<p>As another example of generalization, imagine you wanted a program that would print a multiplication table of any size, not just the six-by-six table. You could add a parameter to <code>printMultTable</code>:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">function</span> <span class="at">printMultTable</span> (high) <span class="op">{</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2">  <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> high<span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb109-3" data-line-number="3">    <span class="at">printMultiples</span>(i)<span class="op">;</span></a>
+<a class="sourceLine" id="cb109-4" data-line-number="4">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="op">}</span></a></code></pre></div>
+<p>We replaced the loop condition <code>i&lt;7</code> to use the parameter <code>high</code>. Because we want to print upt to and including <code>high</code>, we changed the Boolean operator from <code>&lt;</code> to <code>&lt;=</code>. If we call <code>printMultTable</code> with the argument 7, it displays:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="ex">1</span>   2     3     4     5     6</a>
+<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="ex">2</span>   4     6     8     10    12</a>
+<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="ex">3</span>   6     9     12    15    18</a>
+<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="ex">4</span>   8     12    16    20    24</a>
+<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="ex">5</span>   10    15    20    25    30</a>
+<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="ex">6</span>   12    18    24    30    36</a>
+<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="ex">7</span>   14    21    28    35    42</a></code></pre></div>
+<p>This is fine, except that we probably want the table to be square — with the same number of rows and columns. We have <code>high</code> number of rows, but our old version of <code>printMultiples</code> stops at the literal value <code>&lt;7</code>. To do improve our code, we add another parameter to <code>printMultiples</code> to specify how many columns the table should have.</p>
 <p>Just to be annoying, we call this parameter <code>high</code>, demonstrating that different functions can have parameters with the same name (just like local variables). Here’s the whole program:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb117-1" data-line-number="1">def <span class="at">print_multiples</span>(n<span class="op">,</span> high)<span class="op">:</span></a>
-<a class="sourceLine" id="cb117-2" data-line-number="2">    <span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> high<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb117-3" data-line-number="3">        <span class="va">console</span>.<span class="at">log</span>(n <span class="op">*</span> i<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;   &quot;</span>)</a>
-<a class="sourceLine" id="cb117-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>()</a>
-<a class="sourceLine" id="cb117-5" data-line-number="5">   </a>
-<a class="sourceLine" id="cb117-6" data-line-number="6">def <span class="at">print_mult_table</span>(high)<span class="op">:</span></a>
-<a class="sourceLine" id="cb117-7" data-line-number="7">    <span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> high<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb117-8" data-line-number="8">        <span class="at">print_multiples</span>(i<span class="op">,</span> high)</a></code></pre></div>
-<p>Notice that when we added a new parameter, we had to change the first line of the function (the function heading), and we also had to change the place where the function is called in <code>print_mult_table</code>.</p>
-<p>Now, when we call <code>print_mult_table(7)</code>:</p>
-<pre><code>1      2      3      4      5      6      7
-2      4      6      8      10     12     14
-3      6      9      12     15     18     21
-4      8      12     16     20     24     28
-5      10     15     20     25     30     35
-6      12     18     24     30     36     42
-7      14     21     28     35     42     49</code></pre>
-<p>When you generalize a function appropriately, you often get a program with capabilities you didn’t plan. For example, you might notice that, because ab = ba, all the entries in the table appear twice. You could save ink by printing only half the table. To do that, you only have to change one line of <code>print_mult_table</code>. Change</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="at">print_multiples</span>(i<span class="op">,</span> high<span class="op">+</span><span class="dv">1</span>)</a></code></pre></div>
-<p>to</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="at">print_multiples</span>(i<span class="op">,</span> i<span class="op">+</span><span class="dv">1</span>)</a></code></pre></div>
-<p>and you get:</p>
-<pre><code>1
-2      4
-3      6      9
-4      8      12     16
-5      10     15     20     25
-6      12     18     24     30     36
-7      14     21     28     35     42     49</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">function</span> <span class="at">printMultiples</span> (n<span class="op">,</span> high) <span class="op">{</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2">  <span class="kw">let</span> row <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span>     </a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">  <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> high<span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">    row <span class="op">+=</span> (n <span class="op">*</span> i) <span class="op">+</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb111-5" data-line-number="5">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb111-6" data-line-number="6">  <span class="va">console</span>.<span class="at">log</span>(row)<span class="op">;</span></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="op">}</span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb111-9" data-line-number="9"><span class="kw">function</span> <span class="at">printMultTable</span> (high) <span class="op">{</span></a>
+<a class="sourceLine" id="cb111-10" data-line-number="10">  <span class="cf">for</span> (<span class="kw">let</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> high<span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb111-11" data-line-number="11">    <span class="at">printMultiples</span>(i<span class="op">,</span> high)<span class="op">;</span></a>
+<a class="sourceLine" id="cb111-12" data-line-number="12">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb111-13" data-line-number="13"><span class="op">}</span></a></code></pre></div>
+<p>Notice that when we added a new parameter, we had to change the first line of the function (the function heading), and we also had to change the place where the function is called in <code>printMultTable</code>.</p>
+<p>Now, when we call <code>printMultTable(7)</code>:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="ex">1</span>    2     3     4     5     6     7</a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="ex">2</span>    4     6     8     10    12    14</a>
+<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="ex">3</span>    6     9     12    15    18    21</a>
+<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="ex">4</span>    8     12    16    20    24    28</a>
+<a class="sourceLine" id="cb112-5" data-line-number="5"><span class="ex">5</span>    10    15    20    25    30    35</a>
+<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="ex">6</span>    12    18    24    30    36    42</a>
+<a class="sourceLine" id="cb112-7" data-line-number="7"><span class="ex">7</span>    14    21    28    35    42    49</a></code></pre></div>
 </section>
 <section id="functions-2" class="level2">
 <h2>Functions</h2>
 <p>A few times now, we have mentioned all the things functions are good for. By now, you might be wondering what exactly those things are. Here are some of them:</p>
 <ol>
-<li>Capturing your mental chunking. Breaking your complex tasks into sub-tasks, and giving the sub-tasks a meaningful name is a powerful mental technique. Look back at the example that illustrated the post-test loop: we assumed that we had a function called <code>play_the_game_once</code>. This chunking allowed us to put aside the details of the particular game — is it a card game, or noughts and crosses, or a role playing game — and simply focus on one isolated part of our program logic — letting the player choose whether they want to play again.<br />
-</li>
+<li>Capturing your mental chunking. Breaking your complex tasks into sub-tasks, and giving the sub-tasks a meaningful name is a powerful mental technique.</li>
 <li>Dividing a long program into functions allows you to separate parts of the program, debug them in isolation, and then compose them into a whole.</li>
 <li>Functions facilitate the use of iteration.</li>
-<li>Well-designed functions are often useful for many programs. Once you write and debug one, you can reuse it.</li>
+<li>Well-designed functions are often useful for many programs. Once you write and debug one, you can reuse it in many different programs and contexts.</li>
 </ol>
-</section>
-<section id="paired-data" class="level2">
-<h2>Paired Data</h2>
-<p>We’ve already seen lists of names and lists of numbers in Javascript. We’re going to peek ahead in the textbook a little, and show a more advanced way of representing our data. Making a pair of things in Javascript is as simple as putting them into parentheses, like this:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb122-1" data-line-number="1">year_born <span class="op">=</span> (<span class="st">&quot;Paris Hilton&quot;</span><span class="op">,</span> <span class="dv">1981</span>) </a></code></pre></div>
-<p>We can put many pairs into a list of pairs:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb123-1" data-line-number="1">celebs <span class="op">=</span> [(<span class="st">&quot;Brad Pitt&quot;</span><span class="op">,</span> <span class="dv">1963</span>)<span class="op">,</span> (<span class="st">&quot;Jack Nicholson&quot;</span><span class="op">,</span> <span class="dv">1937</span>)<span class="op">,</span> </a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">                                (<span class="st">&quot;Justin Bieber&quot;</span><span class="op">,</span> <span class="dv">1994</span>)] </a></code></pre></div>
-<p>Here is a quick sample of things we can do with structured data like this. First, print all the celebs:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(celebs)</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(<span class="at">len</span>(celebs))    </a></code></pre></div>
-<pre><code>    [(&quot;Brad Pitt&quot;, 1963), (&quot;Jack Nicholson&quot;, 1937), (&quot;Justin Bieber&quot;, 1994)]
-    3</code></pre>
-<p>Notice that the <code>celebs</code> list has just 3 elements, each of them pairs.</p>
-<p>Now we print the names of those celebrities born before 1980:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="cf">for</span> (nm<span class="op">,</span> yr) <span class="kw">in</span> celebs<span class="op">:</span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2">   <span class="cf">if</span> yr <span class="op">&lt;</span> <span class="dv">1980</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb126-3" data-line-number="3">        <span class="va">console</span>.<span class="at">log</span>(nm)</a></code></pre></div>
-<pre><code>Brad Pitt
-Jack Nicholson</code></pre>
-<p>This demonstrates something we have not seen yet in the <code>for</code> loop: instead of using a single loop control variable, we’ve used a pair of variable names, <code>(nm, yr)</code>, instead. The loop is executed three times — once for each pair in the list, and on each iteration both the variables are assigned values from the pair of data that is being handled.</p>
-</section>
-<section id="nested-loops-for-nested-data" class="level2">
-<h2>Nested Loops for Nested Data</h2>
-<p>Now we’ll come up with an even more adventurous list of structured data. In this case, we have a list of students. Each student has a name which is paired up with another list of subjects that they are enrolled for:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb128-1" data-line-number="1">students <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb128-2" data-line-number="2">    (<span class="st">&quot;John&quot;</span><span class="op">,</span> [<span class="st">&quot;CompSci&quot;</span><span class="op">,</span> <span class="st">&quot;Physics&quot;</span>])<span class="op">,</span></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3">    (<span class="st">&quot;Vusi&quot;</span><span class="op">,</span> [<span class="st">&quot;Maths&quot;</span><span class="op">,</span> <span class="st">&quot;CompSci&quot;</span><span class="op">,</span> <span class="st">&quot;Stats&quot;</span>])<span class="op">,</span></a>
-<a class="sourceLine" id="cb128-4" data-line-number="4">    (<span class="st">&quot;Jess&quot;</span><span class="op">,</span> [<span class="st">&quot;CompSci&quot;</span><span class="op">,</span> <span class="st">&quot;Accounting&quot;</span><span class="op">,</span> <span class="st">&quot;Economics&quot;</span><span class="op">,</span> <span class="st">&quot;Management&quot;</span>])<span class="op">,</span></a>
-<a class="sourceLine" id="cb128-5" data-line-number="5">    (<span class="st">&quot;Sarah&quot;</span><span class="op">,</span> [<span class="st">&quot;InfSys&quot;</span><span class="op">,</span> <span class="st">&quot;Accounting&quot;</span><span class="op">,</span> <span class="st">&quot;Economics&quot;</span><span class="op">,</span> <span class="st">&quot;CommLaw&quot;</span>])<span class="op">,</span></a>
-<a class="sourceLine" id="cb128-6" data-line-number="6">    (<span class="st">&quot;Zuki&quot;</span><span class="op">,</span> [<span class="st">&quot;Sociology&quot;</span><span class="op">,</span> <span class="st">&quot;Economics&quot;</span><span class="op">,</span> <span class="st">&quot;Law&quot;</span><span class="op">,</span> <span class="st">&quot;Stats&quot;</span><span class="op">,</span> <span class="st">&quot;Music&quot;</span>])]</a></code></pre></div>
-<p>Here we’ve assigned a list of five elements to the variable <code>students</code>. Let’s print out each student name, and the number of subjects they are enrolled for:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb129-1" data-line-number="1"># Print all students <span class="cf">with</span> a count of their <span class="va">courses</span>.</a>
-<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="cf">for</span> (name<span class="op">,</span> subjects) <span class="kw">in</span> students<span class="op">:</span></a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(name<span class="op">,</span> <span class="st">&quot;takes&quot;</span><span class="op">,</span> <span class="at">len</span>(subjects)<span class="op">,</span> <span class="st">&quot;courses&quot;</span>)</a></code></pre></div>
-<p>Javascript agreeably responds with the following output:</p>
-<pre><code>John takes 2 courses
-Vusi takes 3 courses
-Jess takes 4 courses
-Sarah takes 4 courses
-Zuki takes 5 courses</code></pre>
-<p>Now we’d like to ask how many students are taking CompSci. This needs a counter, and for each student we need a second loop that tests each of the subjects in turn:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb131-1" data-line-number="1"># Count how many students are taking CompSci</a>
-<a class="sourceLine" id="cb131-2" data-line-number="2">counter <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb131-3" data-line-number="3"><span class="cf">for</span> (name<span class="op">,</span> subjects) <span class="kw">in</span> students<span class="op">:</span></a>
-<a class="sourceLine" id="cb131-4" data-line-number="4">    <span class="cf">for</span> s <span class="kw">in</span> subjects<span class="op">:</span>           # A nested loop<span class="op">!</span></a>
-<a class="sourceLine" id="cb131-5" data-line-number="5">        <span class="cf">if</span> s <span class="op">==</span> <span class="st">&quot;CompSci&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb131-6" data-line-number="6">           counter <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb131-7" data-line-number="7">           </a>
-<a class="sourceLine" id="cb131-8" data-line-number="8"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The number of students taking CompSci is&quot;</span><span class="op">,</span> counter)</a></code></pre></div>
-<pre><code>The number of students taking CompSci is 3</code></pre>
-<p>You should set up a list of your own data that interests you — perhaps a list of your CDs, each containing a list of song titles on the CD, or a list of movie titles, each with a list of movie stars who acted in the movie. You could then ask questions like “Which movies starred Angelina Jolie?”</p>
 </section>
 <section id="glossary-5" class="level2">
 <h2>Glossary</h2>
@@ -2726,34 +2585,12 @@ Zuki takes 5 courses</code></pre>
 <dt>loop variable</dt>
 <dd>loop variable each iteration of the loop.
 </dd>
-<dt>instance</dt>
-<dd>instance the class <code>Turtle</code>.
-</dd>
-<dt>method</dt>
-<dd>method causes the object to respond in some way, e.g. <code>forward</code> is the method when we say <code>tess.forward(100)</code>.
-</dd>
-<dt>invoke</dt>
-<dd>invoke method*. Invoking a method is done by putting parentheses after the method name, with some possible arguments. So <code>tess.forward()</code> is an invocation of the <code>forward</code> method.
-</dd>
-<dt>module</dt>
-<dd>module Javascript programs. The contents of a module are made available to the other program by using the <code>import</code> statement.
-</dd>
-<dt>object</dt>
-<dd>object or one of the turtles we have created.
-</dd>
-<dt>range</dt>
-<dd>range useful when we need to write a for loop that executes a fixed number of times.
-</dd>
-<dt>terminating condition</dt>
-<dd>terminating condition In the <code>for</code> loops we saw in this chapter, the terminating condition has been when there are no more elements to assign to the loop variable.
-</dd>
 </dl>
 </section>
 <section id="exercises-1" class="level2">
 <h2>Exercises</h2>
 <ol>
 <li><p>Write a program that prints <code>We like Javascript's turtles!</code> 1000 times.</p></li>
-<li><p>Give three attributes of your cellphone object. Give three methods of your cellphone.</p></li>
 <li><p>Write a program that uses a for loop to print | <code>One of the months of the year is January</code> | <code>One of the months of the year is February</code> | …</p></li>
 <li><p>Suppose our turtle <code>tess</code> is at heading 0 — facing east. We execute the statement <code>tess.left(3645)</code>. What does <code>tess</code> do, and what is her final heading?</p></li>
 <li><p>Assume you have the assignment <code>xs = [12, 10, 32, 3, 66, 17, 42, 99, 20]</code></p>
@@ -2795,7 +2632,7 @@ Zuki takes 5 courses</code></pre>
 </blockquote>
 <ol type="1">
 <li><p>Add a print function to Newton’s <code>sqrt</code> function that prints out <code>better</code> each time it is calculated. Call your modified function with 25 as an argument and record the results.</p></li>
-<li><p>Trace the execution of the last version of <code>print_mult_table</code> and figure out how it works.</p></li>
+<li><p>Trace the execution of the last version of <code>printMultTable</code> and figure out how it works.</p></li>
 <li><p>Write a function <code>print_triangular_numbers(n)</code> that prints out the first n triangular numbers. A call to <code>print_triangular_numbers(5)</code> would produce the following output:</p>
 <pre><code>1       1
 2       3
@@ -2846,21 +2683,21 @@ test(sum_of_squares([2, -3, 4]) == 29)</code></pre></li>
 <section id="the-while-statement" class="level2">
 <h2>The <code>while</code> statement</h2>
 <p>Here is a fragment of code that demonstrates the use of the <code>while</code> statement:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="co"> * Return the sum of 1+2+3 ... n</span></a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="kw">function</span> <span class="at">sumTo</span>(n) <span class="op">{</span></a>
-<a class="sourceLine" id="cb138-5" data-line-number="5">  <span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb138-6" data-line-number="6">  <span class="kw">let</span> v <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb138-7" data-line-number="7">  <span class="cf">while</span> (v <span class="op">&lt;=</span> n) <span class="op">{</span></a>
-<a class="sourceLine" id="cb138-8" data-line-number="8">    total <span class="op">+=</span> v<span class="op">;</span></a>
-<a class="sourceLine" id="cb138-9" data-line-number="9">    v<span class="op">++;</span></a>
-<a class="sourceLine" id="cb138-10" data-line-number="10">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb138-11" data-line-number="11">  <span class="cf">return</span> total<span class="op">;</span></a>
-<a class="sourceLine" id="cb138-12" data-line-number="12"><span class="op">}</span></a>
-<a class="sourceLine" id="cb138-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb138-14" data-line-number="14"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;sumTo(4) =&gt; 10&quot;</span><span class="op">,</span> <span class="at">sumTo</span>(<span class="dv">4</span>) <span class="op">===</span> <span class="dv">10</span>) </a>
-<a class="sourceLine" id="cb138-15" data-line-number="15"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;sumTo(1000) =&gt;500500 &quot;</span><span class="op">,</span> <span class="at">sumTo</span>(<span class="dv">1000</span>) <span class="op">===</span> <span class="dv">500500</span>)     </a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="co"> * Return the sum of 1+2+3 ... n</span></a>
+<a class="sourceLine" id="cb118-3" data-line-number="3"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb118-4" data-line-number="4"><span class="kw">function</span> <span class="at">sumTo</span>(n) <span class="op">{</span></a>
+<a class="sourceLine" id="cb118-5" data-line-number="5">  <span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb118-6" data-line-number="6">  <span class="kw">let</span> v <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb118-7" data-line-number="7">  <span class="cf">while</span> (v <span class="op">&lt;=</span> n) <span class="op">{</span></a>
+<a class="sourceLine" id="cb118-8" data-line-number="8">    total <span class="op">+=</span> v<span class="op">;</span></a>
+<a class="sourceLine" id="cb118-9" data-line-number="9">    v<span class="op">++;</span></a>
+<a class="sourceLine" id="cb118-10" data-line-number="10">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb118-11" data-line-number="11">  <span class="cf">return</span> total<span class="op">;</span></a>
+<a class="sourceLine" id="cb118-12" data-line-number="12"><span class="op">}</span></a>
+<a class="sourceLine" id="cb118-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb118-14" data-line-number="14"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;sumTo(4) =&gt; 10&quot;</span><span class="op">,</span> <span class="at">sumTo</span>(<span class="dv">4</span>) <span class="op">===</span> <span class="dv">10</span>) </a>
+<a class="sourceLine" id="cb118-15" data-line-number="15"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;sumTo(1000) =&gt;500500 &quot;</span><span class="op">,</span> <span class="at">sumTo</span>(<span class="dv">1000</span>) <span class="op">===</span> <span class="dv">500500</span>)     </a></code></pre></div>
 <p>You can almost read the <code>while</code> statement as if it were English. It means, while <code>v</code> is less than or equal to <code>n</code>, continue executing the body of the loop. Within the body, each time, increment <code>v</code>. When <code>v</code> passes <code>n</code>, return your accumulated sum.</p>
 <p>More formally, here is precise flow of execution for a <code>while</code> statement:</p>
 <ul>
@@ -2873,12 +2710,12 @@ test(sum_of_squares([2, -3, 4]) == 29)</code></pre></li>
 <p>The body of the loop should change the value of one or more variables so that eventually the condition becomes false and the loop terminates. Otherwise the loop will repeat forever, which is called an <strong>infinite loop</strong>. An endless source of amusement for computer scientists is the observation that the directions on shampoo, “lather, rinse, repeat”, are an infinite loop.</p>
 <p>In the case here, we can prove that the loop terminates because we know that the value of <code>n</code> is finite, and we can see that the value of <code>v</code> increments each time through the loop, so eventually it will have to exceed <code>n</code>. In other cases, it is not so easy, even impossible in some cases, to tell if the loop will ever terminate.</p>
 <p>What you will notice here is that the <code>while</code> loop is more work for you — the programmer — than the equivalent <code>for</code> loop. When using a <code>while</code> loop one has to manage the loop variable yourself: give it an initial value, test for completion, and then make sure you change something in the body so that the loop terminates. By comparison, here is an equivalent function that uses <code>for</code> instead:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb139-1" data-line-number="1">def <span class="at">sum_to</span>(n)<span class="op">:</span></a>
-<a class="sourceLine" id="cb139-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Return the sum of 1+2+3 ... n &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb139-3" data-line-number="3">    ss  <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb139-4" data-line-number="4">    <span class="cf">for</span> v <span class="kw">in</span> <span class="at">range</span>(n<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb139-5" data-line-number="5">        ss <span class="op">=</span> ss <span class="op">+</span> v</a>
-<a class="sourceLine" id="cb139-6" data-line-number="6">    <span class="cf">return</span> ss</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb119-1" data-line-number="1">def <span class="at">sum_to</span>(n)<span class="op">:</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Return the sum of 1+2+3 ... n &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb119-3" data-line-number="3">    ss  <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb119-4" data-line-number="4">    <span class="cf">for</span> v <span class="kw">in</span> <span class="at">range</span>(n<span class="op">+</span><span class="dv">1</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb119-5" data-line-number="5">        ss <span class="op">=</span> ss <span class="op">+</span> v</a>
+<a class="sourceLine" id="cb119-6" data-line-number="6">    <span class="cf">return</span> ss</a></code></pre></div>
 <p>Notice the slightly tricky call to the <code>range</code> function — we had to add one onto <code>n</code>, because <code>range</code> generates its list up to but excluding the value you give it. It would be easy to make a programming mistake and overlook this, but because we’ve made the investment of writing some unit tests, our test suite would have caught our error.</p>
 <p>So why have two kinds of loop if <code>for</code> looks easier? This next example shows a case where we need the extra power that we get from the <code>while</code> loop.</p>
 </section>
@@ -2887,31 +2724,31 @@ test(sum_of_squares([2, -3, 4]) == 29)</code></pre></li>
 <p>Let’s look at a simple sequence that has fascinated and foxed mathematicians for many years. They still cannot answer even quite simple questions about this.</p>
 <p>The “computational rule” for creating the sequence is to start from some given <code>n</code>, and to generate the next term of the sequence from <code>n</code>, either by halving <code>n</code>, (whenever <code>n</code> is even), or else by multiplying it by three and adding 1. The sequence terminates when <code>n</code> reaches 1.</p>
 <p>This Python function captures that algorithm:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb140-1" data-line-number="1">def <span class="at">seq3np1</span>(n)<span class="op">:</span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Print the 3n+1 sequence from n, </span></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">        terminating when it reaches <span class="fl">1.</span></a>
-<a class="sourceLine" id="cb140-4" data-line-number="4">    <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb140-5" data-line-number="5">    <span class="cf">while</span> n <span class="op">!=</span> <span class="dv">1</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb140-6" data-line-number="6">        <span class="at">print</span>(n<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;, &quot;</span>)</a>
-<a class="sourceLine" id="cb140-7" data-line-number="7">        <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">:</span>        # n is even</a>
-<a class="sourceLine" id="cb140-8" data-line-number="8">            n <span class="op">=</span> n <span class="co">// 2</span></a>
-<a class="sourceLine" id="cb140-9" data-line-number="9">        <span class="cf">else</span><span class="op">:</span>                 # n is odd</a>
-<a class="sourceLine" id="cb140-10" data-line-number="10">            n <span class="op">=</span> n <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb140-11" data-line-number="11">    <span class="at">print</span>(n<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;.</span><span class="sc">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb120-1" data-line-number="1">def <span class="at">seq3np1</span>(n)<span class="op">:</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">    <span class="st">&quot;&quot;&quot; Print the 3n+1 sequence from n, </span></a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">        terminating when it reaches <span class="fl">1.</span></a>
+<a class="sourceLine" id="cb120-4" data-line-number="4">    <span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb120-5" data-line-number="5">    <span class="cf">while</span> n <span class="op">!=</span> <span class="dv">1</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb120-6" data-line-number="6">        <span class="at">print</span>(n<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;, &quot;</span>)</a>
+<a class="sourceLine" id="cb120-7" data-line-number="7">        <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">:</span>        # n is even</a>
+<a class="sourceLine" id="cb120-8" data-line-number="8">            n <span class="op">=</span> n <span class="co">// 2</span></a>
+<a class="sourceLine" id="cb120-9" data-line-number="9">        <span class="cf">else</span><span class="op">:</span>                 # n is odd</a>
+<a class="sourceLine" id="cb120-10" data-line-number="10">            n <span class="op">=</span> n <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb120-11" data-line-number="11">    <span class="at">print</span>(n<span class="op">,</span> end<span class="op">=</span><span class="st">&quot;.</span><span class="sc">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <p>Notice first that the print function on line 6 has an extra argument <code>end=&quot;, &quot;</code>. This tells the <code>print</code> function to follow the printed string with whatever the programmer chooses (in this case, a comma followed by a space), instead of ending the line. So each time something is printed in the loop, it is printed on the same output line, with the numbers separated by commas. The call to <code>print(n, end=&quot;.\n&quot;)</code> at line 11 after the loop terminates will then print the final value of <code>n</code> followed by a period and a newline character. (You’ll cover the <code>\n</code> (newline character) in the next chapter).</p>
 <p>The condition for continuing with this loop is <code>n != 1</code>, so the loop will continue running until it reaches its termination condition, (i.e. <code>n == 1</code>).</p>
 <p>Each time through the loop, the program outputs the value of <code>n</code> and then checks whether it is even or odd. If it is even, the value of <code>n</code> is divided by 2 using integer division. If it is odd, the value is replaced by <code>n * 3 + 1</code>.<br />
 Here are some examples:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="dv">3</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">19</span>)</a>
-<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="dv">19</span><span class="op">,</span> <span class="dv">58</span><span class="op">,</span> <span class="dv">29</span><span class="op">,</span> <span class="dv">88</span><span class="op">,</span> <span class="dv">44</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">34</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">52</span><span class="op">,</span> <span class="dv">26</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> </a>
-<a class="sourceLine" id="cb141-5" data-line-number="5">                    <span class="dv">40</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
-<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">21</span>)</a>
-<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="dv">21</span><span class="op">,</span> <span class="dv">64</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
-<a class="sourceLine" id="cb141-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">16</span>)</a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
-<a class="sourceLine" id="cb141-10" data-line-number="10"><span class="op">&gt;&gt;&gt;</span> </a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="dv">3</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
+<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">19</span>)</a>
+<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="dv">19</span><span class="op">,</span> <span class="dv">58</span><span class="op">,</span> <span class="dv">29</span><span class="op">,</span> <span class="dv">88</span><span class="op">,</span> <span class="dv">44</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">34</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">52</span><span class="op">,</span> <span class="dv">26</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> </a>
+<a class="sourceLine" id="cb121-5" data-line-number="5">                    <span class="dv">40</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
+<a class="sourceLine" id="cb121-6" data-line-number="6"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">21</span>)</a>
+<a class="sourceLine" id="cb121-7" data-line-number="7"><span class="dv">21</span><span class="op">,</span> <span class="dv">64</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
+<a class="sourceLine" id="cb121-8" data-line-number="8"><span class="op">&gt;&gt;&gt;</span> <span class="at">seq3np1</span>(<span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb121-9" data-line-number="9"><span class="dv">16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">1.</span></a>
+<a class="sourceLine" id="cb121-10" data-line-number="10"><span class="op">&gt;&gt;&gt;</span> </a></code></pre></div>
 <p>Since <code>n</code> sometimes increases and sometimes decreases, there is no obvious proof that <code>n</code> will ever reach 1, or that the program terminates. For some particular values of <code>n</code>, we can prove termination. For example, if the starting value is a power of two, then the value of <code>n</code> will be even each time through the loop until it reaches 1. The previous example ends with such a sequence, starting with 16.</p>
 <p>See if you can find a small starting number that needs more than a hundred steps before it terminates.</p>
 <p>Particular values aside, the interesting question was first posed by a German mathematician called Lothar Collatz: the <em>Collatz conjecture</em> (also known as the <em>3n + 1 conjecture</em>), is that this sequence terminates for <em>all</em> positive values of <code>n</code>. So far, no one has been able to prove it <em>or</em> disprove it!<br />
@@ -2959,23 +2796,23 @@ As we learn a bit more Python, we’ll be able to show you how to generate a lis
 <section id="counting-digits" class="level2">
 <h2>Counting digits</h2>
 <p>The following function counts the number of decimal digits in a positive integer:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb144-1" data-line-number="1">def <span class="at">num_digits</span>(n)<span class="op">:</span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2">    count <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb144-3" data-line-number="3">    <span class="cf">while</span> n <span class="op">!=</span> <span class="dv">0</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb144-4" data-line-number="4">        count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb144-5" data-line-number="5">        n <span class="op">=</span> n <span class="co">// 10</span></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6">    <span class="cf">return</span> count</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb124-1" data-line-number="1">def <span class="at">num_digits</span>(n)<span class="op">:</span></a>
+<a class="sourceLine" id="cb124-2" data-line-number="2">    count <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb124-3" data-line-number="3">    <span class="cf">while</span> n <span class="op">!=</span> <span class="dv">0</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb124-4" data-line-number="4">        count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb124-5" data-line-number="5">        n <span class="op">=</span> n <span class="co">// 10</span></a>
+<a class="sourceLine" id="cb124-6" data-line-number="6">    <span class="cf">return</span> count</a></code></pre></div>
 <p>A call to <code>print(num_digits(710))</code> will print <code>3</code>. Trace the execution of this function call (perhaps using the single step function in PyScripter, or the Python visualizer, or on some paper) to convince yourself that it works.</p>
 <p>This function demonstrates an important pattern of computation called a <strong>counter</strong>. The variable <code>count</code> is initialized to 0 and then incremented each time the loop body is executed. When the loop exits, <code>count</code> contains the result — the total number of times the loop body was executed, which is the same as the number of digits.</p>
 <p>If we wanted to only count digits that are either 0 or 5, adding a conditional before incrementing the counter will do the trick:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb145-1" data-line-number="1">def <span class="at">num_zero_and_five_digits</span>(n)<span class="op">:</span></a>
-<a class="sourceLine" id="cb145-2" data-line-number="2">    count <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb145-3" data-line-number="3">    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb145-4" data-line-number="4">        digit <span class="op">=</span> n <span class="op">%</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb145-5" data-line-number="5">        <span class="cf">if</span> digit <span class="op">==</span> <span class="dv">0</span> or digit <span class="op">==</span> <span class="dv">5</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb145-6" data-line-number="6">            count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb145-7" data-line-number="7">        n <span class="op">=</span> n <span class="co">// 10</span></a>
-<a class="sourceLine" id="cb145-8" data-line-number="8">    <span class="cf">return</span> count</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb125-1" data-line-number="1">def <span class="at">num_zero_and_five_digits</span>(n)<span class="op">:</span></a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">    count <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb125-3" data-line-number="3">    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb125-4" data-line-number="4">        digit <span class="op">=</span> n <span class="op">%</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb125-5" data-line-number="5">        <span class="cf">if</span> digit <span class="op">==</span> <span class="dv">0</span> or digit <span class="op">==</span> <span class="dv">5</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb125-6" data-line-number="6">            count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb125-7" data-line-number="7">        n <span class="op">=</span> n <span class="co">// 10</span></a>
+<a class="sourceLine" id="cb125-8" data-line-number="8">    <span class="cf">return</span> count</a></code></pre></div>
 <p>Confirm that <code>test(num_zero_and_five_digits(1055030250) == 7)</code> passes.</p>
 <p>Notice, however, that <code>test(num_digits(0) == 1)</code> fails. Explain why. Do you think this is a bug in the code, or a bug in the specifications, or our expectations, or the tests?</p>
 </section>
@@ -2983,27 +2820,27 @@ As we learn a bit more Python, we’ll be able to show you how to generate a lis
 <h2>Newton’s method for finding square roots</h2>
 <p>Loops are often used in programs that compute numerical results by starting with an approximate answer and iteratively improving it.</p>
 <p>For example, before we had calculators or computers, people needed to calculate square roots manually. Newton used a particularly good method (there is some evidence that this method was known many years before). Suppose that you want to know the square root of <code>n</code>. If you start with almost any approximation, you can compute a better approximation (closer to the actual answer) with the following formula:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb146-1" data-line-number="1">better <span class="op">=</span> (approx <span class="op">+</span> n/approx)/<span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb126-1" data-line-number="1">better <span class="op">=</span> (approx <span class="op">+</span> n/approx)/<span class="dv">2</span></a></code></pre></div>
 <p>Repeat this calculation a few times using your calculator. Can you see why each iteration brings your estimate a little closer? One of the amazing properties of this particular algorithm is how quickly it converges to an accurate answer — a great advantage for doing it manually.</p>
 <p>By using a loop and repeating this formula until the better approximation gets close enough to the previous one, we can write a function for computing the square root. (In fact, this is how your calculator finds square roots — it may have a slightly different formula and method, but it is also based on repeatedly improving its guesses.)</p>
 <p>This is an example of an <code>indefinite</code> iteration problem: we cannot predict in advance how many times we’ll want to improve our guess — we just want to keep getting closer and closer. Our stopping condition for the loop will be when our old guess and our improved guess are “close enough” to each other.</p>
 <p>Ideally, we’d like the old and new guess to be exactly equal to each other when we stop. But exact equality is a tricky notion in computer arithmetic when real numbers are involved. Because real numbers are not represented absolutely accurately (after all, a number like pi or the square root of two has an infinite number of decimal places because it is irrational), we need to formulate the stopping test for the loop by asking “is <code>a</code> close enough to <code>b</code>”? This stopping condition can be coded like this:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="cf">if</span> <span class="at">abs</span>(a<span class="op">-</span>b) <span class="op">&lt;</span> <span class="fl">0.001</span><span class="op">:</span>  # Make <span class="kw">this</span> smaller <span class="cf">for</span> better accuracy</a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">      <span class="cf">break</span>   </a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="cf">if</span> <span class="at">abs</span>(a<span class="op">-</span>b) <span class="op">&lt;</span> <span class="fl">0.001</span><span class="op">:</span>  # Make <span class="kw">this</span> smaller <span class="cf">for</span> better accuracy</a>
+<a class="sourceLine" id="cb127-2" data-line-number="2">      <span class="cf">break</span>   </a></code></pre></div>
 <p>Notice that we take the absolute value of the difference between <code>a</code> and <code>b</code>!</p>
 <p>This problem is also a good example of when a middle-exit loop is appropriate:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb148-1" data-line-number="1">def <span class="at">sqrt</span>(n)<span class="op">:</span></a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">    approx <span class="op">=</span> n/<span class="fl">2.0</span>     # Start <span class="cf">with</span> some or other guess at the answer</a>
-<a class="sourceLine" id="cb148-3" data-line-number="3">    <span class="cf">while</span> True<span class="op">:</span></a>
-<a class="sourceLine" id="cb148-4" data-line-number="4">        better <span class="op">=</span> (approx <span class="op">+</span> n/approx)/<span class="fl">2.0</span></a>
-<a class="sourceLine" id="cb148-5" data-line-number="5">        <span class="cf">if</span> <span class="at">abs</span>(approx <span class="op">-</span> better) <span class="op">&lt;</span> <span class="fl">0.001</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb148-6" data-line-number="6">            <span class="cf">return</span> better</a>
-<a class="sourceLine" id="cb148-7" data-line-number="7">        approx <span class="op">=</span> better</a>
-<a class="sourceLine" id="cb148-8" data-line-number="8">    </a>
-<a class="sourceLine" id="cb148-9" data-line-number="9"># Test cases</a>
-<a class="sourceLine" id="cb148-10" data-line-number="10"><span class="at">print</span>(<span class="at">sqrt</span>(<span class="fl">25.0</span>))</a>
-<a class="sourceLine" id="cb148-11" data-line-number="11"><span class="at">print</span>(<span class="at">sqrt</span>(<span class="fl">49.0</span>))</a>
-<a class="sourceLine" id="cb148-12" data-line-number="12"><span class="at">print</span>(<span class="at">sqrt</span>(<span class="fl">81.0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb128-1" data-line-number="1">def <span class="at">sqrt</span>(n)<span class="op">:</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2">    approx <span class="op">=</span> n/<span class="fl">2.0</span>     # Start <span class="cf">with</span> some or other guess at the answer</a>
+<a class="sourceLine" id="cb128-3" data-line-number="3">    <span class="cf">while</span> True<span class="op">:</span></a>
+<a class="sourceLine" id="cb128-4" data-line-number="4">        better <span class="op">=</span> (approx <span class="op">+</span> n/approx)/<span class="fl">2.0</span></a>
+<a class="sourceLine" id="cb128-5" data-line-number="5">        <span class="cf">if</span> <span class="at">abs</span>(approx <span class="op">-</span> better) <span class="op">&lt;</span> <span class="fl">0.001</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb128-6" data-line-number="6">            <span class="cf">return</span> better</a>
+<a class="sourceLine" id="cb128-7" data-line-number="7">        approx <span class="op">=</span> better</a>
+<a class="sourceLine" id="cb128-8" data-line-number="8">    </a>
+<a class="sourceLine" id="cb128-9" data-line-number="9"># Test cases</a>
+<a class="sourceLine" id="cb128-10" data-line-number="10"><span class="at">print</span>(<span class="at">sqrt</span>(<span class="fl">25.0</span>))</a>
+<a class="sourceLine" id="cb128-11" data-line-number="11"><span class="at">print</span>(<span class="at">sqrt</span>(<span class="fl">49.0</span>))</a>
+<a class="sourceLine" id="cb128-12" data-line-number="12"><span class="at">print</span>(<span class="at">sqrt</span>(<span class="fl">81.0</span>))</a></code></pre></div>
 <p>The output is:</p>
 <pre><code>5.00000000002
 7.0
