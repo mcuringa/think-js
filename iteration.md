@@ -592,11 +592,12 @@ reassignment
 For Loop Exercises
 -------------------
 
-1. Write a program that prints `We like Javascript!` 1000 times. 
+1. Write a function that prints `We like Javascript!` 1000 times. 
 
-2. Print out all of the odd numbers between 0 and 100.
+2. Write a function `printOdds(start, end)` which prints all of the odd number starting with `start`
+    up to and including `end`.
 
-3. Count to 10,000 by 10s (print the sequence 10, 20, 30, ..10,000).
+3. Write a function `countByTens` that counts to 10,000 by 10s (printing the sequence 10, 20, 30, .. 10,000).
       
 4. Write a function named `poly` that uses a `for` loop to make a turtle draw
    any regular polygon (regular means all sides the same lengths, all angles
@@ -615,15 +616,18 @@ For Loop Exercises
 For Loop Lab
 ------------
 
-For the `for` loop lab we're going to return to our turtle graphics
-programming. We've already seen many interesting shapes and patterns
-that can be made with loops. For this lab, you are going to use turtle
-to draw a picture, with these simple guidelines:
+  For the `for` loop lab we're going to return to our turtle graphics
+  programming. We've already seen many interesting shapes and patterns
+  that can be made with loops. For this lab, you are going to use turtle
+  to draw a picture, with these simple guidelines:
 
-- all of your code is encapsulated in functions, except for a call to `main()`
-  which starts your program
-- (at least) 3 different things in your picture are created by _generalized_ functions.
-  Generalized functions use function parameters to allow one function to handle different
-  cases. In turtle, these parameters may control things like size, color, placement on
-  the screen, etc.
-- you use `for` loops to place more than one
+  - all of your code is encapsulated in functions, except for the call to `main()`
+    which starts your program
+  - (at least) 3 different things in your picture are created by _generalized_ functions.
+    Generalized functions use function parameters to allow one function to handle different
+    cases. In turtle, these parameters may control things like size, color, placement on
+    the screen, etc.
+  - you use `for` loops to place more than one "think" in your picture
+
+  If you are unsure how to start, consider drawing a city. You can write functions for buildings, windows, using
+  for loops to place the windows on a building and building inside your drawing.

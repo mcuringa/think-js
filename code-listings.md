@@ -7,7 +7,6 @@ Code templates, solutions, and examples
 
 ### Using repl.it
 
-
 Online code examples in this book are hosted on <https://repl.it>. Called "repls",
 these source files and programs can be edited and run online, and can be
 easily **forked** (remixed) and shared. Several types of repls are available:
@@ -49,4 +48,5 @@ cannot save your work without an account.
   - [Turtle Bounce Lab](https://repl.it/@mcuringa/turtle-bounce)
 
 ### Iteration with `for`
+- [For loop exercises](https://repl.it/@mcuringa/for-loop-exercises)
 - [Iteration Lab Template](https://repl.it/@mcuringa/for-loop-turtle-lab)
