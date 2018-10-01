@@ -47,3 +47,6 @@ cannot save your work without an account.
   - [BMI Lab](https://repl.it/@mcuringa/conditionals-lab5-bmi)
   - [Animal Year Lab](https://repl.it/@mcuringa/conditionals-lab5-bmi)
   - [Turtle Bounce Lab](https://repl.it/@mcuringa/turtle-bounce)
+
+### Iteration with `for`
+- [Iteration Lab Template](https://repl.it/@mcuringa/for-loop-turtle-lab)

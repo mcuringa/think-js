@@ -979,6 +979,13 @@ Exercises
 
 ### Basic Questions
 
+1.  Write a function to count how many odd numbers are in a list.
+2.  Sum up all the even numbers in a list.
+3.  Sum up all the negative numbers in a list.
+4.  Count how many words in a list have length 5.
+5.  Sum all the elements in a list up to but not including the first
+    even number. (Write your unit tests. What if there is no even
+    number?)
 1. Write a loop that prints out the even numbers from 1-100 (including 100)
 2. Re-write your function from question 1 to solve the problem using
    a ``range()`` where you pass 3 arguments to ``range``: **start**,
