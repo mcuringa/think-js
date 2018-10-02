@@ -533,6 +533,77 @@ Now, when we call `printMultTable(7)`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Solving problems with `for` loops
+---------------------------------
+
+The `for` loop is a **definite loop** -- a type of iteration where the number
+of iterations is (typically) known when the loop begins. In the examples we've
+looked at, we've used it to iterate over a range of numbers -- to execute the
+loop a set number of times. In later chapters we'll learn how to use the `for`
+loop to iterate over lists of items as well. We can use a `for` loop to search
+through one of these lists, whether a range of numbers or a list of items. For
+now, we'll stick with ranges of numbers.
+
+Let's say we want to write a function that counts the multiples of 3 in a
+range of numbers. We already learned how to use the `if` statement to test a
+condition. In this chapter we looked at ways to iterate over a range of
+numbers. We can combine these techniques to solve our problem.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
+function countMultiplesOf3 (start, end) {
+  let count = 0;     
+  for (let i=start; i <= end; i++) {
+    if (count % 3 == 0) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countMultiplesOf3(3, 12)); // the multiples are [3, 6, 9, 12], so prints 4
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the example above, we test to see if a number is evenly divisible by 3
+(i.e. a multiple of 3) using the `%` mode operator. We use the `count`
+variable to keep track of all of the multiples we find, using the `++`
+operator to increment `count` each time we find a multiple in our loop.
+
+Sometimes we want to exit a `for` loop early. One way to do this is with a `return`
+statement. Let's write a simple function to test if a number is prime. A prime
+number is a positive integer greater than 1 that is only divisible by itself and by 1.
+To test if a number is prime, we will test all of the numbers smaller than it. If
+any of those numbers divide evenly into the number, it's not prime. If our loop completes
+without finding a divisor, our number must be prime. Here's the code:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
+function isPrime (n) {
+
+  if (n < 2) {
+    return false;
+  }
+
+  if (n === 2) {
+    return true;
+  }
+
+  for (let i = 2; i<n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+On line 3, we make sure that `n` is a positive integer greater than 1. On line 6, we handle
+the special case of 2 -- the only even prime. On line 11 we begin our `for` loop. We do at
+_most_ enough iterations to check all of the numbers between 2 and `n - 1`. _If_ we find
+a divisor of `n` on line 12, _then_ we return `false` because `n` can't be prime. We don't
+need to continue our `for` loop, so we exit early with a `return` statement. If we
+finally reach line 17, we return `true`. Because of the logic of our program, `n` _must_
+be prime.
+
 Functions
 ---------
 
@@ -540,12 +611,12 @@ A few times now, we have mentioned all the things functions are good for. By
 now, you might be wondering what exactly those things are. Here are some of
 them:
 
-#. Capturing your mental chunking. Breaking your complex tasks into sub-tasks, and
+1. Capturing your mental chunking. Breaking your complex tasks into sub-tasks, and
    giving the sub-tasks a meaningful name is a powerful mental technique.
-#. Dividing a long program into functions allows you to separate parts of the
+2. Dividing a long program into functions allows you to separate parts of the
    program, debug them in isolation, and then compose them into a whole.
-#. Functions facilitate the use of iteration.
-#. Well-designed functions are often useful for many programs. Once you write
+3. Functions facilitate the use of iteration.
+4. Well-designed functions are often useful for many programs. Once you write
    and debug one, you can reuse it in many different programs and contexts.
 
 
@@ -557,6 +628,10 @@ control flow
    in the order they are written. _Selection_ of certain statements -- and exclusion
    of others -- can be accomplished with `if` and `else` statements. Repetition
    of statements is accomplished by _iteration_, such as with a `for` loop.
+
+definite loop
+:  A form of iteration when the (maximum) number of loops are known before
+   the loop begins.
 
 encapsulation 
 :  Encapsulation in computer programming involves writing functionality in code
@@ -585,7 +660,7 @@ loop variable
    it is modified by the _final expression_ and may be modified in the _loop body_. 
 
 reassignment
-:  The ability of _variables_ to be assigned a new value after they have been declared.
+:  The ability of _variables_ to be given (assigned) a new value after they have been declared.
 
 
 
@@ -604,8 +679,12 @@ For Loop Exercises
    the same, to find the angle, divide 360 by the number of sides). The function
    must have `size` and `numSides` as parameters. So, `poly(40, 4)` would
    draw a square where the sides are 40 pixels long.
-  
-5. **Center text.** The `.length` attributes of a string tells us how
+
+5. Write a function `countPrimes(a, b)` which counts all of the prime numbers
+   between `a` and `b`, including `a` and `b`. Your function must _return_
+   the count. It should not print anything to the console.
+
+6. **Center text.** The `.length` attributes of a string tells us how
    many characters are in the string, `"cat".length === 3`. Using this property
    and a `for` loop, write a function that centers text in the console. Your function
    must have two parameters -- the text that needs to be centered, and the number
@@ -613,21 +692,27 @@ For Loop Exercises
    enough blank spaces on the left side so that it will be centered.
    _The function does not print to the console_.
 
+7. (hard bonus) Consider the `isPrime` example above. Our solution would be considered
+   a **naive** solution -- a solution which solve the problem in a basic, but
+   not most efficient or _elegant_ manner. Thinking (or reading) about prime
+   numbers, can you **refactor** `isPrime` so that it can determine if a number
+   is prime without having to complete all of the iterations between 2 and `n`? 
+
 For Loop Lab
 ------------
 
-  For the `for` loop lab we're going to return to our turtle graphics
-  programming. We've already seen many interesting shapes and patterns
-  that can be made with loops. For this lab, you are going to use turtle
-  to draw a picture, with these simple guidelines:
+For the `for` loop lab we're going to return to our turtle graphics
+programming. We've already seen many interesting shapes and patterns
+that can be made with loops. For this lab, you are going to use turtle
+to draw a picture, with these simple guidelines:
 
-  - all of your code is encapsulated in functions, except for the call to `main()`
-    which starts your program
-  - (at least) 3 different things in your picture are created by _generalized_ functions.
-    Generalized functions use function parameters to allow one function to handle different
-    cases. In turtle, these parameters may control things like size, color, placement on
-    the screen, etc.
-  - you use `for` loops to place more than one "think" in your picture
+- all of your code is encapsulated in functions, except for the call to `main()`
+  which starts your program
+- (at least) 3 different things in your picture are created by _generalized_ functions.
+  Generalized functions use function parameters to allow one function to handle different
+  cases. In turtle, these parameters may control things like size, color, placement on
+  the screen, etc.
+- you use `for` loops to place more than one "think" in your picture
 
-  If you are unsure how to start, consider drawing a city. You can write functions for buildings, windows, using
-  for loops to place the windows on a building and building inside your drawing.
+If you are unsure how to start, consider drawing a city. You can write functions for buildings, windows, using
+for loops to place the windows on a building and building inside your drawing.
