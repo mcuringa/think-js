@@ -40,17 +40,20 @@ function money(amt) {
  * 1 cup of lemonade.
  */
 function getExpensePerCup() {
-  console.log(); // just a blank line on the console
-  console.log("------- GATHERING EXPENSE DATA -------");
-  console.log("Enter how much it costs you for one (1) of these items.")
-  let cupCost = promptFloat("Expense for 1 cup?");
-  let lemonCost = promptFloat("Expense for 1 lemon?");
+  let msg = `
+GATHERING EXPENSE DATA
+Enter how much it costs you for one (1) of these items.
+Click <OK> to continue.
+
+`;
+  
+  window.prompt(msg);
+  let cupCost = promptFloat("How much do you pay for 1 new cup?");
+  let lemonCost = promptFloat("How much do you pay  for 1 lemon?");
   
   // for each cup of lemonade we need 1 cup and 3 lemons
   return cupCost + lemonCost * 3;
-
 }
-
 
 /**
  * prints profits and expenses given
@@ -61,27 +64,28 @@ function resultForQty(qty, cupPrice, cupCost) {
   let cost = qty * cupCost;
   let revenue = qty * cupPrice;
   let profit = revenue - cost;
-  console.log("-------------------------");
+
+  console.log();
   console.log("if you sell " + qty + " cups of lemonade at " + money(cupPrice) + " per cup");
   console.log("expenses: " + money(cost));
-  console.log("revenues: " + money(revenues));
+  console.log("revenues: " + money(revenue));
   console.log("  PROFIT: " + money(profit));
-  console.log();
-
+  console.log("-------------------------");
+ 
 }
 
 /**
  * Show the user expenses and profits at various levels of sales
  */
 function showResults(cupCost, cupPrice) {
-  let cupProfit = cupPrice - cupCost;
-  let profit50 =
 
   console.log();
   console.log("------- DISPLAYING RESULTS -------");
-  console.log("SALE PRICE: " + money(cupPrice));
 
-
+  resultForQty(20, cupPrice, cupCost);
+  resultForQty(50, cupPrice, cupCost);
+  resultForQty(100, cupPrice, cupCost);
+  resultForQty(500, cupPrice, cupCost);
 
 }
 
@@ -91,8 +95,8 @@ function showResults(cupCost, cupPrice) {
 function main() {
 
   let cupCost = getExpensePerCup();
-  let cupPrice = promptFLoat("How much do you charge for a cup of lemonade?");
+  let cupPrice = promptFloat("How much do you charge for a cup of lemonade?");
   showResults(cupCost, cupPrice);
-
-
 }
+
+main();

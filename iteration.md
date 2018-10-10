@@ -553,7 +553,7 @@ numbers. We can combine these techniques to solve our problem.
 function countMultiplesOf3 (start, end) {
   let count = 0;     
   for (let i=start; i <= end; i++) {
-    if (count % 3 == 0) {
+    if (i % 3 === 0) {
       count++;
     }
   }

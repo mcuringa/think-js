@@ -37,7 +37,8 @@ cannot save your work without an account.
 ### Functions
 - [Function Exercises](https://repl.it/@mcuringa/function-exercises)
 - [Function Exercise Solutions](https://repl.it/@mcuringa/function-exercise-solutions)
-- [Tip Calculator Example]()
+- [Tip Calculator Example](https://repl.it/@mcuringa/tip-calculator)
+- [Lemonade Lab Solution](https://repl.it/@mcuringa/lemonade-lab-solution)
 
 ### Conditionals
 - [Boolean and Conditional Exercises](https://repl.it/@mcuringa/conditionals-exercises)
