@@ -247,17 +247,17 @@ Tracing can be a bit tedious and error prone (that's why we get computers to
 do this stuff in the first place!), but it is an essential skill for a
 programmer to have. From this trace we can learn a lot about the way our code
 works. We can observe that as soon as `n` becomes a power of 2, for example,
-the program will require log\ :sub:`2`\ (n) executions of the loop body to
+the program will require $log\ :sub:2\ (n)$ executions of the loop body to
 complete. We can also see that the final 1 will not be printed as output
 within the body of the loop, which is why we concatenate `1` after our `while`
 loop terminates.
 
 Tracing a program is, of course, related to single-stepping through your code
 and being able to inspect the variables. Using the computer to **single-step**
-for you is less error prone and more convenient.  Also, as your programs get
-more complex, they might execute many millions of  steps before they get to
+for you is less error prone and more convenient. Also, as your programs get
+more complex, they might execute many millions of steps before they get to
 the code that you're really interested in, so manual tracing  becomes
-impossible.  Being able to set a **breakpoint** where you need one is far more
+impossible. Being able to set a **breakpoint** where you need one is far more
 powerful. So we strongly encourage you to invest time in learning using to use
 your programming environment (PyScripter, in these notes) to full effect.
 
