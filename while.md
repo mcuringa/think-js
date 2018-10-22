@@ -424,3 +424,94 @@ thought, are the hardest to express algorithmically. Understanding natural
 language is a good example. We all do it, but so far no one has been able to
 explain *how* we do it, at least not in the form of a step-by-step mechanical
 algorithm.
+
+Exercises
+---------
+
+Some of these exercises work best with `while` loops, while others can be
+solved more easily with `for` loops. Some of them will work better if you
+write more than one function for the solution.
+
+The most straightforward applications of loops, given what we have learned
+so far, is working with numbers. Please review some basic terms and
+concepts that will help you with these exercises. 
+
+A **prime number** is a whole number greater than 1 that can only be evenly
+divided by 1 and itself. **Factors** are number that multiply together produce
+a number. 2 and 3 are factors of 6 because $2 x 3=6$. Is the result of **multiple**
+multiplying a number. _18 is a multiple of 3 because $6 x 3 = 18$_.
+
+The site _Math is Fun_ [offers a straightforward definition of multiples and
+factors](https://www.mathsisfun.com/numbers/factors-multiples.html) with links
+to other pages relevant to these problems.
+
+**[You can get started by forking this repl with the function definitions](https://repl.it/@mcuringa/While-Loop-Exercises)**
+
+
+1. **Sum range**
+
+   Write a function `sumRange(start, end)` that sums (adds up) all of the
+   numbers between `start` and `end`, including `start` and `end`. Return the
+   sum (a number).
+
+2. **Square count**
+   
+   Revise the code above for Newton's method for calculating square roots.
+   Instead of returning the square root, it should return the number of
+   iterations required to find the square root.
+
+3. **Sum of odds**
+
+   `sumOfOdds(start, end)` calculates and returns the sum of all of the _odd_
+   numbers in the range `start`..`end`. It includes `start` and `end` if they
+   are odd numbers.
+
+4. **Sum of Squares**
+   
+   Write a function that calculates and returns the sum of the squares of
+   numbers in a range: `sumOfSquare(start, end)`. The range includes `start`
+   and `end`.
+
+5. **Greatest factor**
+
+   Write a function `greatestFactor(start, end, n)` that returns the greatest
+   (highest) factor of `n` in the range of numbers between `start` and `end`
+   (including end).
+
+- - - - -
+
+6. **Greatest Common Factor**
+
+   Write a function `gcm(a, b)` that returns the greatest (highest number)
+   that is a factor of both `a` and `b`.
+
+
+7. **Factorials**
+   
+   Write a function `fact(n)` which returns the factorial of `n` (_n!_). The
+   **factorial** of a number is that number multiplied by all of the numbers
+   between itself and 1, so the factorial of 4 is $4 x 3 x 2 x 1 = 24$. In
+   Javascript, we'd say `fact(4) === 24`.
+
+8. **[Fibonacci Sequence](https://www.mathsisfun.com/numbers/fibonacci-sequence.html)**
+
+   Each term in the Fibonacci Sequence is calculated by adding the two
+   previous numbers in the sequence together. The first two terms can by 0,
+   and 1, so the next term is 1. The sequence begins 0, 1, 1, 2, 3, 5, 8, 13.
+   Write a function `fib(n)` which returns the `n`th number in the sequence.
+   So, `fib(0) === 0`, `fib(3) === 5` and so on.
+
+9. **[Armstrong Numbers](https://en.wikipedia.org/wiki/Narcissistic_number)**
+
+   An Armstrong Number is a number where the sum of the digits raised to the
+   number of digits in the number, equal the number itself. 153 is an
+   Armstrong Number. It has 3 digits, so $1^3 + 5^3 + 3^3 = 1 + 125 + 27 =
+   153$ Write a function `isArmstrong(n)` that returns `true` if `n` is an
+   Armstrong Number, or `false` if it isn't.
+
+
+   
+
+
+
+
