@@ -455,10 +455,10 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#working-with-the-parts-of-a-string">Working with the parts of a string</a></li>
 <li><a href="#length">Length</a></li>
 <li><a href="#traversal-and-the-for-loop">Traversal and the <code>for</code> loop</a></li>
-<li><a href="#slices">Slices</a></li>
+<li><a href="#substrings">Substrings</a></li>
 <li><a href="#string-comparison">String comparison</a></li>
 <li><a href="#strings-are-immutable">Strings are immutable</a></li>
-<li><a href="#the-in-and-not-in-operators">The <code>in</code> and <code>not in</code> operators</a></li>
+<li><a href="#testing-inclusion">Testing inclusion</a></li>
 <li><a href="#a-find-function">A <code>find</code> function</a></li>
 <li><a href="#looping-and-counting">Looping and counting</a></li>
 <li><a href="#optional-parameters">Optional parameters</a></li>
@@ -466,6 +466,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#the-split-method">The <code>split</code> method</a></li>
 <li><a href="#the-string-format-method">The string format method</a></li>
 <li><a href="#summary">Summary</a></li>
+<li><a href="#gloassary">Gloassary</a></li>
 <li><a href="#exercises-1">Exercises</a></li>
 </ul></li>
 <li><a href="#appendices">Appendices</a><ul>
@@ -498,7 +499,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>To paraphrase the philosophy of the Free Software Foundation, this book is free like free speech, but not necessarily free like free pizza. It came about because of a collaboration that would not have been possible without the GNU Free Documentation License. So we would like to thank the Free Software Foundation for developing this license and, of course, making it available to us.</p>
 <p>We would also like to thank the more than 100 sharp-eyed and thoughtful readers who have sent us suggestions and corrections over the past few years. In the spirit of free software, we decided to express our gratitude in the form of a contributor list. Unfortunately, this list is not complete, but we are doing our best to keep it up to date. It was also getting too large to include everyone who sends in a typo or two. You have our gratitude, and you have the personal satisfaction of making a book you found useful better for you and everyone else who uses it. New additions to the list for the 2nd edition will be those who have made on-going contributions.</p>
 <p>If you have a chance to look through the list, you should realize that each person here has spared you and all subsequent readers from the confusion of a technical error or a less-than-transparent explanation, just by sending us a note.</p>
-<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
+<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za" class="email">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
 <section id="second-edition" class="level3">
 <h3>Second Edition</h3>
 <ul>
@@ -2929,12 +2930,12 @@ See <a href="https://repl.it/@mcuringa/Newton-Sqare-Root">Newton Square Root rep
 <a class="sourceLine" id="cb135-2" data-line-number="2">⠕ <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb135-3" data-line-number="3"><span class="dv">6</span></a></code></pre></div>
 <p>To get the last letter of a string, you might be tempted to try something like this:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb136-1" data-line-number="1">⠕ <span class="kw">let</span> sz <span class="op">=</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
+<div class="sourceCode" id="cb136"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb136-1" data-line-number="1">⠕ <span class="kw">let</span> sz <span class="op">=</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb136-2" data-line-number="2">⠕ <span class="kw">let</span> last <span class="op">=</span> fruit[sz]<span class="op">;</span></a>
 <a class="sourceLine" id="cb136-3" data-line-number="3">⠕ last<span class="op">;</span></a>
 <a class="sourceLine" id="cb136-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">undefined</span></a></code></pre></div>
 <p>We see that <code>last</code> is <code>undefined</code>. The reason is that there is no character at index position 6 in <code>&quot;banana&quot;</code>. Because we start counting at zero, the six indexes are numbered 0 to 5. To get the last character, we have to subtract 1 from the length of <code>fruit</code>:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb137-1" data-line-number="1">⠕ <span class="kw">let</span> sz <span class="op">=</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
+<div class="sourceCode" id="cb137"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb137-1" data-line-number="1">⠕ <span class="kw">let</span> sz <span class="op">=</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb137-2" data-line-number="2">⠕ <span class="kw">let</span> last <span class="op">=</span> fruit[sz <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></a>
 <a class="sourceLine" id="cb137-3" data-line-number="3">⠕ last<span class="op">;</span></a>
 <a class="sourceLine" id="cb137-4" data-line-number="4"><span class="op">=&gt;</span> <span class="st">&#39;a&#39;</span></a></code></pre></div>
@@ -2958,7 +2959,7 @@ See <a href="https://repl.it/@mcuringa/Newton-Sqare-Root">Newton Square Root rep
 <p>The following example shows how to use concatenation and a <code>for</code> loop to generate an abecedarian series. Abecedarian refers to a series or list in which the elements appear in alphabetical order. For example, in Robert McCloskey’s book <em>Make Way for Ducklings</em>, the names of the ducklings are Jack, Kack, Lack, Mack, Nack, Ouack, Pack, and Quack. This loop outputs these names in order:</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">let</span> prefixes <span class="op">=</span> <span class="st">&quot;JKLMNOPQ&quot;</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">let</span> suffix <span class="op">=</span> <span class="st">&quot;ack&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">   </a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb140-4" data-line-number="4"><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">prefixes</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb140-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(prefixes[i] <span class="op">+</span> suffix)<span class="op">;</span></a>
 <a class="sourceLine" id="cb140-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
@@ -2972,248 +2973,234 @@ See <a href="https://repl.it/@mcuringa/Newton-Sqare-Root">Newton Square Root rep
 <a class="sourceLine" id="cb141-8" data-line-number="8">Qack</a></code></pre></div>
 <p>Of course, that’s not quite right because Ouack and Quack are misspelled. You’ll fix this as an exercise below.</p>
 </section>
-<section id="slices" class="level2">
-<h2>Slices</h2>
-<p>A <em>substring</em> of a string is obtained by taking a <strong>slice</strong>. Similarly, we can slice a list to refer to some sublist of the items in the list:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb142-1" data-line-number="1">⠕ s <span class="op">=</span> <span class="st">&quot;Pirates of the Caribbean&quot;</span></a>
-<a class="sourceLine" id="cb142-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(s[<span class="dv">0</span><span class="op">:</span><span class="dv">7</span>])</a>
+<section id="substrings" class="level2">
+<h2>Substrings</h2>
+<p>A <em>substring</em> of a string is obtained by taking a smaller sequence of characters from an existing string to create a new string.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb142-1" data-line-number="1">⠕ <span class="kw">let</span> s <span class="op">=</span> <span class="st">&quot;Pirates of the Caribbean&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="va">s</span>.<span class="at">substring</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">7</span>))<span class="op">;</span></a>
 <a class="sourceLine" id="cb142-3" data-line-number="3">Pirates</a>
-<a class="sourceLine" id="cb142-4" data-line-number="4">⠕ <span class="va">console</span>.<span class="at">log</span>(s[<span class="dv">11</span><span class="op">:</span><span class="dv">14</span>])</a>
+<a class="sourceLine" id="cb142-4" data-line-number="4">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="va">s</span>.<span class="at">substring</span>(<span class="dv">11</span><span class="op">:</span><span class="dv">14</span>))<span class="op">;</span></a>
 <a class="sourceLine" id="cb142-5" data-line-number="5">the</a>
-<a class="sourceLine" id="cb142-6" data-line-number="6">⠕ <span class="va">console</span>.<span class="at">log</span>(s[<span class="dv">15</span><span class="op">:</span><span class="dv">24</span>])</a>
-<a class="sourceLine" id="cb142-7" data-line-number="7">Caribbean</a>
-<a class="sourceLine" id="cb142-8" data-line-number="8">⠕ friends <span class="op">=</span> [<span class="st">&quot;Joe&quot;</span><span class="op">,</span> <span class="st">&quot;Zoe&quot;</span><span class="op">,</span> <span class="st">&quot;Brad&quot;</span><span class="op">,</span> <span class="st">&quot;Angelina&quot;</span><span class="op">,</span> <span class="st">&quot;Zuki&quot;</span><span class="op">,</span> <span class="st">&quot;Thandi&quot;</span><span class="op">,</span> <span class="st">&quot;Paris&quot;</span>]</a>
-<a class="sourceLine" id="cb142-9" data-line-number="9">⠕ <span class="va">console</span>.<span class="at">log</span>(friends[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb142-10" data-line-number="10">[<span class="st">&#39;Brad&#39;</span><span class="op">,</span> <span class="st">&#39;Angelina&#39;</span>]</a></code></pre></div>
-<p>to the m’th character, including the first but excluding the last. This behavior makes sense if you imagine the indices pointing <em>between</em> the characters, as in the following diagram:</p>
-<p><img src="figs/banana.png" /> :alt: ‘banana’ string</p>
-<p>If you imagine this as a piece of paper, the slice operator <code>[n:m]</code> copies out the part of the paper between the <code>n</code> and <code>m</code> positions. Provided <code>m</code> and <code>n</code> are both within the bounds of the string, your result will be of length (m-n).</p>
-<p>Three tricks are added to this: if you omit the first index (before the colon), the slice starts at the beginning of the string (or list). If you omit the second index, the slice extends to the end of the string (or list). Similarly, if you provide value for <code>n</code> that is bigger than the length of the string (or list), the slice will take all the values up to the end. (It won’t give an “out of range” error like the normal indexing operation does.) Thus:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb143-1" data-line-number="1">⠕ fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span></a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">⠕ fruit[<span class="op">:</span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="st">&#39;ban&#39;</span></a>
-<a class="sourceLine" id="cb143-4" data-line-number="4">⠕ fruit[<span class="dv">3</span><span class="op">:</span>]</a>
-<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="st">&#39;ana&#39;</span></a>
-<a class="sourceLine" id="cb143-6" data-line-number="6">⠕ fruit[<span class="dv">3</span><span class="op">:</span><span class="dv">999</span>]</a>
-<a class="sourceLine" id="cb143-7" data-line-number="7"><span class="st">&#39;ana&#39;</span></a></code></pre></div>
+<a class="sourceLine" id="cb142-6" data-line-number="6">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="va">s</span>.<span class="at">substring</span>(<span class="dv">15</span><span class="op">:</span><span class="dv">24</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7">Caribbean</a></code></pre></div>
+<p>The <code>substring(startIndex, endIndex)</code> method of a string, returns a new string without modifying the original string. The new string (i.e. the <em>substring</em>) starts at (and includes) the character at <code>startIndex</code> and ends at (but <em>excludes</em>) the character at <code>endIndex</code>. This behavior makes sense if you imagine the indices pointing <em>between</em> the characters, as in the following diagram:</p>
+<p><img src="figs/banana.png" /></p>
+<p>If you imagine this as a piece of paper, <code>substring(m, n)</code> copies out the part of the paper between the <code>n</code> and <code>m</code> positions. Provided <code>m</code> and <code>n</code> are both within the bounds of the string, your result will be of length (m-n).</p>
+<p>There are a few more tricks to <code>substring</code>. If you omit the second argument (<code>endIndex</code>), the function returns a substring from <code>startIndex</code> up to and including the last character in the string. If you provide an <code>endIndex</code> greater than <code>string.length</code>,</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring">From the MDN documentation</a>, we learn the following additional rules and behaviors for <code>substring</code>.</p>
+<ul>
+<li>If the <code>indexEnd</code> argument is omitted, <code>substring()</code> returns the substring from <code>startIndex</code> to the end of the string</li>
+<li>If <code>indexStart</code> is equal to <code>indexEnd</code>, <code>substring()</code> returns an empty string</li>
+<li>If <code>indexStart</code> is greater than <code>indexEnd</code>, the <code>substring()</code> swaps the two arguments</li>
+<li>Any argument value that is less than 0 is treated as 0</li>
+<li>Any argument than <code>string.length</code> is treated as if it were <code>string.length</code></li>
+<li>Any argument value that is <code>NaN</code> is treated as if it were 0</li>
+</ul>
 </section>
 <section id="string-comparison" class="level2">
 <h2>String comparison</h2>
-<p>The comparison operators work on strings. To see if two strings are equal:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="cf">if</span> word <span class="op">==</span> <span class="st">&quot;banana&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Yes, we have no bananas!&quot;</span>)</a></code></pre></div>
-<p><code>lexicographical</code> order:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="cf">if</span> word <span class="op">&lt;</span> <span class="st">&quot;banana&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb145-2" data-line-number="2">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your word, &quot;</span> <span class="op">+</span> word <span class="op">+</span> <span class="st">&quot;, comes before banana.&quot;</span>)</a>
-<a class="sourceLine" id="cb145-3" data-line-number="3">elif word <span class="op">&gt;</span> <span class="st">&quot;banana&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb145-4" data-line-number="4">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your word, &quot;</span> <span class="op">+</span> word <span class="op">+</span> <span class="st">&quot;, comes after banana.&quot;</span>)</a>
-<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="cf">else</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb145-6" data-line-number="6">    <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Yes, we have no bananas!&quot;</span>)</a></code></pre></div>
-<p>except that all the uppercase letters come before all the lowercase letters. As a result:</p>
-<pre><code>.. sourcecode:: pycon
-    
-    Your word, Zebra, comes before banana.</code></pre>
-<p>A common way to address this problem is to convert strings to a standard format, such as all lowercase, before performing the comparison. A more difficult problem is making the program realize that zebras are not fruit.</p>
+<p>The Boolean comparison operators work on strings. To see if two strings are equal:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="cf">if</span> (word <span class="op">===</span> <span class="st">&quot;banana&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Yes, we have no bananas!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>Other comparison operations are useful for putting words in <code>lexicographical</code> order:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="cf">if</span> (word <span class="op">&lt;</span> <span class="st">&quot;banana&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your word, &quot;</span> <span class="op">+</span> word <span class="op">+</span> <span class="st">&quot;, comes before banana.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="cf">else</span> <span class="cf">if</span> (word <span class="op">&gt;</span> <span class="st">&quot;banana&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb144-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your word, &quot;</span> <span class="op">+</span> word <span class="op">+</span> <span class="st">&quot;, comes after banana.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Yes, we have no bananas!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="op">}</span></a></code></pre></div>
+<p>Keep in mind that Javascript string comparisons are <em>case sensitive</em>, so, for exampe “Ape” does not equal “ape”. A common way to address the problem of case is to convert strings to a standard format, such as all lowercase, before performing the comparison. So:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb145-1" data-line-number="1">⠕ <span class="kw">let</span> a <span class="op">=</span> <span class="st">&quot;Ape&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">⠕ <span class="kw">let</span> b <span class="op">=</span> <span class="st">&quot;ape&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb145-3" data-line-number="3">⠕ a <span class="op">===</span> b<span class="op">;</span></a>
+<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="op">=&gt;</span> <span class="kw">true</span></a></code></pre></div>
 </section>
 <section id="strings-are-immutable" class="level2">
 <h2>Strings are immutable</h2>
 <p>It is tempting to use the <code>[]</code> operator on the left side of an assignment, with the intention of changing a character in a string. For example:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb147-1" data-line-number="1">greeting <span class="op">=</span> <span class="st">&quot;Hello, world!&quot;</span></a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">greeting[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;J&#39;</span>    # ERROR<span class="op">!</span></a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(greeting)</a></code></pre></div>
-<p>runtime error <code>TypeError: 'str' object does not support item assignment</code>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">let</span> greeting <span class="op">=</span> <span class="st">&quot;Hello, world!&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">greeting[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;J&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(greeting)<span class="op">;</span></a></code></pre></div>
+<p>At best, the assignment on line 2 above will have no effect. If you run the code in <strong>strict mode</strong>, you will get an error.</p>
 <p>Strings are <strong>immutable</strong>, which means you can’t change an existing string. The best you can do is create a new string that is a variation on the original:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb148-1" data-line-number="1">greeting <span class="op">=</span> <span class="st">&quot;Hello, world!&quot;</span></a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">new_greeting <span class="op">=</span> <span class="st">&quot;J&quot;</span> <span class="op">+</span> greeting[<span class="dv">1</span><span class="op">:</span>]</a>
-<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(new_greeting)</a></code></pre></div>
-<p><code>greeting</code>. This operation has no effect on the original string.</p>
-<pre><code>single: in operator
-single: operator; in</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">let</span> greeting <span class="op">=</span> <span class="st">&quot;Hello, world!&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="kw">let</span> newGreeting <span class="op">=</span> <span class="st">&quot;J&quot;</span> <span class="op">+</span> <span class="va">greeting</span>.<span class="at">substring</span>(<span class="dv">1</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(newGreeting)<span class="op">;</span></a></code></pre></div>
+<p>The solution here is to concatenate a new first letter onto a slice of <code>greeting</code>. This operation has no effect on the original string.</p>
 </section>
-<section id="the-in-and-not-in-operators" class="level2">
-<h2>The <code>in</code> and <code>not in</code> operators</h2>
-<p>The <code>in</code> operator tests for membership. When both of the arguments to <code>in</code> are strings, <code>in</code> checks whether the left argument is a substring of the right argument.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb150-1" data-line-number="1">⠕ <span class="st">&quot;p&quot;</span> <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb150-2" data-line-number="2">True</a>
-<a class="sourceLine" id="cb150-3" data-line-number="3">⠕ <span class="st">&quot;i&quot;</span> <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb150-4" data-line-number="4">False</a>
-<a class="sourceLine" id="cb150-5" data-line-number="5">⠕ <span class="st">&quot;ap&quot;</span> <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb150-6" data-line-number="6">True</a>
-<a class="sourceLine" id="cb150-7" data-line-number="7">⠕ <span class="st">&quot;pa&quot;</span> <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb150-8" data-line-number="8">False</a></code></pre></div>
-<p>substring of any other string. (Also note that computer scientists like to think about these edge cases quite carefully!)</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb151-1" data-line-number="1">⠕ <span class="st">&quot;a&quot;</span> <span class="kw">in</span> <span class="st">&quot;a&quot;</span></a>
-<a class="sourceLine" id="cb151-2" data-line-number="2">True</a>
-<a class="sourceLine" id="cb151-3" data-line-number="3">⠕ <span class="st">&quot;apple&quot;</span> <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb151-4" data-line-number="4">True</a>
-<a class="sourceLine" id="cb151-5" data-line-number="5">⠕ <span class="st">&quot;&quot;</span> <span class="kw">in</span> <span class="st">&quot;a&quot;</span></a>
-<a class="sourceLine" id="cb151-6" data-line-number="6">True</a>
-<a class="sourceLine" id="cb151-7" data-line-number="7">⠕ <span class="st">&quot;&quot;</span> <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb151-8" data-line-number="8">True</a>
-<a class="sourceLine" id="cb151-9" data-line-number="9">    </a></code></pre></div>
-<div class="sourceCode" id="cb152"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb152-1" data-line-number="1">⠕ <span class="st">&quot;x&quot;</span> not <span class="kw">in</span> <span class="st">&quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb152-2" data-line-number="2">True</a></code></pre></div>
-<p>write a function that removes all the vowels from a string:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb153-1" data-line-number="1">def <span class="at">remove_vowels</span>(s)<span class="op">:</span></a>
-<a class="sourceLine" id="cb153-2" data-line-number="2">    vowels <span class="op">=</span> <span class="st">&quot;aeiouAEIOU&quot;</span></a>
-<a class="sourceLine" id="cb153-3" data-line-number="3">    s_sans_vowels <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb153-4" data-line-number="4">    <span class="cf">for</span> x <span class="kw">in</span> s<span class="op">:</span></a>
-<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="cf">if</span> x not <span class="kw">in</span> vowels<span class="op">:</span></a>
-<a class="sourceLine" id="cb153-6" data-line-number="6">    s_sans_vowels <span class="op">+=</span> x</a>
-<a class="sourceLine" id="cb153-7" data-line-number="7">    <span class="cf">return</span> s_sans_vowels </a>
-<a class="sourceLine" id="cb153-8" data-line-number="8">   </a>
-<a class="sourceLine" id="cb153-9" data-line-number="9"><span class="at">test</span>(<span class="at">remove_vowels</span>(<span class="st">&quot;compsci&quot;</span>) <span class="op">==</span> <span class="st">&quot;cmpsc&quot;</span>)</a>
-<a class="sourceLine" id="cb153-10" data-line-number="10"><span class="at">test</span>(<span class="at">remove_vowels</span>(<span class="st">&quot;aAbEefIijOopUus&quot;</span>) <span class="op">==</span> <span class="st">&quot;bfjps&quot;</span>)</a>
-<a class="sourceLine" id="cb153-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb153-12" data-line-number="12"></a></code></pre></div>
-<pre><code>       computation pattern</code></pre>
+<section id="testing-inclusion" class="level2">
+<h2>Testing inclusion</h2>
+<p>Javascript provides string functions that let us find substrings within a string. <code>includes</code> returns a Boolean <code>true</code> or <code>false</code> to indicate if the substring exists in the string.</p>
+<p>~~~~~~~~~~~~~~~~~~~~~~~~~~<del>{.javascript} ⠕ let s = “apple”; ⠕ s.includes(“p”); =&gt; true ⠕ s.includes(“i”); =&gt; false ⠕ s.includes(“app”); =&gt; true ⠕ s.includes(“App”); // false because case doesn’t match =&gt; false</del>~~~~~~~~~~~~~~~~</p>
+<p>Note that a string is a substring of itself, and the empty string is a substring of any other string. (Also note that computer scientists like to think about these edge cases quite carefully!)</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb148-1" data-line-number="1">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;apple&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="op">=&gt;</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb148-3" data-line-number="3">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">true</span></a></code></pre></div>
+<p>Combining the <code>includes</code> with string concatenation using <code>+=</code>, we can remove the vowels from a string:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">function</span> <span class="at">removeVowels</span>(s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb149-2" data-line-number="2">  <span class="kw">let</span> vowels <span class="op">=</span> <span class="st">&quot;aeiou&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb149-3" data-line-number="3">  <span class="kw">let</span> sansVowels <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb149-4" data-line-number="4">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">s</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb149-5" data-line-number="5">    <span class="kw">let</span> c <span class="op">=</span> s[i].<span class="at">toLowerCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb149-6" data-line-number="6">    <span class="cf">if</span>(<span class="op">!</span><span class="va">vowels</span>.<span class="at">includes</span>(c)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb149-7" data-line-number="7">      sansVowels <span class="op">+=</span> s[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb149-8" data-line-number="8">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb149-9" data-line-number="9">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb149-10" data-line-number="10">  <span class="cf">return</span> sansVowels<span class="op">;</span></a>
+<a class="sourceLine" id="cb149-11" data-line-number="11"><span class="op">}</span></a>
+<a class="sourceLine" id="cb149-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb149-13" data-line-number="13"><span class="va">console</span>.<span class="at">log</span>(<span class="at">removeVowels</span>(<span class="st">&quot;CompSci&quot;</span>))<span class="op">;</span> <span class="co">// CmpSc</span></a>
+<a class="sourceLine" id="cb149-14" data-line-number="14"><span class="va">console</span>.<span class="at">log</span>(<span class="at">removeVowels</span>(<span class="st">&quot;A dark and stormy night.&quot;</span>))<span class="op">;</span> <span class="co">//  drk nd strmy nght.</span></a></code></pre></div>
+<p><a href="https://repl.it/@mcuringa/remove-vowels">Check out this function on repl.it</a></p>
+<p>This short function uses several of the techniques and patterns we have previously seen. We use a finite <code>for</code> loop up up to <code>s.length</code> to traverse the string. We convert <code>c</code> to lowercase for the comparison where we test for inclusion in <code>vowels</code>. We create an empty string, <code>sansVowels</code> that accumulates the non-vowel characters that we find.</p>
 </section>
 <section id="a-find-function" class="level2">
 <h2>A <code>find</code> function</h2>
 <p>What does the following function do?</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb155-1" data-line-number="1">def <span class="at">find</span>(strng<span class="op">,</span> ch)<span class="op">:</span></a>
-<a class="sourceLine" id="cb155-2" data-line-number="2">    <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb155-3" data-line-number="3">      Find and <span class="cf">return</span> the index of ch <span class="kw">in</span> <span class="va">strng</span>.  </a>
-<a class="sourceLine" id="cb155-4" data-line-number="4">      Return <span class="dv">-1</span> <span class="cf">if</span> ch does not occur <span class="kw">in</span> <span class="va">strng</span>.</a>
-<a class="sourceLine" id="cb155-5" data-line-number="5">    <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb155-6" data-line-number="6">    ix <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb155-7" data-line-number="7">    <span class="cf">while</span> ix <span class="op">&lt;</span> <span class="at">len</span>(strng)<span class="op">:</span></a>
-<a class="sourceLine" id="cb155-8" data-line-number="8"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
-<a class="sourceLine" id="cb155-9" data-line-number="9">    <span class="cf">return</span> ix</a>
-<a class="sourceLine" id="cb155-10" data-line-number="10">ix <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb155-11" data-line-number="11">    <span class="cf">return</span> <span class="dv">-1</span></a>
-<a class="sourceLine" id="cb155-12" data-line-number="12">    </a>
-<a class="sourceLine" id="cb155-13" data-line-number="13"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;p&quot;</span>) <span class="op">==</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb155-14" data-line-number="14"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;C&quot;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb155-15" data-line-number="15"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;i&quot;</span>) <span class="op">==</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb155-16" data-line-number="16"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;x&quot;</span>) <span class="op">==</span> <span class="dv">-1</span>)</a>
-<a class="sourceLine" id="cb155-17" data-line-number="17">    </a></code></pre></div>
-<p>an index and extracting the corresponding character, it takes a character and finds the index where that character appears. If the character is not found, the function returns <code>-1</code>.</p>
-<p>This is another example where we see a <code>return</code> statement inside a loop. If <code>strng[ix] == ch</code>, the function returns immediately, breaking out of the loop prematurely.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="co">// Find and return the index of ch in strng.</span></a>
+<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="co">// Return -1 if ch does not occur in strng.</span></a>
+<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="kw">function</span> <span class="at">find</span>(strng<span class="op">,</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb150-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb150-5" data-line-number="5">  <span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">strng</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb150-6" data-line-number="6">    <span class="cf">if</span>(strng[i] <span class="op">===</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb150-7" data-line-number="7">      <span class="cf">return</span> i<span class="op">;</span></a>
+<a class="sourceLine" id="cb150-8" data-line-number="8">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb150-9" data-line-number="9">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb150-10" data-line-number="10">  <span class="cf">return</span> <span class="dv">-1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb150-11" data-line-number="11"><span class="op">}</span></a>
+<a class="sourceLine" id="cb150-12" data-line-number="12"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;p&quot;</span>) <span class="op">==</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb150-13" data-line-number="13"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;C&quot;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb150-14" data-line-number="14"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;i&quot;</span>) <span class="op">==</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb150-15" data-line-number="15"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;x&quot;</span>) <span class="op">==</span> <span class="dv">-1</span>)</a></code></pre></div>
+<p>In a sense, <code>find</code> is the opposite of the indexing operator. Instead of taking an index and extracting the corresponding character, it takes a character and finds the index where that character appears. If the character is not found, the function returns <code>-1</code>.</p>
+<p>This is another example where we see a <code>return</code> statement inside a loop. If <code>strng[i] === ch</code>, the function returns immediately, breaking out of the loop prematurely.</p>
 <p>If the character doesn’t appear in the string, then the program exits the loop normally and returns <code>-1</code>.</p>
 <p>This pattern of computation is sometimes called a <strong>eureka traversal</strong> or <strong>short-circuit evaluation</strong>, because as soon as we find what we are looking for, we can cry “Eureka!”, take the short-circuit, and stop looking.</p>
+<p>We wrote our own <code>find</code> function above, but Javascript’s string object includes a more robust version called <code>indexOf</code>. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf">You can explore the MDN docs</a>.</p>
 </section>
 <section id="looping-and-counting" class="level2">
 <h2>Looping and counting</h2>
 <p>The following program counts the number of times the letter <code>a</code> appears in a string, and is another example of the counter pattern introduced in :ref:<code>counting</code>:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb156-1" data-line-number="1">def <span class="at">count_a</span>(text)<span class="op">:</span> </a>
-<a class="sourceLine" id="cb156-2" data-line-number="2">    count <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb156-3" data-line-number="3">    <span class="cf">for</span> c <span class="kw">in</span> text<span class="op">:</span></a>
-<a class="sourceLine" id="cb156-4" data-line-number="4"><span class="cf">if</span> c <span class="op">==</span> <span class="st">&quot;a&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb156-5" data-line-number="5">    count <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb156-6" data-line-number="6">    <span class="cf">return</span>(count)</a>
-<a class="sourceLine" id="cb156-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb156-8" data-line-number="8"><span class="at">test</span>(<span class="at">count_a</span>(<span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">3</span>)    </a></code></pre></div>
-<p>.. _optional_parameters:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="kw">function</span> <span class="at">count_a</span>(text)<span class="op">:</span></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">    count <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb151-3" data-line-number="3">    <span class="cf">for</span> c <span class="kw">in</span> text<span class="op">:</span></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="cf">if</span> c <span class="op">==</span> <span class="st">&quot;a&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb151-5" data-line-number="5">    count <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb151-6" data-line-number="6">    <span class="cf">return</span>(count)</a>
+<a class="sourceLine" id="cb151-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb151-8" data-line-number="8"><span class="at">test</span>(<span class="at">count_a</span>(<span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">3</span>)    </a></code></pre></div>
 </section>
 <section id="optional-parameters" class="level2">
 <h2>Optional parameters</h2>
 <p>To find the locations of the second or third occurrence of a character in a string, we can modify the <code>find</code> function, adding a third parameter for the starting position in the search string:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb157-1" data-line-number="1">def <span class="at">find2</span>(strng<span class="op">,</span> ch<span class="op">,</span> start)<span class="op">:</span></a>
-<a class="sourceLine" id="cb157-2" data-line-number="2">    ix <span class="op">=</span> start </a>
-<a class="sourceLine" id="cb157-3" data-line-number="3">    <span class="cf">while</span> ix <span class="op">&lt;</span> <span class="at">len</span>(strng)<span class="op">:</span></a>
-<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
-<a class="sourceLine" id="cb157-5" data-line-number="5">    <span class="cf">return</span> ix</a>
-<a class="sourceLine" id="cb157-6" data-line-number="6">ix <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb157-7" data-line-number="7">    <span class="cf">return</span> <span class="dv">-1</span></a>
-<a class="sourceLine" id="cb157-8" data-line-number="8">    </a>
-<a class="sourceLine" id="cb157-9" data-line-number="9"><span class="at">test</span>(<span class="at">find2</span>(<span class="st">&quot;banana&quot;</span><span class="op">,</span> <span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="dv">2</span>) <span class="op">==</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">function</span> <span class="at">find2</span>(strng<span class="op">,</span> ch<span class="op">,</span> start)<span class="op">:</span></a>
+<a class="sourceLine" id="cb152-2" data-line-number="2">    ix <span class="op">=</span> start</a>
+<a class="sourceLine" id="cb152-3" data-line-number="3">    <span class="cf">while</span> ix <span class="op">&lt;</span> <span class="at">len</span>(strng)<span class="op">:</span></a>
+<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
+<a class="sourceLine" id="cb152-5" data-line-number="5">    <span class="cf">return</span> ix</a>
+<a class="sourceLine" id="cb152-6" data-line-number="6">ix <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb152-7" data-line-number="7">    <span class="cf">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb152-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb152-9" data-line-number="9"><span class="at">test</span>(<span class="at">find2</span>(<span class="st">&quot;banana&quot;</span><span class="op">,</span> <span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="dv">2</span>) <span class="op">==</span> <span class="dv">3</span>)</a></code></pre></div>
 <p>occurrence of “a” in “banana” starting the search at index 2. What does <code>find2(&quot;banana&quot;, &quot;n&quot;, 3)</code> return? If you said, 4, there is a good chance you understand how <code>find2</code> works.</p>
 <p>Better still, we can combine <code>find</code> and <code>find2</code> using an <strong>optional parameter</strong>:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb158-1" data-line-number="1">def <span class="at">find</span>(strng<span class="op">,</span> ch<span class="op">,</span> start<span class="op">=</span><span class="dv">0</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb158-2" data-line-number="2">    ix <span class="op">=</span> start </a>
-<a class="sourceLine" id="cb158-3" data-line-number="3">    <span class="cf">while</span> ix <span class="op">&lt;</span> <span class="at">len</span>(strng)<span class="op">:</span></a>
-<a class="sourceLine" id="cb158-4" data-line-number="4"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
-<a class="sourceLine" id="cb158-5" data-line-number="5">    <span class="cf">return</span> ix</a>
-<a class="sourceLine" id="cb158-6" data-line-number="6">ix <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb158-7" data-line-number="7">    <span class="cf">return</span> <span class="dv">-1</span></a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="kw">function</span> <span class="at">find</span>(strng<span class="op">,</span> ch<span class="op">,</span> start<span class="op">=</span><span class="dv">0</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">    ix <span class="op">=</span> start</a>
+<a class="sourceLine" id="cb153-3" data-line-number="3">    <span class="cf">while</span> ix <span class="op">&lt;</span> <span class="at">len</span>(strng)<span class="op">:</span></a>
+<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
+<a class="sourceLine" id="cb153-5" data-line-number="5">    <span class="cf">return</span> ix</a>
+<a class="sourceLine" id="cb153-6" data-line-number="6">ix <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb153-7" data-line-number="7">    <span class="cf">return</span> <span class="dv">-1</span></a></code></pre></div>
 <p>matching argument. If the third argument is provided to <code>find</code>, it gets assigned to <code>start</code>. But if the caller leaves the argument out, then start is given a default value indicated by the assignment <code>start=0</code> in the function definition.</p>
 <p>So the call <code>find(&quot;banana&quot;, &quot;a&quot;, 2)</code> to this version of <code>find</code> behaves just like <code>find2</code>, while in the call <code>find(&quot;banana&quot;, &quot;a&quot;)</code>, <code>start</code> will be set to the <strong>default value</strong> of <code>0</code>.</p>
 <p>Adding another optional parameter to <code>find</code> makes it search from a starting position, up to but not including the end position:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb159-1" data-line-number="1">def <span class="at">find</span>(strng<span class="op">,</span> ch<span class="op">,</span> start<span class="op">=</span><span class="dv">0</span><span class="op">,</span> end<span class="op">=</span>None)<span class="op">:</span></a>
-<a class="sourceLine" id="cb159-2" data-line-number="2">    ix <span class="op">=</span> start </a>
-<a class="sourceLine" id="cb159-3" data-line-number="3">    <span class="cf">if</span> end is None<span class="op">:</span></a>
-<a class="sourceLine" id="cb159-4" data-line-number="4">       end <span class="op">=</span> <span class="at">len</span>(strng)</a>
-<a class="sourceLine" id="cb159-5" data-line-number="5">    <span class="cf">while</span> ix <span class="op">&lt;</span> end<span class="op">:</span></a>
-<a class="sourceLine" id="cb159-6" data-line-number="6"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
-<a class="sourceLine" id="cb159-7" data-line-number="7">    <span class="cf">return</span> ix</a>
-<a class="sourceLine" id="cb159-8" data-line-number="8">ix <span class="op">+=</span> <span class="dv">1</span> </a>
-<a class="sourceLine" id="cb159-9" data-line-number="9">    <span class="cf">return</span> <span class="dv">-1</span></a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">function</span> <span class="at">find</span>(strng<span class="op">,</span> ch<span class="op">,</span> start<span class="op">=</span><span class="dv">0</span><span class="op">,</span> end<span class="op">=</span>None)<span class="op">:</span></a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">    ix <span class="op">=</span> start</a>
+<a class="sourceLine" id="cb154-3" data-line-number="3">    <span class="cf">if</span> end is None<span class="op">:</span></a>
+<a class="sourceLine" id="cb154-4" data-line-number="4">       end <span class="op">=</span> <span class="at">len</span>(strng)</a>
+<a class="sourceLine" id="cb154-5" data-line-number="5">    <span class="cf">while</span> ix <span class="op">&lt;</span> end<span class="op">:</span></a>
+<a class="sourceLine" id="cb154-6" data-line-number="6"><span class="cf">if</span> strng[ix] <span class="op">==</span> ch<span class="op">:</span></a>
+<a class="sourceLine" id="cb154-7" data-line-number="7">    <span class="cf">return</span> ix</a>
+<a class="sourceLine" id="cb154-8" data-line-number="8">ix <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb154-9" data-line-number="9">    <span class="cf">return</span> <span class="dv">-1</span></a></code></pre></div>
 <p>caller does not supply any argument. In the body of the function we test what <code>end</code> is, and if the caller did not supply any argument, we reassign <code>end</code> to be the length of the string. If the caller has supplied an argument for <code>end</code>, however, the caller’s value will be used in the loop.</p>
 <p>The semantics of <code>start</code> and <code>end</code> in this function are precisely the same as they are in the <code>range</code> function.</p>
 <p>Here are some test cases that should pass:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb160-1" data-line-number="1">ss <span class="op">=</span> <span class="st">&quot;Javascript strings have some interesting methods.&quot;</span></a>
-<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">7</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb160-4" data-line-number="4"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span>) <span class="op">==</span> <span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb160-5" data-line-number="5"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">13</span>) <span class="op">==</span> <span class="dv">-1</span>)</a>
-<a class="sourceLine" id="cb160-6" data-line-number="6"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;.&quot;</span>) <span class="op">==</span> <span class="at">len</span>(ss)<span class="op">-</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb155-1" data-line-number="1">ss <span class="op">=</span> <span class="st">&quot;Javascript strings have some interesting methods.&quot;</span></a>
+<a class="sourceLine" id="cb155-2" data-line-number="2"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb155-3" data-line-number="3"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">7</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span>) <span class="op">==</span> <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb155-5" data-line-number="5"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">13</span>) <span class="op">==</span> <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb155-6" data-line-number="6"><span class="at">test</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;.&quot;</span>) <span class="op">==</span> <span class="at">len</span>(ss)<span class="op">-</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>       docstring</code></pre>
 </section>
 <section id="the-built-in-find-method" class="level2">
 <h2>The built-in <code>find</code> method</h2>
 <p>Now that we’ve done all this work to write a powerful <code>find</code> function, we can reveal that strings already have their own built-in <code>find</code> method. It can do everything that our code can do, and more!</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">7</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span>) <span class="op">==</span> <span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb162-4" data-line-number="4"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">13</span>) <span class="op">==</span> <span class="dv">-1</span>)</a>
-<a class="sourceLine" id="cb162-5" data-line-number="5"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;.&quot;</span>) <span class="op">==</span> <span class="at">len</span>(ss)<span class="op">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb162-6" data-line-number="6">     </a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb157-2" data-line-number="2"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">7</span>) <span class="op">==</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span>) <span class="op">==</span> <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">13</span>) <span class="op">==</span> <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="at">test</span>(<span class="va">ss</span>.<span class="at">find</span>(<span class="st">&quot;.&quot;</span>) <span class="op">==</span> <span class="at">len</span>(ss)<span class="op">-</span><span class="dv">1</span>)</a></code></pre></div>
 <p>substrings, not just single characters:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb163-1" data-line-number="1">⠕ <span class="st">&quot;banana&quot;</span>.<span class="at">find</span>(<span class="st">&quot;nan&quot;</span>)</a>
-<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="dv">2</span></a>
-<a class="sourceLine" id="cb163-3" data-line-number="3">⠕ <span class="st">&quot;banana&quot;</span>.<span class="at">find</span>(<span class="st">&quot;na&quot;</span><span class="op">,</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb158-1" data-line-number="1">⠕ <span class="st">&quot;banana&quot;</span>.<span class="at">find</span>(<span class="st">&quot;nan&quot;</span>)</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2"><span class="dv">2</span></a>
+<a class="sourceLine" id="cb158-3" data-line-number="3">⠕ <span class="st">&quot;banana&quot;</span>.<span class="at">find</span>(<span class="st">&quot;na&quot;</span><span class="op">,</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb158-4" data-line-number="4"><span class="dv">4</span></a></code></pre></div>
 <p>our own equivalents. But many of the built-in functions and methods make good teaching exercises, and the underlying techniques you learn are your building blocks to becoming a proficient programmer.</p>
 </section>
 <section id="the-split-method" class="level2">
 <h2>The <code>split</code> method</h2>
 <p>One of the most useful methods on strings is the <code>split</code> method: it splits a single multi-word string into a list of individual words, removing all the whitespace between them. (Whitespace means any tabs, newlines, or spaces.) This allows us to read input as a single string, and split it into words.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb164-1" data-line-number="1">⠕ ss <span class="op">=</span> <span class="st">&quot;Well I never did said Alice&quot;</span> </a>
-<a class="sourceLine" id="cb164-2" data-line-number="2">⠕ wds <span class="op">=</span> <span class="va">ss</span>.<span class="at">split</span>()</a>
-<a class="sourceLine" id="cb164-3" data-line-number="3">⠕ wds</a>
-<a class="sourceLine" id="cb164-4" data-line-number="4">[<span class="st">&#39;Well&#39;</span><span class="op">,</span> <span class="st">&#39;I&#39;</span><span class="op">,</span> <span class="st">&#39;never&#39;</span><span class="op">,</span> <span class="st">&#39;did&#39;</span><span class="op">,</span> <span class="st">&#39;said&#39;</span><span class="op">,</span> <span class="st">&#39;Alice&#39;</span>]</a>
-<a class="sourceLine" id="cb164-5" data-line-number="5">    </a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb159-1" data-line-number="1">⠕ ss <span class="op">=</span> <span class="st">&quot;Well I never did said Alice&quot;</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">⠕ wds <span class="op">=</span> <span class="va">ss</span>.<span class="at">split</span>()</a>
+<a class="sourceLine" id="cb159-3" data-line-number="3">⠕ wds</a>
+<a class="sourceLine" id="cb159-4" data-line-number="4">[<span class="st">&#39;Well&#39;</span><span class="op">,</span> <span class="st">&#39;I&#39;</span><span class="op">,</span> <span class="st">&#39;never&#39;</span><span class="op">,</span> <span class="st">&#39;did&#39;</span><span class="op">,</span> <span class="st">&#39;said&#39;</span><span class="op">,</span> <span class="st">&#39;Alice&#39;</span>]</a></code></pre></div>
 <hr />
 <p>We’ll often work with strings that contain punctuation, or tab and newline characters, especially, as we’ll see in a future chapter, when we read our text from files or from the Internet. But if we’re writing a program, say, to count word frequencies or check the spelling of each word, we’d prefer to strip off these unwanted characters.</p>
 <p>We’ll show just one example of how to strip punctuation from a string. Remember that strings are immutable, so we cannot change the string with the punctuation — we need to traverse the original string and create a new string, omitting any punctuation:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb165-1" data-line-number="1">punctuation <span class="op">=</span> <span class="st">&quot;!</span><span class="sc">\&quot;</span><span class="st">#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[</span><span class="sc">\\</span><span class="st">]^_`{|}~&quot;</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb165-3" data-line-number="3">def <span class="at">remove_punctuation</span>(s)<span class="op">:</span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4">    s_sans_punct <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb165-5" data-line-number="5">    <span class="cf">for</span> letter <span class="kw">in</span> s<span class="op">:</span></a>
-<a class="sourceLine" id="cb165-6" data-line-number="6"><span class="cf">if</span> letter not <span class="kw">in</span> punctuation<span class="op">:</span></a>
-<a class="sourceLine" id="cb165-7" data-line-number="7">    s_sans_punct <span class="op">+=</span> letter</a>
-<a class="sourceLine" id="cb165-8" data-line-number="8">    <span class="cf">return</span> s_sans_punct</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb160-1" data-line-number="1">punctuation <span class="op">=</span> <span class="st">&quot;!</span><span class="sc">\&quot;</span><span class="st">#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[</span><span class="sc">\\</span><span class="st">]^_`{|}~&quot;</span></a>
+<a class="sourceLine" id="cb160-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="kw">function</span> <span class="at">remove_punctuation</span>(s)<span class="op">:</span></a>
+<a class="sourceLine" id="cb160-4" data-line-number="4">    s_sans_punct <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb160-5" data-line-number="5">    <span class="cf">for</span> letter <span class="kw">in</span> s<span class="op">:</span></a>
+<a class="sourceLine" id="cb160-6" data-line-number="6"><span class="cf">if</span> letter not <span class="kw">in</span> punctuation<span class="op">:</span></a>
+<a class="sourceLine" id="cb160-7" data-line-number="7">    s_sans_punct <span class="op">+=</span> letter</a>
+<a class="sourceLine" id="cb160-8" data-line-number="8">    <span class="cf">return</span> s_sans_punct</a></code></pre></div>
 <p>Fortunately, the Javascript <code>string</code> module already does it for us. So we will make a slight improvement to this program — we’ll import the <code>string</code> module and use its definition:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="im">import</span> string</a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3">def <span class="at">remove_punctuation</span>(s)<span class="op">:</span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4">    s_without_punct <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb166-5" data-line-number="5">    <span class="cf">for</span> letter <span class="kw">in</span> s<span class="op">:</span></a>
-<a class="sourceLine" id="cb166-6" data-line-number="6"><span class="cf">if</span> letter not <span class="kw">in</span> <span class="va">string</span>.<span class="at">punctuation</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb166-7" data-line-number="7">    s_without_punct <span class="op">+=</span> letter</a>
-<a class="sourceLine" id="cb166-8" data-line-number="8">    <span class="cf">return</span> s_without_punct</a>
-<a class="sourceLine" id="cb166-9" data-line-number="9">     </a>
-<a class="sourceLine" id="cb166-10" data-line-number="10"><span class="at">test</span>(<span class="at">remove_punctuation</span>(<span class="st">&#39;&quot;Well, I never did!&quot;, said Alice.&#39;</span>) <span class="op">==</span></a>
-<a class="sourceLine" id="cb166-11" data-line-number="11">    <span class="st">&quot;Well I never did said Alice&quot;</span>)</a>
-<a class="sourceLine" id="cb166-12" data-line-number="12"><span class="at">test</span>(<span class="at">remove_punctuation</span>(<span class="st">&quot;Are you very, very, sure?&quot;</span>) <span class="op">==</span></a>
-<a class="sourceLine" id="cb166-13" data-line-number="13">     <span class="st">&quot;Are you very very sure&quot;</span>)</a>
-<a class="sourceLine" id="cb166-14" data-line-number="14"></a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="im">import</span> string</a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="kw">function</span> <span class="at">remove_punctuation</span>(s)<span class="op">:</span></a>
+<a class="sourceLine" id="cb161-4" data-line-number="4">    s_without_punct <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb161-5" data-line-number="5">    <span class="cf">for</span> letter <span class="kw">in</span> s<span class="op">:</span></a>
+<a class="sourceLine" id="cb161-6" data-line-number="6"><span class="cf">if</span> letter not <span class="kw">in</span> <span class="va">string</span>.<span class="at">punctuation</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb161-7" data-line-number="7">    s_without_punct <span class="op">+=</span> letter</a>
+<a class="sourceLine" id="cb161-8" data-line-number="8">    <span class="cf">return</span> s_without_punct</a>
+<a class="sourceLine" id="cb161-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb161-10" data-line-number="10"><span class="at">test</span>(<span class="at">remove_punctuation</span>(<span class="st">&#39;&quot;Well, I never did!&quot;, said Alice.&#39;</span>) <span class="op">==</span></a>
+<a class="sourceLine" id="cb161-11" data-line-number="11">    <span class="st">&quot;Well I never did said Alice&quot;</span>)</a>
+<a class="sourceLine" id="cb161-12" data-line-number="12"><span class="at">test</span>(<span class="at">remove_punctuation</span>(<span class="st">&quot;Are you very, very, sure?&quot;</span>) <span class="op">==</span></a>
+<a class="sourceLine" id="cb161-13" data-line-number="13">     <span class="st">&quot;Are you very very sure&quot;</span>)</a>
+<a class="sourceLine" id="cb161-14" data-line-number="14"></a></code></pre></div>
 <p>makes a useful combination — we’ll clean out the punctuation, and <code>split</code> will clean out the newlines and tabs while turning the string into a list of words:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb167-1" data-line-number="1">   my_story <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb167-2" data-line-number="2">   Javascripts are constrictors<span class="op">,</span> which means that they will <span class="st">&#39;squeeze&#39;</span> the life </a>
-<a class="sourceLine" id="cb167-3" data-line-number="3">   out of their <span class="va">prey</span>. <span class="at">They</span> <span class="at">coil</span> <span class="at">themselves</span> <span class="at">around</span> <span class="at">their</span> <span class="at">prey</span> <span class="at">and</span> <span class="at">with</span> </a>
-<a class="sourceLine" id="cb167-4" data-line-number="4">   each breath the creature takes the snake will squeeze a little tighter </a>
-<a class="sourceLine" id="cb167-5" data-line-number="5">   until they stop breathing <span class="va">completely</span>. <span class="at">Once</span> <span class="at">the</span> <span class="at">heart</span> <span class="at">stops</span> <span class="at">the</span> <span class="at">prey</span> </a>
-<a class="sourceLine" id="cb167-6" data-line-number="6">   is swallowed <span class="va">whole</span>. <span class="at">The</span> <span class="at">entire</span> <span class="at">animal</span> <span class="at">is</span> <span class="at">digested</span> <span class="at">in</span> <span class="at">the</span> <span class="at">snake</span><span class="st">&#39;s </span></a>
-<a class="sourceLine" id="cb167-7" data-line-number="7">   stomach except <span class="cf">for</span> fur or <span class="va">feathers</span>. <span class="at">What</span> <span class="at">do</span> <span class="at">you</span> <span class="at">think</span> <span class="at">happens</span> <span class="at">to</span> <span class="at">the</span> <span class="at">fur</span><span class="op">,</span> </a>
-<a class="sourceLine" id="cb167-8" data-line-number="8">   feathers<span class="op">,</span> beaks<span class="op">,</span> and eggshells<span class="op">?</span> The <span class="st">&#39;extra stuff&#39;</span> gets passed out <span class="im">as</span> <span class="op">---</span> </a>
-<a class="sourceLine" id="cb167-9" data-line-number="9">   you guessed it <span class="op">---</span> snake POOP<span class="op">!</span> <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb167-10" data-line-number="10">   </a>
-<a class="sourceLine" id="cb167-11" data-line-number="11">   wds <span class="op">=</span> <span class="at">remove_punctuation</span>(my_story).<span class="at">split</span>()</a>
-<a class="sourceLine" id="cb167-12" data-line-number="12">   <span class="va">console</span>.<span class="at">log</span>(wds)</a>
-<a class="sourceLine" id="cb167-13" data-line-number="13">       </a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb162-1" data-line-number="1">   my_story <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb162-2" data-line-number="2">   Javascripts are constrictors<span class="op">,</span> which means that they will <span class="st">&#39;squeeze&#39;</span> the life</a>
+<a class="sourceLine" id="cb162-3" data-line-number="3">   out of their <span class="va">prey</span>. <span class="at">They</span> <span class="at">coil</span> <span class="at">themselves</span> <span class="at">around</span> <span class="at">their</span> <span class="at">prey</span> <span class="at">and</span> <span class="at">with</span></a>
+<a class="sourceLine" id="cb162-4" data-line-number="4">   each breath the creature takes the snake will squeeze a little tighter</a>
+<a class="sourceLine" id="cb162-5" data-line-number="5">   until they stop breathing <span class="va">completely</span>. <span class="at">Once</span> <span class="at">the</span> <span class="at">heart</span> <span class="at">stops</span> <span class="at">the</span> <span class="at">prey</span></a>
+<a class="sourceLine" id="cb162-6" data-line-number="6">   is swallowed <span class="va">whole</span>. <span class="at">The</span> <span class="at">entire</span> <span class="at">animal</span> <span class="at">is</span> <span class="at">digested</span> <span class="at">in</span> <span class="at">the</span> <span class="at">snake</span><span class="st">&#39;s</span></a>
+<a class="sourceLine" id="cb162-7" data-line-number="7">   stomach except <span class="cf">for</span> fur or <span class="va">feathers</span>. <span class="at">What</span> <span class="at">do</span> <span class="at">you</span> <span class="at">think</span> <span class="at">happens</span> <span class="at">to</span> <span class="at">the</span> <span class="at">fur</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-8" data-line-number="8">   feathers<span class="op">,</span> beaks<span class="op">,</span> and eggshells<span class="op">?</span> The <span class="st">&#39;extra stuff&#39;</span> gets passed out <span class="im">as</span> <span class="op">---</span></a>
+<a class="sourceLine" id="cb162-9" data-line-number="9">   you guessed it <span class="op">---</span> snake POOP<span class="op">!</span> <span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb162-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb162-11" data-line-number="11">   wds <span class="op">=</span> <span class="at">remove_punctuation</span>(my_story).<span class="at">split</span>()</a>
+<a class="sourceLine" id="cb162-12" data-line-number="12">   <span class="va">console</span>.<span class="at">log</span>(wds)</a></code></pre></div>
 <pre><code>.. sourcecode:: pycon  
 
    [&#39;Javascripts&#39;, &#39;are&#39;, &#39;constrictors&#39;, ... , &#39;it&#39;, &#39;snake&#39;, &#39;POOP&#39;]                            </code></pre>
@@ -3222,19 +3209,18 @@ single: operator; in</code></pre>
 <section id="the-string-format-method" class="level2">
 <h2>The string format method</h2>
 <p>The easiest and most powerful way to format a string in Javascript 3 is to use the <code>format</code> method. To see how this works, let’s start with a few examples:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb169-1" data-line-number="1">s1 <span class="op">=</span> <span class="st">&quot;His name is {0}!&quot;</span>.<span class="at">format</span>(<span class="st">&quot;Arthur&quot;</span>)</a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(s1)</a>
-<a class="sourceLine" id="cb169-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb169-4" data-line-number="4">name <span class="op">=</span> <span class="st">&quot;Alice&quot;</span></a>
-<a class="sourceLine" id="cb169-5" data-line-number="5">age <span class="op">=</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb169-6" data-line-number="6">s2 <span class="op">=</span> <span class="st">&quot;I am {1} and I am {0} years old.&quot;</span>.<span class="at">format</span>(age<span class="op">,</span> name)</a>
-<a class="sourceLine" id="cb169-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(s2)</a>
-<a class="sourceLine" id="cb169-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb169-9" data-line-number="9">n1 <span class="op">=</span> <span class="dv">4</span></a>
-<a class="sourceLine" id="cb169-10" data-line-number="10">n2 <span class="op">=</span> <span class="dv">5</span></a>
-<a class="sourceLine" id="cb169-11" data-line-number="11">s3 <span class="op">=</span> <span class="st">&quot;2**10 = {0} and {1} * {2} = {3:f}&quot;</span>.<span class="at">format</span>(<span class="dv">2</span><span class="op">**</span><span class="dv">10</span><span class="op">,</span> n1<span class="op">,</span> n2<span class="op">,</span> n1 <span class="op">*</span> n2)</a>
-<a class="sourceLine" id="cb169-12" data-line-number="12"><span class="va">console</span>.<span class="at">log</span>(s3)</a>
-<a class="sourceLine" id="cb169-13" data-line-number="13">    </a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb164-1" data-line-number="1">s1 <span class="op">=</span> <span class="st">&quot;His name is {0}!&quot;</span>.<span class="at">format</span>(<span class="st">&quot;Arthur&quot;</span>)</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(s1)</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb164-4" data-line-number="4">name <span class="op">=</span> <span class="st">&quot;Alice&quot;</span></a>
+<a class="sourceLine" id="cb164-5" data-line-number="5">age <span class="op">=</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb164-6" data-line-number="6">s2 <span class="op">=</span> <span class="st">&quot;I am {1} and I am {0} years old.&quot;</span>.<span class="at">format</span>(age<span class="op">,</span> name)</a>
+<a class="sourceLine" id="cb164-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(s2)</a>
+<a class="sourceLine" id="cb164-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb164-9" data-line-number="9">n1 <span class="op">=</span> <span class="dv">4</span></a>
+<a class="sourceLine" id="cb164-10" data-line-number="10">n2 <span class="op">=</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb164-11" data-line-number="11">s3 <span class="op">=</span> <span class="st">&quot;2**10 = {0} and {1} * {2} = {3:f}&quot;</span>.<span class="at">format</span>(<span class="dv">2</span><span class="op">**</span><span class="dv">10</span><span class="op">,</span> n1<span class="op">,</span> n2<span class="op">,</span> n1 <span class="op">*</span> n2)</a>
+<a class="sourceLine" id="cb164-12" data-line-number="12"><span class="va">console</span>.<span class="at">log</span>(s3)</a></code></pre></div>
 <pre><code>.. sourcecode:: pycon
 
     His name is Arthur!
@@ -3251,16 +3237,16 @@ This modifies how the substitutions are made into the template, and can control 
 <li>if the type conversion is a float, you can also specify how many decimal places are wanted (typically, <code>.2f</code> is useful for working with currencies to two decimal places.)</li>
 </ul>
 <p>Let’s do a few simple and common examples that should be enough for most needs. If you need to do anything more esoteric, use <em>help</em> and read all the powerful, gory details.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb171-1" data-line-number="1">n1 <span class="op">=</span> <span class="st">&quot;Paris&quot;</span></a>
-<a class="sourceLine" id="cb171-2" data-line-number="2">n2 <span class="op">=</span> <span class="st">&quot;Whitney&quot;</span></a>
-<a class="sourceLine" id="cb171-3" data-line-number="3">n3 <span class="op">=</span> <span class="st">&quot;Hilton&quot;</span></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Pi to three decimal places is {0:.3f}&quot;</span>.<span class="at">format</span>(<span class="fl">3.1415926</span>))</a>
-<a class="sourceLine" id="cb171-6" data-line-number="6"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;123456789 123456789 123456789 123456789 123456789 123456789&quot;</span>)</a>
-<a class="sourceLine" id="cb171-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;|||{0:&lt;15}|||{1:^15}|||{2:&gt;15}|||Born in {3}|||&quot;</span> </a>
-<a class="sourceLine" id="cb171-8" data-line-number="8">.<span class="at">format</span>(n1<span class="op">,</span>n2<span class="op">,</span>n3<span class="op">,</span><span class="dv">1981</span>))</a>
-<a class="sourceLine" id="cb171-9" data-line-number="9"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The decimal value {0} converts to hex value {0:x}&quot;</span></a>
-<a class="sourceLine" id="cb171-10" data-line-number="10">.<span class="at">format</span>(<span class="dv">123456</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb166-1" data-line-number="1">n1 <span class="op">=</span> <span class="st">&quot;Paris&quot;</span></a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">n2 <span class="op">=</span> <span class="st">&quot;Whitney&quot;</span></a>
+<a class="sourceLine" id="cb166-3" data-line-number="3">n3 <span class="op">=</span> <span class="st">&quot;Hilton&quot;</span></a>
+<a class="sourceLine" id="cb166-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Pi to three decimal places is {0:.3f}&quot;</span>.<span class="at">format</span>(<span class="fl">3.1415926</span>))</a>
+<a class="sourceLine" id="cb166-6" data-line-number="6"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;123456789 123456789 123456789 123456789 123456789 123456789&quot;</span>)</a>
+<a class="sourceLine" id="cb166-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;|||{0:&lt;15}|||{1:^15}|||{2:&gt;15}|||Born in {3}|||&quot;</span></a>
+<a class="sourceLine" id="cb166-8" data-line-number="8">.<span class="at">format</span>(n1<span class="op">,</span>n2<span class="op">,</span>n3<span class="op">,</span><span class="dv">1981</span>))</a>
+<a class="sourceLine" id="cb166-9" data-line-number="9"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The decimal value {0} converts to hex value {0:x}&quot;</span></a>
+<a class="sourceLine" id="cb166-10" data-line-number="10">.<span class="at">format</span>(<span class="dv">123456</span>))</a></code></pre></div>
 <pre><code>.. sourcecode:: pycon
 
     Pi to three decimal places is 3.142
@@ -3268,42 +3254,40 @@ This modifies how the substitutions are made into the template, and can control 
     |||Paris          |||    Whitney    |||         Hilton|||Born in 1981|||
     The decimal value 123456 converts to hex value 1e240</code></pre>
 <p>You can have multiple placeholders indexing the same argument, or perhaps even have extra arguments that are not referenced at all:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb173-1" data-line-number="1">letter <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb173-2" data-line-number="2">Dear <span class="op">{</span><span class="dv">0</span><span class="op">}</span> <span class="op">{</span><span class="dv">2</span><span class="op">}</span>.</a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"> <span class="op">{</span><span class="dv">0</span><span class="op">},</span> I have an interesting money<span class="op">-</span>making proposition <span class="cf">for</span> you<span class="op">!</span></a>
-<a class="sourceLine" id="cb173-4" data-line-number="4"> If you deposit $10 million into my bank account<span class="op">,</span> I can </a>
-<a class="sourceLine" id="cb173-5" data-line-number="5"> double your <span class="va">money</span> ...</a>
-<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="st">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb173-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="va">console</span>.<span class="at">log</span>(<span class="va">letter</span>.<span class="at">format</span>(<span class="st">&quot;Paris&quot;</span><span class="op">,</span> <span class="st">&quot;Whitney&quot;</span><span class="op">,</span> <span class="st">&quot;Hilton&quot;</span>))</a>
-<a class="sourceLine" id="cb173-9" data-line-number="9"><span class="va">console</span>.<span class="at">log</span>(<span class="va">letter</span>.<span class="at">format</span>(<span class="st">&quot;Bill&quot;</span><span class="op">,</span> <span class="st">&quot;Henry&quot;</span><span class="op">,</span> <span class="st">&quot;Gates&quot;</span>))</a>
-<a class="sourceLine" id="cb173-10" data-line-number="10">    </a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb168-1" data-line-number="1">letter <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb168-2" data-line-number="2">Dear <span class="op">{</span><span class="dv">0</span><span class="op">}</span> <span class="op">{</span><span class="dv">2</span><span class="op">}</span>.</a>
+<a class="sourceLine" id="cb168-3" data-line-number="3"> <span class="op">{</span><span class="dv">0</span><span class="op">},</span> I have an interesting money<span class="op">-</span>making proposition <span class="cf">for</span> you<span class="op">!</span></a>
+<a class="sourceLine" id="cb168-4" data-line-number="4"> If you deposit $10 million into my bank account<span class="op">,</span> I can</a>
+<a class="sourceLine" id="cb168-5" data-line-number="5"> double your <span class="va">money</span> ...</a>
+<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="st">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb168-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb168-8" data-line-number="8"><span class="va">console</span>.<span class="at">log</span>(<span class="va">letter</span>.<span class="at">format</span>(<span class="st">&quot;Paris&quot;</span><span class="op">,</span> <span class="st">&quot;Whitney&quot;</span><span class="op">,</span> <span class="st">&quot;Hilton&quot;</span>))</a>
+<a class="sourceLine" id="cb168-9" data-line-number="9"><span class="va">console</span>.<span class="at">log</span>(<span class="va">letter</span>.<span class="at">format</span>(<span class="st">&quot;Bill&quot;</span><span class="op">,</span> <span class="st">&quot;Henry&quot;</span><span class="op">,</span> <span class="st">&quot;Gates&quot;</span>))</a></code></pre></div>
 <pre><code>.. sourcecode:: pycon
-    
+
     Dear Paris Hilton.
      Paris, I have an interesting money-making proposition for you!
      If you deposit $10 million into my bank account, I can
      double your money ...
-     
-     
+
+
     Dear Bill Gates.
      Bill, I have an interesting money-making proposition for you!
      If you deposit $10 million into my bank account I can
      double your money ...</code></pre>
 <p>As you might expect, you’ll get an index error if your placeholders refer to arguments that you do not provide:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb175-1" data-line-number="1">⠕ <span class="st">&quot;hello {3}&quot;</span>.<span class="at">format</span>(<span class="st">&quot;Dave&quot;</span>)</a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="at">Traceback</span> (most recent call last)<span class="op">:</span></a>
-<a class="sourceLine" id="cb175-3" data-line-number="3">  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span><span class="op">,</span> line <span class="dv">1</span><span class="op">,</span> <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb175-4" data-line-number="4">IndexError<span class="op">:</span> tuple index out of range</a>
-<a class="sourceLine" id="cb175-5" data-line-number="5">    </a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb170-1" data-line-number="1">⠕ <span class="st">&quot;hello {3}&quot;</span>.<span class="at">format</span>(<span class="st">&quot;Dave&quot;</span>)</a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="at">Traceback</span> (most recent call last)<span class="op">:</span></a>
+<a class="sourceLine" id="cb170-3" data-line-number="3">  File <span class="st">&quot;&lt;interactive input&gt;&quot;</span><span class="op">,</span> line <span class="dv">1</span><span class="op">,</span> <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb170-4" data-line-number="4">IndexError<span class="op">:</span> tuple index out of range</a></code></pre></div>
 <p>First, we’ll try to print a table without using string formatting:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;i</span><span class="sc">\t</span><span class="st">i**2</span><span class="sc">\t</span><span class="st">i**3</span><span class="sc">\t</span><span class="st">i**5</span><span class="sc">\t</span><span class="st">i**10</span><span class="sc">\t</span><span class="st">i**20&quot;</span>)</a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">11</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(i<span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">2</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">3</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">5</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> </a>
-<a class="sourceLine" id="cb176-4" data-line-number="4">    i<span class="op">**</span><span class="dv">10</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">20</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;i</span><span class="sc">\t</span><span class="st">i**2</span><span class="sc">\t</span><span class="st">i**3</span><span class="sc">\t</span><span class="st">i**5</span><span class="sc">\t</span><span class="st">i**10</span><span class="sc">\t</span><span class="st">i**20&quot;</span>)</a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">11</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb171-3" data-line-number="3">    <span class="va">console</span>.<span class="at">log</span>(i<span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">2</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">3</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">5</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb171-4" data-line-number="4">    i<span class="op">**</span><span class="dv">10</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span><span class="op">,</span> i<span class="op">**</span><span class="dv">20</span>)</a></code></pre></div>
 <p>(This assumes that the tab width is 8. You might see something even worse than this if you tab width is set to 4.) In its current form it relies on the tab character ( <code>\t</code>) to align the columns of values, but this breaks down when the values in the table get larger than the tab width:</p>
 <pre><code>.. sourcecode:: pycon
-    
+
     i       i**2    i**3    i**5    i**10   i**20
     1       1       1       1       1       1
     2       4       8       32      1024    1048576
@@ -3316,14 +3300,14 @@ This modifies how the substitutions are made into the template, and can control 
     9       81      729     59049   3486784401      12157665459056928801
     10      100     1000    100000  10000000000     100000000000000000000</code></pre>
 <p>One possible solution would be to change the tab width, but the first column already has more space than it needs. The best solution would be to set the width of each column independently. As you may have guessed by now, string formatting provides a much nicer solution. We can also right-justify each field:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb178-1" data-line-number="1">layout <span class="op">=</span> <span class="st">&quot;{0:&gt;4}{1:&gt;6}{2:&gt;6}{3:&gt;8}{4:&gt;13}{5:&gt;24}&quot;</span></a>
-<a class="sourceLine" id="cb178-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="va">layout</span>.<span class="at">format</span>(<span class="st">&quot;i&quot;</span><span class="op">,</span> <span class="st">&quot;i**2&quot;</span><span class="op">,</span> <span class="st">&quot;i**3&quot;</span><span class="op">,</span> <span class="st">&quot;i**5&quot;</span><span class="op">,</span> <span class="st">&quot;i**10&quot;</span><span class="op">,</span> <span class="st">&quot;i**20&quot;</span>))</a>
-<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">11</span>)<span class="op">:</span></a>
-<a class="sourceLine" id="cb178-5" data-line-number="5">    <span class="va">console</span>.<span class="at">log</span>(<span class="va">layout</span>.<span class="at">format</span>(i<span class="op">,</span> i<span class="op">**</span><span class="dv">2</span><span class="op">,</span> i<span class="op">**</span><span class="dv">3</span><span class="op">,</span> i<span class="op">**</span><span class="dv">5</span><span class="op">,</span> i<span class="op">**</span><span class="dv">10</span><span class="op">,</span> i<span class="op">**</span><span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb178-6" data-line-number="6"> </a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb173-1" data-line-number="1">layout <span class="op">=</span> <span class="st">&quot;{0:&gt;4}{1:&gt;6}{2:&gt;6}{3:&gt;8}{4:&gt;13}{5:&gt;24}&quot;</span></a>
+<a class="sourceLine" id="cb173-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="va">layout</span>.<span class="at">format</span>(<span class="st">&quot;i&quot;</span><span class="op">,</span> <span class="st">&quot;i**2&quot;</span><span class="op">,</span> <span class="st">&quot;i**3&quot;</span><span class="op">,</span> <span class="st">&quot;i**5&quot;</span><span class="op">,</span> <span class="st">&quot;i**10&quot;</span><span class="op">,</span> <span class="st">&quot;i**20&quot;</span>))</a>
+<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="cf">for</span> i <span class="kw">in</span> <span class="at">range</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">11</span>)<span class="op">:</span></a>
+<a class="sourceLine" id="cb173-5" data-line-number="5">    <span class="va">console</span>.<span class="at">log</span>(<span class="va">layout</span>.<span class="at">format</span>(i<span class="op">,</span> i<span class="op">**</span><span class="dv">2</span><span class="op">,</span> i<span class="op">**</span><span class="dv">3</span><span class="op">,</span> i<span class="op">**</span><span class="dv">5</span><span class="op">,</span> i<span class="op">**</span><span class="dv">10</span><span class="op">,</span> i<span class="op">**</span><span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb173-6" data-line-number="6"></a></code></pre></div>
 <pre><code>.. sourcecode:: pycon
-    
+
    i  i**2  i**3    i**5        i**10                   i**20
    1     1     1       1            1                       1
    2     4     8      32         1024                 1048576
@@ -3342,41 +3326,43 @@ This modifies how the substitutions are made into the template, and can control 
 <p>.. glossary::</p>
 <pre><code>indexing (``[]``)
     Access a single character in a string using its position (starting from
-    0).  Example: ``&quot;This&quot;[2]`` evaluates to ``&quot;i&quot;``.
+    0). Example: ``&quot;This&quot;[2]`` evaluates to ``&quot;i&quot;``.
 
 length function (``len``)
-    Returns the number of characters in a string.  Example:
+    Returns the number of characters in a string. Example:
     ``len(&quot;happy&quot;)`` evaluates to ``5``.
 
 for loop traversal (``for``)
     *Traversing* a string means accessing each character in the string, one
-    at a time.  For example, the following for loop:</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="cf">for</span> ch <span class="kw">in</span> <span class="st">&quot;Example&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb181-2" data-line-number="2">    ...</a>
-<a class="sourceLine" id="cb181-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb181-4" data-line-number="4">executes the body of the loop <span class="dv">7</span> times <span class="cf">with</span> different values of <span class="vs">``</span>ch<span class="vs">``</span> each <span class="va">time</span>.</a>
-<a class="sourceLine" id="cb181-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb181-6" data-line-number="6">    <span class="at">slicing</span> (<span class="vs">``</span>[<span class="op">:</span>]<span class="vs">``</span>)</a>
-<a class="sourceLine" id="cb181-7" data-line-number="7">A <span class="op">*</span>slice<span class="op">*</span> is a substring of a <span class="va">string</span>. <span class="at">Example</span><span class="op">:</span> <span class="vs">``</span><span class="st">&#39;bananas and</span></a>
-<a class="sourceLine" id="cb181-8" data-line-number="8">cream<span class="st">&#39;[3:6]`` evaluates to ``ana`` (so does ``&#39;</span>bananas and</a>
-<a class="sourceLine" id="cb181-9" data-line-number="9">cream<span class="st">&#39;[1:4]``).</span></a>
-<a class="sourceLine" id="cb181-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb181-11" data-line-number="11">    string <span class="at">comparison</span> (<span class="vs">``</span><span class="op">&gt;,</span> <span class="op">&lt;,</span> <span class="op">&gt;=,</span> <span class="op">&lt;=,</span> <span class="op">==,</span> <span class="op">!=</span><span class="vs">``</span>)</a>
-<a class="sourceLine" id="cb181-12" data-line-number="12">The six common comparison operators work <span class="cf">with</span> strings<span class="op">,</span> evaluating according to</a>
-<a class="sourceLine" id="cb181-13" data-line-number="13"><span class="vs">`lexicographical`</span> <span class="va">order</span>.  <span class="at">Examples</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb181-14" data-line-number="14"><span class="vs">``</span><span class="st">&quot;apple&quot;</span> <span class="op">&lt;</span> <span class="st">&quot;banana&quot;</span><span class="vs">``</span> evaluates to <span class="vs">``</span>True<span class="vs">``</span>.  <span class="vs">``</span><span class="st">&quot;Zeta&quot;</span> <span class="op">&lt;</span> <span class="st">&quot;Appricot&quot;</span><span class="vs">``</span></a>
-<a class="sourceLine" id="cb181-15" data-line-number="15">evaluates to <span class="vs">``</span>False<span class="vs">``</span>.  <span class="vs">``</span><span class="st">&quot;Zebra&quot;</span> <span class="op">&lt;=</span> <span class="st">&quot;aardvark&quot;</span><span class="vs">``</span> evaluates to</a>
-<a class="sourceLine" id="cb181-16" data-line-number="16"><span class="vs">``</span>True<span class="vs">``</span> because all upper <span class="cf">case</span> letters precede lower <span class="cf">case</span> <span class="va">letters</span>.</a>
-<a class="sourceLine" id="cb181-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb181-18" data-line-number="18">    <span class="kw">in</span> and not <span class="kw">in</span> <span class="at">operator</span> (<span class="vs">``</span>in<span class="vs">``</span><span class="op">,</span> <span class="vs">``</span>not in<span class="vs">``</span>)</a>
-<a class="sourceLine" id="cb181-19" data-line-number="19">The <span class="vs">``</span>in<span class="vs">``</span> operator tests <span class="cf">for</span> <span class="va">membership</span>. <span class="at">In</span> <span class="at">the</span> <span class="at">case</span> <span class="at">of</span></a>
-<a class="sourceLine" id="cb181-20" data-line-number="20">strings<span class="op">,</span> it tests whether one string is contained inside another</a>
-<a class="sourceLine" id="cb181-21" data-line-number="21"><span class="va">string</span>.  <span class="at">Examples</span><span class="op">:</span> <span class="vs">``</span><span class="st">&quot;heck&quot;</span> <span class="kw">in</span> <span class="st">&quot;I&#39;ll be checking for you.&quot;</span><span class="vs">``</span></a>
-<a class="sourceLine" id="cb181-22" data-line-number="22">evaluates to <span class="vs">``</span>True<span class="vs">``</span>.  <span class="vs">``</span><span class="st">&quot;cheese&quot;</span> <span class="kw">in</span> <span class="st">&quot;I&#39;ll be checking for</span></a>
-<a class="sourceLine" id="cb181-23" data-line-number="23"><span class="va">you</span>.<span class="st">&quot;`` evaluates to ``False``.</span></a>
-<a class="sourceLine" id="cb181-24" data-line-number="24"></a></code></pre></div>
+    at a time. For example, the following for loop:</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="cf">for</span> ch <span class="kw">in</span> <span class="st">&quot;Example&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb176-2" data-line-number="2">    ...</a>
+<a class="sourceLine" id="cb176-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb176-4" data-line-number="4">executes the body of the loop <span class="dv">7</span> times <span class="cf">with</span> different values of <span class="vs">``</span>ch<span class="vs">``</span> each <span class="va">time</span>.</a>
+<a class="sourceLine" id="cb176-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb176-6" data-line-number="6">    <span class="at">slicing</span> (<span class="vs">``</span>[<span class="op">:</span>]<span class="vs">``</span>)</a>
+<a class="sourceLine" id="cb176-7" data-line-number="7">A <span class="op">*</span>slice<span class="op">*</span> is a substring of a <span class="va">string</span>. <span class="at">Example</span><span class="op">:</span> <span class="vs">``</span><span class="st">&#39;bananas and</span></a>
+<a class="sourceLine" id="cb176-8" data-line-number="8">cream<span class="st">&#39;[3:6]`` evaluates to ``ana`` (so does ``&#39;</span>bananas and</a>
+<a class="sourceLine" id="cb176-9" data-line-number="9">cream<span class="st">&#39;[1:4]``).</span></a>
+<a class="sourceLine" id="cb176-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb176-11" data-line-number="11">    string <span class="at">comparison</span> (<span class="vs">``</span><span class="op">&gt;,</span> <span class="op">&lt;,</span> <span class="op">&gt;=,</span> <span class="op">&lt;=,</span> <span class="op">==,</span> <span class="op">!=</span><span class="vs">``</span>)</a>
+<a class="sourceLine" id="cb176-12" data-line-number="12">The six common comparison operators work <span class="cf">with</span> strings<span class="op">,</span> evaluating according to</a>
+<a class="sourceLine" id="cb176-13" data-line-number="13"><span class="vs">`lexicographical`</span> <span class="va">order</span>. <span class="at">Examples</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb176-14" data-line-number="14"><span class="vs">``</span><span class="st">&quot;apple&quot;</span> <span class="op">&lt;</span> <span class="st">&quot;banana&quot;</span><span class="vs">``</span> evaluates to <span class="vs">``</span>True<span class="vs">``</span>. <span class="vs">``</span><span class="st">&quot;Zeta&quot;</span> <span class="op">&lt;</span> <span class="st">&quot;Appricot&quot;</span><span class="vs">``</span></a>
+<a class="sourceLine" id="cb176-15" data-line-number="15">evaluates to <span class="vs">``</span>False<span class="vs">``</span>. <span class="vs">``</span><span class="st">&quot;Zebra&quot;</span> <span class="op">&lt;=</span> <span class="st">&quot;aardvark&quot;</span><span class="vs">``</span> evaluates to</a>
+<a class="sourceLine" id="cb176-16" data-line-number="16"><span class="vs">``</span>True<span class="vs">``</span> because all upper <span class="cf">case</span> letters precede lower <span class="cf">case</span> <span class="va">letters</span>.</a>
+<a class="sourceLine" id="cb176-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb176-18" data-line-number="18">    <span class="kw">in</span> and not <span class="kw">in</span> <span class="at">operator</span> (<span class="vs">``</span>in<span class="vs">``</span><span class="op">,</span> <span class="vs">``</span>not in<span class="vs">``</span>)</a>
+<a class="sourceLine" id="cb176-19" data-line-number="19">The <span class="vs">``</span>in<span class="vs">``</span> operator tests <span class="cf">for</span> <span class="va">membership</span>. <span class="at">In</span> <span class="at">the</span> <span class="at">case</span> <span class="at">of</span></a>
+<a class="sourceLine" id="cb176-20" data-line-number="20">strings<span class="op">,</span> it tests whether one string is contained inside another</a>
+<a class="sourceLine" id="cb176-21" data-line-number="21"><span class="va">string</span>. <span class="at">Examples</span><span class="op">:</span> <span class="vs">``</span><span class="st">&quot;heck&quot;</span> <span class="kw">in</span> <span class="st">&quot;I&#39;ll be checking for you.&quot;</span><span class="vs">``</span></a>
+<a class="sourceLine" id="cb176-22" data-line-number="22">evaluates to <span class="vs">``</span>True<span class="vs">``</span>. <span class="vs">``</span><span class="st">&quot;cheese&quot;</span> <span class="kw">in</span> <span class="st">&quot;I&#39;ll be checking for</span></a>
+<a class="sourceLine" id="cb176-23" data-line-number="23"><span class="va">you</span>.<span class="st">&quot;`` evaluates to ``False``.</span></a>
+<a class="sourceLine" id="cb176-24" data-line-number="24"></a></code></pre></div>
 <hr />
-<p>.. glossary::</p>
+</section>
+<section id="gloassary" class="level2">
+<h2>Gloassary</h2>
 <pre><code>compound data type
     A data type in which the values are made up of components, or elements,
     that are themselves values.
@@ -3395,7 +3381,7 @@ dot notation
     Use of the **dot operator**, ``.``, to access methods and attributes of an object.
 
 immutable data value
-    A data value which cannot be modified.  Assignments to elements or
+    A data value which cannot be modified. Assignments to elements or
     slices (sub-parts) of immutable values cause a runtime error.
 
 index
@@ -3403,22 +3389,22 @@ index
     a character from a string, or an element from a list.
 
 mutable data value
-    A data value which can be modified. The types of all mutable values 
-    are compound types.  Lists and dictionaries are mutable; strings
+    A data value which can be modified. The types of all mutable values
+    are compound types. Lists and dictionaries are mutable; strings
     and tuples are not.
 
 optional parameter
     A parameter written in a function header with an assignment to a
     default value which it will receive if no corresponding argument is
     given for it in the function call.
-    
+
 short-circuit evaluation
-    A style of programming that shortcuts extra work as soon as the 
-    outcome is know with certainty. In this chapter our ``find`` 
+    A style of programming that shortcuts extra work as soon as the
+    outcome is know with certainty. In this chapter our ``find``
     function returned as soon as it found what it was looking for; it
     didn&#39;t traverse all the rest of the items in the string.
 
-slice
+substring
     A part of a string (substring) specified by a range of indices. More
     generally, a subsequence of any sequence type in Javascript can be created
     using the slice operator (``sequence[start:stop]``).
@@ -3438,42 +3424,39 @@ whitespace
 <ol>
 <li>What is the result of each of the following:</li>
 </ol>
-<div class="sourceCode" id="cb183"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb183-1" data-line-number="1">⠕ <span class="st">&quot;Javascript&quot;</span>[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb183-2" data-line-number="2">⠕ <span class="st">&quot;Strings are sequences of characters.&quot;</span>[<span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb183-3" data-line-number="3">⠕ <span class="at">len</span>(<span class="st">&quot;wonderful&quot;</span>)</a>
-<a class="sourceLine" id="cb183-4" data-line-number="4">⠕ <span class="st">&quot;Mystery&quot;</span>[<span class="op">:</span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb183-5" data-line-number="5">⠕ <span class="st">&quot;p&quot;</span> <span class="kw">in</span> <span class="st">&quot;Pineapple&quot;</span></a>
-<a class="sourceLine" id="cb183-6" data-line-number="6">⠕ <span class="st">&quot;apple&quot;</span> <span class="kw">in</span> <span class="st">&quot;Pineapple&quot;</span></a>
-<a class="sourceLine" id="cb183-7" data-line-number="7">⠕ <span class="st">&quot;pear&quot;</span> not <span class="kw">in</span> <span class="st">&quot;Pineapple&quot;</span></a>
-<a class="sourceLine" id="cb183-8" data-line-number="8">⠕ <span class="st">&quot;apple&quot;</span> <span class="op">&gt;</span> <span class="st">&quot;pineapple&quot;</span></a>
-<a class="sourceLine" id="cb183-9" data-line-number="9">⠕ <span class="st">&quot;pineapple&quot;</span> <span class="op">&lt;</span> <span class="st">&quot;Peach&quot;</span></a>
-<a class="sourceLine" id="cb183-10" data-line-number="10">    </a></code></pre></div>
-<div class="sourceCode" id="cb184"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb184-1" data-line-number="1">   prefixes <span class="op">=</span> <span class="st">&quot;JKLMNOPQ&quot;</span></a>
-<a class="sourceLine" id="cb184-2" data-line-number="2">   suffix <span class="op">=</span> <span class="st">&quot;ack&quot;</span></a>
-<a class="sourceLine" id="cb184-3" data-line-number="3">   </a>
-<a class="sourceLine" id="cb184-4" data-line-number="4">   <span class="cf">for</span> letter <span class="kw">in</span> prefixes<span class="op">:</span></a>
-<a class="sourceLine" id="cb184-5" data-line-number="5">       <span class="va">console</span>.<span class="at">log</span>(letter <span class="op">+</span> suffix)</a>
-<a class="sourceLine" id="cb184-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb184-7" data-line-number="7">   so that <span class="vs">``</span>Ouack<span class="vs">``</span> and <span class="vs">``</span>Quack<span class="vs">``</span> are spelled <span class="va">correctly</span>.</a>
-<a class="sourceLine" id="cb184-8" data-line-number="8">   </a></code></pre></div>
-<div class="sourceCode" id="cb185"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb185-1" data-line-number="1">   fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span></a>
-<a class="sourceLine" id="cb185-2" data-line-number="2">   count <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb185-3" data-line-number="3">   <span class="cf">for</span> char <span class="kw">in</span> fruit<span class="op">:</span></a>
-<a class="sourceLine" id="cb185-4" data-line-number="4">       <span class="cf">if</span> char <span class="op">==</span> <span class="st">&quot;a&quot;</span><span class="op">:</span></a>
-<a class="sourceLine" id="cb185-5" data-line-number="5">   count <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb185-6" data-line-number="6">   <span class="va">console</span>.<span class="at">log</span>(count)</a>
-<a class="sourceLine" id="cb185-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb185-8" data-line-number="8">   <span class="kw">in</span> a <span class="kw">function</span> named <span class="vs">``</span>count_letters<span class="vs">``</span><span class="op">,</span> and generalize it so that it accepts</a>
-<a class="sourceLine" id="cb185-9" data-line-number="9">   the string and the letter <span class="im">as</span> <span class="va">arguments</span>.  <span class="at">Make</span> <span class="at">the</span> <span class="at">function</span> <span class="at">return</span> <span class="at">the</span> <span class="at">number</span></a>
-<a class="sourceLine" id="cb185-10" data-line-number="10">   of characters<span class="op">,</span> rather than print the <span class="va">answer</span>.  <span class="at">The</span> <span class="at">caller</span> <span class="at">should</span> <span class="at">do</span> <span class="at">the</span> <span class="va">printing</span>.</a>
-<a class="sourceLine" id="cb185-11" data-line-number="11">     </a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb178-1" data-line-number="1">⠕ <span class="st">&quot;Javascript&quot;</span>[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">⠕ <span class="st">&quot;Strings are sequences of characters.&quot;</span>[<span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb178-3" data-line-number="3">⠕ <span class="at">len</span>(<span class="st">&quot;wonderful&quot;</span>)</a>
+<a class="sourceLine" id="cb178-4" data-line-number="4">⠕ <span class="st">&quot;Mystery&quot;</span>[<span class="op">:</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb178-5" data-line-number="5">⠕ <span class="st">&quot;p&quot;</span> <span class="kw">in</span> <span class="st">&quot;Pineapple&quot;</span></a>
+<a class="sourceLine" id="cb178-6" data-line-number="6">⠕ <span class="st">&quot;apple&quot;</span> <span class="kw">in</span> <span class="st">&quot;Pineapple&quot;</span></a>
+<a class="sourceLine" id="cb178-7" data-line-number="7">⠕ <span class="st">&quot;pear&quot;</span> not <span class="kw">in</span> <span class="st">&quot;Pineapple&quot;</span></a>
+<a class="sourceLine" id="cb178-8" data-line-number="8">⠕ <span class="st">&quot;apple&quot;</span> <span class="op">&gt;</span> <span class="st">&quot;pineapple&quot;</span></a>
+<a class="sourceLine" id="cb178-9" data-line-number="9">⠕ <span class="st">&quot;pineapple&quot;</span> <span class="op">&lt;</span> <span class="st">&quot;Peach&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb179-1" data-line-number="1">   prefixes <span class="op">=</span> <span class="st">&quot;JKLMNOPQ&quot;</span></a>
+<a class="sourceLine" id="cb179-2" data-line-number="2">   suffix <span class="op">=</span> <span class="st">&quot;ack&quot;</span></a>
+<a class="sourceLine" id="cb179-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb179-4" data-line-number="4">   <span class="cf">for</span> letter <span class="kw">in</span> prefixes<span class="op">:</span></a>
+<a class="sourceLine" id="cb179-5" data-line-number="5">       <span class="va">console</span>.<span class="at">log</span>(letter <span class="op">+</span> suffix)</a>
+<a class="sourceLine" id="cb179-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb179-7" data-line-number="7">   so that <span class="vs">``</span>Ouack<span class="vs">``</span> and <span class="vs">``</span>Quack<span class="vs">``</span> are spelled <span class="va">correctly</span>.</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb180-1" data-line-number="1">   fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span></a>
+<a class="sourceLine" id="cb180-2" data-line-number="2">   count <span class="op">=</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb180-3" data-line-number="3">   <span class="cf">for</span> char <span class="kw">in</span> fruit<span class="op">:</span></a>
+<a class="sourceLine" id="cb180-4" data-line-number="4">       <span class="cf">if</span> char <span class="op">==</span> <span class="st">&quot;a&quot;</span><span class="op">:</span></a>
+<a class="sourceLine" id="cb180-5" data-line-number="5">   count <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb180-6" data-line-number="6">   <span class="va">console</span>.<span class="at">log</span>(count)</a>
+<a class="sourceLine" id="cb180-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb180-8" data-line-number="8">   <span class="kw">in</span> a <span class="kw">function</span> named <span class="vs">``</span>count_letters<span class="vs">``</span><span class="op">,</span> and generalize it so that it accepts</a>
+<a class="sourceLine" id="cb180-9" data-line-number="9">   the string and the letter <span class="im">as</span> <span class="va">arguments</span>. <span class="at">Make</span> <span class="at">the</span> <span class="at">function</span> <span class="at">return</span> <span class="at">the</span> <span class="at">number</span></a>
+<a class="sourceLine" id="cb180-10" data-line-number="10">   of characters<span class="op">,</span> rather than print the <span class="va">answer</span>. <span class="at">The</span> <span class="at">caller</span> <span class="at">should</span> <span class="at">do</span> <span class="at">the</span> <span class="va">printing</span>.</a></code></pre></div>
 <p>string, it repeatedly calls the <code>find</code> method, with the optional third parameter to locate new occurrences of the letter being counted.</p>
 <ol>
 <li><p>Assign to a variable in your program a triple-quoted string that contains your favourite paragraph of text — perhaps a poem, a speech, instructions to bake a cake, some inspirational verses, etc.</p>
 <p>Write a function which removes all punctuation from the string, breaks the string into a list of words, and counts the number of words in your text that contain the letter “e”. Your program should print an analysis of the text like this:</p>
 <pre><code>.. sourcecode:: pycon
 
-    Your text contains 243 words, of which 109 (44.8%) contain an &quot;e&quot;.      </code></pre></li>
+    Your text contains 243 words, of which 109 (44.8%) contain an &quot;e&quot;.     </code></pre></li>
 <li><p>Print a neat looking multiplication table like this:</p>
 <pre><code>.. sourcecode:: pycon
 
@@ -3493,40 +3476,37 @@ whitespace
    12:    12  24  36  48  60  72  84  96 108 120 132 144</code></pre></li>
 <li><p>Write a function that reverses its string argument, and satisfies these tests:</p></li>
 </ol>
-<div class="sourceCode" id="cb188"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb188-1" data-line-number="1">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;happy&quot;</span>) <span class="op">==</span> <span class="st">&quot;yppah&quot;</span>)</a>
-<a class="sourceLine" id="cb188-2" data-line-number="2">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;Javascript&quot;</span>) <span class="op">==</span> <span class="st">&quot;nohtyP&quot;</span>)</a>
-<a class="sourceLine" id="cb188-3" data-line-number="3">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;&quot;</span>) <span class="op">==</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb188-4" data-line-number="4">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;a&quot;</span>) <span class="op">==</span> <span class="st">&quot;a&quot;</span>)</a>
-<a class="sourceLine" id="cb188-5" data-line-number="5">   </a></code></pre></div>
-<div class="sourceCode" id="cb189"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb189-1" data-line-number="1">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;good&quot;</span>) <span class="op">==</span> <span class="st">&quot;gooddoog&quot;</span>)</a>
-<a class="sourceLine" id="cb189-2" data-line-number="2">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;Javascript&quot;</span>) <span class="op">==</span> <span class="st">&quot;JavascriptnohtyP&quot;</span>)</a>
-<a class="sourceLine" id="cb189-3" data-line-number="3">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;&quot;</span>) <span class="op">==</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb189-4" data-line-number="4">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;a&quot;</span>) <span class="op">==</span> <span class="st">&quot;aa&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb190"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb190-1" data-line-number="1">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;apple&quot;</span>) <span class="op">==</span> <span class="st">&quot;pple&quot;</span>)</a>
-<a class="sourceLine" id="cb190-2" data-line-number="2">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="st">&quot;bnn&quot;</span>)</a>
-<a class="sourceLine" id="cb190-3" data-line-number="3">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;z&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="st">&quot;banana&quot;</span>)</a>
-<a class="sourceLine" id="cb190-4" data-line-number="4">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;i&quot;</span><span class="op">,</span> <span class="st">&quot;Mississippi&quot;</span>) <span class="op">==</span> <span class="st">&quot;Msssspp&quot;</span>)</a>
-<a class="sourceLine" id="cb190-5" data-line-number="5">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span>) <span class="op">=</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb190-6" data-line-number="6">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span>) <span class="op">=</span> <span class="st">&quot;c&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb191"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb191-1" data-line-number="1">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;abba&quot;</span>))</a>
-<a class="sourceLine" id="cb191-2" data-line-number="2">    <span class="at">test</span>(not <span class="at">is_palindrome</span>(<span class="st">&quot;abab&quot;</span>))</a>
-<a class="sourceLine" id="cb191-3" data-line-number="3">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;tenet&quot;</span>))</a>
-<a class="sourceLine" id="cb191-4" data-line-number="4">    <span class="at">test</span>(not <span class="at">is_palindrome</span>(<span class="st">&quot;banana&quot;</span>))</a>
-<a class="sourceLine" id="cb191-5" data-line-number="5">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;straw warts&quot;</span>))</a>
-<a class="sourceLine" id="cb191-6" data-line-number="6">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;a&quot;</span>))</a>
-<a class="sourceLine" id="cb191-7" data-line-number="7">    # <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;&quot;</span>))    # Is an empty string a palindrome<span class="op">?</span></a></code></pre></div>
-<div class="sourceCode" id="cb192"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb192-1" data-line-number="1">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;is&quot;</span><span class="op">,</span> <span class="st">&quot;Mississippi&quot;</span>) <span class="op">==</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb192-2" data-line-number="2">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;an&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb192-3" data-line-number="3">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;ana&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb192-4" data-line-number="4">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;nana&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb192-5" data-line-number="5">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;nanan&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb192-6" data-line-number="6">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;aaa&quot;</span><span class="op">,</span> <span class="st">&quot;aaaaaa&quot;</span>) <span class="op">==</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb192-7" data-line-number="7">   </a></code></pre></div>
-<div class="sourceCode" id="cb193"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb193-1" data-line-number="1">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;an&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="st">&quot;bana&quot;</span>)</a>
-<a class="sourceLine" id="cb193-2" data-line-number="2">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;cyc&quot;</span><span class="op">,</span> <span class="st">&quot;bicycle&quot;</span>) <span class="op">==</span> <span class="st">&quot;bile&quot;</span>)</a>
-<a class="sourceLine" id="cb193-3" data-line-number="3">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;iss&quot;</span><span class="op">,</span> <span class="st">&quot;Mississippi&quot;</span>) <span class="op">==</span> <span class="st">&quot;Missippi&quot;</span>)</a>
-<a class="sourceLine" id="cb193-4" data-line-number="4">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;eggs&quot;</span><span class="op">,</span> <span class="st">&quot;bicycle&quot;</span>) <span class="op">==</span> <span class="st">&quot;bicycle&quot;</span>)</a>
-<a class="sourceLine" id="cb193-5" data-line-number="5"> </a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb183-1" data-line-number="1">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;happy&quot;</span>) <span class="op">==</span> <span class="st">&quot;yppah&quot;</span>)</a>
+<a class="sourceLine" id="cb183-2" data-line-number="2">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;Javascript&quot;</span>) <span class="op">==</span> <span class="st">&quot;nohtyP&quot;</span>)</a>
+<a class="sourceLine" id="cb183-3" data-line-number="3">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;&quot;</span>) <span class="op">==</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb183-4" data-line-number="4">   <span class="at">test</span>(<span class="at">reverse</span>(<span class="st">&quot;a&quot;</span>) <span class="op">==</span> <span class="st">&quot;a&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb184-1" data-line-number="1">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;good&quot;</span>) <span class="op">==</span> <span class="st">&quot;gooddoog&quot;</span>)</a>
+<a class="sourceLine" id="cb184-2" data-line-number="2">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;Javascript&quot;</span>) <span class="op">==</span> <span class="st">&quot;JavascriptnohtyP&quot;</span>)</a>
+<a class="sourceLine" id="cb184-3" data-line-number="3">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;&quot;</span>) <span class="op">==</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb184-4" data-line-number="4">   <span class="at">test</span>(<span class="at">mirror</span>(<span class="st">&quot;a&quot;</span>) <span class="op">==</span> <span class="st">&quot;aa&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb185-1" data-line-number="1">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;apple&quot;</span>) <span class="op">==</span> <span class="st">&quot;pple&quot;</span>)</a>
+<a class="sourceLine" id="cb185-2" data-line-number="2">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="st">&quot;bnn&quot;</span>)</a>
+<a class="sourceLine" id="cb185-3" data-line-number="3">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;z&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="st">&quot;banana&quot;</span>)</a>
+<a class="sourceLine" id="cb185-4" data-line-number="4">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;i&quot;</span><span class="op">,</span> <span class="st">&quot;Mississippi&quot;</span>) <span class="op">==</span> <span class="st">&quot;Msssspp&quot;</span>)</a>
+<a class="sourceLine" id="cb185-5" data-line-number="5">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span>) <span class="op">=</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb185-6" data-line-number="6">    <span class="at">test</span>(<span class="at">remove_letter</span>(<span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span>) <span class="op">=</span> <span class="st">&quot;c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb186-1" data-line-number="1">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;abba&quot;</span>))</a>
+<a class="sourceLine" id="cb186-2" data-line-number="2">    <span class="at">test</span>(not <span class="at">is_palindrome</span>(<span class="st">&quot;abab&quot;</span>))</a>
+<a class="sourceLine" id="cb186-3" data-line-number="3">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;tenet&quot;</span>))</a>
+<a class="sourceLine" id="cb186-4" data-line-number="4">    <span class="at">test</span>(not <span class="at">is_palindrome</span>(<span class="st">&quot;banana&quot;</span>))</a>
+<a class="sourceLine" id="cb186-5" data-line-number="5">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;straw warts&quot;</span>))</a>
+<a class="sourceLine" id="cb186-6" data-line-number="6">    <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;a&quot;</span>))</a>
+<a class="sourceLine" id="cb186-7" data-line-number="7">    # <span class="at">test</span>(<span class="at">is_palindrome</span>(<span class="st">&quot;&quot;</span>))    # Is an empty string a palindrome<span class="op">?</span></a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb187-1" data-line-number="1">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;is&quot;</span><span class="op">,</span> <span class="st">&quot;Mississippi&quot;</span>) <span class="op">==</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb187-2" data-line-number="2">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;an&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb187-3" data-line-number="3">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;ana&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb187-4" data-line-number="4">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;nana&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb187-5" data-line-number="5">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;nanan&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb187-6" data-line-number="6">    <span class="at">test</span>(<span class="at">count</span>(<span class="st">&quot;aaa&quot;</span><span class="op">,</span> <span class="st">&quot;aaaaaa&quot;</span>) <span class="op">==</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb188-1" data-line-number="1">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;an&quot;</span><span class="op">,</span> <span class="st">&quot;banana&quot;</span>) <span class="op">==</span> <span class="st">&quot;bana&quot;</span>)</a>
+<a class="sourceLine" id="cb188-2" data-line-number="2">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;cyc&quot;</span><span class="op">,</span> <span class="st">&quot;bicycle&quot;</span>) <span class="op">==</span> <span class="st">&quot;bile&quot;</span>)</a>
+<a class="sourceLine" id="cb188-3" data-line-number="3">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;iss&quot;</span><span class="op">,</span> <span class="st">&quot;Mississippi&quot;</span>) <span class="op">==</span> <span class="st">&quot;Missippi&quot;</span>)</a>
+<a class="sourceLine" id="cb188-4" data-line-number="4">    <span class="at">test</span>(<span class="at">remove</span>(<span class="st">&quot;eggs&quot;</span><span class="op">,</span> <span class="st">&quot;bicycle&quot;</span>) <span class="op">==</span> <span class="st">&quot;bicycle&quot;</span>)</a></code></pre></div>
 </section>
 </section>
 <section id="appendices" class="level1">
