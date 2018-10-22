@@ -37,7 +37,7 @@ More formally, here is precise flow of execution for a `while` statement:
 * If the value is `true`, execute each of the statements in the body (lines 6 and 7) and
   then go back to the `while` statement at line 5.
 
-The body consists of all of the statements indented below the `while` keyword.  
+The body consists of all of the statements indented below the `while` keyword. 
 
 Notice that if the loop condition is `false` the first time we test it, the
 statements in the body of the loop are never executed.
@@ -52,7 +52,7 @@ In the case here, we can prove that the loop terminates because we
 know that the value of `n` is finite, and we can see that the value of `v`
 increments each time through the loop, so eventually it will have to exceed `n`. In
 other cases, it is not so easy, even impossible in some cases,
-to tell if the loop will ever terminate.  
+to tell if the loop will ever terminate. 
 
 What you will notice here is that the `while` loop is more work for you — the
 programmer — than the equivalent `for` loop. When using a `while` loop you have
@@ -82,7 +82,7 @@ The Collatz 3n + 1 sequence
 
 Let's look at a simple sequence that has fascinated and foxed
 mathematicians for many years. They still cannot answer even quite
-simple questions about this.  
+simple questions about this. 
 
 The "computational rule" for creating the sequence is to start from
 some given `n`, and to generate the next term of the sequence from
@@ -111,6 +111,7 @@ function seq3np1 (n) {
   console.log(sequence + 1 + ".");
 }
 ~~~~~~~~~~~~~~~~~~~~
+<caption>See [Collatz repl](https://repl.it/@mcuringa/Collatz)</caption>
 
 First, note that we use the accumulator pattern that we introduced in the
 last chapter to concatenate our output to the (initially empty) string,
@@ -154,18 +155,18 @@ hundred steps before it terminates.
 Particular values aside, the interesting question was first posed by a German
 mathematician called Lothar Collatz: the _Collatz conjecture_ (also known as
 the *3n + 1 conjecture*), is that this sequence terminates for *all* positive
-values of `n`.  So far, no one has been able to prove it *or* disprove it!  
+values of `n`. So far, no one has been able to prove it *or* disprove it!  
 (A conjecture is a statement that might be true, but nobody knows for sure.)
 
 Think carefully about what would be needed for a proof or disproof of the conjecture
-_"All positive integers will eventually converge to 1 using the Collatz rules"_.  
+_"All positive integers will eventually converge to 1 using the Collatz rules"_. 
 With fast computers we have been able to test every integer up to very
-large values, and so far, they have all eventually ended up at 1.  
+large values, and so far, they have all eventually ended up at 1. 
 But who knows? Perhaps there is some as-yet untested number which does not reduce to 1.
 
 You'll notice that if you don't stop when you reach 1, the sequence gets into
 its own cyclic loop:  1, 4, 2, 1, 4, 2, 1, 4 ... So one possibility is that there might
-be other cycles that we just haven't found yet.  
+be other cycles that we just haven't found yet. 
 
 [Wikipedia has an informative article about the Collatz
 conjecture.](https://en.wikipedia.org/wiki/Collatz_conjecture) The sequence
@@ -178,7 +179,7 @@ computer, and found to converge!
 **Choosing between `for` and `while`**
 
 Use a `for` loop if you know, before you start looping,
-the maximum number of times that you'll need to execute the body.  
+the maximum number of times that you'll need to execute the body. 
 For example, if you're traversing a list of elements, you know that the maximum
 number of loop iterations you can possibly need is "all the elements in the list".
 Or if you need to print the 12 times table, we know right away how many times
@@ -247,30 +248,15 @@ Tracing can be a bit tedious and error prone (that's why we get computers to
 do this stuff in the first place!), but it is an essential skill for a
 programmer to have. From this trace we can learn a lot about the way our code
 works. We can observe that as soon as `n` becomes a power of 2, for example,
-the program will require $log\ :sub:2\ (n)$ executions of the loop body to
-complete. We can also see that the final 1 will not be printed as output
+the program will require ${\log_2}(n)$ executions of the loop body to
+complete. We can also see that we don't reach the final 1
 within the body of the loop, which is why we concatenate `1` after our `while`
 loop terminates.
 
-Tracing a program is, of course, related to single-stepping through your code
-and being able to inspect the variables. Using the computer to **single-step**
-for you is less error prone and more convenient. Also, as your programs get
-more complex, they might execute many millions of steps before they get to
-the code that you're really interested in, so manual tracing  becomes
-impossible. Being able to set a **breakpoint** where you need one is far more
-powerful. So we strongly encourage you to invest time in learning using to use
-your programming environment (PyScripter, in these notes) to full effect.
-
-There are also some great visualization tools becoming available to help you
-trace and understand small fragments of Javascript code.  The one we recommend is
-at  http://netserv.ict.ru.ac.za/Javascript3_viz
-
-We've cautioned against chatterbox functions, but used them here.  
-As we learn a bit more Javascript, we'll be able to show you how to
-generate a list of values to hold the sequence, rather than having
-the function print them. Doing this would remove the need to have
-all these pesky `print` functions in the middle of our logic, and
-will make the function more useful.
+In this function, we just store all of the values of the Collatz sequence in a
+single string. As we learn a bit more Javascript, we'll be able to show you
+how to generate a list of values to hold the sequence, rather concatenating
+them to a string.
 
 Counting digits
 ---------------
@@ -279,17 +265,19 @@ The following function counts the number of decimal digits in a positive
 integer:
 
 ~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function num_digits(n):
-  count = 0
-  while n != 0:
-    count = count + 1
-    n = n // 10
-  return count
+function numDigits(n) {
+  let count = 0;
+  while (n != 0) {
+    count++;
+    n = Math.floor(n / 10);
+  }
+  return count;
+}
 ~~~~~~~~~~~~~~~~~~~~
 
-A call to `console.log(num_digits(710))` will print `3`. Trace the execution of this
-function call (perhaps using the single step function in PyScripter, or the
-Javascript visualizer, or on some paper) to convince yourself that it works.
+A call to `console.log(numDigits(710))` will print `3`. Trace the execution of
+this function call (using `console.log` or just a piece of paper) to convince
+yourself that it works.
 
 This function demonstrates an important pattern of computation called a
 **counter**. The variable `count` is initialized to 0 and then incremented
@@ -301,19 +289,22 @@ If we wanted to only count digits that are either 0 or 5, adding a conditional
 before incrementing the counter will do the trick:
 
 ~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function num_zero_and_five_digits(n):
-  count = 0
-  while n > 0:
-    digit = n % 10
-    if digit === 0 or digit === 5:
+function numZeroAndNumFiveDigits(n) {
+  let count = 0;
+  while( n > 0) {
+    let digit = n % 10;
+    if (digit === 0 || digit === 5) {
       count = count + 1
-    n = n // 10
-  return count
+    }
+    n = Math.floor(n / 10);
+  }
+  return count;
+}
 ~~~~~~~~~~~~~~~~~~~~
 
-Confirm that `test(num_zero_and_five_digits(1055030250) === 7)` passes.
+Confirm that `numZeroAndNumFiveDigits(1055030250) === 7`.
 
-Notice, however, that `test(num_digits(0) === 1)` fails.  Explain why.  Do you
+Notice, however, that `numDigits(0) === 0`. Explain why. Do you
 think this is a bug in the code, or a bug in the specifications, or our
 expectations, or the tests?
 
@@ -324,17 +315,17 @@ Loops are often used in programs that compute numerical results by starting
 with an approximate answer and iteratively improving it.
 
 For example, before we had calculators or computers, people needed to
-calculate square roots manually.  Newton used a particularly good method
+calculate square roots manually. Newton used a particularly good method
 (there is some evidence that this method was known many years before).
 Suppose that you want to know the square root of `n`. If you start  with
 almost any approximation, you can compute a better approximation (closer to
 the actual answer) with the following formula:
 
-~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+~~~~~~~~~~~~~~~~~~~~{.bash}
 better = (approx + n/approx)/2
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
-Repeat this calculation a few times using your calculator.  Can you see why
+Repeat this calculation a few times using your calculator. Can you see why
 each iteration brings your estimate a little closer?  One of the amazing
 properties of this particular algorithm is how quickly it converges to an
 accurate answer — a great advantage for doing it manually.
@@ -347,52 +338,54 @@ repeatedly improving its guesses.)
 
 This is an example of an `indefinite` iteration problem: we cannot predict in
 advance how many times we'll want to improve our guess — we just want to keep
-getting closer and closer.  Our stopping condition for the loop will be when
-our old guess and our  improved guess are "close enough" to each other.
+getting closer and closer. Our stopping condition for the loop will be when
+our old guess and our improved guess are "close enough" to each other.
 
 Ideally, we'd like the old and new guess to be exactly equal to each other
-when we stop.   But exact equality is a tricky notion in computer arithmetic
-when real numbers are involved.   Because real numbers are not represented
+when we stop. But exact equality is a tricky notion in computer arithmetic
+when real numbers are involved. Because real numbers are not represented
 absolutely accurately (after all, a number like pi or the square root of two
 has an infinite number of decimal places because it is irrational), we need to
 formulate the stopping test for the loop by asking "is `a` close enough to
 `b`"? This stopping condition can be coded like this:
 
 ~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-if abs(a-b) < 0.001:  # Make this smaller for better accuracy
-    break
+if (Math.abs(a-b) < 0.001) {  // Make this smaller for better accuracy
+  break
+}
 ~~~~~~~~~~~~~~~~~~~~
-Notice that we take the absolute value of the difference between `a` and `b`!
-
-This problem is also a good example of when a middle-exit loop is appropriate:
+Notice that we take the absolute value of the difference between `a` and `b`.
 
 ~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function sqrt(n):
-  approx = n/2.0   # Start with some or other guess at the answer
-  while True:
-    better = (approx + n/approx)/2.0
-    if abs(approx - better) < 0.001:
-      return better
-    approx = better
+function sqrt(n) {
+  let approx = n/2;   // Start with some or other guess at the answer
+  let better = (approx + n/approx)/2;
+  while (Math.abs(approx - better) > .001) {
+    approx = better;
+    better = (approx + n/approx)/2.0;
+  }
+  return better;
+}
 
-# Test cases
-console.log(sqrt(25.0))
-console.log(sqrt(49.0))
-console.log(sqrt(81.0))
+// Test cases
+console.log(sqrt(25));
+console.log(sqrt(49));
+console.log(sqrt(81));
 ~~~~~~~~~~~~~~~~~~~~
+<caption>See [Newton Square Root repl](https://repl.it/@mcuringa/Newton-Sqare-Root)</caption>
 
 The output is:
 
 ~~~~~~~~~~~~~~~~~~~~~~~
-5.00000000002
-7.0
-9.0
+5.000000000016778
+7
+9.000000000004924
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 See if you can improve the approximations by changing the stopping condition.
-Also, step through the algorithm (perhaps by hand, using your calculator) to
-see how many  iterations were needed before it achieved this level of accuracy
-for `sqrt(25)`.
+Also, step through the algorithm (perhaps by hand, using your calculator or by
+adding a `count` variable to the loop) to see how many  iterations were needed
+before it achieved this level of accuracy for `sqrt(25)`.
 
 Algorithms
 ----------------------
@@ -400,7 +393,7 @@ Algorithms
 Newton's method is an example of an **algorithm**: it is a mechanical process
 for solving a category of problems (in this case, computing square roots).
 
-Some kinds of knowledge are not algorithmic.  For example, learning dates from
+Some kinds of knowledge are not algorithmic. For example, learning dates from
 history or your multiplication tables involves memorization of specific
 solutions.
 
@@ -411,23 +404,23 @@ follow.
 
 One of the characteristics of algorithms is that they do not require any
 intelligence to carry out. They are mechanical processes in which each step
-follows from the last according to a simple set of rules.  And they're
+follows from the last according to a simple set of rules. And they're
 designed to solve a  general class or category of problems, not just a single
 problem.
 
 Understanding that hard problems can be solved by step-by-step algorithmic
 processes (and having technology to execute these algorithms for us)  is one
-of the major breakthroughs that has had enormous benefits.  So while  the
+of the major breakthroughs that has had enormous benefits. So while  the
 execution of the algorithm may be boring and may require no intelligence,
 algorithmic or computational  thinking — i.e. using algorithms and automation
 as the basis for approaching problems —  is rapidly transforming our society.
 Some claim that this shift towards algorithmic thinking and processes is going
 to have even more impact on our society than the  invention of the printing
-press.   And the process of designing algorithms is interesting,
+press.  And the process of designing algorithms is interesting,
 intellectually challenging, and a central part of what we call programming.
 
 Some of the things that people do naturally, without difficulty or conscious
-thought, are the hardest to express algorithmically.  Understanding natural
+thought, are the hardest to express algorithmically. Understanding natural
 language is a good example. We all do it, but so far no one has been able to
 explain *how* we do it, at least not in the form of a step-by-step mechanical
 algorithm.
