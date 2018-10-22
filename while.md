@@ -425,8 +425,8 @@ language is a good example. We all do it, but so far no one has been able to
 explain *how* we do it, at least not in the form of a step-by-step mechanical
 algorithm.
 
-Exercises
----------
+While Loop Exercises
+--------------------
 
 Some of these exercises work best with `while` loops, while others can be
 solved more easily with `for` loops. Some of them will work better if you
