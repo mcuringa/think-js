@@ -454,7 +454,7 @@ to other pages relevant to these problems.
    numbers between `start` and `end`, including `start` and `end`. Return the
    sum (a number).
 
-2. **Square count**
+2. **Square Root Count**
    
    Revise the code above for Newton's method for calculating square roots.
    Instead of returning the square root, it should return the number of
