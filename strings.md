@@ -289,7 +289,7 @@ The Boolean comparison operators work on strings. To see if two strings are equa
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 if (word === "banana") {
-  console.log("Yes, we have no bananas!");
+  console.log("Yes, we are bananas!");
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Other comparison operations are useful for putting words in
@@ -317,6 +317,8 @@ format, such as all lowercase, before performing the comparison. So:
 ⠕ let b = "ape";
 ⠕ a === b;
 => false
+⠕ a = a.toLowerCase();
+⠕ a === b;
 => true
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -325,7 +327,6 @@ Strings are immutable
 
 It is tempting to use the ``[]`` operator on the left side of an assignment,
 with the intention of changing a character in a string. For example:
-
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 let greeting = "Hello, world!";
@@ -373,7 +374,6 @@ Note that a string is a substring of itself, and the empty string is a
 substring of any other string. (Also note that computer scientists
 like to think about these edge cases quite carefully!)
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ s.includes("apple");
 => true
@@ -381,9 +381,7 @@ like to think about these edge cases quite carefully!)
 => true
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-
-Combining the `includes` with string concatenation using ``+=``, we can
+Combining `includes` with string concatenation using ``+=``, we can
 remove the vowels from a string:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
@@ -405,7 +403,7 @@ console.log(removeVowels("A dark and stormy night.")); //  drk nd strmy nght.
 [Check out this function on repl.it](https://repl.it/@mcuringa/remove-vowels)
 
 This short function uses several of the techniques and patterns we
-have previously seen. We use a finite `for` loop up up to `s.length`
+have previously seen. We use a finite `for` loop to iterate up to `s.length`
 to traverse the string. We convert `c` to lowercase for the comparison
 where we test for inclusion in `vowels`. We create an empty string,
 `sansVowels` that accumulates the non-vowel characters that we find.
@@ -414,7 +412,6 @@ A ``find`` function
 -------------------
 
 What does the following function do?
-
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 // Find and return the index of ch in strng.
@@ -448,75 +445,74 @@ If the character doesn't appear in the string, then the program exits the loop
 normally and returns ``-1``.
 
 This pattern of computation is sometimes called a **eureka traversal** or
-**short-circuit evaluation**,  because as soon as we find what we are looking for,
-we can cry "Eureka!", take the short-circuit, and stop looking.
-
-We wrote our own `find` function above, but Javascript's string object includes
-a more robust version called `indexOf`.
-[You can explore the MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf).
+**short-circuit evaluation**, because as soon as we find what we are looking
+for, we can cry "Eureka!", take the short-circuit, and stop looking.
 
 Looping and counting
 --------------------
 
 The following program counts the number of times the letter ``a`` appears in a
-string, and is another example of the counter pattern introduced in
-:ref:`counting`:
-
+string, and is another example of the **counter pattern**.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function count_a(text):
-    count = 0
-    for c in text:
-if c == "a":
-    count += 1
-    return(count)
-
-test(count_a("banana") == 3)    
-
+function countA(text) {
+  let count = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === "a") {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countA("banana") === 3);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-Optional parameters
+Default parameters
 -------------------
 
 To find the locations of the second or third occurrence of a character in a
 string, we can modify the ``find`` function, adding a third parameter for the
 starting position in the search string:
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function find2(strng, ch, start):
-    ix = start
-    while ix < len(strng):
-if strng[ix] == ch:
-    return ix
-ix += 1
-    return -1
-
-test(find2("banana", "a", 2) == 3)
+function find2(strng, ch, start) {
+  let ix = start;
+  while (ix < strng.length) {
+    if (strng[ix] == ch) {
+        return ix;
+    }
+    ix++;
+  }
+  return -1
+}
+console.log(find2("banana", "a", 2) == 3);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The call ``find2("banana", "a", 2)`` now returns ``3``, the index of the first
 occurrence of "a" in "banana" starting the search at index 2. What does
 ``find2("banana", "n", 3)`` return? If you said, 4, there is a good chance you
 understand how ``find2`` works.
 
-Better still, we can combine ``find`` and ``find2`` using an
-**optional parameter**:
-
+Better still, we can combine ``find`` and ``find2`` using a
+**default parameter**:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function find(strng, ch, start=0):
-    ix = start
-    while ix < len(strng):
-if strng[ix] == ch:
-    return ix
-ix += 1
-    return -1
-
+function find(strng, ch, start = 0) {
+  let ix = start;
+  while (ix < strng.length) {
+    if (strng[ix] == ch) {
+        return ix;
+    }
+    ix++;
+  }
+  return -1
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When a function has an optional default parameter, the caller _may_ provide a 
 matching argument. If the third argument is provided to ``find``, it gets assigned
 to ``start``. But if the caller leaves the argument out, then start is given
-a default value indicated by the assignment ``start=0`` in the function definition.
+a default value indicated by the assignment ``start = 0`` in the function header.
 
 So the call ``find("banana", "a", 2)`` to this version of ``find`` behaves just
 like ``find2``, while in the call ``find("banana", "a")``, ``start`` will be
@@ -525,66 +521,82 @@ set to the **default value** of ``0``.
 Adding another optional parameter to ``find`` makes it search from a starting
 position, up to but not including the end position:
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-function find(strng, ch, start=0, end=None):
-    ix = start
-    if end is None:
-       end = len(strng)
-    while ix < end:
-if strng[ix] == ch:
-    return ix
-ix += 1
-    return -1
+function find(strng, ch, start = 0, end = null) {
+  let ix = start;
+  end = end || strng.length;
+
+  while (ix < end) {
+    if (strng[ix] == ch) {
+        return ix;
+    }
+    ix++;
+  }
+  return -1
+}
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The optional value for ``end`` is interesting: we give it a default value ``null`` if the
 caller does not supply any argument. In the body of the function we test what ``end`` is,
 and if the caller did not supply any argument, we reassign ``end`` to be the length of the string.
 If the caller has supplied an argument for ``end``, however, the caller's value will be used in the loop.
 
-The semantics of ``start`` and ``end`` in this function are precisely the same as they are in
-the ``range`` function.
+On line 3 we see a new use of the logical `||` operator in the assignment
+expression, `end = end || strng.length;`. We re-assign `end` the value of
+`end` (i.e. it doesn't change) if `end` is  **truthy** value, **or** we assign
+`end` a default value, of `strng.length`. Because of the way Javascripts
+logical operators and truthiness work, they can be useful for assignment. As
+you read more Javascript code online and in books, you will see many examples
+of code that use the `||` operator to assign default values.
 
-Here are some test cases that should pass:  
-
+Here are some test cases that should print `true`:  
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-ss = "Javascript strings have some interesting methods."
-test(find(ss, "s") == 7)
-test(find(ss, "s", 7) == 7)
-test(find(ss, "s", 8) == 13)
-test(find(ss, "s", 8, 13) == -1)
-test(find(ss, ".") == len(ss)-1)
+let ss = "Javascript strings have some interesting methods.";
+
+console.log(find(ss, "s") === 4);
+console.log(find(ss, "s", 11) === 11);
+console.log(find(ss, "s", 12) === 17);
+console.log(find(ss, "s", 12, 17) === -1);
+console.log(find(ss, ".") === ss.length - 1);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           docstring
 
-The built-in ``find`` method
+The built-in ``indexOf`` method
 ----------------------------
 
-Now that we've done all this work to write a powerful ``find`` function, we can reveal that
-strings already have their own built-in ``find`` method. It can do everything
-that our code can do, and more!  
+We wrote our own `find` function above, but Javascript's string object includes
+its own version of `find` called `indexOf`.
 
+[You can see how it works in the MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf).
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-test(ss.find("s") == 7)
-test(ss.find("s", 7) == 7)
-test(ss.find("s", 8) == 13)
-test(ss.find("s", 8, 13) == -1)
-test(ss.find(".") == len(ss)-1)
+let ss = "Javascript strings have some interesting methods.";
+
+console.log(ss.indexOf("s") === 4);
+console.log(ss.indexOf("s", 11) === 11);
+console.log(ss.indexOf("s", 12) === 17);
+console.log(ss.indexOf("s", 12, 17) === 17); // indexOf ignores the argument to end
+console.log(ss.indexOf(".") === ss.length - 1);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`indexOf` does not have the optional `end` paremeter. It always seachers until
+the end of the string. In the case `ss.indexOf("s", 12, 17) === 17` it does
+not create an error to pass in the third argument, however it is ignored entirely.
+
+The built-in ``indexOf`` method is more general than our version. It can find
 substrings, not just single characters:
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ "banana".find("nan")
-2
-⠕ "banana".find("na", 3)
-4
-
+⠕ "banana".indexOf("nan")
+=> 2
+⠕ "banana".indexOf("na", 3)
+=> 4
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Usually we'd prefer to use the methods that Javascript provides rather than reinvent
 our own equivalents. But many of the built-in functions and methods make good
 teaching exercises, and the underlying techniques you learn are your building blocks
 to becoming a proficient programmer.
@@ -592,20 +604,21 @@ to becoming a proficient programmer.
 The ``split`` method
 --------------------
 
-One of the most useful methods on strings is the ``split`` method:
-it splits a single multi-word string into a list of individual words, removing
-all the whitespace between them. (Whitespace means any tabs, newlines, or spaces.)
-This allows us to read input as a single string,
-and split it into words.
-
+One of the most useful methods on strings is the ``split`` method: it splits a
+single multi-word string into an array of individual words ("substrings"). The
+first parameter of `split` specifies the character or substring (or regular
+expression, we'll see later) to be used to break the string into words. In
+the example below, we split `ss` into words using a single space `' '`;
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
-⠕ ss = "Well I never did said Alice"
-⠕ wds = ss.split()
-⠕ wds
-['Well', 'I', 'never', 'did', 'said', 'Alice']
+⠕ let ss = "Well I never did said Alice";
+⠕ let words = ss.split(" ");
+⠕ words
+=> ['Well', 'I', 'never', 'did', 'said', 'Alice']
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cleaning up your strings
 ------------------------
 
 We'll often work with strings that contain punctuation, or tab and newline characters,
@@ -620,16 +633,18 @@ omitting any punctuation:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}     
-punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-
-function remove_punctuation(s):
-    s_sans_punct = ""
-    for letter in s:
-if letter not in punctuation:
-    s_sans_punct += letter
-    return s_sans_punct
-
+function removePunctuation(s) {
+  let punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+  let cleanString = "";
+  for (let i = 0; i < s.length; i++) {
+    if (punctuation.indexOf(s[i]) === -1) {
+      cleanString += s[i];
+    }
+  }
+  return cleanString;
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Fortunately, the Javascript ``string`` module already does it
 for us. So we will make a slight improvement to this
 program --- we'll import the ``string`` module and use its definition:
@@ -673,14 +688,15 @@ a list of words:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    .. sourcecode:: pycon  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 
        ['Javascripts', 'are', 'constrictors', ... , 'it', 'snake', 'POOP']                            
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are other useful string methods, but this book isn't intended to
 be a reference manual. On the other hand, the *Javascript Library Reference*
 is. Along with a wealth of other documentation, it is available at
-the `Javascript website <http://www.python.org>`__.
+the `Javascript website <http://www.python.org>`.
 
 
 

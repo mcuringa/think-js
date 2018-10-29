@@ -38,12 +38,19 @@ function dayString(d) {
 function dayDelta(day, month, year) {
   // days away from Monday Jan 1 2018
   let startYear = 2018;
-  let startDays = dayOfYear(0,1);
+  let startDays = 1;
 
   let days = Math.abs(dayOfYear(month, day) - startDays);
   days += Math.abs(startYear - year) * 365;
 
   return days;
+}
+
+function dayOfWeek(day, month, year) {
+  let daysFromStart = dayDelta(day, month - 1, year);
+  // it's plus one because our refernce date is Monday
+  let d = (daysFromStart + 1) % 7;
+  return d;
 }
 
 function main() {
@@ -61,4 +68,19 @@ function main() {
   console.log(dayString(d + 1));
 }
 
-main();
+function testDayOfYear() {
+
+}
+
+function test() {
+  let july4_76 = new Date("7/4/1776");
+  let newYears2018 = new Date("1/1/2018");
+  let d1 = july4_76.getDay();
+  d1 = newYears2018.getDay();
+  let d2 = dayOfWeek(4, 7, 1776);
+  d2 = dayOfWeek(1, 1, 2018);
+  console.log(d1, d2);
+
+}
+
+test();
