@@ -29,7 +29,7 @@ For example:
 ⠕ let ss = "Hello, World!";
 ⠕ let tt = ss.toUpperCase();
 ⠕ tt
-=> 'HELLO, WORLD!'    
+=> 'HELLO, WORLD!'   
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``toUpperCase`` is a method that can be invoked on any string object to
@@ -160,7 +160,7 @@ index position 6 in ``"banana"``. Because we start counting at zero, the six
 indexes are numbered 0 to 5. To get the last character, we have to subtract 1
 from the length of ``fruit``:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}   
 ⠕ let sz = fruit.length;
 ⠕ let last = fruit[sz - 1];
 ⠕ last;
@@ -179,7 +179,7 @@ Often they start at the beginning, select each character in turn, do something
 to it, and continue until the end. This pattern of processing is called a
 **traversal**. One way to encode a traversal is with a ``while`` statement:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}     
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
 let ix = 0;
 while (ix < fruit.length) {
   let letter = fruit[ix];
@@ -358,6 +358,7 @@ Javascript provides string functions that let us find substrings
 within a string. `includes` returns a Boolean `true` or `false`
 to indicate if the substring exists in the string.
 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ let s = "apple";
 ⠕ s.includes("p");
@@ -368,7 +369,9 @@ to indicate if the substring exists in the string.
 => true
 ⠕ s.includes("App"); // false because case doesn't match
 => false
-~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Note that a string is a substring of itself, and the empty string is a
 substring of any other string. (Also note that computer scientists
@@ -389,10 +392,10 @@ function removeVowels(s) {
   let vowels = "aeiou";
   let sansVowels = "";
   for (let i = 0; i < s.length; i++) {
-    let c = s[i].toLowerCase();
-    if(!vowels.includes(c)) {
-      sansVowels += s[i];
-    }
+   let c = s[i].toLowerCase();
+   if(!vowels.includes(c)) {
+     sansVowels += s[i];
+   }
   }
   return sansVowels;
 }
@@ -419,9 +422,9 @@ What does the following function do?
 function find(strng, ch) {
 
   for(let i = 0; i < strng.length; i++) {
-    if(strng[i] === ch) {
-      return i;
-    }
+   if(strng[i] === ch) {
+     return i;
+   }
   }
   return -1;
 }
@@ -458,9 +461,9 @@ string, and is another example of the **counter pattern**.
 function countA(text) {
   let count = 0;
   for (let i = 0; i < text.length; i++) {
-    if (text[i] === "a") {
-      count++;
-    }
+   if (text[i] === "a") {
+     count++;
+   }
   }
   return count;
 }
@@ -478,10 +481,10 @@ starting position in the search string:
 function find2(strng, ch, start) {
   let ix = start;
   while (ix < strng.length) {
-    if (strng[ix] == ch) {
-        return ix;
-    }
-    ix++;
+   if (strng[ix] == ch) {
+      return ix;
+   }
+   ix++;
   }
   return -1
 }
@@ -501,10 +504,10 @@ Better still, we can combine ``find`` and ``find2`` using a
 function find(strng, ch, start = 0) {
   let ix = start;
   while (ix < strng.length) {
-    if (strng[ix] == ch) {
-        return ix;
-    }
-    ix++;
+   if (strng[ix] == ch) {
+      return ix;
+   }
+   ix++;
   }
   return -1
 }
@@ -527,10 +530,10 @@ function find(strng, ch, start = 0, end = null) {
   end = end || strng.length;
 
   while (ix < end) {
-    if (strng[ix] == ch) {
-        return ix;
-    }
-    ix++;
+   if (strng[ix] == ch) {
+      return ix;
+   }
+   ix++;
   }
   return -1
 }
@@ -610,7 +613,7 @@ first parameter of `split` specifies the character or substring (or regular
 expression, we'll see later) to be used to break the string into words. In
 the example below, we split `ss` into words using a single space `' '`;
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}   
 ⠕ let ss = "Well I never did said Alice";
 ⠕ let words = ss.split(" ");
 ⠕ words
@@ -632,14 +635,14 @@ punctuation --- we need to traverse the original string and create a new string,
 omitting any punctuation:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}     
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
 function removePunctuation(s) {
   let punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
   let cleanString = "";
   for (let i = 0; i < s.length; i++) {
-    if (punctuation.indexOf(s[i]) === -1) {
-      cleanString += s[i];
-    }
+   if (punctuation.indexOf(s[i]) === -1) {
+     cleanString += s[i];
+   }
   }
   return cleanString;
 }
@@ -652,454 +655,200 @@ makes a useful combination --- we'll clean out the punctuation, and
 a list of words:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
-let text = `
-Born two centuries ago, Ada Lovelace was a pioneer of computer science. She
-took part in writing the first published program and was a computing
-visionary, recognizing for the first time that computers could do much more
-than just calculations!
-`;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+let text = `Born two centuries ago, Ada Lovelace was a pioneer of computer
+science. She took part in writing the first published program and was a
+computing visionary, recognizing for the first time that computers could do
+much more than just calculations!`;
 
-let words = removePunctuation(text).toLowerCase().split("/\s/");
+let words = removePunctuation(text).toLowerCase().split(/\s/);
 console.log(words);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+The output: 
 
-       ['Javascripts', 'are', 'constrictors', ... , 'it', 'snake', 'POOP']                            
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+[ 'born',
+  'two',
+  'centuries',
+  'ago',
+  'ada',
+  'lovelace',
+  ...
+  'much',
+  'more',
+  'than',
+  'just',
+  'calculations' ]                   
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are other useful string methods, but this book isn't intended to
-be a reference manual. On the other hand, the *Javascript Library Reference*
-is. Along with a wealth of other documentation, it is available at
-the `Javascript website <http://www.python.org>`.
+Careful readers will have noticed a new syntax for the argument to `split`, above.
+`/\s/` is a Javascript **regular expression** (aka regex) which splits the string on any
+**whitespace** --- regular spaces, tabs, and newlines. Regular expressions
+are powerful patterns for matching (and replacing) substrings in strings. Many
+of the Javascript string methods accept either plain strings are regular
+expressions as arguments. Regular expressions are beyond the scope of this
+chapter, but we will demonstrate a few useful examples. 
+[MDN offers a guide to using Regular Expressions in Javascript.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+
+There are other useful string methods, but this book isn't intended to be a
+reference manual. On the other hand, the *Mozilla Developers Network* is an
+excellent reference. You can see all of the String methods here
+<https://developer.mozilla.org/en-
+US/docs/Web/JavaScript/Reference/Global_Objects/String>.
 
 
+Template strings
+----------------
 
-The string format method
-------------------------
+Template strings are the easiest and most powerful way to format strings in Javascript.
+We have already seen how we can use them with the backtick (```) for multiline strings.
 
-The easiest and most powerful way to format a string in Javascript 3 is to use the
-``format`` method. To see how this works, let's start with a few examples:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-s1 = "His name is {0}!".format("Arthur")
-console.log(s1)
-
-name = "Alice"
-age = 10
-s2 = "I am {1} and I am {0} years old.".format(age, name)
-console.log(s2)
-
-n1 = 4
-n2 = 5
-s3 = "2**10 = {0} and {1} * {2} = {3:f}".format(2**10, n1, n2, n1 * n2)
-console.log(s3)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    .. sourcecode:: pycon
-
-        His name is Arthur!
-        I am Alice and I am 10 years old.
-        2**10 = 1024 and 4 * 5 = 20.000000
-
-The template string contains *place holders*,  ``... {0} ... {1} ... {2} ...`` etc.  
-The ``format`` method substitutes its arguments into the place holders.
-The numbers in the place holders are indexes that determine which argument
-gets substituted --- make sure you understand line 6 above!
-
-But there's more!  Each of the replacement fields can also contain a **format specification** ---
-it is always introduced by the ``:`` symbol  (Line 11 above uses one.)  
-This modifies how the substitutions are made into the template, and can control things like:
-
-* whether the field is aligned to the left ``<``, center ``^``, or right ``>``
-* the width allocated to the field within the result string (a number like ``10``)
-* the type of conversion (we'll initially only force conversion to float, ``f``, as we did in
-  line 11 of the code above, or perhaps we'll ask integer numbers to be converted to hexadecimal using ``x``)
-* if the type conversion is a float, you can also specify how many decimal places are wanted
-  (typically, ``.2f`` is useful for working with currencies to two decimal places.)
-
-Let's do a few simple and common examples that should be enough for most needs. If you need to
-do anything more esoteric, use *help* and read all the powerful, gory details.
-
+Template strings allow us to embed Javascript expressions in a string without
+using string concatenation. Here are some examples:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-n1 = "Paris"
-n2 = "Whitney"
-n3 = "Hilton"
+let s1 = `The Javascript value of π from the math library is ${Math.PI}`;
+console.log(s1);
 
-console.log("Pi to three decimal places is {0:.3f}".format(3.1415926))
-console.log("123456789 123456789 123456789 123456789 123456789 123456789")
-console.log("|||{0:<15}|||{1:^15}|||{2:>15}|||Born in {3}|||"
-.format(n1,n2,n3,1981))
-console.log("The decimal value {0} converts to hex value {0:x}"
-.format(123456))
+let name = "Alice";
+let age = 10;
+let s2 = `I am ${name} and I am ${age} years old.`;
+console.log(s2);
 
+let n1 = 4;
+let n2 = 5;
+s3 = `2**10 = ${2**10} and ${n1} * ${n2} = ${n1 * n2}`;
+console.log(s3);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    .. sourcecode:: pycon
-
-        Pi to three decimal places is 3.142
-        123456789 123456789 123456789 123456789 123456789 123456789
-        |||Paris          |||    Whitney    |||         Hilton|||Born in 1981|||
-        The decimal value 123456 converts to hex value 1e240
-
-You can have multiple placeholders indexing the
-same argument, or perhaps even have extra arguments that are not referenced
-at all:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-letter = """
-Dear {0} {2}.
- {0}, I have an interesting money-making proposition for you!
- If you deposit $10 million into my bank account, I can
- double your money ...
-"""
-
-console.log(letter.format("Paris", "Whitney", "Hilton"))
-console.log(letter.format("Bill", "Henry", "Gates"))
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    .. sourcecode:: pycon
-
-        Dear Paris Hilton.
-         Paris, I have an interesting money-making proposition for you!
-         If you deposit $10 million into my bank account, I can
-         double your money ...
-
-
-        Dear Bill Gates.
-         Bill, I have an interesting money-making proposition for you!
-         If you deposit $10 million into my bank account I can
-         double your money ...
-
-
-As you might expect, you'll get an index error if
-your placeholders refer to arguments that you do not provide:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
-⠕ "hello {3}".format("Dave")
-Traceback (most recent call last):
-  File "<interactive input>", line 1, in <module>
-IndexError: tuple index out of range
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-First, we'll try to print a table without using string formatting:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-console.log("i\ti**2\ti**3\ti**5\ti**10\ti**20")
-for i in range(1, 11):
-    console.log(i, "\t", i**2, "\t", i**3, "\t", i**5, "\t",
-    i**10, "\t", i**20)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(This assumes that the tab width is 8. You might see
-something even worse than this if you tab width is set to 4.)
-In its current form it relies on the tab character ( ``\t``) to align the
-columns of values, but this breaks down when the values in the table get larger
-than the tab width:
-
-    .. sourcecode:: pycon
-
-        i       i**2    i**3    i**5    i**10   i**20
-        1       1       1       1       1       1
-        2       4       8       32      1024    1048576
-        3       9       27      243     59049   3486784401
-        4       16      64      1024    1048576         1099511627776
-        5       25      125     3125    9765625         95367431640625
-        6       36      216     7776    60466176        3656158440062976
-        7       49      343     16807   282475249       79792266297612001
-        8       64      512     32768   1073741824      1152921504606846976
-        9       81      729     59049   3486784401      12157665459056928801
-        10      100     1000    100000  10000000000     100000000000000000000
-
-One possible solution would be to change the tab width, but the first column
-already has more space than it needs. The best solution would be to set the
-width of each column independently. As you may have guessed by now, string
-formatting provides a much nicer solution. We can also right-justify each field:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
-layout = "{0:>4}{1:>6}{2:>6}{3:>8}{4:>13}{5:>24}"
-
-console.log(layout.format("i", "i**2", "i**3", "i**5", "i**10", "i**20"))
-for i in range(1, 11):
-    console.log(layout.format(i, i**2, i**3, i**5, i**10, i**20))
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    .. sourcecode:: pycon
-
-       i  i**2  i**3    i**5        i**10                   i**20
-       1     1     1       1            1                       1
-       2     4     8      32         1024                 1048576
-       3     9    27     243        59049              3486784401
-       4    16    64    1024      1048576           1099511627776
-       5    25   125    3125      9765625          95367431640625
-       6    36   216    7776     60466176        3656158440062976
-       7    49   343   16807    282475249       79792266297612001
-       8    64   512   32768   1073741824     1152921504606846976
-       9    81   729   59049   3486784401    12157665459056928801
-      10   100  1000  100000  10000000000   100000000000000000000
-
-
-Summary
--------
-
-This chapter introduced a lot of new ideas. The following summary
-may prove helpful in remembering what you learned.
-
-.. glossary::
-
-    indexing (``[]``)
-        Access a single character in a string using its position (starting from
-        0). Example: ``"This"[2]`` evaluates to ``"i"``.
-
-    length function (``len``)
-        Returns the number of characters in a string. Example:
-        ``len("happy")`` evaluates to ``5``.
-
-    for loop traversal (``for``)
-        *Traversing* a string means accessing each character in the string, one
-        at a time. For example, the following for loop:
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-for ch in "Example":
-    ...
-
-executes the body of the loop 7 times with different values of ``ch`` each time.
-
-    slicing (``[:]``)
-A *slice* is a substring of a string. Example: ``'bananas and
-cream'[3:6]`` evaluates to ``ana`` (so does ``'bananas and
-cream'[1:4]``).
-
-    string comparison (``>, <, >=, <=, ==, !=``)
-The six common comparison operators work with strings, evaluating according to
-`lexicographical` order. Examples:
-``"apple" < "banana"`` evaluates to ``True``. ``"Zeta" < "Appricot"``
-evaluates to ``False``. ``"Zebra" <= "aardvark"`` evaluates to
-``True`` because all upper case letters precede lower case letters.
-
-    in and not in operator (``in``, ``not in``)
-The ``in`` operator tests for membership. In the case of
-strings, it tests whether one string is contained inside another
-string. Examples: ``"heck" in "I'll be checking for you."``
-evaluates to ``True``. ``"cheese" in "I'll be checking for
-you."`` evaluates to ``False``.
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---------
-
-## Gloassary
-
-    compound data type
-        A data type in which the values are made up of components, or elements,
-        that are themselves values.
-
-    default value
-        The value given to an optional parameter if no argument for it is
-        provided in the function call.
-
-    docstring
-        A string constant on the first line of a function or module definition
-        (and as we will see later, in class and method definitions as well).
-        Docstrings provide a convenient way to associate documentation with
-        code. Docstrings are also used by programming tools to provide interactive help.
-
-    dot notation
-        Use of the **dot operator**, ``.``, to access methods and attributes of an object.
-
-    immutable data value
-        A data value which cannot be modified. Assignments to elements or
-        slices (sub-parts) of immutable values cause a runtime error.
-
-    index
-        A variable or value used to select a member of an ordered collection, such as
-        a character from a string, or an element from a list.
-
-    mutable data value
-        A data value which can be modified. The types of all mutable values
-        are compound types. Lists and dictionaries are mutable; strings
-        and tuples are not.
-
-    optional parameter
-        A parameter written in a function header with an assignment to a
-        default value which it will receive if no corresponding argument is
-        given for it in the function call.
-
-    short-circuit evaluation
-        A style of programming that shortcuts extra work as soon as the
-        outcome is know with certainty. In this chapter our ``find``
-        function returned as soon as it found what it was looking for; it
-        didn't traverse all the rest of the items in the string.
-
-    substring
-        A part of a string (substring) specified by a range of indices. More
-        generally, a subsequence of any sequence type in Javascript can be created
-        using the slice operator (``sequence[start:stop]``).
-
-    traverse
-        To iterate through the elements of a collection, performing a similar
-        operation on each.
-
-    whitespace
-        Any of the characters that move the cursor without printing visible
-        characters. The constant ``string.whitespace`` contains all the
-        white-space characters.
-
-
-Exercises
----------
-
-We suggest you create a single file containing the test scaffolding from our previous chapters,
-and put all functions that require tests into that file.
-
-#. What is the result of each of the following:
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
-⠕ "Javascript"[1]
-⠕ "Strings are sequences of characters."[5]
-⠕ len("wonderful")
-⠕ "Mystery"[:4]
-⠕ "p" in "Pineapple"
-⠕ "apple" in "Pineapple"
-⠕ "pear" not in "Pineapple"
-⠕ "apple" > "pineapple"
-⠕ "pineapple" < "Peach"
-
+The Javascript value of π from the math library is 3.141592653589793
+I am Alice and I am 10 years old.
+2**10 = 1024 and 4 * 5 = 20
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The template strings resolve any Javascript expression inside the `${}`
+placeholders to a string and then concatenate the template string into a
+single string. They can make our code both easier to read and easier to write.
+You can [learn more about template strings from the docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-   prefixes = "JKLMNOPQ"
-   suffix = "ack"
 
-   for letter in prefixes:
-       console.log(letter + suffix)
+- - - - - - - -
+
+## Glossary
+
+compound data type
+
+:  A data type in which the values are made up of components, or elements,
+   that are themselves values.
+
+default value
+
+:  The value given to an optional parameter if no argument for it is
+   provided in the function call.
+
+dot notation
+
+:  Use of the **dot operator**, ``.``, to access methods and properties of an object.
+
+immutable data value
+
+:  A data value which cannot be modified. Assignments to elements or
+   slices (sub-parts) of immutable values cause a runtime error.
+
+index
+
+:  A variable or value used to select a member of an ordered collection, such as
+   a character from a string, or an element from a list.
+
+indexing (``[]``)
+
+:  Access a single character in a string using its position (starting from
+   0). Example: ``"This"[2]`` evaluates to ``"i"``.
+
+length property (``string.length``)
+
+:  Returns the number of characters in a string. Example:
+   ``"happy".length`` evaluates to ``5``.
+
+mutable data value
+
+:  A data value which can be modified. The types of all mutable values
+   are compound types. Lists and dictionaries are mutable; strings
+   and tuples are not.
+
+optional parameter
+
+:  A parameter written in a function header with an assignment to a
+   default value which it will receive if no corresponding argument is
+   given for it in the function call.
+
+regular expression
+
+:  A pattern expressed using the regular expression language to
+   find a substring within string.
+
+short-circuit evaluation
+
+:  A style of programming that shortcuts extra work as soon as the
+   outcome is know with certainty. In this chapter our ``find``
+   function returned as soon as it found what it was looking for; it
+   didn't traverse all the rest of the items in the string.
+
+substring
+
+:  A part of a string (substring) specified by a range of indices. More
+   generally, a subsequence of any sequence type in Javascript can be created
+   using the `substring` method of string: `"testing".substring(0,4)`.
+
+traverse
+
+:  To iterate through the elements of a collection, performing a similar
+   operation on each.
+
+whitespace
+
+:  Any of the characters that move the cursor without printing visible
+   characters. Whitespace in Javascript can be represented by the 
+   regular expression `/\s/`.
+
+
+String Exercises
+----------------
+
+1. **Count vowels.** Write a function `countVowels(str)` that returns
+   the number of vowels in the string `str`.
+
+2. **Quack.** Modify:
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+   let prefixes = "JKLMNOPQ";
+   let suffix = "ack";
+   
+   for (let i = 0; i < prefixes.length; i++) {
+     console.log(prefixes[i] + suffix);
+   }
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    so that ``Ouack`` and ``Quack`` are spelled correctly.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3. **Count substring** Write a function that counts how many times a substring occurs in a string.
+   Example: `count("an", "banana") === 2`. 
+
+4. **Remove letter.** Write a function that removes all occurrences of a given letter from a string:
+   `removeLetter("cat", "a") === "ct"`.
+ 
+5. **Reverse.** Write a function `reverse(text)` that returns `text` with the letters
+   reversed. So, `reverse("happy") === "yppah"`
+
+6. **Palindrome.** Write a function `isPalindrome(text)` that returns `true`
+   if `text` is a palindrome, or `false` if it is not. A string is a palindrome
+   if it reads the same forwards and backwards. (Hint: use your `reverse` function to make this easy!)
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-   fruit = "banana"
-   count = 0
-   for char in fruit:
-       if char == "a":
-   count += 1
-   console.log(count)
-
-   in a function named ``count_letters``, and generalize it so that it accepts
-   the string and the letter as arguments. Make the function return the number
-   of characters, rather than print the answer. The caller should do the printing.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   string, it repeatedly calls the ``find`` method, with the optional third parameter
-   to locate new occurrences of the letter being counted.
-
-#. Assign to a variable in your program a triple-quoted string that contains
-   your favourite paragraph of text --- perhaps a poem, a speech, instructions
-   to bake a cake, some inspirational verses, etc.
-
-   Write a function which removes all punctuation from the string, breaks the string
-   into a list of words, and counts the number of words in your text that contain
-   the letter "e". Your program should print an analysis of the text like this:
-
-       .. sourcecode:: pycon
-
-           Your text contains 243 words, of which 109 (44.8%) contain an "e".     
-
-#. Print a neat looking multiplication table like this:
-
-       .. sourcecode:: pycon
-
-                  1   2   3   4   5   6   7   8   9  10  11  12
-            :--------------------------------------------------
-           1:     1   2   3   4   5   6   7   8   9  10  11  12
-           2:     2   4   6   8  10  12  14  16  18  20  22  24
-           3:     3   6   9  12  15  18  21  24  27  30  33  36
-           4:     4   8  12  16  20  24  28  32  36  40  44  48
-           5:     5  10  15  20  25  30  35  40  45  50  55  60
-           6:     6  12  18  24  30  36  42  48  54  60  66  72
-           7:     7  14  21  28  35  42  49  56  63  70  77  84
-           8:     8  16  24  32  40  48  56  64  72  80  88  96
-           9:     9  18  27  36  45  54  63  72  81  90  99 108
-          10:    10  20  30  40  50  60  70  80  90 100 110 120
-          11:    11  22  33  44  55  66  77  88  99 110 121 132
-          12:    12  24  36  48  60  72  84  96 108 120 132 144
-
-#. Write a function that reverses its string argument, and satisfies these tests:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}   
-   test(reverse("happy") == "yppah")
-   test(reverse("Javascript") == "nohtyP")
-   test(reverse("") == "")
-   test(reverse("a") == "a")
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}  
-   test(mirror("good") == "gooddoog")
-   test(mirror("Javascript") == "JavascriptnohtyP")
-   test(mirror("") == "")
-   test(mirror("a") == "aa")
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
-    test(remove_letter("a", "apple") == "pple")
-    test(remove_letter("a", "banana") == "bnn")
-    test(remove_letter("z", "banana") == "banana")
-    test(remove_letter("i", "Mississippi") == "Msssspp")
-    test(remove_letter("b", "") = "")
-    test(remove_letter("b", "c") = "c")
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
-    test(is_palindrome("abba"))
-    test(not is_palindrome("abab"))
-    test(is_palindrome("tenet"))
-    test(not is_palindrome("banana"))
-    test(is_palindrome("straw warts"))
-    test(is_palindrome("a"))
-    # test(is_palindrome(""))    # Is an empty string a palindrome?
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
-    test(count("is", "Mississippi") == 2)
-    test(count("an", "banana") == 2)
-    test(count("ana", "banana") == 2)
-    test(count("nana", "banana") == 1)
-    test(count("nanan", "banana") == 0)
-    test(count("aaa", "aaaaaa") == 4)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
-    test(remove("an", "banana") == "bana")
-    test(remove("cyc", "bicycle") == "bile")
-    test(remove("iss", "Mississippi") == "Missippi")
-    test(remove("eggs", "bicycle") == "bicycle")
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
