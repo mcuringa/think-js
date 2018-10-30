@@ -645,46 +645,23 @@ function removePunctuation(s) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Fortunately, the Javascript ``string`` module already does it
-for us. So we will make a slight improvement to this
-program --- we'll import the ``string`` module and use its definition:
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-import string
-
-function remove_punctuation(s):
-    s_without_punct = ""
-    for letter in s:
-if letter not in string.punctuation:
-    s_without_punct += letter
-    return s_without_punct
-
-test(remove_punctuation('"Well, I never did!", said Alice.') ==
-    "Well I never did said Alice")
-test(remove_punctuation("Are you very, very, sure?") ==
-     "Are you very very sure")
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Composing together this function and the ``split`` method from the previous section
 makes a useful combination --- we'll clean out the punctuation, and
 ``split`` will clean out the newlines and tabs while turning the string into
 a list of words:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-   my_story = """
-   Javascripts are constrictors, which means that they will 'squeeze' the life
-   out of their prey. They coil themselves around their prey and with
-   each breath the creature takes the snake will squeeze a little tighter
-   until they stop breathing completely. Once the heart stops the prey
-   is swallowed whole. The entire animal is digested in the snake's
-   stomach except for fur or feathers. What do you think happens to the fur,
-   feathers, beaks, and eggshells? The 'extra stuff' gets passed out as ---
-   you guessed it --- snake POOP! """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}    
+let text = `
+Born two centuries ago, Ada Lovelace was a pioneer of computer science. She
+took part in writing the first published program and was a computing
+visionary, recognizing for the first time that computers could do much more
+than just calculations!
+`;
 
-   wds = remove_punctuation(my_story).split()
-   console.log(wds)
+let words = removePunctuation(text).toLowerCase().split("/\s/");
+console.log(words);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
