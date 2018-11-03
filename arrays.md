@@ -18,11 +18,13 @@ elements in square brackets (``[`` and ``]``):
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 let ps = [10, 20, 30, 40];
 let qs = ["spam", "bungee", "swallow"];
+let empty = [];
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 The first array contains four numbers. The second contains a list of three
-strings. The elements of an array don't have to be the same type. The following
-list contains a string, a number, and (amazingly) another array:
+strings. The third is an **empty array** --- it's waiting for us to add
+elements. The elements of an array don't have to be the same type. The following
+array contains a string, a number, and (amazingly) another array:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 let zs = ["hello", 5, [10, 20]];
@@ -30,16 +32,13 @@ let zs = ["hello", 5, [10, 20]];
 
 An array within another array is said to be **nested**.
 
-Finally, an empty array with no elements is called an empty array,
-and is denoted ``[]``.
-
 We have already seen that we can assign array values to variables or pass arrays
 as parameters to functions:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ vocabulary = ["apple", "cheese", "dog"]
-⠕ numbers = [17, 123]
-⠕ anEmptyList = []
+⠕ let vocabulary = ["apple", "cheese", "dog"];
+⠕ let numbers = [17, 123];
+⠕ let anEmptyList = [];
 ⠕ console.log(vocabulary, numbers, an_empty_list)
 [ 'apple', 'cheese', 'dog' ] [ 17, 123 ] []
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,105 +48,75 @@ Accessing elements
 
 The syntax for accessing the elements of a list is the same as the syntax for
 accessing the characters of a string --- the index operator: ``[]`` (not to
-be confused with an empty list). The expression inside the brackets specifies
-the index. Remember that the indices start at 0:
+be confused with an empty array). The expression inside the brackets specifies
+the index. Remember that the indices start at 0 and can be integers up to
+`length - 1`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> numbers[0]
-17
+⠕ numbers[0];
+=> 17
 ~~~~~~~~~~~~~~~~~~~~~~~
-
 
 Any expression evaluating to an integer can be used as an index:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> numbers[9-8]
-5
->>> numbers[1.0]
-Traceback (most recent call last):
-  File "<interactive input>", line 1, in <module>
-TypeError: list indices must be integers, not float
+⠕ numbers[9-8];
+=> 123
+⠕ numbers["1"]
+=> undefined
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-If you try to access or assign to an element that does not exist, you get a runtime
-error:
+If you try to access an element that does not exist, Javascript
+returns `undefined`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> numbers[2]
-Traceback (most recent call last):
-  File "<interactive input>", line 1, in <module>
-IndexError: list index out of range
+⠕ numbers[5];
+=> undefined
+~~~~~~~~~~~~~~~~~~~~~~~
+
+If you assign a value to an element that does not exist, Javascript
+will add the value to the array, and create empty elements in the
+intervening indices.
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ numbers[5] = 22;
+=> 22
+⠕ numbers;
+=> [ 17, 123, <3 empty items>, 22 ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 It is common to use a loop variable as a list index.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-horsemen = ["war", "famine", "pestilence", "death"]
+let horsemen = ["war", "famine", "pestilence", "death"];
 
-for i in [0, 1, 2, 3]:
-  console.log(horsemen[i])
+for (let i = 0; i < horsemen.length; i++) {
+  console.log(horsemen[i]);
+}
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Each time through the loop, the variable ``i`` is used as an index into the
 list, printing the ``i``'th element. This pattern of computation is called a
 **list traversal**.
 
-The above sample doesn't need or use the index ``i`` for anything besides getting
-the items from the list, so this more direct version — where the ``for`` loop gets
-the items — might be preferred:
-
-~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-horsemen = ["war", "famine", "pestilence", "death"]
-
-for h in horsemen:
-  console.log(h)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-
-List length
------------
-
-The function ``len`` returns the length of a list, which is equal to the number
-of its elements. If you are going to use an integer index to access the list,
-it is a good idea to use this value as the upper bound of a
-loop instead of a constant. That way, if the size of the list changes, you
-won't have to go through the program changing all the loops; they will work
-correctly for any size list:
-
-~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-horsemen = ["war", "famine", "pestilence", "death"]
-
-for i in range(len(horsemen)):
-  console.log(horsemen[i])
-~~~~~~~~~~~~~~~~~~~~~~~
-
-The last time the body of the loop is executed, ``i`` is ``len(horsemen) - 1``,
-which is the index of the last element. (But the version without the index
-looks even better now!)
-
-Although a list can contain another list, the nested list still counts as a
-single element in its parent list. The length of this list is 4:
-
-~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> len(["car makers", 1, ["Ford", "Toyota", "BMW"], [1, 2, 3]])
-4
-~~~~~~~~~~~~~~~~~~~~~~~
+Like strings, Javascript arrays have a `length` property that tells us how
+many items are in the array. When we use `i < horsemen.length` as the loop
+condition, our `for` loop stops when it accesses the last element of the array.
 
 List membership
 ---------------
 
-``in`` and ``not in`` are Boolean operators that test membership in a sequence. We
-used them previously with strings, but they also work with lists and
-other sequences:
+Javascritp arrays have an `includes` method which returns a Boolean
+`true` or `false` to indicate membership of an item in a list.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> horsemen = ["war", "famine", "pestilence", "death"]
->>> "pestilence" in horsemen
-True
->>> "debauchery" in horsemen
-False
->>> "debauchery" not in horsemen
-True
+⠕ let horsemen = ["war", "famine", "pestilence", "death"];
+⠕ horsemen.includes("pestilence");
+=> true
+⠕ horsemen.includes("debauchery");
+=> false
+⠕ !horsemen.includes("debauchery");
+true
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Using this produces a more elegant version of the nested loop program we previously used
@@ -177,19 +146,19 @@ List operations
 The ``+`` operator concatenates lists:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a = [1, 2, 3]
->>> b = [4, 5, 6]
->>> c = a + b
->>> c
+⠕ a = [1, 2, 3]
+⠕ b = [4, 5, 6]
+⠕ c = a + b
+⠕ c
 [1, 2, 3, 4, 5, 6]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Similarly, the ``*`` operator repeats a list a given number of times:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> [0] * 4
+⠕ [0] * 4
 [0, 0, 0, 0]
->>> [1, 2, 3] * 3
+⠕ [1, 2, 3] * 3
 [1, 2, 3, 1, 2, 3, 1, 2, 3]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -202,14 +171,14 @@ List slices
 The slice operations we saw previously with strings let us work with sublists:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a_list = ["a", "b", "c", "d", "e", "f"]
->>> a_list[1:3]
+⠕ a_list = ["a", "b", "c", "d", "e", "f"]
+⠕ a_list[1:3]
 ['b', 'c']
->>> a_list[:4]
+⠕ a_list[:4]
 ['a', 'b', 'c', 'd']
->>> a_list[3:]
+⠕ a_list[3:]
 ['d', 'e', 'f']
->>> a_list[:]
+⠕ a_list[:]
 ['a', 'b', 'c', 'd', 'e', 'f']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -221,10 +190,10 @@ elements. Using the index operator on the left side of an assignment, we can
 update one of the elements:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> fruit = ["banana", "apple", "quince"]
->>> fruit[0] = "pear"
->>> fruit[2] = "orange"
->>> fruit
+⠕ fruit = ["banana", "apple", "quince"]
+⠕ fruit[0] = "pear"
+⠕ fruit[2] = "orange"
+⠕ fruit
 ['pear', 'apple', 'orange']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -236,8 +205,8 @@ assignment to an element of a list is called **item assignment**. Item
 assignment does not work for strings:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> my_string = "TEST"
->>> my_string[2] = "X"
+⠕ my_string = "TEST"
+⠕ my_string[2] = "X"
 Traceback (most recent call last):
   File "<interactive input>", line 1, in <module>
 TypeError: 'str' object does not support item assignment
@@ -246,27 +215,27 @@ TypeError: 'str' object does not support item assignment
 but it does for lists:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> my_list = ["T", "E", "S", "T"]
->>> my_list[2] = "X"
->>> my_list
+⠕ my_list = ["T", "E", "S", "T"]
+⠕ my_list[2] = "X"
+⠕ my_list
 ['T', 'E', 'X', 'T']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 With the slice operator we can update a whole sublist at once:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a_list = ["a", "b", "c", "d", "e", "f"]
->>> a_list[1:3] = ["x", "y"]
->>> a_list
+⠕ a_list = ["a", "b", "c", "d", "e", "f"]
+⠕ a_list[1:3] = ["x", "y"]
+⠕ a_list
 ['a', 'x', 'y', 'd', 'e', 'f']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 We can also remove elements from a list by assigning an empty list to them:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a_list = ["a", "b", "c", "d", "e", "f"]
->>> a_list[1:3] = []
->>> a_list
+⠕ a_list = ["a", "b", "c", "d", "e", "f"]
+⠕ a_list[1:3] = []
+⠕ a_list
 ['a', 'd', 'e', 'f']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -274,12 +243,12 @@ And we can add elements to a list by squeezing them into an empty slice at the
 desired location:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a_list = ["a", "d", "f"]
->>> a_list[1:1] = ["b", "c"]
->>> a_list
+⠕ a_list = ["a", "d", "f"]
+⠕ a_list[1:1] = ["b", "c"]
+⠕ a_list
 ['a', 'b', 'c', 'd', 'f']
->>> a_list[4:4] = ["e"]
->>> a_list
+⠕ a_list[4:4] = ["e"]
+⠕ a_list
 ['a', 'b', 'c', 'd', 'e', 'f']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -291,9 +260,9 @@ Python provides an alternative that is more readable.
 The ``del`` statement removes an element from a list:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a = ["one", "two", "three"]
->>> del a[1]
->>> a
+⠕ a = ["one", "two", "three"]
+⠕ del a[1]
+⠕ a
 ['one', 'three']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -303,9 +272,9 @@ error if the index is out of range.
 You can also use ``del`` with a slice to delete a sublist:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a_list = ["a", "b", "c", "d", "e", "f"]
->>> del a_list[1:5]
->>> a_list
+⠕ a_list = ["a", "b", "c", "d", "e", "f"]
+⠕ del a_list[1:5]
+⠕ a_list
 ['a', 'f']
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -336,7 +305,7 @@ We can test whether two names refer to the same object using the ``is``
 operator:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a is b
+⠕ a is b
 True
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -349,11 +318,11 @@ that refer to the same string value refer to the same object.
 This is not the case with lists:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a = [1, 2, 3]
->>> b = [1, 2, 3]
->>> a == b
+⠕ a = [1, 2, 3]
+⠕ b = [1, 2, 3]
+⠕ a == b
 True
->>> a is b
+⠕ a is b
 False
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -370,9 +339,9 @@ Since variables refer to objects, if we assign one variable to another, both
 variables refer to the same object:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a = [1, 2, 3]
->>> b = a
->>> a is b
+⠕ a = [1, 2, 3]
+⠕ b = a
+⠕ a is b
 True
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -384,8 +353,8 @@ Because the same list has two different names, ``a`` and ``b``, we say that it
 is **aliased**. Changes made with one alias affect the other:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> b[0] = 5
->>> a
+⠕ b[0] = 5
+⠕ a
 [5, 2, 3]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -409,9 +378,9 @@ sometimes called **cloning**, to avoid the ambiguity of the word copy.
 The easiest way to clone a list is to use the slice operator:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> a = [1, 2, 3]
->>> b = a[:]
->>> b
+⠕ a = [1, 2, 3]
+⠕ b = a[:]
+⠕ b
 [1, 2, 3]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -424,8 +393,8 @@ Now we are free to make changes to ``b`` without worrying that we'll inadvertent
 changing ``a``:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> b[0] = 5
->>> a
+⠕ b[0] = 5
+⠕ a
 [1, 2, 3]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -566,12 +535,12 @@ The dot operator can also be used to access built-in methods of list objects.  W
 start with the most useful method for adding something onto the end of an existing list:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> mylist = []
->>> mylist.append(5)
->>> mylist.append(27)
->>> mylist.append(3)
->>> mylist.append(12)
->>> mylist
+⠕ mylist = []
+⠕ mylist.append(5)
+⠕ mylist.append(27)
+⠕ mylist.append(3)
+⠕ mylist.append(12)
+⠕ mylist
 [5, 27, 3, 12]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -580,24 +549,24 @@ the list. We'll use it heavily when we're creating new lists.
 Continuing with this example, we show several other list methods:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> mylist.insert(1, 12)  # Insert 12 at pos 1, shift other items up
->>> mylist
+⠕ mylist.insert(1, 12)  # Insert 12 at pos 1, shift other items up
+⠕ mylist
 [5, 12, 27, 3, 12]
->>> mylist.count(12)     # How many times is 12 in mylist?
+⠕ mylist.count(12)     # How many times is 12 in mylist?
 2
->>> mylist.extend([5, 9, 5, 11])   # Put whole list onto end of mylist
->>> mylist
+⠕ mylist.extend([5, 9, 5, 11])   # Put whole list onto end of mylist
+⠕ mylist
 [5, 12, 27, 3, 12, 5, 9, 5, 11])
->>> mylist.index(9)        # Find index of first 9 in mylist
+⠕ mylist.index(9)        # Find index of first 9 in mylist
 6
->>> mylist.reverse()
->>> mylist
+⠕ mylist.reverse()
+⠕ mylist
 [11, 5, 9, 5, 12, 3, 27, 12, 5]
->>> mylist.sort()
->>> mylist
+⠕ mylist.sort()
+⠕ mylist
 [3, 5, 5, 5, 9, 11, 12, 12, 27]
->>> mylist.remove(12)       # Remove the first 12 in the list
->>> mylist
+⠕ mylist.remove(12)       # Remove the first 12 in the list
+⠕ mylist
 [3, 5, 5, 5, 9, 11, 12, 27]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -630,11 +599,11 @@ def double_stuff(a_list):
 This version of ``double_stuff`` does not change its arguments:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> things = [2, 5, 9]
->>> xs = double_stuff(things)
->>> things
+⠕ things = [2, 5, 9]
+⠕ xs = double_stuff(things)
+⠕ things
 [2, 5, 9]
->>> xs
+⠕ xs
 [4, 10, 18]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -643,9 +612,9 @@ assign the resulting value to the variable".  So it is quite safe to assign the 
 result to the same variable that was passed to the function:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> things = [2, 5, 9]
->>> things = double_stuff(things)
->>> things
+⠕ things = [2, 5, 9]
+⠕ things = double_stuff(things)
+⠕ things
 [4, 10, 18]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -717,9 +686,9 @@ breaks a string into a list of words.  By
 default, any number of whitespace characters is considered a word boundary:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> song = "The rain in Spain..."
->>> wds = song.split()
->>> wds
+⠕ song = "The rain in Spain..."
+⠕ wds = song.split()
+⠕ wds
 ['The', 'rain', 'in', 'Spain...']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -728,7 +697,7 @@ string to use as the boundary marker between substrings.
 The following example uses the string ``ai`` as the delimiter:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> song.split("ai")
+⠕ song.split("ai")
 ['The r', 'n in Sp', 'n...']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -739,9 +708,9 @@ desired **separator** string, (often called the *glue*)
 and join the list with the glue between each of the elements:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> glue = ";"
->>> s = glue.join(wds)
->>> s
+⠕ glue = ";"
+⠕ s = glue.join(wds)
+⠕ s
 'The;rain;in;Spain...'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -749,9 +718,9 @@ The list that you glue together (``wds`` in this example) is not modified.  Also
 next examples show, you can use empty glue or multi-character strings as glue:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> " --- ".join(wds)
+⠕ " --- ".join(wds)
 'The --- rain --- in --- Spain...'
->>> "".join(wds)
+⠕ "".join(wds)
 'TheraininSpain...'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -764,10 +733,10 @@ Python has a built-in type conversion function called
 into a list.  
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> xs = list("Crunchy Frog")
->>> xs
+⠕ xs = list("Crunchy Frog")
+⠕ xs
 ["C", "r", "u", "n", "c", "h", "y", " ", "F", "r", "o", "g"]
->>> "".join(xs)
+⠕ "".join(xs)
 'Crunchy Frog'
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -817,9 +786,9 @@ You'll sometimes find the lazy ``range`` wrapped in a call to ``list``.  This fo
 Python to turn the lazy promise into an actual list:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> range(10)       # Create a lazy promise
+⠕ range(10)       # Create a lazy promise
 range(0, 10)
->>> list(range(10))   # Call in the promise, to produce a list.
+⠕ list(range(10))   # Call in the promise, to produce a list.
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -830,28 +799,28 @@ A nested list is a list that appears as an element in another list. In this
 list, the element with index 3 is a nested list:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
->>> nested = ["hello", 2.0, 5, [10, 20]]
+⠕ nested = ["hello", 2.0, 5, [10, 20]]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 If we output the element at index 3, we get:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> console.log(nested[3])
+⠕ console.log(nested[3])
 [10, 20]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 To extract an element from the nested list, we can proceed in two steps:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> elem = nested[3]
->>> elem[0]
+⠕ elem = nested[3]
+⠕ elem[0]
 10
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Or we can combine them:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> nested[3][1]
+⠕ nested[3][1]
 20
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -868,21 +837,21 @@ Nested lists are often used to represent matrices. For example, the matrix:
 might be represented as:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> mx = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+⠕ mx = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ``mx`` is a list with three elements, where each element is a row of the
 matrix. We can select an entire row from the matrix in the usual way:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> mx[1]
+⠕ mx[1]
 [4, 5, 6]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Or we can extract a single element from the matrix using the double-index form:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
->>> mx[1][2]
+⠕ mx[1][2]
 6
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1018,7 +987,7 @@ Exercises
   b = ["lion", "wolf", "eagle"]
   c = combine(a,b)
   console.log(c)
-  >>> ["catlion", "dogwolf", "birdeagle"]
+  ⠕ ["catlion", "dogwolf", "birdeagle"]
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 9. Write a function called ``is_sorted`` which takes a list (of number or strings)
@@ -1046,7 +1015,7 @@ Exercises
 10. What is the Python interpreter's response to the following?
 
   ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-  >>> list(range(10, 0, -2))
+  ⠕ list(range(10, 0, -2))
   ~~~~~~~~~~~~~~~~~~~~~~~
 
   The three arguments to the *range* function are *start*, *stop*, and *step*,
