@@ -450,6 +450,26 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#algorithms">Algorithms</a></li>
 <li><a href="#while-loop-exercises">While Loop Exercises</a></li>
 </ul></li>
+<li><a href="#strings-1">Strings</a><ul>
+<li><a href="#a-compound-data-type">A compound data type</a></li>
+<li><a href="#working-with-strings-as-single-things">Working with strings as single things</a></li>
+<li><a href="#working-with-the-parts-of-a-string">Working with the parts of a string</a></li>
+<li><a href="#length">Length</a></li>
+<li><a href="#traversal-and-the-for-loop">Traversal and the <code>for</code> loop</a></li>
+<li><a href="#substrings">Substrings</a></li>
+<li><a href="#string-comparison">String comparison</a></li>
+<li><a href="#strings-are-immutable">Strings are immutable</a></li>
+<li><a href="#testing-inclusion">Testing inclusion</a></li>
+<li><a href="#a-find-function">A <code>find</code> function</a></li>
+<li><a href="#looping-and-counting">Looping and counting</a></li>
+<li><a href="#default-parameters">Default parameters</a></li>
+<li><a href="#the-built-in-indexof-method">The built-in <code>indexOf</code> method</a></li>
+<li><a href="#the-split-method">The <code>split</code> method</a></li>
+<li><a href="#cleaning-up-your-strings">Cleaning up your strings</a></li>
+<li><a href="#template-strings">Template strings</a></li>
+<li><a href="#glossary-6">Glossary</a></li>
+<li><a href="#string-exercises">String Exercises</a></li>
+</ul></li>
 <li><a href="#appendices">Appendices</a><ul>
 <li><a href="#code-templates-solutions-and-examples">Code templates, solutions, and examples</a></li>
 </ul></li>
@@ -2874,6 +2894,454 @@ See <a href="https://repl.it/@mcuringa/Newton-Sqare-Root">Newton Square Root rep
 <p>Each term in the Fibonacci Sequence is calculated by adding the two previous numbers in the sequence together. The first two terms can by 0, and 1, so the next term is 1. The sequence begins 0, 1, 1, 2, 3, 5, 8, 13. Write a function <code>fib(n)</code> which returns the <code>n</code>th number in the sequence. So, <code>fib(0) === 0</code>, <code>fib(3) === 5</code> and so on.</p></li>
 <li><p><strong><a href="https://en.wikipedia.org/wiki/Narcissistic_number">Armstrong Numbers</a></strong></p>
 <p>An Armstrong Number is a number where the sum of the digits raised to the number of digits in the number, equal the number itself. 153 is an Armstrong Number. It has 3 digits, so <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>1</mn><mn>3</mn></msup><mo>+</mo><msup><mn>5</mn><mn>3</mn></msup><mo>+</mo><msup><mn>3</mn><mn>3</mn></msup><mo>=</mo><mn>1</mn><mo>+</mo><mn>125</mn><mo>+</mo><mn>27</mn><mo>=</mo><mn>153</mn></mrow><annotation encoding="application/x-tex">1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153</annotation></semantics></math> Write a function <code>isArmstrong(n)</code> that returns <code>true</code> if <code>n</code> is an Armstrong Number, or <code>false</code> if it isn’t.</p></li>
+</ol>
+</section>
+</section>
+<section id="strings-1" class="level1">
+<h1>Strings</h1>
+<section id="a-compound-data-type" class="level2">
+<h2>A compound data type</h2>
+<p>So far we have seen built-in types like <code>number</code>, <code>string</code>, and <code>boolean</code>. We’ve also started working with arrays, although we’ll take a closer look in the next chapter.</p>
+<p>Strings and arrays are qualitatively different from the others because they are made up of smaller pieces. In the case of strings, they’re made up of smaller strings each containing one <strong>character</strong>.</p>
+<p>Types that comprise smaller pieces are called <strong>compound data types</strong>. Depending on what we are doing, we may want to treat a compound data type as a single thing, or we may want to access its parts. This ambiguity is useful.</p>
+</section>
+<section id="working-with-strings-as-single-things" class="level2">
+<h2>Working with strings as single things</h2>
+<p>Strings are <strong>objects</strong>. Objects can provide functions that work with the data of a string <strong>instance</strong>.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb127-1" data-line-number="1">⠕ <span class="kw">let</span> ss <span class="op">=</span> <span class="st">&quot;Hello, World!&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb127-2" data-line-number="2">⠕ <span class="kw">let</span> tt <span class="op">=</span> <span class="va">ss</span>.<span class="at">toUpperCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb127-3" data-line-number="3">⠕ tt</a>
+<a class="sourceLine" id="cb127-4" data-line-number="4"><span class="op">=&gt;</span> <span class="st">&#39;HELLO, WORLD!&#39;</span>   </a></code></pre></div>
+<p><code>toUpperCase</code> is a method that can be invoked on any string object to create a new string, in which all the characters are in uppercase. (The original string <code>ss</code> remains unchanged.)</p>
+<p>There are also methods such as <code>toLowerCase</code>, <code>trim</code>, and <code>repeat</code> that do other interesting things. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">To learn what methods are available and what they do, you can consult the MDN Documentation</a>. Or, simply type the following into a Repl.it script:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">let</span> ss <span class="op">=</span> <span class="st">&quot;Hello, World!&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="kw">let</span> tt <span class="op">=</span> <span class="va">ss</span>.</a></code></pre></div>
+<p>When you type the period to select one of the methods of <code>ss</code>, Repl.it will pop up a selection window showing all the methods that could be used on your string. There are lots of methods. In this chapter we’ll look at some of the most immediately useful ones.</p>
+</section>
+<section id="working-with-the-parts-of-a-string" class="level2">
+<h2>Working with the parts of a string</h2>
+<p>The <strong>indexing operator</strong> (Javascript uses square brackets to enclose the index) selects a single character substring from a string:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb129-1" data-line-number="1">⠕ <span class="kw">let</span> fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">⠕ <span class="kw">let</span> m <span class="op">=</span> fruit[<span class="dv">1</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb129-3" data-line-number="3">⠕ <span class="va">console</span>.<span class="at">log</span>(m)<span class="op">;</span></a></code></pre></div>
+<p>The expression <code>fruit[1]</code> selects character number 1 from <code>fruit</code>, and creates a new string containing just this one character. The variable <code>m</code> refers to the result. When we display <code>m</code>, we could get a surprise:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb130-1" data-line-number="1">a</a></code></pre></div>
+<p>Computer scientists always start counting from zero! The letter at subscript position zero of <code>&quot;banana&quot;</code> is <code>b</code>. So at position <code>[1]</code> we have the letter <code>a</code>.</p>
+<p>If we want to access the zero-eth letter of a string, we just place 0, or any expression that evaluates to 0, inbetween the brackets:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb131-1" data-line-number="1">⠕ m <span class="op">=</span> fruit[<span class="dv">0</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb131-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(m)<span class="op">;</span></a>
+<a class="sourceLine" id="cb131-3" data-line-number="3">b</a></code></pre></div>
+<p>The expression in brackets is called an <strong>index</strong>. An index specifies a member of an ordered collection, in this case the collection of characters in the string. The index <em>indicates</em> which one you want, hence the name. It can be any integer expression.</p>
+<p>We already mentioned that the common variable name <code>i</code> for loop variables can be thought of as shorthand for <em>index</em>. Consider this <code>for</code> loop which iterates through the characters in a string:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">let</span> fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb132-3" data-line-number="3">  <span class="va">console</span>.<span class="at">log</span>(i<span class="op">,</span> fruit[i])<span class="op">;</span></a>
+<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="op">}</span></a></code></pre></div>
+<p>produces:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="dv">0</span> <span class="st">&#39;b&#39;</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="dv">1</span> <span class="st">&#39;a&#39;</span></a>
+<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="dv">2</span> <span class="st">&#39;n&#39;</span></a>
+<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="dv">3</span> <span class="st">&#39;a&#39;</span></a>
+<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="dv">4</span> <span class="st">&#39;n&#39;</span></a>
+<a class="sourceLine" id="cb133-6" data-line-number="6"><span class="dv">5</span> <span class="st">&#39;a&#39;</span></a></code></pre></div>
+<p>If you take a close look at the loop condition from our example, you’ll see that our <code>for</code> loop ends when <code>i &lt; fruit.length</code>. <code>length</code> is a <strong>property</strong> of a string that lets us know how many characters are in the string. In later chapters we’ll see that arrays and other compound datatypes have a <code>length</code> property that makes it easy for us to <strong>iterate</strong> over the items they contain.</p>
+<p>Note that indexing string returns a <em>string</em> — Javascript has no special type for a single character. It is just a string of length 1.</p>
+<p>We’ve also seen arrays previously. The same indexing notation works to extract elements from an array:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb134-1" data-line-number="1">⠕ <span class="kw">let</span> primeNumbers <span class="op">=</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">13</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">19</span><span class="op">,</span> <span class="dv">23</span><span class="op">,</span> <span class="dv">29</span><span class="op">,</span> <span class="dv">31</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2">⠕ primeNumbers[<span class="dv">4</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="op">=&gt;</span> <span class="dv">11</span></a>
+<a class="sourceLine" id="cb134-4" data-line-number="4">⠕ <span class="kw">let</span> friends <span class="op">=</span> [<span class="st">&quot;Joe&quot;</span><span class="op">,</span> <span class="st">&quot;Zoe&quot;</span><span class="op">,</span> <span class="st">&quot;Brad&quot;</span><span class="op">,</span> <span class="st">&quot;Angelina&quot;</span><span class="op">,</span> <span class="st">&quot;Zuki&quot;</span><span class="op">,</span> <span class="st">&quot;Thandi&quot;</span><span class="op">,</span> <span class="st">&quot;Paris&quot;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb134-5" data-line-number="5">⠕ friends[<span class="dv">3</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb134-6" data-line-number="6"><span class="st">&#39;Angelina&#39;</span></a></code></pre></div>
+</section>
+<section id="length" class="level2">
+<h2>Length</h2>
+<p>We’ve seen that the <code>length</code> property of a string, returns the number of characters in the string:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb135-1" data-line-number="1">⠕ <span class="kw">let</span> fruit <span class="op">=</span> <span class="st">&quot;banana&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2">⠕ <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="dv">6</span></a></code></pre></div>
+<p>To get the last letter of a string, you might be tempted to try something like this:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb136-1" data-line-number="1">⠕ <span class="kw">let</span> sz <span class="op">=</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb136-2" data-line-number="2">⠕ <span class="kw">let</span> last <span class="op">=</span> fruit[sz]<span class="op">;</span></a>
+<a class="sourceLine" id="cb136-3" data-line-number="3">⠕ last<span class="op">;</span></a>
+<a class="sourceLine" id="cb136-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">undefined</span></a></code></pre></div>
+<p>We see that <code>last</code> is <code>undefined</code>. The reason is that there is no character at index position 6 in <code>&quot;banana&quot;</code>. Because we start counting at zero, the six indexes are numbered 0 to 5. To get the last character, we have to subtract 1 from the length of <code>fruit</code>:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb137-1" data-line-number="1">⠕ <span class="kw">let</span> sz <span class="op">=</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2">⠕ <span class="kw">let</span> last <span class="op">=</span> fruit[sz <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">⠕ last<span class="op">;</span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="op">=&gt;</span> <span class="st">&#39;a&#39;</span></a></code></pre></div>
+<p>Here we see that the last character is <code>fruit[fruit.length - 1]</code>, so the second to last character would be <code>fruit[fruit.length - 2]</code> and so on.</p>
+</section>
+<section id="traversal-and-the-for-loop" class="level2">
+<h2>Traversal and the <code>for</code> loop</h2>
+<p>A lot of computations involve processing a string one character at a time. Often they start at the beginning, select each character in turn, do something to it, and continue until the end. This pattern of processing is called a <strong>traversal</strong>. One way to encode a traversal is with a <code>while</code> statement:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">let</span> ix <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="cf">while</span> (ix <span class="op">&lt;</span> <span class="va">fruit</span>.<span class="at">length</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">  <span class="kw">let</span> letter <span class="op">=</span> fruit[ix]<span class="op">;</span></a>
+<a class="sourceLine" id="cb138-4" data-line-number="4">  <span class="va">console</span>.<span class="at">log</span>(letter)<span class="op">;</span></a>
+<a class="sourceLine" id="cb138-5" data-line-number="5">  ix<span class="op">++;</span></a>
+<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>The loop condition is <code>ix &lt; fruit.length</code>, so when <code>ix</code> is equal to the length of the string, the condition is false, and the body of the loop is not executed. The last character accessed is the one with the index <code>fruit.length - 1</code>, which is the last character in the string.</p>
+<p>But we’ve previously seen how the <code>for</code> loop can easily iterate over the elements in a list and it can do so for strings as well:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">fruit</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(fruit[i])<span class="op">;</span></a>
+<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>As we iterate through the characters in <code>fruit</code>, the loop variable, <code>i</code> represents each index in the string. The loop continues until no characters are left. Here we can see the expressive power the <code>for</code> loop gives us compared to the while loop when traversing a string.</p>
+<p>The following example shows how to use concatenation and a <code>for</code> loop to generate an abecedarian series. Abecedarian refers to a series or list in which the elements appear in alphabetical order. For example, in Robert McCloskey’s book <em>Make Way for Ducklings</em>, the names of the ducklings are Jack, Kack, Lack, Mack, Nack, Ouack, Pack, and Quack. This loop outputs these names in order:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">let</span> prefixes <span class="op">=</span> <span class="st">&quot;JKLMNOPQ&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">let</span> suffix <span class="op">=</span> <span class="st">&quot;ack&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">prefixes</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb140-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(prefixes[i] <span class="op">+</span> suffix)<span class="op">;</span></a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb141-1" data-line-number="1">Jack</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">Kack</a>
+<a class="sourceLine" id="cb141-3" data-line-number="3">Lack</a>
+<a class="sourceLine" id="cb141-4" data-line-number="4">Mack</a>
+<a class="sourceLine" id="cb141-5" data-line-number="5">Nack</a>
+<a class="sourceLine" id="cb141-6" data-line-number="6">Oack</a>
+<a class="sourceLine" id="cb141-7" data-line-number="7">Pack</a>
+<a class="sourceLine" id="cb141-8" data-line-number="8">Qack</a></code></pre></div>
+<p>Of course, that’s not quite right because Ouack and Quack are misspelled. You’ll fix this as an exercise below.</p>
+</section>
+<section id="substrings" class="level2">
+<h2>Substrings</h2>
+<p>A <em>substring</em> of a string is obtained by taking a smaller sequence of characters from an existing string to create a new string.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb142-1" data-line-number="1">⠕ <span class="kw">let</span> s <span class="op">=</span> <span class="st">&quot;Pirates of the Caribbean&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="va">s</span>.<span class="at">substring</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">7</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb142-3" data-line-number="3">Pirates</a>
+<a class="sourceLine" id="cb142-4" data-line-number="4">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="va">s</span>.<span class="at">substring</span>(<span class="dv">11</span><span class="op">:</span><span class="dv">14</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb142-5" data-line-number="5">the</a>
+<a class="sourceLine" id="cb142-6" data-line-number="6">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="va">s</span>.<span class="at">substring</span>(<span class="dv">15</span><span class="op">:</span><span class="dv">24</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7">Caribbean</a></code></pre></div>
+<p>The <code>substring(startIndex, endIndex)</code> method of a string, returns a new string without modifying the original string. The new string (i.e. the <em>substring</em>) starts at (and includes) the character at <code>startIndex</code> and ends at (but <em>excludes</em>) the character at <code>endIndex</code>. This behavior makes sense if you imagine the indices pointing <em>between</em> the characters, as in the following diagram:</p>
+<p><img src="figs/banana.png" /></p>
+<p>If you imagine this as a piece of paper, <code>substring(m, n)</code> copies out the part of the paper between the <code>n</code> and <code>m</code> positions. Provided <code>m</code> and <code>n</code> are both within the bounds of the string, your result will be of length (m-n).</p>
+<p>There are a few more tricks to <code>substring</code>. If you omit the second argument (<code>endIndex</code>), the function returns a substring from <code>startIndex</code> up to and including the last character in the string. If you provide an <code>endIndex</code> greater than <code>string.length</code>,</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring">From the MDN documentation</a>, we learn the following additional rules and behaviors for <code>substring</code>.</p>
+<ul>
+<li>If the <code>indexEnd</code> argument is omitted, <code>substring()</code> returns the substring from <code>startIndex</code> to the end of the string</li>
+<li>If <code>indexStart</code> is equal to <code>indexEnd</code>, <code>substring()</code> returns an empty string</li>
+<li>If <code>indexStart</code> is greater than <code>indexEnd</code>, the <code>substring()</code> swaps the two arguments</li>
+<li>Any argument value that is less than 0 is treated as 0</li>
+<li>Any argument than <code>string.length</code> is treated as if it were <code>string.length</code></li>
+<li>Any argument value that is <code>NaN</code> is treated as if it were 0</li>
+</ul>
+</section>
+<section id="string-comparison" class="level2">
+<h2>String comparison</h2>
+<p>The Boolean comparison operators work on strings. To see if two strings are equal:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="cf">if</span> (word <span class="op">===</span> <span class="st">&quot;banana&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Yes, we are bananas!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>Other comparison operations are useful for putting words in <code>lexicographical</code> order:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="cf">if</span> (word <span class="op">&lt;</span> <span class="st">&quot;banana&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your word, &quot;</span> <span class="op">+</span> word <span class="op">+</span> <span class="st">&quot;, comes before banana.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="op">}</span></a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="cf">else</span> <span class="cf">if</span> (word <span class="op">&gt;</span> <span class="st">&quot;banana&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb144-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Your word, &quot;</span> <span class="op">+</span> word <span class="op">+</span> <span class="st">&quot;, comes after banana.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Yes, we have no bananas!&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="op">}</span></a></code></pre></div>
+<p>Keep in mind that Javascript string comparisons are <em>case sensitive</em>, so, for exampe “Ape” does not equal “ape”. A common way to address the problem of case is to convert strings to a standard format, such as all lowercase, before performing the comparison. So:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb145-1" data-line-number="1">⠕ <span class="kw">let</span> a <span class="op">=</span> <span class="st">&quot;Ape&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">⠕ <span class="kw">let</span> b <span class="op">=</span> <span class="st">&quot;ape&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb145-3" data-line-number="3">⠕ a <span class="op">===</span> b<span class="op">;</span></a>
+<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb145-5" data-line-number="5">⠕ a <span class="op">=</span> <span class="va">a</span>.<span class="at">toLowerCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb145-6" data-line-number="6">⠕ a <span class="op">===</span> b<span class="op">;</span></a>
+<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="op">=&gt;</span> <span class="kw">true</span></a></code></pre></div>
+</section>
+<section id="strings-are-immutable" class="level2">
+<h2>Strings are immutable</h2>
+<p>It is tempting to use the <code>[]</code> operator on the left side of an assignment, with the intention of changing a character in a string. For example:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">let</span> greeting <span class="op">=</span> <span class="st">&quot;Hello, world!&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">greeting[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;J&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(greeting)<span class="op">;</span></a></code></pre></div>
+<p>At best, the assignment on line 2 above will have no effect. If you run the code in <strong>strict mode</strong>, you will get an error.</p>
+<p>Strings are <strong>immutable</strong>, which means you can’t change an existing string. The best you can do is create a new string that is a variation on the original:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">let</span> greeting <span class="op">=</span> <span class="st">&quot;Hello, world!&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="kw">let</span> newGreeting <span class="op">=</span> <span class="st">&quot;J&quot;</span> <span class="op">+</span> <span class="va">greeting</span>.<span class="at">substring</span>(<span class="dv">1</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(newGreeting)<span class="op">;</span></a></code></pre></div>
+<p>The solution here is to concatenate a new first letter onto a slice of <code>greeting</code>. This operation has no effect on the original string.</p>
+</section>
+<section id="testing-inclusion" class="level2">
+<h2>Testing inclusion</h2>
+<p>Javascript provides string functions that let us find substrings within a string. <code>includes</code> returns a Boolean <code>true</code> or <code>false</code> to indicate if the substring exists in the string.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb148-1" data-line-number="1">⠕ <span class="kw">let</span> s <span class="op">=</span> <span class="st">&quot;apple&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;p&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="op">=&gt;</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb148-4" data-line-number="4">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;i&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="op">=&gt;</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb148-6" data-line-number="6">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;app&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb148-7" data-line-number="7"><span class="op">=&gt;</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb148-8" data-line-number="8">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;App&quot;</span>)<span class="op">;</span> <span class="co">// false because case doesn&#39;t match</span></a>
+<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="op">=&gt;</span> <span class="kw">false</span></a></code></pre></div>
+<p>Note that a string is a substring of itself, and the empty string is a substring of any other string. (Also note that computer scientists like to think about these edge cases quite carefully!)</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb149-1" data-line-number="1">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;apple&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="op">=&gt;</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb149-3" data-line-number="3">⠕ <span class="va">s</span>.<span class="at">includes</span>(<span class="st">&quot;&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="op">=&gt;</span> <span class="kw">true</span></a></code></pre></div>
+<p>Combining <code>includes</code> with string concatenation using <code>+=</code>, we can remove the vowels from a string:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">function</span> <span class="at">removeVowels</span>(s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb150-2" data-line-number="2">  <span class="kw">let</span> vowels <span class="op">=</span> <span class="st">&quot;aeiou&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb150-3" data-line-number="3">  <span class="kw">let</span> sansVowels <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb150-4" data-line-number="4">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">s</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb150-5" data-line-number="5">   <span class="kw">let</span> c <span class="op">=</span> s[i].<span class="at">toLowerCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb150-6" data-line-number="6">   <span class="cf">if</span>(<span class="op">!</span><span class="va">vowels</span>.<span class="at">includes</span>(c)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb150-7" data-line-number="7">     sansVowels <span class="op">+=</span> s[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb150-8" data-line-number="8">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb150-9" data-line-number="9">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb150-10" data-line-number="10">  <span class="cf">return</span> sansVowels<span class="op">;</span></a>
+<a class="sourceLine" id="cb150-11" data-line-number="11"><span class="op">}</span></a>
+<a class="sourceLine" id="cb150-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb150-13" data-line-number="13"><span class="va">console</span>.<span class="at">log</span>(<span class="at">removeVowels</span>(<span class="st">&quot;CompSci&quot;</span>))<span class="op">;</span> <span class="co">// CmpSc</span></a>
+<a class="sourceLine" id="cb150-14" data-line-number="14"><span class="va">console</span>.<span class="at">log</span>(<span class="at">removeVowels</span>(<span class="st">&quot;A dark and stormy night.&quot;</span>))<span class="op">;</span> <span class="co">//  drk nd strmy nght.</span></a></code></pre></div>
+<p><a href="https://repl.it/@mcuringa/remove-vowels">Check out this function on repl.it</a></p>
+<p>This short function uses several of the techniques and patterns we have previously seen. We use a finite <code>for</code> loop to iterate up to <code>s.length</code> to traverse the string. We convert <code>c</code> to lowercase for the comparison where we test for inclusion in <code>vowels</code>. We create an empty string, <code>sansVowels</code> that accumulates the non-vowel characters that we find.</p>
+</section>
+<section id="a-find-function" class="level2">
+<h2>A <code>find</code> function</h2>
+<p>What does the following function do?</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="co">// Find and return the index of ch in strng.</span></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="co">// Return -1 if ch does not occur in strng.</span></a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="kw">function</span> <span class="at">find</span>(strng<span class="op">,</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb151-5" data-line-number="5">  <span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">strng</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb151-6" data-line-number="6">   <span class="cf">if</span>(strng[i] <span class="op">===</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb151-7" data-line-number="7">     <span class="cf">return</span> i<span class="op">;</span></a>
+<a class="sourceLine" id="cb151-8" data-line-number="8">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb151-9" data-line-number="9">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb151-10" data-line-number="10">  <span class="cf">return</span> <span class="dv">-1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb151-11" data-line-number="11"><span class="op">}</span></a>
+<a class="sourceLine" id="cb151-12" data-line-number="12"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;p&quot;</span>) <span class="op">==</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb151-13" data-line-number="13"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;C&quot;</span>) <span class="op">==</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb151-14" data-line-number="14"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;i&quot;</span>) <span class="op">==</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb151-15" data-line-number="15"><span class="at">test</span>(<span class="at">find</span>(<span class="st">&quot;Compsci&quot;</span><span class="op">,</span> <span class="st">&quot;x&quot;</span>) <span class="op">==</span> <span class="dv">-1</span>)</a></code></pre></div>
+<p>In a sense, <code>find</code> is the opposite of the indexing operator. Instead of taking an index and extracting the corresponding character, it takes a character and finds the index where that character appears. If the character is not found, the function returns <code>-1</code>.</p>
+<p>This is another example where we see a <code>return</code> statement inside a loop. If <code>strng[i] === ch</code>, the function returns immediately, breaking out of the loop prematurely.</p>
+<p>If the character doesn’t appear in the string, then the program exits the loop normally and returns <code>-1</code>.</p>
+<p>This pattern of computation is sometimes called a <strong>eureka traversal</strong> or <strong>short-circuit evaluation</strong>, because as soon as we find what we are looking for, we can cry “Eureka!”, take the short-circuit, and stop looking.</p>
+</section>
+<section id="looping-and-counting" class="level2">
+<h2>Looping and counting</h2>
+<p>The following program counts the number of times the letter <code>a</code> appears in a string, and is another example of the <strong>counter pattern</strong>.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">function</span> <span class="at">countA</span>(text) <span class="op">{</span></a>
+<a class="sourceLine" id="cb152-2" data-line-number="2">  <span class="kw">let</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb152-3" data-line-number="3">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">text</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb152-4" data-line-number="4">   <span class="cf">if</span> (text[i] <span class="op">===</span> <span class="st">&quot;a&quot;</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb152-5" data-line-number="5">     count<span class="op">++;</span></a>
+<a class="sourceLine" id="cb152-6" data-line-number="6">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb152-7" data-line-number="7">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb152-8" data-line-number="8">  <span class="cf">return</span> count<span class="op">;</span></a>
+<a class="sourceLine" id="cb152-9" data-line-number="9"><span class="op">}</span></a>
+<a class="sourceLine" id="cb152-10" data-line-number="10"><span class="va">console</span>.<span class="at">log</span>(<span class="at">countA</span>(<span class="st">&quot;banana&quot;</span>) <span class="op">===</span> <span class="dv">3</span>)<span class="op">;</span></a></code></pre></div>
+</section>
+<section id="default-parameters" class="level2">
+<h2>Default parameters</h2>
+<p>To find the locations of the second or third occurrence of a character in a string, we can modify the <code>find</code> function, adding a third parameter for the starting position in the search string:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="kw">function</span> <span class="at">find2</span>(strng<span class="op">,</span> ch<span class="op">,</span> start) <span class="op">{</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">  <span class="kw">let</span> ix <span class="op">=</span> start<span class="op">;</span></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3">  <span class="cf">while</span> (ix <span class="op">&lt;</span> <span class="va">strng</span>.<span class="at">length</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb153-4" data-line-number="4">   <span class="cf">if</span> (strng[ix] <span class="op">==</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb153-5" data-line-number="5">      <span class="cf">return</span> ix<span class="op">;</span></a>
+<a class="sourceLine" id="cb153-6" data-line-number="6">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb153-7" data-line-number="7">   ix<span class="op">++;</span></a>
+<a class="sourceLine" id="cb153-8" data-line-number="8">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb153-9" data-line-number="9">  <span class="cf">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb153-10" data-line-number="10"><span class="op">}</span></a>
+<a class="sourceLine" id="cb153-11" data-line-number="11"><span class="va">console</span>.<span class="at">log</span>(<span class="at">find2</span>(<span class="st">&quot;banana&quot;</span><span class="op">,</span> <span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="dv">2</span>) <span class="op">==</span> <span class="dv">3</span>)<span class="op">;</span></a></code></pre></div>
+<p>The call <code>find2(&quot;banana&quot;, &quot;a&quot;, 2)</code> now returns <code>3</code>, the index of the first occurrence of “a” in “banana” starting the search at index 2. What does <code>find2(&quot;banana&quot;, &quot;n&quot;, 3)</code> return? If you said, 4, there is a good chance you understand how <code>find2</code> works.</p>
+<p>Better still, we can combine <code>find</code> and <code>find2</code> using a <strong>default parameter</strong>:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">function</span> <span class="at">find</span>(strng<span class="op">,</span> ch<span class="op">,</span> start <span class="op">=</span> <span class="dv">0</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">  <span class="kw">let</span> ix <span class="op">=</span> start<span class="op">;</span></a>
+<a class="sourceLine" id="cb154-3" data-line-number="3">  <span class="cf">while</span> (ix <span class="op">&lt;</span> <span class="va">strng</span>.<span class="at">length</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb154-4" data-line-number="4">   <span class="cf">if</span> (strng[ix] <span class="op">==</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb154-5" data-line-number="5">      <span class="cf">return</span> ix<span class="op">;</span></a>
+<a class="sourceLine" id="cb154-6" data-line-number="6">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb154-7" data-line-number="7">   ix<span class="op">++;</span></a>
+<a class="sourceLine" id="cb154-8" data-line-number="8">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb154-9" data-line-number="9">  <span class="cf">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb154-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
+<p>When a function has an optional default parameter, the caller <em>may</em> provide a matching argument. If the third argument is provided to <code>find</code>, it gets assigned to <code>start</code>. But if the caller leaves the argument out, then start is given a default value indicated by the assignment <code>start = 0</code> in the function header.</p>
+<p>So the call <code>find(&quot;banana&quot;, &quot;a&quot;, 2)</code> to this version of <code>find</code> behaves just like <code>find2</code>, while in the call <code>find(&quot;banana&quot;, &quot;a&quot;)</code>, <code>start</code> will be set to the <strong>default value</strong> of <code>0</code>.</p>
+<p>Adding another optional parameter to <code>find</code> makes it search from a starting position, up to but not including the end position:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">function</span> <span class="at">find</span>(strng<span class="op">,</span> ch<span class="op">,</span> start <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> end <span class="op">=</span> <span class="kw">null</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">  <span class="kw">let</span> ix <span class="op">=</span> start<span class="op">;</span></a>
+<a class="sourceLine" id="cb155-3" data-line-number="3">  end <span class="op">=</span> end <span class="op">||</span> <span class="va">strng</span>.<span class="at">length</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb155-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb155-5" data-line-number="5">  <span class="cf">while</span> (ix <span class="op">&lt;</span> end) <span class="op">{</span></a>
+<a class="sourceLine" id="cb155-6" data-line-number="6">   <span class="cf">if</span> (strng[ix] <span class="op">==</span> ch) <span class="op">{</span></a>
+<a class="sourceLine" id="cb155-7" data-line-number="7">      <span class="cf">return</span> ix<span class="op">;</span></a>
+<a class="sourceLine" id="cb155-8" data-line-number="8">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb155-9" data-line-number="9">   ix<span class="op">++;</span></a>
+<a class="sourceLine" id="cb155-10" data-line-number="10">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb155-11" data-line-number="11">  <span class="cf">return</span> <span class="dv">-1</span></a>
+<a class="sourceLine" id="cb155-12" data-line-number="12"><span class="op">}</span></a>
+<a class="sourceLine" id="cb155-13" data-line-number="13"></a></code></pre></div>
+<p>The optional value for <code>end</code> is interesting: we give it a default value <code>null</code> if the caller does not supply any argument. In the body of the function we test what <code>end</code> is, and if the caller did not supply any argument, we reassign <code>end</code> to be the length of the string. If the caller has supplied an argument for <code>end</code>, however, the caller’s value will be used in the loop.</p>
+<p>On line 3 we see a new use of the logical <code>||</code> operator in the assignment expression, <code>end = end || strng.length;</code>. We re-assign <code>end</code> the value of <code>end</code> (i.e. it doesn’t change) if <code>end</code> is <strong>truthy</strong> value, <strong>or</strong> we assign <code>end</code> a default value, of <code>strng.length</code>. Because of the way Javascripts logical operators and truthiness work, they can be useful for assignment. As you read more Javascript code online and in books, you will see many examples of code that use the <code>||</code> operator to assign default values.</p>
+<p>Here are some test cases that should print <code>true</code>:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">let</span> ss <span class="op">=</span> <span class="st">&quot;Javascript strings have some interesting methods.&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb156-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb156-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span>) <span class="op">===</span> <span class="dv">4</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb156-4" data-line-number="4"><span class="va">console</span>.<span class="at">log</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">11</span>) <span class="op">===</span> <span class="dv">11</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb156-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">12</span>) <span class="op">===</span> <span class="dv">17</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb156-6" data-line-number="6"><span class="va">console</span>.<span class="at">log</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">17</span>) <span class="op">===</span> <span class="dv">-1</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb156-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="at">find</span>(ss<span class="op">,</span> <span class="st">&quot;.&quot;</span>) <span class="op">===</span> <span class="va">ss</span>.<span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></a></code></pre></div>
+</section>
+<section id="the-built-in-indexof-method" class="level2">
+<h2>The built-in <code>indexOf</code> method</h2>
+<p>We wrote our own <code>find</code> function above, but Javascript’s string object includes its own version of <code>find</code> called <code>indexOf</code>.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf">You can see how it works in the MDN docs</a>.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">let</span> ss <span class="op">=</span> <span class="st">&quot;Javascript strings have some interesting methods.&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb157-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="va">console</span>.<span class="at">log</span>(<span class="va">ss</span>.<span class="at">indexOf</span>(<span class="st">&quot;s&quot;</span>) <span class="op">===</span> <span class="dv">4</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="va">console</span>.<span class="at">log</span>(<span class="va">ss</span>.<span class="at">indexOf</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">11</span>) <span class="op">===</span> <span class="dv">11</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="va">console</span>.<span class="at">log</span>(<span class="va">ss</span>.<span class="at">indexOf</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">12</span>) <span class="op">===</span> <span class="dv">17</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb157-6" data-line-number="6"><span class="va">console</span>.<span class="at">log</span>(<span class="va">ss</span>.<span class="at">indexOf</span>(<span class="st">&quot;s&quot;</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">17</span>) <span class="op">===</span> <span class="dv">17</span>)<span class="op">;</span> <span class="co">// indexOf ignores the argument to end</span></a>
+<a class="sourceLine" id="cb157-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(<span class="va">ss</span>.<span class="at">indexOf</span>(<span class="st">&quot;.&quot;</span>) <span class="op">===</span> <span class="va">ss</span>.<span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></a></code></pre></div>
+<p><code>indexOf</code> does not have the optional <code>end</code> paremeter. It always seachers until the end of the string. In the case <code>ss.indexOf(&quot;s&quot;, 12, 17) === 17</code> it does not create an error to pass in the third argument, however it is ignored entirely.</p>
+<p>The built-in <code>indexOf</code> method is more general than our version. It can find substrings, not just single characters:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb158-1" data-line-number="1">⠕ <span class="st">&quot;banana&quot;</span>.<span class="at">indexOf</span>(<span class="st">&quot;nan&quot;</span>)</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2"><span class="op">=&gt;</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb158-3" data-line-number="3">⠕ <span class="st">&quot;banana&quot;</span>.<span class="at">indexOf</span>(<span class="st">&quot;na&quot;</span><span class="op">,</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb158-4" data-line-number="4"><span class="op">=&gt;</span> <span class="dv">4</span></a></code></pre></div>
+<p>Usually we’d prefer to use the methods that Javascript provides rather than reinvent our own equivalents. But many of the built-in functions and methods make good teaching exercises, and the underlying techniques you learn are your building blocks to becoming a proficient programmer.</p>
+</section>
+<section id="the-split-method" class="level2">
+<h2>The <code>split</code> method</h2>
+<p>One of the most useful methods on strings is the <code>split</code> method: it splits a single multi-word string into an array of individual words (“substrings”). The first parameter of <code>split</code> specifies the character or substring (or regular expression, we’ll see later) to be used to break the string into words. In the example below, we split <code>ss</code> into words using a single space <code>' '</code>;</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb159-1" data-line-number="1">⠕ <span class="kw">let</span> ss <span class="op">=</span> <span class="st">&quot;Well I never did said Alice&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">⠕ <span class="kw">let</span> words <span class="op">=</span> <span class="va">ss</span>.<span class="at">split</span>(<span class="st">&quot; &quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb159-3" data-line-number="3">⠕ words</a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="op">=&gt;</span> [<span class="st">&#39;Well&#39;</span><span class="op">,</span> <span class="st">&#39;I&#39;</span><span class="op">,</span> <span class="st">&#39;never&#39;</span><span class="op">,</span> <span class="st">&#39;did&#39;</span><span class="op">,</span> <span class="st">&#39;said&#39;</span><span class="op">,</span> <span class="st">&#39;Alice&#39;</span>]</a></code></pre></div>
+</section>
+<section id="cleaning-up-your-strings" class="level2">
+<h2>Cleaning up your strings</h2>
+<p>We’ll often work with strings that contain punctuation, or tab and newline characters, especially, as we’ll see in a future chapter, when we read our text from files or from the Internet. But if we’re writing a program, say, to count word frequencies or check the spelling of each word, we’d prefer to strip off these unwanted characters.</p>
+<p>We’ll show just one example of how to strip punctuation from a string. Remember that strings are immutable, so we cannot change the string with the punctuation — we need to traverse the original string and create a new string, omitting any punctuation:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">function</span> <span class="at">removePunctuation</span>(s) <span class="op">{</span></a>
+<a class="sourceLine" id="cb160-2" data-line-number="2">  <span class="kw">let</span> punctuation <span class="op">=</span> <span class="st">&quot;!</span><span class="sc">\&quot;</span><span class="st">#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[</span><span class="sc">\\</span><span class="st">]^_`{|}~&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb160-3" data-line-number="3">  <span class="kw">let</span> cleanString <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb160-4" data-line-number="4">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">s</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb160-5" data-line-number="5">   <span class="cf">if</span> (<span class="va">punctuation</span>.<span class="at">indexOf</span>(s[i]) <span class="op">===</span> <span class="dv">-1</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb160-6" data-line-number="6">     cleanString <span class="op">+=</span> s[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb160-7" data-line-number="7">   <span class="op">}</span></a>
+<a class="sourceLine" id="cb160-8" data-line-number="8">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb160-9" data-line-number="9">  <span class="cf">return</span> cleanString<span class="op">;</span></a>
+<a class="sourceLine" id="cb160-10" data-line-number="10"><span class="op">}</span></a></code></pre></div>
+<p>Composing together this function and the <code>split</code> method from the previous section makes a useful combination — we’ll clean out the punctuation, and <code>split</code> will clean out the newlines and tabs while turning the string into a list of words:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">let</span> text <span class="op">=</span> <span class="vs">`Born two centuries ago, Ada Lovelace was a pioneer of computer</span></a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="vs">science. She took part in writing the first published program and was a</span></a>
+<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="vs">computing visionary, recognizing for the first time that computers could do</span></a>
+<a class="sourceLine" id="cb161-4" data-line-number="4"><span class="vs">much more than just calculations!`</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb161-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb161-6" data-line-number="6"><span class="kw">let</span> words <span class="op">=</span> <span class="at">removePunctuation</span>(text).<span class="at">toLowerCase</span>().<span class="at">split</span>(<span class="ss">/</span><span class="sc">\s</span><span class="ss">/</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb161-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(words)<span class="op">;</span></a></code></pre></div>
+<p>The output:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb162-1" data-line-number="1">[ <span class="st">&#39;born&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-2" data-line-number="2">  <span class="st">&#39;two&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-3" data-line-number="3">  <span class="st">&#39;centuries&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-4" data-line-number="4">  <span class="st">&#39;ago&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-5" data-line-number="5">  <span class="st">&#39;ada&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-6" data-line-number="6">  <span class="st">&#39;lovelace&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-7" data-line-number="7">  ...</a>
+<a class="sourceLine" id="cb162-8" data-line-number="8">  <span class="st">&#39;much&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-9" data-line-number="9">  <span class="st">&#39;more&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-10" data-line-number="10">  <span class="st">&#39;than&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-11" data-line-number="11">  <span class="st">&#39;just&#39;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb162-12" data-line-number="12">  <span class="st">&#39;calculations&#39;</span> ]                   </a></code></pre></div>
+<p>Careful readers will have noticed a new syntax for the argument to <code>split</code>, above. <code>/\s/</code> is a Javascript <strong>regular expression</strong> (aka regex) which splits the string on any <strong>whitespace</strong> — regular spaces, tabs, and newlines. Regular expressions are powerful patterns for matching (and replacing) substrings in strings. Many of the Javascript string methods accept either plain strings are regular expressions as arguments. Regular expressions are beyond the scope of this chapter, but we will demonstrate a few useful examples. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">MDN offers a guide to using Regular Expressions in Javascript.</a></p>
+<p>There are other useful string methods, but this book isn’t intended to be a reference manual. On the other hand, the <em>Mozilla Developers Network</em> is an excellent reference. You can see all of the String methods here &lt;https://developer.mozilla.org/en- US/docs/Web/JavaScript/Reference/Global_Objects/String&gt;.</p>
+</section>
+<section id="template-strings" class="level2">
+<h2>Template strings</h2>
+<p>Template strings are the easiest and most powerful way to format strings in Javascript. We have already seen how we can use them with the backtick (```) for multiline strings.</p>
+<p>Template strings allow us to embed Javascript expressions in a string without using string concatenation. Here are some examples:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">let</span> s1 <span class="op">=</span> <span class="vs">`The Javascript value of π from the math library is </span><span class="sc">${</span><span class="va">Math</span>.<span class="at">PI</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="va">console</span>.<span class="at">log</span>(s1)<span class="op">;</span></a>
+<a class="sourceLine" id="cb163-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="kw">let</span> name <span class="op">=</span> <span class="st">&quot;Alice&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="kw">let</span> age <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-6" data-line-number="6"><span class="kw">let</span> s2 <span class="op">=</span> <span class="vs">`I am </span><span class="sc">${</span>name<span class="sc">}</span><span class="vs"> and I am </span><span class="sc">${</span>age<span class="sc">}</span><span class="vs"> years old.`</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(s2)<span class="op">;</span></a>
+<a class="sourceLine" id="cb163-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb163-9" data-line-number="9"><span class="kw">let</span> n1 <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-10" data-line-number="10"><span class="kw">let</span> n2 <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-11" data-line-number="11">s3 <span class="op">=</span> <span class="vs">`2**10 = </span><span class="sc">${</span><span class="dv">2</span><span class="op">**</span><span class="dv">10</span><span class="sc">}</span><span class="vs"> and </span><span class="sc">${</span>n1<span class="sc">}</span><span class="vs"> * </span><span class="sc">${</span>n2<span class="sc">}</span><span class="vs"> = </span><span class="sc">${</span>n1 <span class="op">*</span> n2<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb163-12" data-line-number="12"><span class="va">console</span>.<span class="at">log</span>(s3)<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb164-1" data-line-number="1">The Javascript value of π <span class="im">from</span> the math library is <span class="fl">3.141592653589793</span></a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">I am Alice and I am <span class="dv">10</span> years <span class="va">old</span>.</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="dv">2</span><span class="op">**</span><span class="dv">10</span> <span class="op">=</span> <span class="dv">1024</span> and <span class="dv">4</span> <span class="op">*</span> <span class="dv">5</span> <span class="op">=</span> <span class="dv">20</span></a></code></pre></div>
+<p>The template strings resolve any Javascript expression inside the <code>${}</code> placeholders to a string and then concatenate the template string into a single string. They can make our code both easier to read and easier to write. You can <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">learn more about template strings from the docs</a>.</p>
+<hr />
+</section>
+<section id="glossary-6" class="level2">
+<h2>Glossary</h2>
+<dl>
+<dt>compound data type</dt>
+<dd><p>A data type in which the values are made up of components, or elements, that are themselves values.</p>
+</dd>
+<dt>default value</dt>
+<dd><p>The value given to an optional parameter if no argument for it is provided in the function call.</p>
+</dd>
+<dt>dot notation</dt>
+<dd><p>Use of the <strong>dot operator</strong>, <code>.</code>, to access methods and properties of an object.</p>
+</dd>
+<dt>immutable data value</dt>
+<dd><p>A data value which cannot be modified. Assignments to elements or slices (sub-parts) of immutable values cause a runtime error.</p>
+</dd>
+<dt>index</dt>
+<dd><p>A variable or value used to select a member of an ordered collection, such as a character from a string, or an element from a list.</p>
+</dd>
+<dt>indexing (<code>[]</code>)</dt>
+<dd><p>Access a single character in a string using its position (starting from 0). Example: <code>&quot;This&quot;[2]</code> evaluates to <code>&quot;i&quot;</code>.</p>
+</dd>
+<dt>length property (<code>string.length</code>)</dt>
+<dd><p>Returns the number of characters in a string. Example: <code>&quot;happy&quot;.length</code> evaluates to <code>5</code>.</p>
+</dd>
+<dt>mutable data value</dt>
+<dd><p>A data value which can be modified. The types of all mutable values are compound types. Lists and dictionaries are mutable; strings and tuples are not.</p>
+</dd>
+<dt>optional parameter</dt>
+<dd><p>A parameter written in a function header with an assignment to a default value which it will receive if no corresponding argument is given for it in the function call.</p>
+</dd>
+<dt>regular expression</dt>
+<dd><p>A pattern expressed using the regular expression language to find a substring within string.</p>
+</dd>
+<dt>short-circuit evaluation</dt>
+<dd><p>A style of programming that shortcuts extra work as soon as the outcome is know with certainty. In this chapter our <code>find</code> function returned as soon as it found what it was looking for; it didn’t traverse all the rest of the items in the string.</p>
+</dd>
+<dt>substring</dt>
+<dd><p>A part of a string (substring) specified by a range of indices. More generally, a subsequence of any sequence type in Javascript can be created using the <code>substring</code> method of string: <code>&quot;testing&quot;.substring(0,4)</code>.</p>
+</dd>
+<dt>traverse</dt>
+<dd><p>To iterate through the elements of a collection, performing a similar operation on each.</p>
+</dd>
+<dt>whitespace</dt>
+<dd><p>Any of the characters that move the cursor without printing visible characters. Whitespace in Javascript can be represented by the regular expression <code>/\s/</code>.</p>
+</dd>
+</dl>
+</section>
+<section id="string-exercises" class="level2">
+<h2>String Exercises</h2>
+<ol type="1">
+<li><p><strong>Count vowels.</strong> Write a function <code>countVowels(str)</code> that returns the number of vowels in the string <code>str</code>.</p></li>
+<li><p><strong>Quack.</strong> Modify:</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">let</span> prefixes <span class="op">=</span> <span class="st">&quot;JKLMNOPQ&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="kw">let</span> suffix <span class="op">=</span> <span class="st">&quot;ack&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb165-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">prefixes</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb165-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(prefixes[i] <span class="op">+</span> suffix)<span class="op">;</span></a>
+<a class="sourceLine" id="cb165-6" data-line-number="6"><span class="op">}</span></a></code></pre></div>
+<p>so that <code>Ouack</code> and <code>Quack</code> are spelled correctly.</p></li>
+<li><p><strong>Count substring</strong> Write a function that counts how many times a substring occurs in a string. Example: <code>count(&quot;an&quot;, &quot;banana&quot;) === 2</code>.</p></li>
+<li><p><strong>Remove letter.</strong> Write a function that removes all occurrences of a given letter from a string: <code>removeLetter(&quot;cat&quot;, &quot;a&quot;) === &quot;ct&quot;</code>.</p></li>
+<li><p><strong>Reverse.</strong> Write a function <code>reverse(text)</code> that returns <code>text</code> with the letters reversed. So, <code>reverse(&quot;happy&quot;) === &quot;yppah&quot;</code></p></li>
+<li><p><strong>Palindrome.</strong> Write a function <code>isPalindrome(text)</code> that returns <code>true</code> if <code>text</code> is a palindrome, or <code>false</code> if it is not. A string is a palindrome if it reads the same forwards and backwards. (Hint: use your <code>reverse</code> function to make this easy!)</p></li>
 </ol>
 </section>
 </section>
