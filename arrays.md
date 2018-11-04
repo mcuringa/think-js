@@ -74,8 +74,8 @@ returns `undefined`:
 => undefined
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-If you assign a value to an element that does not exist, Javascript
-will add the value to the array, and create empty elements in the
+If you assign a value to an element that does not exist, Javascript will add
+the value to the array at that index, and create empty elements in the
 intervening indices.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -83,6 +83,8 @@ intervening indices.
 => 22
 ⠕ numbers;
 => [ 17, 123, <3 empty items>, 22 ]
+⠕ numbers[5];
+=> 22
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 It is common to use a loop variable as a list index.
@@ -106,7 +108,7 @@ condition, our `for` loop stops when it accesses the last element of the array.
 List membership
 ---------------
 
-Javascritp arrays have an `includes` method which returns a Boolean
+Javascript arrays have an `includes` method which returns a Boolean
 `true` or `false` to indicate membership of an item in a list.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -119,67 +121,85 @@ Javascritp arrays have an `includes` method which returns a Boolean
 true
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Using this produces a more elegant version of the nested loop program we previously used
-to count the number of students doing Computer Science
-in the section :ref:`nested_data`:  
-
-~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-students = [
-  ("John", ["CompSci", "Physics"]),
-  ("Vusi", ["Maths", "CompSci", "Stats"]),
-  ("Jess", ["CompSci", "Accounting", "Economics", "Management"]),
-  ("Sarah", ["InfSys", "Accounting", "Economics", "CommLaw"]),
-  ("Zuki", ["Sociology", "Economics", "Law", "Stats", "Music"])]
-
-# Count how many students are taking CompSci
-counter = 0
-for (name, subjects) in students:
-  if "CompSci" in subjects:
-       counter += 1
-
-console.log("The number of students taking CompSci is", counter)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-List operations
+Counting words
 ---------------
 
-The ``+`` operator concatenates lists:
+Using the`split` method of strings, we can write an elegant solution to
+counting words in a text by looping through the array of words. In  the code
+below we look at section [Martin Luther King Jr's 1963 "I have a dream ..." speech]
+(https://www.archives.gov/files/press/exhibits/dream-speech.pdf)
+in order to count the number of times the word _dream_ occurs.
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+let text = `I say to you today, my friends, so even
+though we face the difficulties of today and tomorrow,
+I still have a dream. It is a dream deeply rooted in
+the American dream. I have a dream that one day this
+nation will rise up and live out the true meaning of
+its creed: “We hold these truths to be self-evident:
+that all men are created equal.” I have a dream that
+one day on the red hills of Georgia the sons of former
+and the sons of former slave owners will be able to
+sit down together at the table of brotherhood.`;
+
+let words = text.split(/\s/);
+
+let counter = 0;
+for (let i = 0; i < words.length; i++) {
+  if (words[i].includes("dream")) {
+    counter++;
+  }
+}
+
+console.log(`The speech has ${words.length} words.
+We found "dream" ${counter} times.`);
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**code walk through**
+
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/CySJma9dBJU?rel=0" allowfullscreen></iframe>
+</div>
+
+Play with the code live at <https://repl.it/@mcuringa/DreamWordCount>
+
+Array operations
+---------------
+
+The array `concat` method combines two arrays into a new array by
+concatenating an array to the end of another array:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ a = [1, 2, 3]
-⠕ b = [4, 5, 6]
-⠕ c = a + b
+⠕ let a = [1, 2, 3];
+⠕ let b = [4, 5, 6];
+⠕ let c = a.concat(b);
 ⠕ c
-[1, 2, 3, 4, 5, 6]
+=> [ 1, 2, 3, 4, 5, 6 ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Similarly, the ``*`` operator repeats a list a given number of times:
+Notice that `a` and `b` remain unchanged;
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ [0] * 4
-[0, 0, 0, 0]
-⠕ [1, 2, 3] * 3
-[1, 2, 3, 1, 2, 3, 1, 2, 3]
+⠕ a
+=> [ 1, 2, 3 ]
+⠕ b
+=> [ 4, 5, 6 ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The first example repeats ``[0]`` four times. The second example repeats the
-list ``[1, 2, 3]`` three times.
-
-List slices
+Array slices
 -----------
 
-The slice operations we saw previously with strings let us work with sublists:
+The `slice()` method of an array returns a new sub-array. `slice` is similar to the
+`substring()` method of strings.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ a_list = ["a", "b", "c", "d", "e", "f"]
-⠕ a_list[1:3]
-['b', 'c']
-⠕ a_list[:4]
-['a', 'b', 'c', 'd']
-⠕ a_list[3:]
-['d', 'e', 'f']
-⠕ a_list[:]
-['a', 'b', 'c', 'd', 'e', 'f']
+⠕ let t = ["a", "b", "c", "d", "e", "f"];
+⠕ t.slice(1, 3);
+=> [ 'b', 'c' ]
+⠕ t.slice(3);
+=> [ 'd', 'e', 'f' ]
+⠕ t.slice();
+[ 'a', 'b', 'c', 'd', 'e', 'f' ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Lists are mutable
