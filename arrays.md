@@ -163,8 +163,8 @@ We found "dream" ${counter} times.`);
 
 Play with the code live at <https://repl.it/@mcuringa/DreamWordCount>
 
-Array operations
----------------
+Array methods
+-------------
 
 The array `concat` method combines two arrays into a new array by
 concatenating an array to the end of another array:
@@ -186,8 +186,47 @@ Notice that `a` and `b` remain unchanged;
 => [ 4, 5, 6 ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+ `push` adds elements to the end of an array and returns the new
+ length of the array. You can pass more than one argument to `push`
+ and it will create a new element at the end of the array for each
+ parameter.
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ a
+=> [ 1, 2, 3 ]
+⠕ a.push(4);
+=> 4
+⠕ a
+[ 1, 2, 3, 4 ]
+⠕ a.push(3, 2, 1);
+=> 7
+⠕ a
+[ 1, 2, 3, 4, 3, 2, 1 ]
+~~~~~~~~~~~~~~~~~~~~~~~
+
+`pop()` returns the last element in the array and removes that element
+from the array. If you pass an index to `pop` it will return the value at
+that index and delete that element.
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ a = [ 1, 2, 3, 4 ];
+⠕ a.pop();
+=> 4
+⠕ a
+[ 1, 2, 3]
+⠕ a.pop(1);
+=> 2
+⠕ a
+[ 1, 3 ]
+~~~~~~~~~~~~~~~~~~~~~~~
+
+`shift` and `unshift` are equivalent to `pop` and `push` except they work
+on the beginning of an array. `a.unshift(-1, 0)` puts `-1` in the 0'th element
+and `0` in the 1'th element. `shift` returns the 0'th element of the array
+and removes it from the array. All other elements are shifted to the left.
+
 Array slices
------------
+------------
 
 The `slice()` method of an array returns a new sub-array. `slice` is similar to the
 `substring()` method of strings.
@@ -210,11 +249,11 @@ elements. Using the index operator on the left side of an assignment, we can
 update one of the elements:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ fruit = ["banana", "apple", "quince"]
-⠕ fruit[0] = "pear"
-⠕ fruit[2] = "orange"
+⠕ let fruit = ["banana", "apple", "quince"];
+⠕ fruit[0] = "pear";
+⠕ fruit[2] = "orange";
 ⠕ fruit
-['pear', 'apple', 'orange']
+[ 'pear', 'apple', 'orange' ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 The bracket operator applied to a list can appear anywhere in an expression.
