@@ -521,7 +521,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>To paraphrase the philosophy of the Free Software Foundation, this book is free like free speech, but not necessarily free like free pizza. It came about because of a collaboration that would not have been possible without the GNU Free Documentation License. So we would like to thank the Free Software Foundation for developing this license and, of course, making it available to us.</p>
 <p>We would also like to thank the more than 100 sharp-eyed and thoughtful readers who have sent us suggestions and corrections over the past few years. In the spirit of free software, we decided to express our gratitude in the form of a contributor list. Unfortunately, this list is not complete, but we are doing our best to keep it up to date. It was also getting too large to include everyone who sends in a typo or two. You have our gratitude, and you have the personal satisfaction of making a book you found useful better for you and everyone else who uses it. New additions to the list for the 2nd edition will be those who have made on-going contributions.</p>
 <p>If you have a chance to look through the list, you should realize that each person here has spared you and all subsequent readers from the confusion of a technical error or a less-than-transparent explanation, just by sending us a note.</p>
-<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za" class="email">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
+<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
 <section id="second-edition" class="level3">
 <h3>Second Edition</h3>
 <ul>
@@ -3672,27 +3672,55 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 </section>
 <section id="array-examples" class="level2">
 <h2>Array Examples</h2>
-<p><strong>Example 1: oddCount</strong></p>
+<section id="example-1-oddcount" class="level3">
+<h3>Example 1: oddCount</h3>
 <p>Write a function to count how many odd numbers are in an array.</p>
-<p><strong>Example 2: sumEvens</strong></p>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6OXpp8sV7rs?rel=0" allowfullscreen>
+</iframe>
+</div>
+</section>
+<section id="example-2-sumevens" class="level3">
+<h3>Example 2: sumEvens</h3>
 <p>Sum up all the even numbers in an array.</p>
-<p><strong>Example 3: findNegatives</strong></p>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PW0don64C0Y?rel=0" allowfullscreen>
+</iframe>
+</div>
+</section>
+<section id="example-3-findnegatives" class="level3">
+<h3>Example 3: findNegatives</h3>
 <p>Return an array with all of the negative numbers in an array. Do not modify the original array (i.e. write a pure function).</p>
-<p><strong>Example 4: sumSkipFirstEven</strong></p>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ik3ruxUXcZY?rel=0" allowfullscreen>
+</iframe>
+</div>
+</section>
+<section id="example-4-sumuptoeven" class="level3">
+<h3>Example 4: sumUpToEven</h3>
 <p>Sum all the elements in an array up to but not including the first even number. (What if there is no even number?)</p>
-<p><strong>Example 5: multiplesOf5</strong></p>
-<p>Write a function that <strong>returns</strong> an array with all of multiples of 5 between 5 and 100 (i.e. count by fives). [5, 10, 15, 20 …, 100]</p>
-<p>Now re-write question 5 as a modifier function without a return statement.</p>
-<p>It should use the array method <code>splice(start, deleteCount)</code> to remove all instances of <code>word</code> from the array.</p>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/X9zaB18o2-g?rel=0" allowfullscreen>
+</iframe>
+</div>
+</section>
+<section id="example-5-olympicscores" class="level3">
+<h3>Example 5: olympicScores</h3>
+<p>Write a function that takes an array of numbers and returns the an array of numbers with the highest and lowest scores removed. Do not modify the original array parameter.</p>
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/a_2M9uZ37L0?rel=0" allowfullscreen>
+</iframe>
+</div>
+<p><strong>Check out the live code here: <a href="https://repl.it/@mcuringa/Array-Examples" class="uri">https://repl.it/@mcuringa/Array-Examples</a></strong></p>
+</section>
 </section>
 <section id="array-exercises" class="level2">
 <h2>Array Exercises</h2>
-<p>hasAllWords hasAnyWords sentiment</p>
 <ol type="1">
 <li>Write a function called <code>filterWord</code> which takes an array of strings and a <code>word</code> to filter as arguments and returns a new array with all instances of <code>word</code> removed. This function should not modify the original array.</li>
 <li>Count how many words in an array have length 5 (i.e. are 5 characters long).</li>
 <li>Write a function that finds and returns the average of an array of numbers.</li>
-<li>Write a function called <code>removeDuplicates</code> that takes an array and returns a new array with only the unique elements from the original. <em>Hint:</em> they don’t have to be in the same order. <em>Hint hint:</em> remember the <code>includes</code> method of an array.</li>
+<li>Write a function called <code>removeDuplicates</code> that takes an array and returns a new array with only the unique elements from the original. <em>Hint:</em> they don’t have to be in the same order. <em>Hint hint:</em> remember the <code>includes</code> method of array.</li>
 <li><p>Write a function called <code>combine</code> that takes 2 arrays of strings as parameters and returns a new array of strings which concatenates the items from the first array with the item from the second. If the array are not equal in length, the new array will end with the item from the longer array. For example:</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb209-1" data-line-number="1">⠕ <span class="kw">let</span> a <span class="op">=</span> [<span class="st">&quot;cat&quot;</span><span class="op">,</span> <span class="st">&quot;dog&quot;</span><span class="op">,</span> <span class="st">&quot;bird&quot;</span>]<span class="op">;</span></a>
 <a class="sourceLine" id="cb209-2" data-line-number="2">⠕ <span class="kw">let</span> b <span class="op">=</span> [<span class="st">&quot;lion&quot;</span><span class="op">,</span> <span class="st">&quot;wolf&quot;</span><span class="op">,</span> <span class="st">&quot;eagle&quot;</span>]<span class="op">;</span></a>
@@ -3705,11 +3733,11 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <a class="sourceLine" id="cb210-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;-----------------&quot;</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb210-3" data-line-number="3">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;testing unsorted&quot;</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb210-4" data-line-number="4">  <span class="kw">let</span> n1 <span class="op">=</span> [<span class="dv">4</span><span class="op">,</span> <span class="dv">77</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">4567</span><span class="op">,</span> <span class="dv">12</span>]<span class="op">;</span></a>
-<a class="sourceLine" id="cb210-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">isSorted</span>(n1)<span class="op">,</span> <span class="st">&quot;should be true&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb210-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;is sorted:&quot;</span><span class="op">,</span> <span class="at">isSorted</span>(n1))<span class="op">;</span></a>
 <a class="sourceLine" id="cb210-6" data-line-number="6">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;-----------------&quot;</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb210-7" data-line-number="7">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;testing sorted&quot;</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb210-8" data-line-number="8">  <span class="kw">let</span> n2 <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></a>
-<a class="sourceLine" id="cb210-9" data-line-number="9">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">isSorted</span>(n2)<span class="op">,</span> <span class="st">&quot;should be false&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb210-9" data-line-number="9">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;is sorted:&quot;</span><span class="op">,</span> <span class="at">isSorted</span>(n2))<span class="op">;</span></a>
 <a class="sourceLine" id="cb210-10" data-line-number="10"><span class="op">}</span></a></code></pre></div></li>
 </ol>
 </section>
@@ -3718,7 +3746,8 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <p><strong>Sentiment Analysis</strong> is a technique in computer science text analysis which tries to determine the sentiment or <em>mood</em> expressed in a text. Some “sentiments” are easy to detect. Given the text “I love dogs so much!”, we can confidently say it is <strong>positive</strong>. “I hate you and never want to talk to you again” is clearly <strong>negative</strong>. “The car is silver.” would express a <strong>neutral</strong> sentiment.</p>
 <p>Unfortunately, language is often much trickier to classify. Consider, “I have too much homework” (negative) and “I don’t have too much homework” (positive).</p>
 <p>For this lab, you are going to write the best sentiment function that you can. It won’t handle all cases, but try to handle as many as you can think of. You should use the string and array functions that we have been working with in the last two chapters.</p>
-<p>Your function has a single string parameter, and returns <code>1</code> for a positive sentiment, <code>-1</code> for a negative sentiment, and <code>0</code> for a neutral sentiments. Use this repl.it as to get started: <a href="https://repl.it/@mcuringa/Sentiment" class="uri">https://repl.it/@mcuringa/Sentiment</a></p>
+<p>Your function has a single string parameter, and returns <code>1</code> for a positive sentiment, <code>-1</code> for a negative sentiment, and <code>0</code> for a neutral sentiments.</p>
+<p>Use this repl to get started: <a href="https://repl.it/@mcuringa/Sentiment" class="uri">https://repl.it/@mcuringa/Sentiment</a></p>
 <p>You can read the <a href="https://en.wikipedia.org/wiki/Sentiment_analysis">Wikipedia article on sentiment analysis</a> to get a better sense of this lab.</p>
 </section>
 </section>

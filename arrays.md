@@ -10,7 +10,7 @@ elements of an array can be of any type. Arrays and strings --- and other collec
 that maintain the order of their items --- are called **sequences** or **lists**.
 
 Array values
------------
+------------
 
 There are several ways to create a new array; the simplest is to enclose the
 elements in square brackets (``[`` and ``]``):
@@ -772,42 +772,55 @@ step size
 Array Examples
 --------------
 
-**Example 1: oddCount**
+### Example 1: oddCount
 
 Write a function to count how many odd numbers are in an array.
 
-**Example 2: sumEvens**
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6OXpp8sV7rs?rel=0" allowfullscreen></iframe>
+</div>
+
+### Example 2: sumEvens
 
 Sum up all the even numbers in an array.
 
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PW0don64C0Y?rel=0" allowfullscreen></iframe>
+</div>
 
-**Example 3: findNegatives**
+
+### Example 3: findNegatives
 
 Return an array with all of the negative numbers in an array. Do not modify
 the original array (i.e. write a pure function).
 
-**Example 4: sumSkipFirstEven**
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ik3ruxUXcZY?rel=0" allowfullscreen></iframe>
+</div>
+
+### Example 4: sumUpToEven
 
 Sum all the elements in an array up to but not including the first
 even number. (What if there is no even number?)
 
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/X9zaB18o2-g?rel=0" allowfullscreen></iframe>
+</div>
 
-**Example 5: multiplesOf5**
+### Example 5: olympicScores
 
-Write a function that **returns** an array with all of multiples of 5 between
-   5 and 100 (i.e. count by fives). [5, 10, 15, 20 ..., 100]
+Write a function that takes an array of numbers and returns the an
+array of numbers with the highest and lowest scores removed. Do not
+modify the original array parameter.
 
-Now re-write question 5 as a modifier function without a return statement.
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/a_2M9uZ37L0?rel=0" allowfullscreen></iframe>
+</div>
 
-It should use the array method ``splice(start, deleteCount)`` to remove all instances of
-   ``word`` from the array.
+**Check out the live code here: <https://repl.it/@mcuringa/Array-Examples>**
 
 Array Exercises
 ---------------
-
-hasAllWords
-hasAnyWords
-sentiment
 
 1. Write a function called ``filterWord`` which takes an array of strings
    and a ``word`` to filter as arguments and returns a new array with
@@ -817,7 +830,7 @@ sentiment
 3. Write a function that finds and returns the average of an array of numbers.
 4. Write a function called ``removeDuplicates`` that takes an array and returns a new
    array with only the unique elements from the original. _Hint:_ they don’t have to
-   be in the same order. _Hint hint:_ remember the `includes` method of an array.
+   be in the same order. _Hint hint:_ remember the `includes` method of array.
 5. Write a function called ``combine`` that takes 2 arrays of strings
    as parameters and returns a new array of strings which concatenates
    the items from the first array with the item from the second.
@@ -843,11 +856,11 @@ sentiment
      console.log("-----------------");
      console.log("testing unsorted");
      let n1 = [4, 77, 2, 4567, 12];
-     console.log(isSorted(n1), "should be true");
+     console.log("is sorted:", isSorted(n1));
      console.log("-----------------");
      console.log("testing sorted");
      let n2 = [1, 2, 3, 4, 5];
-     console.log(isSorted(n2), "should be false");
+     console.log("is sorted:", isSorted(n2));
    }
    ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -871,7 +884,8 @@ the last two chapters.
 Your function has a single string parameter, and returns `1` for
 a positive sentiment, `-1` for a negative sentiment, and `0` for
 a neutral sentiments.
-Use this repl.it as to get started: <https://repl.it/@mcuringa/Sentiment>
+
+Use this repl to get started: <https://repl.it/@mcuringa/Sentiment>
 
 You can read the [Wikipedia article on sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis)
 to get a better sense of this lab.
