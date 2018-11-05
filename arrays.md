@@ -21,7 +21,7 @@ let qs = ["spam", "bungee", "swallow"];
 let empty = [];
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The first array contains four numbers. The second contains a list of three
+The first array contains four numbers. The second contains an array of three
 strings. The third is an **empty array** --- it's waiting for us to add
 elements. The elements of an array don't have to be the same type. The following
 array contains a string, a number, and (amazingly) another array:
@@ -46,7 +46,7 @@ as parameters to functions:
 Accessing elements
 ------------------
 
-The syntax for accessing the elements of a list is the same as the syntax for
+The syntax for accessing the elements of an array is the same as the syntax for
 accessing the characters of a string --- the index operator: ``[]`` (not to
 be confused with an empty array). The expression inside the brackets specifies
 the index. Remember that the indices start at 0 and can be integers up to
@@ -98,8 +98,8 @@ for (let i = 0; i < horsemen.length; i++) {
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Each time through the loop, the variable ``i`` is used as an index into the
-list, printing the ``i``'th element. This pattern of computation is called a
-**list traversal**.
+array, printing the ``i``'th element. This pattern of computation is called a
+**array traversal**.
 
 Like strings, Javascript arrays have a `length` property that tells us how
 many items are in the array. When we use `i < horsemen.length` as the loop
@@ -109,7 +109,7 @@ Array membership
 ---------------
 
 Javascript arrays have an `includes` method which returns a Boolean
-`true` or `false` to indicate membership of an item in a list.
+`true` or `false` to indicate membership of an item in an array.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ let horsemen = ["war", "famine", "pestilence", "death"];
@@ -120,48 +120,6 @@ Javascript arrays have an `includes` method which returns a Boolean
 ⠕ !horsemen.includes("debauchery");
 true
 ~~~~~~~~~~~~~~~~~~~~~~~
-
-Counting words
----------------
-
-Using the`split` method of strings, we can write an elegant solution to
-counting words in a text by looping through the array of words. In  the code
-below we look at section [Martin Luther King Jr's 1963 "I have a dream ..." speech]
-(https://www.archives.gov/files/press/exhibits/dream-speech.pdf)
-in order to count the number of times the word _dream_ occurs.
-
-~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-let text = `I say to you today, my friends, so even
-though we face the difficulties of today and tomorrow,
-I still have a dream. It is a dream deeply rooted in
-the American dream. I have a dream that one day this
-nation will rise up and live out the true meaning of
-its creed: “We hold these truths to be self-evident:
-that all men are created equal.” I have a dream that
-one day on the red hills of Georgia the sons of former
-and the sons of former slave owners will be able to
-sit down together at the table of brotherhood.`;
-
-let words = text.split(/\s/);
-
-let counter = 0;
-for (let i = 0; i < words.length; i++) {
-  if (words[i].includes("dream")) {
-    counter++;
-  }
-}
-
-console.log(`The speech has ${words.length} words.
-We found "dream" ${counter} times.`);
-~~~~~~~~~~~~~~~~~~~~~~~
-
-**code walk through**
-
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/CySJma9dBJU?rel=0" allowfullscreen></iframe>
-</div>
-
-Play with the code live at <https://repl.it/@mcuringa/DreamWordCount>
 
 Array methods
 -------------
@@ -205,8 +163,7 @@ Notice that `a` and `b` remain unchanged;
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `pop()` returns the last element in the array and removes that element
-from the array. If you pass an index to `pop` it will return the value at
-that index and delete that element.
+from the array. When `pop` is called on an empty array, `undefined` is returned.
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ a = [ 1, 2, 3, 4 ];
@@ -214,19 +171,19 @@ that index and delete that element.
 => 4
 ⠕ a
 [ 1, 2, 3]
-⠕ a.pop(1);
-=> 2
-⠕ a
-[ 1, 3 ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 `shift` and `unshift` are equivalent to `pop` and `push` except they work
 on the beginning of an array. `a.unshift(-1, 0)` puts `-1` in the 0'th element
 and `0` in the 1'th element. `shift` returns the 0'th element of the array
-and removes it from the array. All other elements are shifted to the left.
+and removes it from the array. All other elements are shifted to the left. like
+`pop`, `shift` returns `undefined` when called on an empty array.
+
+There are many other useful array methods that you can
+[read about in the documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
 
 Array slices
------------
+------------
 
 The `slice()` method of an array returns a new sub-array. `slice` is similar to the
 `substring()` method of strings.
@@ -261,11 +218,11 @@ update one of the elements:
 [ 'pear', 'apple', 'orange' ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The bracket operator applied to a list can appear anywhere in an expression.
+The bracket operator applied to an array can appear anywhere in an expression.
 When it appears on the left side of an assignment, it changes one of the
-elements in the list, so the first element of ``fruit`` has been changed from
+elements in the array, so the first element of ``fruit`` has been changed from
 ``"banana"`` to ``"pear"``, and the last from ``"quince"`` to ``"orange"``. An
-assignment to an element of a list is called **item assignment**. Item
+assignment to an element of an array is called **item assignment**. Item
 assignment does not work for strings:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -286,6 +243,48 @@ remains unchanged. This is not the case for arrays:
 => [ 'T', 'E', 'X', 'T' ]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+With the `splice` method (not to be confused with `slice`), we can update,
+insert, or delete multiple array elements with a single function call.
+
+`shift` and `pop` remove single items from the beginning or end of an array.
+`splice` is a more flexible (and complicated) method that can return and delete
+items from any array index, as well as insert or replace multiple items.
+`splice` can operate on more than one element. Here are a few ways to use `splice`.
+The syntax for `splice` is `splice(index, numDelete, newItems...)` where
+`index` indicates where the deletion or insertion should begin, `numDelete` (optionally)
+indicates how many items to remove. The remaining `newItems` can be any
+number of arguments to be inserted in the array at `index`.
+
+Delete multiple items from an index:
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ let chars = ["a", "b", "c", "d", "e", "f"];
+⠕ let removedChars = chars.splice(1, 2);
+⠕ removedChars
+=> [ 'b', 'c' ]
+⠕ chars
+=> [ 'a', 'd', 'e', 'f' ]
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Because the `numDelete` argument is zero, this inserts items
+in the middle of an array:
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ let numbers = [10, 20, 30, 40];
+⠕ numbers.splice(2, 0, 21, 22);
+⠕ numbers
+=> [ 10, 20, 21, 22, 30, 40 ]
+~~~~~~~~~~~~~~~~~~~~~~~
+
+By passing in the number of items to delete, we can _replace_ multiple
+array elements with `splice`:
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+⠕ numbers = [10, 20, 30, 40];
+⠕ numbers.splice(1, 2, 9, 8);
+⠕ numbers
+=> [ 10, 9, 8, 40 ]
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Objects and references
 ----------------------
@@ -369,14 +368,14 @@ not possible to change something and get a surprise when you access an alias
 name. That's why Javascript is free to alias strings (and any other immutable
 kinds of data) when it sees an opportunity to economize.
 
-Cloning lists
--------------
+Cloning arrays
+--------------
 
 If we want to modify an array and also keep a copy of the original, we need to be
 able to make a copy of the array itself, not just the reference. This process is
 sometimes called **cloning**, to avoid the ambiguity of the word copy.
 
-The easiest way to clone an array is to the `slice` method with zero arguments:
+The easiest way to clone an array is to call the `slice` method with zero arguments:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ let a = [1, 2, 3];
@@ -387,8 +386,8 @@ The easiest way to clone an array is to the `slice` method with zero arguments:
 => false
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Calling `slice` always creates a new list. In this case the slice happens to
-consist of the whole list. So now the relationship is like this:
+Calling `slice` always creates a new array. In this case the slice happens to
+consist of the whole array. So now the relationship is like this:
 
 ![](figs/mult_references2.png "State snapshot for equal different lists ")
 
@@ -410,7 +409,7 @@ has one variable referencing the array, and the called function has an alias, bu
 is only one underlying array object.
 
 For example, the function below takes an array as an
-argument and multiplies each element in the list by 2:
+argument and multiplies each element in the array by 2:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 /**
@@ -465,7 +464,7 @@ function doubleStuff (t) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-This version of ``double_stuff`` does not change its arguments:
+This version of ``doubleStuff`` does not change its arguments:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ let things = [2, 5, 9];
@@ -504,8 +503,8 @@ advantage. This approach might be called a *functional programming style*.
 </aside>
 
 
-Functions that produce lists
-----------------------------
+Functions that produce arrays
+-----------------------------
 
 The pure version of ``doubleStuff`` above made use of an
 important **pattern** for your toolbox. Whenever you need to
@@ -526,7 +525,7 @@ to return an array of all prime numbers less than n:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 /**
- * Return an array of all prime numbers less than n. 
+ * Return an array of all prime numbers less than n.
  */
 function primesLessThanN(n) {
    let result = [];
@@ -589,6 +588,48 @@ next examples show, you can use empty glue or multi-character strings as glue:
 => 'TheraininSpain...'
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+Counting words
+---------------
+
+Using the`split` method of strings, we can write an elegant solution to
+counting words in a text by looping through the array of words. In  the code
+below we look at section [Martin Luther King Jr's 1963 "I have a dream ..." speech]
+(https://www.archives.gov/files/press/exhibits/dream-speech.pdf)
+in order to count the number of times the word _dream_ occurs.
+
+~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+let text = `I say to you today, my friends, so even
+though we face the difficulties of today and tomorrow,
+I still have a dream. It is a dream deeply rooted in
+the American dream. I have a dream that one day this
+nation will rise up and live out the true meaning of
+its creed: “We hold these truths to be self-evident:
+that all men are created equal.” I have a dream that
+one day on the red hills of Georgia the sons of former
+and the sons of former slave owners will be able to
+sit down together at the table of brotherhood.`;
+
+let words = text.split(/\s/);
+
+let counter = 0;
+for (let i = 0; i < words.length; i++) {
+  if (words[i].includes("dream")) {
+    counter++;
+  }
+}
+
+console.log(`The speech has ${words.length} words.
+We found "dream" ${counter} times.`);
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**code walk through**
+
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/CySJma9dBJU?rel=0" allowfullscreen></iframe>
+</div>
+
+Play with the code live at <https://repl.it/@mcuringa/DreamWordCount>
+
 Nested arrays
 -------------
 
@@ -606,7 +647,7 @@ If we output the element at index 3, we get:
 => [10, 20]
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-To extract an element from the nested list, we can proceed in two steps:
+To extract an element from the nested array, we can proceed in two steps:
 
 ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ elem = nested[3];
@@ -654,8 +695,7 @@ Or we can extract a single element from the matrix using the double-index form:
 
 The first index selects the row, and the second index selects the column.
 Although this way of representing matrices is common, it is not the only
-possibility. A small variation is to use a list of columns instead of a list of
-rows.
+possibility.
 
 Glossary
 --------
@@ -700,7 +740,7 @@ mutable data value
   are compound types. Arrays are mutable; strings are not.
 
 nested array
-  ~ A list array is an element of another array.
+  ~ An array which is an element of another array.
 
 object
   ~ A thing to which a variable can refer.
@@ -732,23 +772,34 @@ step size
 Array Examples
 --------------
 
-1. Write a function to count how many odd numbers are in an array.
-2. Sum up all the even numbers in an array.
-3. Sum up all the negative numbers in an array.
-4. Count how many words in an array have length 5 (i.e. are 5 characters long).
-5. Sum all the elements in an array up to but not including the first
-  even number. (What if there is no even number?)
+**Example 1: oddCount**
+
+Write a function to count how many odd numbers are in an array.
+
+**Example 2: sumEvens**
+
+Sum up all the even numbers in an array.
 
 
-6. Write a function that **returns** an array with all of multiples of 5 between
+**Example 3: findNegatives**
+
+Return an array with all of the negative numbers in an array. Do not modify
+the original array (i.e. write a pure function).
+
+**Example 4: sumSkipFirstEven**
+
+Sum all the elements in an array up to but not including the first
+even number. (What if there is no even number?)
+
+
+**Example 5: multiplesOf5**
+
+Write a function that **returns** an array with all of multiples of 5 between
    5 and 100 (i.e. count by fives). [5, 10, 15, 20 ..., 100]
-7. Write a function that finds and returns the average of an array of numbers.
-8. Write a function called ``filterWord`` which takes an array of strings
-   and a ``word`` to filter as arguments and returns a new array with
-   all instances of ``word`` removed. This function should not modify
-   the original array.
-9. Re-write question 5 as a modifier function without a return statement.
-   It should use the array method ``splice(start, deleteCount)`` to remove all instances of
+
+Now re-write question 5 as a modifier function without a return statement.
+
+It should use the array method ``splice(start, deleteCount)`` to remove all instances of
    ``word`` from the array.
 
 Array Exercises
@@ -758,60 +809,69 @@ hasAllWords
 hasAnyWords
 sentiment
 
-7. Write a function called ``removeDuplicats`` that takes a list and returns a new
-   list with only the unique elements from the original. _Hint:_ they don’t have to
-   be in the same order.
+1. Write a function called ``filterWord`` which takes an array of strings
+   and a ``word`` to filter as arguments and returns a new array with
+   all instances of ``word`` removed. This function should not modify
+   the original array.
+2. Count how many words in an array have length 5 (i.e. are 5 characters long).
+3. Write a function that finds and returns the average of an array of numbers.
+4. Write a function called ``removeDuplicates`` that takes an array and returns a new
+   array with only the unique elements from the original. _Hint:_ they don’t have to
+   be in the same order. _Hint hint:_ remember the `includes` method of an array.
+5. Write a function called ``combine`` that takes 2 arrays of strings
+   as parameters and returns a new array of strings which concatenates
+   the items from the first array with the item from the second.
+   If the array are not equal in length, the new array will end
+   with the item from the longer array. For example:
 
-8. Write a function called ``combine`` that takes 2 lists of strings
-   as parameters and returns a new list of strings which concatenates
-   the items from the first list with the item from the second.
-   If the lists are not equal in length, the new list will end
-   with the item from the longer list. For example:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+   ⠕ let a = ["cat", "dog", "bird"];
+   ⠕ let b = ["lion", "wolf", "eagle"];
+   ⠕ let c = combine(a, b);
+   ⠕ console.log(c);
+   ["catlion", "dogwolf", "birdeagle"]
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-  ⠕ let a = ["cat", "dog", "bird"];
-  ⠕ let b = ["lion", "wolf", "eagle"];
-  ⠕ let c = combine(a, b);
-  ⠕ console.log(c);
-  ["catlion", "dogwolf", "birdeagle"]
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+6. Write a function called ``isSorted`` which takes an array (of number)
+   as a parameter. It should return ``true`` if the array is already
+   sorted (ascending order) or ``false`` if the array is not sorted.
 
-9. Write a function called ``is_sorted`` which takes a list (of number or strings)
-   as a parameter. It should return ``true`` if the list is already
-   sorted (ascending order) or ``false`` if the list is not sorted.
+   You can use this function to test your code:
 
-  You can use this function to test your code:
+   ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+   function test_isSorted() {
+     console.log("-----------------");
+     console.log("testing unsorted");
+     let n1 = [4, 77, 2, 4567, 12];
+     console.log(isSorted(n1), "should be true");
+     console.log("-----------------");
+     console.log("testing sorted");
+     let n2 = [1, 2, 3, 4, 5];
+     console.log(isSorted(n2), "should be false");
+   }
+   ~~~~~~~~~~~~~~~~~~~~~~~
 
-  ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-  def test_sort():
-     console.log("-----------------")
-     console.log("testing unsorted")
-     n1 = [4,77,2,4567,12]
-     console.log(is_sorted(n1))
-     console.log("-----------------")
-     console.log("testing sorted")
-     n2 = [1,2,3,4,5]
-     console.log(is_sorted(n2))
-     n3 = ["aardvark", "koala", "zebra", "dog","cat", "alligator",
-       "elephant", "albatross", "coyote"]
-     console.log(is_sorted(n3))
-     console.log(is_sorted(sorted(n3)))
-  ~~~~~~~~~~~~~~~~~~~~~~~
+Array Lab
+---------
 
+**Sentiment Analysis** is a technique in computer science text analysis which
+tries to determine the sentiment or _mood_ expressed in a text. Some "sentiments"
+are easy to detect. Given the text "I love dogs so much!", we can confidently
+say it is **positive**. "I hate you and never want to talk to you again" is
+clearly **negative**. "The car is silver." would express a **neutral** sentiment.
 
-10. Write a function ``replace(s, old, new)`` that replaces all occurrences of
-   ``old`` with ``new`` in a string ``s``:
+Unfortunately, language is often much trickier to classify. Consider,
+"I have too much homework" (negative) and "I don't have too much homework" (positive).
 
-  ~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-  test(replace("Mississippi", "i", "I") == "MIssIssIppI")
+For this lab, you are going to write the best sentiment function that you can.
+It won't handle all cases, but try to handle as many as you can think of. You
+should use the string and array functions that we have been working with in
+the last two chapters.
 
-  s = "I love spom! Spom is my favorite food. Spom, spom, yum!"
-  test(replace(s, "om", "am") ==
-    "I love spam! Spam is my favorite food. Spam, spam, yum!")
+Your function has a single string parameter, and returns `1` for
+a positive sentiment, `-1` for a negative sentiment, and `0` for
+a neutral sentiments.
+Use this repl.it as to get started: <https://repl.it/@mcuringa/Sentiment>
 
-  test(replace(s, "o", "a") ==
-    "I lave spam! Spam is my favarite faad. Spam, spam, yum!")
-  ~~~~~~~~~~~~~~~~~~~~~~~
-
-  *Hint*: use the ``split`` and ``join`` methods.
-
+You can read the [Wikipedia article on sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis)
+to get a better sense of this lab.
