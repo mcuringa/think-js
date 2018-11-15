@@ -1,4 +1,4 @@
-# Compiled source #
+git# Compiled source #
 ###################
 *.com
 *.class
@@ -29,8 +29,8 @@ __pycache__*
 *.sqlite
 *.sqlite3
 
-# OS generated files #
-######################
+# OS generated and temp files #
+###############################
 .DS_Store*
 ehthumbs.db
 Icon?
@@ -39,6 +39,7 @@ Thumbs.db
 *.txt~
 *.swp
 *.py~
+.~*
 
 .idea*
 
@@ -46,4 +47,4 @@ Thumbs.db
 ################
 _archive*
 work*
-
+node_modules/
