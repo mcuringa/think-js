@@ -1,0 +1,18 @@
+{
+  "name": "school-data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "load": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL",
+  "dependencies": {
+    "csvtojson": "^2.0.8",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}
