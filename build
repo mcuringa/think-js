@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function listing {
-  
+
 
   cp $2 $3;
   echo "<div class='listingSrcCode'>" >> $3;
@@ -14,6 +14,7 @@ function listing {
 
 
 listing ./examples/tip-calculator.js tip-notes.md  ./work/tip-src.md;
+listing ./examples/school-data/school-report.js school-report-notes.md  ./work/school-report-src.md;
 
 
 #CHAPTERS="forward.md preface.md way_of_the_program.md variables.md turtles.md functions.md conditionals.md iteration.md lists.md tuples.md dictionaries.md schools.md while.md";
@@ -23,5 +24,3 @@ CHAPTERS="forward.md way_of_the_program.md variables.md functions.md ./work/tip-
 pandoc -o ./docs/index.html --mathml --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 
 pandoc -o ./docs/tjs.epub --mathml --highlight-style zenburn -t epub --template=tmpl/tmpl.html -s --section-divs -H ./tmpl/style.css $CHAPTERS;
-
-
