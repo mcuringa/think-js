@@ -228,7 +228,7 @@ the time analyzed, scoring on average 2.02 in 2013 and 2.40 in 2017.
 3.9 as the argument to `limit`, so the results only includes schools
 that had test results greater than 2.9. Because the `results` are an
 array, we traverse the (filtered) array to report the results. The
-`console.log` statement uses a template string with backticks (` ` `)
+`console.log` statement uses a template string with backticks
 to easily format the output. Because we use the current `results` element
 so often in the report, we created an **alias** of the object on line
 210, with the code `let r = results[i];`. This allows us to insert the
