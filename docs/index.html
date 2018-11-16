@@ -484,6 +484,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#array-exercises">Array Exercises</a></li>
 <li><a href="#array-lab">Array Lab</a></li>
 <li><a href="#code-listing-2-school-test-data-report">Code Listing 2: School Test Data Report</a></li>
+<li><a href="#school-data-exercises">School Data Exercises</a></li>
 </ul></li>
 <li><a href="#appendices">Appendices</a><ul>
 <li><a href="#code-templates-solutions-and-examples">Code templates, solutions, and examples</a></li>
@@ -1489,7 +1490,7 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <p>The trick about refactoring code is to anticipate which things we are likely to want to change each time we call the function: these should become the parameters, or changeable parts, of the functions we write.</p>
 <p><a href="https://repl.it/@mcuringa/tip-calculator">View the “Tip Calculator” repl</a></p>
 </section>
-<section id="case-study-tip-calculator" class="level3 tipCalculator">
+<section id="case-study-tip-calculator" class="level3 tipCalculator codeNotes">
 <h3>Case Study: Tip Calculator</h3>
 <aside data-line-number="1">
 <p>Brief header <strong>comments</strong> at the top of the <strong>source file</strong> identify basic information about the program and the file. Comments are messages for programmers who read the <strong>source code</strong> — they do not affect the execution of the program.</p>
@@ -3761,30 +3762,61 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <p>Recent desegregation attempts in NYC’s top performing schools has been criticized for unfairly impacting Asian American students, who are well represented in the top schools, but themselves often come from poorer, immigrant families.</p>
 <p>Data analysis, data science, and data-driven decision making has been gaining momentum as one tool in improving the NYC educational system through greater insight and accountability. As part of a larger open data initiative, the City publishes a lot of data about its schools and its students. Among other data, the City releases <strong>school-level test results</strong> for Math and English Language Arts (ELA). These results can be analyzed for different demographic groups, including by race/ethnicity, gender, income, students with disabilities, and English Language Learners. The data analyzed in this case study reports on the ELA test results for the years 2013-2017, for “all students”, at the school level. The results reported at New York State statewide assessments given in grades 3-8 (to, generally, students age 8-13). The data file (<code>ela-all-2013_18.js</code>) is based on <a href="https://infohub.nyced.org/reports-and-policies/citywide-information-and-data/test-results">data released on the NYC DOE website</a>. The Math and ELA exams are aligned to the Common Core standards. The ELA exam includes reading passages and multiple choice, short answer, and extended answer (essay) responses. Student results are categorized as a 1, 2, 3, or 4 where 1 is the lowest result and 4 is the highest result. Students scoring 3 or 4 are considered proficient in the subject area.</p>
 <p>Lastly, while the tests are administered to every student in the public schools there has been a significant resistant to the tests in some schools and districts, statewide, in the form of “opting out” where students and parents choose not to participate in the testing due to concerns about how test results are used to punish schools, teachers, and students; questions over the validity of the measures; and beliefs that high stakes testing corrupts learning and siphons resources from more authentic and valuable educational goals.</p>
-<p><a href="https://repl.it/@mcuringa/tip-calculator">View the “Tip Calculator” repl</a></p>
+<p>The functions annotated in <code>school-report.js</code> demonstrate some common programming patterns for working with arrays of data, and array traversal — using a <code>for</code> loop to iterate over each item in an array. Notice that all of the functions that work with the <code>testData</code> are <strong>pure functions</strong>. They do not have <strong>side effects</strong> — they don’t modify any variables outside of the function, only communicating through input function parameters and output with the return statement. To make it easier to understand these pure functions, each function has a comment header which indicates what values and types of data are expected for the function parameters and are returned by the return statement.</p>
+<p>The set of reporting functions at the end of program, however, are not pure functions. They provide user output using <code>console.log</code>. This printing to the console is a side effect of the function.</p>
+<p><a href="https://repl.it/@mcuringa/SchoolData">View the “School Data Report” repl</a></p>
 </section>
-<section id="case-study-school-report.js" class="level3 schoolReport">
+<section id="case-study-school-report.js" class="level3 schoolReport codeNotes">
 <h3>Case Study: school-report.js</h3>
 <aside data-line-number="1">
 <p>The extensive header comment at the top of this program describes the type of data that’s being analyzed. The program analyzes an array of objects, where each element in the array represents the test test results for a single grade level, for a single school, in a given school year. During <strong>array traversal</strong>, properties of the data object are accessed with the <strong>dot operator</strong>. If the example data in the header were accessed at element <code>i</code> of variable <code>data</code>, then <code>data[i].name</code> would produce “P.S. 009 Teunis G. Bergen”</p>
 </aside>
+<aside data-line-number="33">
+<p>This is our first introduction to creating our own Javascript <strong>objects</strong>. The object literal notation used here creates a new object with <em>curly braces</em> (<code>{}</code>). Objects consist of <strong>key-value pairs</strong>. The <strong>key</strong>, on the left side must be a string or valid Javascript identifier. The <strong>value</strong>, after the colon (<code>:</code>), can be a value of any Javascript type – a number or string, an object like <code>Date</code>, an array, even a function. We’ll learn more about objects and <strong>Object Oriented Programming</strong> (OOP) later in the book.</p>
+</aside>
 <aside data-line-number="49">
 <p>The <code>import</code> keyword allows a Javascript file to import functions and variables from another Javascript file. <code>import</code> helps us write modular code and reusable <em>code libraries</em>.</p>
 </aside>
-<aside data-line-number="30">
-<p>The <code>calcTip</code> function defines 2 <strong>parameters</strong>: <code>bill</code> and <code>pct</code>. These parameters become variables within the <strong>function body</strong>. Line 30 uses <strong>arithmetic operators</strong> (multiplication here) to calculate a new value and store it in the <code>tip</code> <strong>variable</strong>. <code>tip</code> is converted to a float using the <strong>built-in function</strong> <code>Number.parseFloat</code>. Finally, the rounded tip amount is returned.</p>
+<aside data-line-number="56">
+<p><code>totalTested</code> returns the number of students who were administered an exam in the total data set. This is a simple example of the <strong>counter pattern</strong> — which works like this:</p>
+<ol type="1">
+<li>initialize the counter variable to zero (line 62)</li>
+<li>traverse the array and increment the counter during each loop (line 74)</li>
+<li>return the total (line 77)</li>
+</ol>
 </aside>
-<aside data-line-number="43">
-<p><code>askBillAmt</code> is a <strong>fruitful function</strong> because it has a <strong>return statement</strong>. It uses the <strong>built-in function</strong> <code>window.prompt</code> to ask for data from the user of the program. When this function is called, it returns the amount of the bill as a float, because it represents money.</p>
+<aside data-line-number="73">
+<p><code>totalTestedGrade</code> gives an example of the <strong>counter pattern</strong> with a conditional check. In this case the <code>total</code> is only incremented if a condition is met in the loop body during array traversal. This pattern is good to count things that match a given set of criteria — in this case it would allow us to find the number of 4th grade students who sat for the ELA exam in the data set.</p>
 </aside>
-<aside data-line-number="61">
-<p><code>money</code> is a small helper function that we wrote to re-use the task of formatting numbers as currency with a dollar sign and two decimal places. It is called 3 times in <code>showResults</code> with different <strong>arguments</strong>.</p>
+<aside data-line-number="98">
+<p><code>averageTestScores</code> uses the <strong>counter pattern</strong> with 2 counters to enable us to find the average for test scores. To make a real example, we also have a <strong>compound Boolean expression</strong> as our criteria for when to increment the counters. Because this case study works with real data (not a simplified data set curated for the book), we need to add the condition <code>&amp;&amp; testResults.avg !== NaN</code> to our test. Some of the records in our data set do not have valid averages, indicated by <code>NaN</code> rather than a float. In those cases, we just skip the record, even if the <code>grade</code> and <code>year</code> match our targets.</p>
+<p>The basic algorithm for finding the mean average of a <em>set of numbers</em> is to (1) sum the numbers, (2) divide the sum by the number of items, <code>n</code>.</p>
+<p>In this function, the <em>set of numbers</em> to sum up are all of the <code>testResults</code> that match the target <code>grade</code> and <code>year</code> specified by the function parameters. We keep track of this sum in the counter variable, <code>sum</code>. Since we don’t know how many test results meet our criteria before we begin the array traversal, we declare a second counter, <code>numResults</code>. <code>numResults</code> tracks how many items <code>n</code> we’ve summed up.</p>
+<p>When the loop completes, we find the average by dividing the sum by the number of rest results, <code>sum / numResults</code>.</p>
 </aside>
-<aside data-line-number="70">
-<p><code>showResults</code> defines 3 <strong>parameters</strong> which are used to pass in all of the data needed to show the results of the tip calculation. Notice that the <code>console.log</code> statements use the <strong>+ operator</strong> to <abbr title="join together">concatenate</abbr> strings. Because we are joining <strong>string literals</strong> with variables of type <code>number</code>. The <code>+</code> operator automatically converts the numbers to strings.</p>
+<aside data-line-number="124">
+<p>We move away from the counter pattern to look at a <strong>search pattern</strong>. <code>findHighestAvgScore</code> searches through the array of data to locate the highest average test score in the set. Before the loop begins, we must declare a result variable (<code>highestResult</code> here) that will hold the best match for our search term. We iterate through the elements of the array looking for the best match for our search result. In this case (and this often works), we initialize the result variable to the first item in our array (<code>data[0]</code>). When we traverse the array, we start at element 1 rather than 0. If, by chance, the zeroeth element had the highest score, it will still be return at the end of our <code>for</code> loop.</p>
+<p><code>if</code> the current element in the array (<code>data[i]</code>) is a better match for our search than the current value of the result variable (<code>highestResult</code>), then that element becomes the new best match for our search result. Finally, we return our result.</p>
+<p>Notice that in this case of working with school data, it’s possible that several schools test results will be tied for the highest average score, especially if they scored an average of <code>4</code>. The way our algorithm is coded the “best match” here will be the first one found. If we changed line 139 to be <code>data[i].avg &gt;= highestResult.avg</code>, we would return the <em>last</em> match found instead. We can’t do an <strong>realy return</strong> in this search pattern because we must test every element in <code>data</code> to see if any has a higher score than the current best match.</p>
 </aside>
-<aside data-line-number="90">
-<p><code>main</code> is the first function <strong>called</strong> for this program. It maintains the executive control of the program, calling other functions in sequence and passing data between functions. All of the other functions have been defined, but are waiting to be called.</p>
+<aside data-line-number="157">
+<p><code>filterBetterThanLimit</code> represents a <strong>filter pattern</strong>. The array filter patterns works like this:</p>
+<ol type="1">
+<li>initialize the results array to be an empty array</li>
+<li>iterate through the search array and add any items matching the filter criteria to the results array</li>
+<li>return the results after the loop completes</li>
+</ol>
+<p>In this example, we call the results array <code>matchingResults</code>, and we use the <code>limit</code> function parameter as the condition to see if a data item should be included in the results <code>data[i].avg &gt; limit</code>.</p>
+</aside>
+<aside data-line-number="181">
+<p><code>reportAveragesForFirstCohort</code> demonstrates how one function can be used multiple times with different arguments. This function reports the test results of a single cohort of students as they travel through the New York City school system. It reports the 4th grade results from 2013, the first year the current test format was administered, and then reports the results for the same group of students in each subsequent year through the 2017-18 academic year.</p>
+<p>When the program is run, it indicates that the students improved over the time analyzed, scoring on average 2.02 in 2013 and 2.40 in 2017.</p>
+</aside>
+<aside data-line-number="204">
+<p><code>topPerformers</code> reports the results of our filtering funcion. It uses 3.9 as the argument to <code>limit</code>, so the results only includes schools that had test results greater than 2.9. Because the <code>results</code> are an array, we traverse the (filtered) array to report the results. The <code>console.log</code> statement uses a template string with backticks (``<code>) to easily format the output. Because we use the current</code>results<code>element so often in the report, we created an **alias** of the object on line 210, with the code</code>let r = results[i];<code>. This allows us to insert the short variable name</code>r` (for result) easily into our template string.</p>
+</aside>
+<aside data-line-number="217">
+<p>Finally, we define and then call our <code>main</code> function to begin the program. <code>main</code> outputs some of the results directly, and divides some of the more complex reporting into distinct functions.</p>
 </aside>
 <div class="listingSrcCode">
 <div class="sourceCode" id="cb211"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="co">/**</span></a>
@@ -3835,120 +3867,219 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <a class="sourceLine" id="cb211-46" data-line-number="46"><span class="co"> * },</span></a>
 <a class="sourceLine" id="cb211-47" data-line-number="47"><span class="co"> */</span></a>
 <a class="sourceLine" id="cb211-48" data-line-number="48"></a>
-<a class="sourceLine" id="cb211-49" data-line-number="49"><span class="im">import</span> testData <span class="im">from</span> <span class="st">&quot;./data/ela-all-2013_18.mjs&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-49" data-line-number="49"><span class="im">import</span> testData <span class="im">from</span> <span class="st">&quot;./data/ela-all-2013_18.js&quot;</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb211-50" data-line-number="50"></a>
 <a class="sourceLine" id="cb211-51" data-line-number="51"></a>
 <a class="sourceLine" id="cb211-52" data-line-number="52"></a>
-<a class="sourceLine" id="cb211-53" data-line-number="53"></a>
-<a class="sourceLine" id="cb211-54" data-line-number="54"><span class="co">// a simple counter pattern</span></a>
-<a class="sourceLine" id="cb211-55" data-line-number="55"><span class="kw">function</span> <span class="at">totalTested</span>(data) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-56" data-line-number="56">  <span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-57" data-line-number="57">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-58" data-line-number="58">    total <span class="op">+=</span> data[i].<span class="at">numTested</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-59" data-line-number="59">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-60" data-line-number="60">  <span class="cf">return</span> total<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-61" data-line-number="61"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-62" data-line-number="62"></a>
-<a class="sourceLine" id="cb211-63" data-line-number="63"><span class="co">// conditional counter</span></a>
-<a class="sourceLine" id="cb211-64" data-line-number="64"><span class="kw">function</span> <span class="at">totalTestedGrade</span>(data<span class="op">,</span> grade) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-65" data-line-number="65">  <span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-66" data-line-number="66">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-67" data-line-number="67">    <span class="cf">if</span> (data[i].<span class="at">grade</span> <span class="op">===</span> grade) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-68" data-line-number="68">      total <span class="op">+=</span> data[i].<span class="at">numTested</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-69" data-line-number="69">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-70" data-line-number="70">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-71" data-line-number="71">  <span class="cf">return</span> total<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-72" data-line-number="72"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-73" data-line-number="73"></a>
-<a class="sourceLine" id="cb211-74" data-line-number="74"><span class="co">// 2 conditional counter + some work</span></a>
-<a class="sourceLine" id="cb211-75" data-line-number="75"><span class="kw">function</span> <span class="at">averageTestScores</span>(data<span class="op">,</span> grade<span class="op">,</span> year) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-76" data-line-number="76">  <span class="kw">let</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-77" data-line-number="77">  <span class="kw">let</span> numSchools <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-78" data-line-number="78">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-79" data-line-number="79">    <span class="kw">let</span> testResults <span class="op">=</span> data[i]<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-80" data-line-number="80">    <span class="cf">if</span> (<span class="va">testResults</span>.<span class="at">grade</span> <span class="op">===</span> grade <span class="op">&amp;&amp;</span> <span class="va">testResults</span>.<span class="at">year</span> <span class="op">===</span> year</a>
-<a class="sourceLine" id="cb211-81" data-line-number="81">    <span class="op">&amp;&amp;</span> <span class="va">testResults</span>.<span class="at">avg</span> <span class="op">!==</span> <span class="kw">NaN</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-82" data-line-number="82">      sum <span class="op">+=</span> <span class="va">testResults</span>.<span class="at">avg</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb211-83" data-line-number="83">      numSchools<span class="op">++;</span></a>
-<a class="sourceLine" id="cb211-84" data-line-number="84">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-85" data-line-number="85">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-86" data-line-number="86"></a>
-<a class="sourceLine" id="cb211-87" data-line-number="87">  <span class="cf">return</span> sum / numSchools<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-88" data-line-number="88"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-89" data-line-number="89"></a>
-<a class="sourceLine" id="cb211-90" data-line-number="90"></a>
-<a class="sourceLine" id="cb211-91" data-line-number="91"><span class="co">// search pattern with comparison</span></a>
-<a class="sourceLine" id="cb211-92" data-line-number="92"><span class="kw">function</span> <span class="at">findHighestAvgScore</span>(data) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-93" data-line-number="93">  <span class="kw">let</span> highestResult <span class="op">=</span> data[<span class="dv">0</span>]<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-94" data-line-number="94">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-95" data-line-number="95"></a>
-<a class="sourceLine" id="cb211-96" data-line-number="96">    <span class="cf">if</span> (data[i].<span class="at">avg</span> <span class="op">&gt;</span> <span class="va">highestResult</span>.<span class="at">avg</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-97" data-line-number="97">      highestResult <span class="op">=</span> data[i]<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-98" data-line-number="98"></a>
-<a class="sourceLine" id="cb211-99" data-line-number="99">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-100" data-line-number="100">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-101" data-line-number="101">  <span class="cf">return</span> highestResult<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-102" data-line-number="102"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-103" data-line-number="103"></a>
-<a class="sourceLine" id="cb211-104" data-line-number="104"><span class="co">// filter pattern</span></a>
-<a class="sourceLine" id="cb211-105" data-line-number="105"><span class="kw">function</span> <span class="at">filterBetterThanLimit</span>(data<span class="op">,</span> limit) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-106" data-line-number="106">  <span class="kw">let</span> schools <span class="op">=</span> []<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-107" data-line-number="107">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-108" data-line-number="108">    <span class="cf">if</span> (data[i].<span class="at">avg</span> <span class="op">&gt;</span> limit) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-109" data-line-number="109">      <span class="va">schools</span>.<span class="at">push</span>(data[i])<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-110" data-line-number="110">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-111" data-line-number="111">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-112" data-line-number="112">  <span class="cf">return</span> schools<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-113" data-line-number="113"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-114" data-line-number="114"></a>
-<a class="sourceLine" id="cb211-115" data-line-number="115"></a>
-<a class="sourceLine" id="cb211-116" data-line-number="116"></a>
-<a class="sourceLine" id="cb211-117" data-line-number="117"><span class="kw">function</span> <span class="at">reportAverages</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-118" data-line-number="118">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2013</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-119" data-line-number="119">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">2014</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-120" data-line-number="120">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">2015</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-121" data-line-number="121">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">2016</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-122" data-line-number="122">  <span class="va">console</span>.<span class="at">log</span>(<span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">2017</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-123" data-line-number="123"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-124" data-line-number="124"></a>
-<a class="sourceLine" id="cb211-125" data-line-number="125"></a>
-<a class="sourceLine" id="cb211-126" data-line-number="126"><span class="kw">function</span> <span class="at">reportBetterThan</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-127" data-line-number="127">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;--------------------------------&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-128" data-line-number="128"></a>
-<a class="sourceLine" id="cb211-129" data-line-number="129">  <span class="kw">let</span> results <span class="op">=</span> <span class="at">filterBetterThanLimit</span>(testData<span class="op">,</span> <span class="fl">3.75</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-130" data-line-number="130">  <span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">results</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-131" data-line-number="131">    <span class="kw">let</span> r <span class="op">=</span> results[i]<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-132" data-line-number="132">    <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span><span class="sc">${</span><span class="va">r</span>.<span class="at">name</span><span class="sc">}</span><span class="vs">, average score: </span><span class="sc">${</span><span class="va">r</span>.<span class="at">avg</span><span class="sc">}</span><span class="vs"> for grade </span><span class="sc">${</span><span class="va">r</span>.<span class="at">grade</span><span class="sc">}</span><span class="vs"> in </span><span class="sc">${</span><span class="va">r</span>.<span class="at">year</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-133" data-line-number="133">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb211-134" data-line-number="134"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-135" data-line-number="135"></a>
-<a class="sourceLine" id="cb211-136" data-line-number="136"></a>
-<a class="sourceLine" id="cb211-137" data-line-number="137"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb211-138" data-line-number="138">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total students tested:&quot;</span><span class="op">,</span> <span class="at">totalTested</span>(testData))<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-139" data-line-number="139"><span class="co">//   console.log(&quot;Total students tested, 4th grade:&quot;, totalTestedGrade(testData, 4));</span></a>
-<a class="sourceLine" id="cb211-140" data-line-number="140"><span class="co">//   console.log(&quot;Average 4th grade test scores, citywide, 2017:&quot;, averageTestScores(testData, 4, 2017));</span></a>
-<a class="sourceLine" id="cb211-141" data-line-number="141"><span class="co">//   console.log(&quot;--------------------------------&quot;);</span></a>
-<a class="sourceLine" id="cb211-142" data-line-number="142"><span class="co">//   let highest = findHighestAvgScore(testData);</span></a>
-<a class="sourceLine" id="cb211-143" data-line-number="143"><span class="co">//   console.log(`The highest average score was for ${highest.name} in ${highest.year}.</span></a>
-<a class="sourceLine" id="cb211-144" data-line-number="144"><span class="co">// ${highest.numTested} had an average score of ${highest.avg}`);</span></a>
-<a class="sourceLine" id="cb211-145" data-line-number="145"><span class="co">// reportBetterThan()</span></a>
-<a class="sourceLine" id="cb211-146" data-line-number="146"></a>
-<a class="sourceLine" id="cb211-147" data-line-number="147"></a>
-<a class="sourceLine" id="cb211-148" data-line-number="148"></a>
-<a class="sourceLine" id="cb211-149" data-line-number="149"><span class="op">}</span></a>
-<a class="sourceLine" id="cb211-150" data-line-number="150"></a>
-<a class="sourceLine" id="cb211-151" data-line-number="151"><span class="at">main</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb211-152" data-line-number="152"></a>
-<a class="sourceLine" id="cb211-153" data-line-number="153"></a>
-<a class="sourceLine" id="cb211-154" data-line-number="154"></a>
-<a class="sourceLine" id="cb211-155" data-line-number="155"></a>
-<a class="sourceLine" id="cb211-156" data-line-number="156"><span class="co">// 1. find the highest score where at least 50 students took the exam</span></a>
-<a class="sourceLine" id="cb211-157" data-line-number="157"><span class="co">// 2. alter the function from question 1 so that minStudents is a variable</span></a>
-<a class="sourceLine" id="cb211-158" data-line-number="158"><span class="co">// 3. Write a function that finds the lowest test result, it should also have a parameter for min students</span></a>
-<a class="sourceLine" id="cb211-159" data-line-number="159"><span class="co">// 4. Write a function that finds all of the schools/test results where the school average was less than 2</span></a>
-<a class="sourceLine" id="cb211-160" data-line-number="160"><span class="co">// 5. Find the average test result for all schools in Brooklyn</span></a>
-<a class="sourceLine" id="cb211-161" data-line-number="161"><span class="co">// 6. Find the 5 best performing schools in the data set. Return an array of the testResult objects for these schools. There should be a minimum number of students tested to qualify.</span></a></code></pre></div>
+<a class="sourceLine" id="cb211-53" data-line-number="53"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb211-54" data-line-number="54"><span class="co"> * totalTested finds the total number of students</span></a>
+<a class="sourceLine" id="cb211-55" data-line-number="55"><span class="co"> * tested in data set `data`</span></a>
+<a class="sourceLine" id="cb211-56" data-line-number="56"><span class="co"> * This is an example of the counter pattern.</span></a>
+<a class="sourceLine" id="cb211-57" data-line-number="57"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">data</span><span class="co">, an array of data objects where each</span></a>
+<a class="sourceLine" id="cb211-58" data-line-number="58"><span class="co"> *        objcect _must_ have a property `numTested`</span></a>
+<a class="sourceLine" id="cb211-59" data-line-number="59"><span class="co"> * </span><span class="an">@return</span><span class="co"> int, the sum of all test takers</span></a>
+<a class="sourceLine" id="cb211-60" data-line-number="60"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb211-61" data-line-number="61"><span class="kw">function</span> <span class="at">totalTested</span>(data) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-62" data-line-number="62">  <span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-63" data-line-number="63">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-64" data-line-number="64">    total <span class="op">+=</span> data[i].<span class="at">numTested</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-65" data-line-number="65">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-66" data-line-number="66">  <span class="cf">return</span> total<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-67" data-line-number="67"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb211-69" data-line-number="69"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb211-70" data-line-number="70"><span class="co"> * totalTestedGrade finds the total number of students</span></a>
+<a class="sourceLine" id="cb211-71" data-line-number="71"><span class="co"> * tested in the data set in a give grade level.</span></a>
+<a class="sourceLine" id="cb211-72" data-line-number="72"><span class="co"> * This is an example of the counter pattern</span></a>
+<a class="sourceLine" id="cb211-73" data-line-number="73"><span class="co"> * with a conditional check.</span></a>
+<a class="sourceLine" id="cb211-74" data-line-number="74"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">data</span><span class="co">, an array of data objects where each</span></a>
+<a class="sourceLine" id="cb211-75" data-line-number="75"><span class="co"> *        objcect _must_ have the properties</span></a>
+<a class="sourceLine" id="cb211-76" data-line-number="76"><span class="co"> *        `numTested` and `grade`</span></a>
+<a class="sourceLine" id="cb211-77" data-line-number="77"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">grade</span><span class="co">, an int in the range 3..8 to indicate</span></a>
+<a class="sourceLine" id="cb211-78" data-line-number="78"><span class="co"> *        which grade to search for</span></a>
+<a class="sourceLine" id="cb211-79" data-line-number="79"><span class="co"> * </span><span class="an">@return</span><span class="co"> int, the total number students of students tested</span></a>
+<a class="sourceLine" id="cb211-80" data-line-number="80"><span class="co"> *         in the given grade</span></a>
+<a class="sourceLine" id="cb211-81" data-line-number="81"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb211-82" data-line-number="82"><span class="kw">function</span> <span class="at">totalTestedGrade</span>(data<span class="op">,</span> grade) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-83" data-line-number="83">  <span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-84" data-line-number="84">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-85" data-line-number="85">    <span class="cf">if</span> (data[i].<span class="at">grade</span> <span class="op">===</span> grade) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-86" data-line-number="86">      total <span class="op">+=</span> data[i].<span class="at">numTested</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-87" data-line-number="87">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-88" data-line-number="88">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-89" data-line-number="89">  <span class="cf">return</span> total<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-90" data-line-number="90"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-91" data-line-number="91"></a>
+<a class="sourceLine" id="cb211-92" data-line-number="92"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb211-93" data-line-number="93"><span class="co"> * averageTestScores finds the average test scores</span></a>
+<a class="sourceLine" id="cb211-94" data-line-number="94"><span class="co"> * in the dataset `data` for a single `grade`</span></a>
+<a class="sourceLine" id="cb211-95" data-line-number="95"><span class="co"> * in a single test `year`.</span></a>
+<a class="sourceLine" id="cb211-96" data-line-number="96"><span class="co"> * It&#39;s a more complex example of a real solution</span></a>
+<a class="sourceLine" id="cb211-97" data-line-number="97"><span class="co"> * programmed using the counter pattern.</span></a>
+<a class="sourceLine" id="cb211-98" data-line-number="98"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">data</span><span class="co">, an array of data objects where each</span></a>
+<a class="sourceLine" id="cb211-99" data-line-number="99"><span class="co"> *        objcect _must_ have the properties</span></a>
+<a class="sourceLine" id="cb211-100" data-line-number="100"><span class="co"> *        `numTested` and `grade`</span></a>
+<a class="sourceLine" id="cb211-101" data-line-number="101"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">grade</span><span class="co">, an int in the range 3..8 to indicate</span></a>
+<a class="sourceLine" id="cb211-102" data-line-number="102"><span class="co"> *        which grade to search for</span></a>
+<a class="sourceLine" id="cb211-103" data-line-number="103"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">year</span><span class="co">, an int</span></a>
+<a class="sourceLine" id="cb211-104" data-line-number="104"><span class="co"> * </span><span class="an">@return</span><span class="co"> float, the mean average test result</span></a>
+<a class="sourceLine" id="cb211-105" data-line-number="105"><span class="co"> *         (in the range 0..4) of all results that match</span></a>
+<a class="sourceLine" id="cb211-106" data-line-number="106"><span class="co"> *         the `grade` and `year` criteria</span></a>
+<a class="sourceLine" id="cb211-107" data-line-number="107"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb211-108" data-line-number="108"><span class="kw">function</span> <span class="at">averageTestScores</span>(data<span class="op">,</span> grade<span class="op">,</span> year) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-109" data-line-number="109">  <span class="kw">let</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-110" data-line-number="110">  <span class="kw">let</span> numResults <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-111" data-line-number="111">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-112" data-line-number="112">    <span class="kw">let</span> testResults <span class="op">=</span> data[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-113" data-line-number="113">    <span class="cf">if</span> (<span class="va">testResults</span>.<span class="at">grade</span> <span class="op">===</span> grade</a>
+<a class="sourceLine" id="cb211-114" data-line-number="114">        <span class="op">&amp;&amp;</span> <span class="va">testResults</span>.<span class="at">year</span> <span class="op">===</span> year</a>
+<a class="sourceLine" id="cb211-115" data-line-number="115">        <span class="op">&amp;&amp;</span> <span class="va">testResults</span>.<span class="at">avg</span> <span class="op">!==</span> <span class="kw">NaN</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-116" data-line-number="116">      sum <span class="op">+=</span> <span class="va">testResults</span>.<span class="at">avg</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb211-117" data-line-number="117">      numResults<span class="op">++;</span></a>
+<a class="sourceLine" id="cb211-118" data-line-number="118">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-119" data-line-number="119">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-120" data-line-number="120"></a>
+<a class="sourceLine" id="cb211-121" data-line-number="121">  <span class="cf">return</span> sum / numResults<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-122" data-line-number="122"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-123" data-line-number="123"></a>
+<a class="sourceLine" id="cb211-124" data-line-number="124"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb211-125" data-line-number="125"><span class="co"> * findHighestAvgScore searches through</span></a>
+<a class="sourceLine" id="cb211-126" data-line-number="126"><span class="co"> * the test results in `data` and returns</span></a>
+<a class="sourceLine" id="cb211-127" data-line-number="127"><span class="co"> * the test result data object with the highest</span></a>
+<a class="sourceLine" id="cb211-128" data-line-number="128"><span class="co"> * number in the `avg` property.</span></a>
+<a class="sourceLine" id="cb211-129" data-line-number="129"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">data</span><span class="co">, an array of data objects where each</span></a>
+<a class="sourceLine" id="cb211-130" data-line-number="130"><span class="co"> *        object _must_ have the property</span></a>
+<a class="sourceLine" id="cb211-131" data-line-number="131"><span class="co"> *        `avg` to indicate the average test</span></a>
+<a class="sourceLine" id="cb211-132" data-line-number="132"><span class="co"> *        score for that data record</span></a>
+<a class="sourceLine" id="cb211-133" data-line-number="133"><span class="co"> * </span><span class="an">@return</span><span class="co"> object, the test result data object with</span></a>
+<a class="sourceLine" id="cb211-134" data-line-number="134"><span class="co"> *         the highest average score in the dataset</span></a>
+<a class="sourceLine" id="cb211-135" data-line-number="135"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb211-136" data-line-number="136"><span class="kw">function</span> <span class="at">findHighestAvgScore</span>(data) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-137" data-line-number="137">  <span class="kw">let</span> highestResult <span class="op">=</span> data[<span class="dv">0</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-138" data-line-number="138">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-139" data-line-number="139">    <span class="cf">if</span> (data[i].<span class="at">avg</span> <span class="op">&gt;</span> <span class="va">highestResult</span>.<span class="at">avg</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-140" data-line-number="140">      highestResult <span class="op">=</span> data[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-141" data-line-number="141">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-142" data-line-number="142">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-143" data-line-number="143">  <span class="cf">return</span> highestResult<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-144" data-line-number="144"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-145" data-line-number="145"></a>
+<a class="sourceLine" id="cb211-146" data-line-number="146"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb211-147" data-line-number="147"><span class="co"> * filterBetterThanLimit returns a sub-array</span></a>
+<a class="sourceLine" id="cb211-148" data-line-number="148"><span class="co"> * based on array `data`, with only the test result</span></a>
+<a class="sourceLine" id="cb211-149" data-line-number="149"><span class="co"> * elements of data where the average test score</span></a>
+<a class="sourceLine" id="cb211-150" data-line-number="150"><span class="co"> * is higher than `limit`.</span></a>
+<a class="sourceLine" id="cb211-151" data-line-number="151"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">data</span><span class="co">, an array of data objects where each</span></a>
+<a class="sourceLine" id="cb211-152" data-line-number="152"><span class="co"> *        object _must_ have the property</span></a>
+<a class="sourceLine" id="cb211-153" data-line-number="153"><span class="co"> *        `avg` to indicate the average test</span></a>
+<a class="sourceLine" id="cb211-154" data-line-number="154"><span class="co"> *        score for that data record</span></a>
+<a class="sourceLine" id="cb211-155" data-line-number="155"><span class="co"> * </span><span class="an">@param</span><span class="co"> </span><span class="cv">limit</span><span class="co">, a float in the range 0..4 to indicate</span></a>
+<a class="sourceLine" id="cb211-156" data-line-number="156"><span class="co"> *        the lower limit for test results to return</span></a>
+<a class="sourceLine" id="cb211-157" data-line-number="157"><span class="co"> * </span><span class="an">@return</span><span class="co"> array, an array of test result objects, all of</span></a>
+<a class="sourceLine" id="cb211-158" data-line-number="158"><span class="co"> *         which will have a higher average test score</span></a>
+<a class="sourceLine" id="cb211-159" data-line-number="159"><span class="co"> *         than `limit`</span></a>
+<a class="sourceLine" id="cb211-160" data-line-number="160"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb211-161" data-line-number="161"><span class="kw">function</span> <span class="at">filterBetterThanLimit</span>(data<span class="op">,</span> limit) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-162" data-line-number="162">  <span class="kw">let</span> matchingResults <span class="op">=</span> []<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-163" data-line-number="163">  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">data</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-164" data-line-number="164">    <span class="cf">if</span> (data[i].<span class="at">avg</span> <span class="op">&gt;</span> limit) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-165" data-line-number="165">      <span class="va">matchingResults</span>.<span class="at">push</span>(data[i])<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-166" data-line-number="166">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-167" data-line-number="167">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-168" data-line-number="168">  <span class="cf">return</span> matchingResults<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-169" data-line-number="169"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-170" data-line-number="170"></a>
+<a class="sourceLine" id="cb211-171" data-line-number="171"><span class="co">// _________________________________________________</span></a>
+<a class="sourceLine" id="cb211-172" data-line-number="172"><span class="co">// ============================= REPORTING FUNCTIONS</span></a>
+<a class="sourceLine" id="cb211-173" data-line-number="173"><span class="co">// ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾</span></a>
+<a class="sourceLine" id="cb211-174" data-line-number="174"></a>
+<a class="sourceLine" id="cb211-175" data-line-number="175"><span class="kw">function</span> <span class="at">header</span>(title) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-176" data-line-number="176">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">------------------------------------&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-177" data-line-number="177">  <span class="va">console</span>.<span class="at">log</span>(title)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-178" data-line-number="178">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-179" data-line-number="179"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-180" data-line-number="180"></a>
+<a class="sourceLine" id="cb211-181" data-line-number="181"><span class="kw">function</span> <span class="at">reportAveragesForFirstCohort</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-182" data-line-number="182"></a>
+<a class="sourceLine" id="cb211-183" data-line-number="183">  <span class="kw">let</span> r13 <span class="op">=</span> <span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">2013</span>).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-184" data-line-number="184">  <span class="kw">let</span> r14 <span class="op">=</span> <span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">2014</span>).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-185" data-line-number="185">  <span class="kw">let</span> r15 <span class="op">=</span> <span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">2015</span>).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-186" data-line-number="186">  <span class="kw">let</span> r16 <span class="op">=</span> <span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">2016</span>).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-187" data-line-number="187">  <span class="kw">let</span> r17 <span class="op">=</span> <span class="at">averageTestScores</span>(testData<span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">2017</span>).<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-188" data-line-number="188"></a>
+<a class="sourceLine" id="cb211-189" data-line-number="189">  <span class="at">header</span>(<span class="st">&quot;TREND OF SCORES FOR 2013 4TH GRADE&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-190" data-line-number="190"></a>
+<a class="sourceLine" id="cb211-191" data-line-number="191">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span></a>
+<a class="sourceLine" id="cb211-192" data-line-number="192"><span class="vs">Reporting on the ELA test result trend for the</span></a>
+<a class="sourceLine" id="cb211-193" data-line-number="193"><span class="vs">cohort of who were in 4th grade in 2013.</span></a>
+<a class="sourceLine" id="cb211-194" data-line-number="194"><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-195" data-line-number="195"></a>
+<a class="sourceLine" id="cb211-196" data-line-number="196">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Average ELA 2013:&quot;</span><span class="op">,</span> r13)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-197" data-line-number="197">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Average ELA 2014:&quot;</span><span class="op">,</span> r14)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-198" data-line-number="198">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Average ELA 2015:&quot;</span><span class="op">,</span> r15)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-199" data-line-number="199">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Average ELA 2016:&quot;</span><span class="op">,</span> r16)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-200" data-line-number="200">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Average ELA 2017:&quot;</span><span class="op">,</span> r17)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-201" data-line-number="201"></a>
+<a class="sourceLine" id="cb211-202" data-line-number="202"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-203" data-line-number="203"></a>
+<a class="sourceLine" id="cb211-204" data-line-number="204"><span class="kw">function</span> <span class="at">topPerformers</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-205" data-line-number="205">  <span class="at">header</span>(<span class="st">&quot;TOP PERFORMING SCHOOLS (AVG &gt; 3.9)&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-206" data-line-number="206"></a>
+<a class="sourceLine" id="cb211-207" data-line-number="207">  <span class="kw">let</span> results <span class="op">=</span> <span class="at">filterBetterThanLimit</span>(testData<span class="op">,</span> <span class="fl">3.9</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-208" data-line-number="208">  <span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">results</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-209" data-line-number="209">    <span class="kw">let</span> r <span class="op">=</span> results[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-210" data-line-number="210">    <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span></a>
+<a class="sourceLine" id="cb211-211" data-line-number="211"><span class="sc">${</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">. </span><span class="sc">${</span><span class="va">r</span>.<span class="at">name</span><span class="sc">}</span></a>
+<a class="sourceLine" id="cb211-212" data-line-number="212"><span class="vs">   average score: </span><span class="sc">${</span><span class="va">r</span>.<span class="va">avg</span>.<span class="at">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span></a>
+<a class="sourceLine" id="cb211-213" data-line-number="213"><span class="vs">   </span><span class="sc">${</span><span class="va">r</span>.<span class="at">numTested</span><span class="sc">}</span><span class="vs"> students in grade </span><span class="sc">${</span><span class="va">r</span>.<span class="at">grade</span><span class="sc">}</span><span class="vs"> in </span><span class="sc">${</span><span class="va">r</span>.<span class="at">year</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-214" data-line-number="214">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb211-215" data-line-number="215"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-216" data-line-number="216"></a>
+<a class="sourceLine" id="cb211-217" data-line-number="217"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb211-218" data-line-number="218">  <span class="at">header</span>(<span class="st">&quot;SCHOOL TEST DATA REPORT&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-219" data-line-number="219">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total students tested:&quot;</span><span class="op">,</span> <span class="at">totalTested</span>(testData))<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-220" data-line-number="220">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Total tested, 4th grade:&quot;</span><span class="op">,</span> <span class="at">totalTestedGrade</span>(testData<span class="op">,</span> <span class="dv">4</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-221" data-line-number="221"></a>
+<a class="sourceLine" id="cb211-222" data-line-number="222">  <span class="at">header</span>(<span class="st">&quot;BEST TEST RESULTS&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-223" data-line-number="223">  <span class="kw">let</span> highest <span class="op">=</span> <span class="at">findHighestAvgScore</span>(testData)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-224" data-line-number="224">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span></a>
+<a class="sourceLine" id="cb211-225" data-line-number="225"><span class="vs">The highest average score results were for the students</span></a>
+<a class="sourceLine" id="cb211-226" data-line-number="226"><span class="vs">in grade </span><span class="sc">${</span><span class="va">highest</span>.<span class="at">grade</span><span class="sc">}</span><span class="vs"> at </span><span class="sc">${</span><span class="va">highest</span>.<span class="at">name</span><span class="sc">}</span><span class="vs"> in </span><span class="sc">${</span><span class="va">highest</span>.<span class="at">year</span><span class="sc">}</span><span class="vs">.</span></a>
+<a class="sourceLine" id="cb211-227" data-line-number="227"></a>
+<a class="sourceLine" id="cb211-228" data-line-number="228"><span class="sc">${</span><span class="va">highest</span>.<span class="at">numTested</span><span class="sc">}</span><span class="vs"> students had an average score of </span><span class="sc">${</span><span class="va">highest</span>.<span class="at">avg</span><span class="sc">}</span><span class="vs">.</span></a>
+<a class="sourceLine" id="cb211-229" data-line-number="229"><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-230" data-line-number="230"></a>
+<a class="sourceLine" id="cb211-231" data-line-number="231">  <span class="at">reportAveragesForFirstCohort</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-232" data-line-number="232">  <span class="at">topPerformers</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-233" data-line-number="233"></a>
+<a class="sourceLine" id="cb211-234" data-line-number="234">  <span class="at">header</span>(<span class="st">&quot;REPORT COMPLETE&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb211-235" data-line-number="235"><span class="op">}</span></a>
+<a class="sourceLine" id="cb211-236" data-line-number="236"></a>
+<a class="sourceLine" id="cb211-237" data-line-number="237"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
 </div>
+</section>
+</section>
+<section id="school-data-exercises" class="level2">
+<h2>School Data Exercises</h2>
+<p>Fork the <a href="https://repl.it/@mcuringa/SchoolData">SchoolData repl</a> <a href="https://repl.it/@mcuringa/SchoolData" class="uri">https://repl.it/@mcuringa/SchoolData</a> to complete these exrcises.</p>
+<ol type="1">
+<li>Write a function using the <strong>search</strong> pattern that finds the finds the highest average test score for a result where at least a minimum number of students took the exam. You can modify <code>findHighestAvgScore</code> so that it has a second parameter, <code>minStudents</code>.</li>
+<li>Using the same <strong>search pattern</strong> write a function that finds the lowest test result, it should also have a parameter for <code>minStudents</code>.</li>
+<li>Use the <strong>filter pattern</strong> to write a function <code>findByBorough(data, boro)</code> that returns an array of test results for schools in borough <code>boro</code>.</li>
+<li>Consider the data given. Write a reporting function (and other necessary code) that explores a problem and reports an interesting result. You may use <code>reportAveragesForFirstCohort</code> as an example for the type of report.</li>
+</ol>
+<section id="bonus-questions-for-1-point-of-extra-credit-each" class="level3">
+<h3>Bonus questions (for 1 point of extra credit each)</h3>
+<ol type="1">
+<li><p>Find the 5 best test results in the data set. Return an array of the test result objects for these schools. There should be a minimum number of students tested to qualify (specified by a function parameter).</p></li>
+<li><p>Write a function <code>schoolAverages(data)</code> that returns an array of test report objects with exactly one object for each school. <code>grade</code> and <code>year</code> should be set to <code>null</code> because they don’t make sense in this summary. <code>numTested</code> should be the total students tested for that school in the given <code>data</code>. <code>level[1-4]</code> should represent the total students score at that level across years and grades. And <code>avg</code> should have the average (1..4) score for all years and grades.</p></li>
+<li><p>Write a function <code>boroAverages(data, year)</code> that returns an array of objects. The objects must have the following properties:</p>
+<ul>
+<li><code>avg</code>: the average test score for the borough (1..4)</li>
+<li><code>numTested</code>: the total of all students tested</li>
+<li><code>boro</code>: the name of the borough</li>
+</ul></li>
+</ol>
 </section>
 </section>
 </section>

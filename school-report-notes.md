@@ -57,10 +57,24 @@ punish schools, teachers, and students; questions over the validity of the measu
 and beliefs that high stakes testing corrupts learning and siphons resources
 from more authentic and valuable educational goals.
 
+The functions annotated in `school-report.js` demonstrate some common
+programming patterns for working with arrays of data, and array traversal ---
+using a `for` loop to iterate over each item in an array. Notice that all of
+the functions that work with the `testData` are **pure functions**. They
+do not have **side effects** --- they don't modify any variables outside
+of the function, only communicating through input function parameters and
+output with the return statement. To make it easier to understand these
+pure functions, each function has a comment header which indicates what
+values and types of data are expected for the function parameters and
+are returned by the return statement.
 
-[View the "Tip Calculator" repl](https://repl.it/@mcuringa/tip-calculator)
+The set of reporting functions at the end of program, however, are not
+pure functions. They provide user output using `console.log`. This
+printing to the console is a side effect of the function.
 
-### Case Study: school-report.js {.schoolReport}
+[View the "School Data Report" repl](https://repl.it/@mcuringa/SchoolData)
+
+### Case Study: school-report.js {.schoolReport .codeNotes}
 
 <aside data-line-number="1">
 
@@ -75,6 +89,19 @@ header were accessed at element `i` of variable `data`, then
 
 </aside>
 
+<aside data-line-number="33">
+
+This is our first introduction to creating our own
+Javascript **objects**. The object literal notation used here
+creates a new object with _curly braces_ (`{}`). Objects consist
+of **key-value pairs**. The **key**, on the left side must be a string
+or valid Javascript identifier. The **value**, after the colon (`:`),
+can be a value of any Javascript type -- a number or string, an object
+like `Date`, an array, even a function. We'll learn more about objects
+and **Object Oriented Programming** (OOP) later in the book.
+
+</aside>
+
 <aside data-line-number="49">
 
 The `import` keyword allows a Javascript file to import
@@ -83,60 +110,136 @@ helps us write modular code and reusable _code libraries_.
 
 </aside>
 
+<aside data-line-number="56">
 
-<aside data-line-number="30">
+`totalTested` returns the number of students who were administered an exam
+in the total data set. This is a simple example of the **counter pattern** ---
+which works like this:
 
-The ``calcTip`` function defines 2 **parameters**:
-`bill` and `pct`. These parameters become
-variables within the **function body**. Line 30 uses
-**arithmetic operators** (multiplication here) to
-calculate a new value and store it in the `tip` **variable**.
-`tip` is converted to a float using the **built-in function**
-`Number.parseFloat`. Finally, the rounded tip amount is returned.
-
+1. initialize the counter variable to zero (line 62)
+2. traverse the array and increment the counter during each loop (line 74)
+3. return the total (line 77)
 
 </aside>
 
-<aside data-line-number="43">
+<aside data-line-number="73">
 
-``askBillAmt`` is a **fruitful function** because
-it has a **return statement**. It uses the
-**built-in function** `window.prompt` to ask for data from the
-user of the program. When this function is called, it returns
-the amount of the bill as a float, because it represents money.
-
-</aside>
-
-<aside data-line-number="61">
-
-``money`` is a small helper function that we
-wrote to re-use the task of formatting numbers
-as currency with a dollar sign and two decimal places.
-It is called 3 times in ``showResults`` with
-different **arguments**.
+`totalTestedGrade` gives an example of the **counter pattern** with a conditional
+check. In this case the `total` is only incremented if a condition is met in
+the loop body during array traversal. This pattern is good to count things
+that match a given set of criteria --- in this case it would allow us to find
+the number of 4th grade students who sat for the ELA exam in the data set.
 
 </aside>
 
 
+<aside data-line-number="98">
 
+`averageTestScores` uses the **counter pattern** with 2 counters to enable us to
+find the average for test scores. To make a real example, we also have a
+**compound Boolean expression** as our criteria for when to increment the
+counters. Because this case study works with real data (not a simplified data
+set curated for the book), we need to add the condition `&& testResults.avg !== NaN`
+to our test. Some of the records in our data set do not have valid averages,
+indicated by `NaN` rather than a float. In those cases, we just skip the record,
+even if the `grade` and `year` match our targets.
 
-<aside data-line-number="70">
+The basic algorithm for finding the mean average of a _set of
+numbers_ is to (1) sum the numbers, (2) divide the sum by the number of items,
+`n`.
 
-``showResults`` defines 3 **parameters** which are used
-to pass in all of the data needed to show the results
-of the tip calculation. Notice that the `console.log` statements
-use the **+ operator** to <abbr title="join together">concatenate</abbr>
-strings. Because we are joining **string literals** with variables of
-type `number`. The ``+`` operator automatically converts the numbers to strings.
+In this function, the _set of numbers_ to sum up are all of the `testResults`
+that match the target `grade` and `year` specified by the function parameters.
+We keep track of this sum in the counter variable, `sum`. Since we don't know
+how many test results meet our criteria before we begin the array traversal,
+we declare a second counter, `numResults`. `numResults` tracks how many items
+`n` we've summed up.
+
+When the loop completes, we find the average by dividing the sum
+by the number of rest results, `sum / numResults`.
 
 </aside>
 
-<aside data-line-number="90">
 
-``main`` is the first function **called** for
-this program. It maintains the executive control of the
-program, calling other functions in sequence and passing
-data between functions. All of the other functions have
-been defined, but are waiting to be called.
+<aside data-line-number="124">
+
+We move away from the counter pattern to look at a
+**search pattern**. `findHighestAvgScore` searches through the array of data to
+locate the highest average test score in the set. Before the loop begins, we
+must declare a result variable (`highestResult` here) that will hold the best
+match for our search term. We iterate through the elements of the array looking
+for the best match for our search result. In this case (and this often works),
+we initialize the result variable to the first item in our array (`data[0]`).
+When we traverse the array, we start at element 1 rather than 0. If, by chance,
+the zeroeth element had the highest score, it will still be return at the end
+of our `for` loop.
+
+`if` the current element in the array (`data[i]`) is a better match for our
+search than the current value of the result variable (`highestResult`), then
+that element becomes the new best match for our search result. Finally, we
+return our result.
+
+Notice that in this case of working with school data, it's possible that
+several schools test results will be tied for the highest average score,
+especially if they scored an average of `4`. The way our algorithm is
+coded the "best match" here will be the first one found. If we changed
+line 139 to be `data[i].avg >= highestResult.avg`, we would return
+the _last_ match found instead. We can't do an **realy return** in this search
+pattern because we must test every element in `data` to see if any has a higher
+score than the current best match.
+
+</aside>
+
+<aside data-line-number="157">
+
+`filterBetterThanLimit` represents a **filter pattern**. The array filter
+patterns works like this:
+
+1. initialize the results array to be an empty array
+2. iterate through the search array and add any items matching the filter
+   criteria to the results array
+3. return the results after the loop completes
+
+In this example, we call the results array `matchingResults`, and we use
+the `limit` function parameter as the condition to see if a data item
+should be included in the results `data[i].avg > limit`.
+
+</aside>
+
+<aside data-line-number="181">
+
+`reportAveragesForFirstCohort` demonstrates how one function
+can be used multiple times with different arguments. This function
+reports the test results of a single cohort of students as they
+travel through the New York City school system. It reports the 4th
+grade results from 2013, the first year the current test format was
+administered, and then reports the results for the same group of
+students in each subsequent year through the 2017-18 academic year.
+
+When the program is run, it indicates that the students improved over
+the time analyzed, scoring on average 2.02 in 2013 and 2.40 in 2017.
+
+</aside>
+
+
+<aside data-line-number="204">
+
+`topPerformers` reports the results of our filtering funcion. It uses
+3.9 as the argument to `limit`, so the results only includes schools
+that had test results greater than 2.9. Because the `results` are an
+array, we traverse the (filtered) array to report the results. The
+`console.log` statement uses a template string with backticks (```)
+to easily format the output. Because we use the current `results` element
+so often in the report, we created an **alias** of the object on line
+210, with the code `let r = results[i];`. This allows us to insert the
+short variable name `r` (for result) easily into our template string.
+
+</aside>
+
+<aside data-line-number="217">
+
+Finally, we define and then call our `main` function to begin the program.
+`main` outputs some of the results directly, and divides some of the more
+complex reporting into distinct functions.
 
 </aside>

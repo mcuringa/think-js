@@ -1,6 +1,6 @@
 
 const caseStudy = (container)=> {
-
+  console.log("adding notes to case study", container);
   const alignNote = (note)=> {
     const n = note.dataset.lineNumber;
     const line = lines[n-1];
