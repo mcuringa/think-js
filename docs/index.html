@@ -3813,7 +3813,7 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <p>When the program is run, it indicates that the students improved over the time analyzed, scoring on average 2.02 in 2013 and 2.40 in 2017.</p>
 </aside>
 <aside data-line-number="204">
-<p><code>topPerformers</code> reports the results of our filtering funcion. It uses 3.9 as the argument to <code>limit</code>, so the results only includes schools that had test results greater than 2.9. Because the <code>results</code> are an array, we traverse the (filtered) array to report the results. The <code>console.log</code> statement uses a template string with backticks (``<code>) to easily format the output. Because we use the current</code>results<code>element so often in the report, we created an **alias** of the object on line 210, with the code</code>let r = results[i];<code>. This allows us to insert the short variable name</code>r` (for result) easily into our template string.</p>
+<p><code>topPerformers</code> reports the results of our filtering funcion. It uses 3.9 as the argument to <code>limit</code>, so the results only includes schools that had test results greater than 2.9. Because the <code>results</code> are an array, we traverse the (filtered) array to report the results. The <code>console.log</code> statement uses a template string with backticks (<code></code> <code>) to easily format the output. Because we use the current</code>results<code>element so often in the report, we created an **alias** of the object on line 210, with the code</code>let r = results[i];<code>. This allows us to insert the short variable name</code>r` (for result) easily into our template string.</p>
 </aside>
 <aside data-line-number="217">
 <p>Finally, we define and then call our <code>main</code> function to begin the program. <code>main</code> outputs some of the results directly, and divides some of the more complex reporting into distinct functions.</p>
@@ -3830,19 +3830,19 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <a class="sourceLine" id="cb211-9" data-line-number="9"><span class="co"> * - id: string, a unique id that has the school district`, boro,</span></a>
 <a class="sourceLine" id="cb211-10" data-line-number="10"><span class="co"> *   and school number,  ex: &quot;01M015&quot;</span></a>
 <a class="sourceLine" id="cb211-11" data-line-number="11"><span class="co"> * - name: string, the full school name, ex:&quot;P.S. 015 Roberto Clemente&quot;</span></a>
-<a class="sourceLine" id="cb211-12" data-line-number="12"><span class="co"> * - grade: integer, the grade level for the test results, in the range 3..8</span></a>
+<a class="sourceLine" id="cb211-12" data-line-number="12"><span class="co"> * - grade: integer, the grade level for the test results, grades 3-8</span></a>
 <a class="sourceLine" id="cb211-13" data-line-number="13"><span class="co"> * - year: integer, the year the test was taken. The data includes all</span></a>
 <a class="sourceLine" id="cb211-14" data-line-number="14"><span class="co"> *   results from  2013-2017</span></a>
 <a class="sourceLine" id="cb211-15" data-line-number="15"><span class="co"> * - numTested: integer, the number of students taking the test at this</span></a>
 <a class="sourceLine" id="cb211-16" data-line-number="16"><span class="co"> *   school-grade-year</span></a>
-<a class="sourceLine" id="cb211-17" data-line-number="17"><span class="co"> * - level1: integer, the number of students scoring a one (1), the lowest level</span></a>
+<a class="sourceLine" id="cb211-17" data-line-number="17"><span class="co"> * - level1: integer, the number of students scoring a one (1), lowest</span></a>
 <a class="sourceLine" id="cb211-18" data-line-number="18"><span class="co"> * - level2: integer, the number of students scoring a two (2)</span></a>
 <a class="sourceLine" id="cb211-19" data-line-number="19"><span class="co"> * - level3: integer, the number of students scoring a three (3)</span></a>
-<a class="sourceLine" id="cb211-20" data-line-number="20"><span class="co"> * - level4: integer, the number of students scoring a four (4), the highest level</span></a>
+<a class="sourceLine" id="cb211-20" data-line-number="20"><span class="co"> * - level4: integer, the number of students scoring a four (4), highest</span></a>
 <a class="sourceLine" id="cb211-21" data-line-number="21"><span class="co"> * - district: integer, the NYC DOE school district, districts are smaller</span></a>
 <a class="sourceLine" id="cb211-22" data-line-number="22"><span class="co"> *   geographic areas consisting of several schools, with their own, more</span></a>
-<a class="sourceLine" id="cb211-23" data-line-number="23"><span class="co"> *   local administration. They are numbered 1-32, with disctrict 75</span></a>
-<a class="sourceLine" id="cb211-24" data-line-number="24"><span class="co"> *   as a citywide special district designed to help students with disabilities</span></a>
+<a class="sourceLine" id="cb211-23" data-line-number="23"><span class="co"> *   local administration. They are numbered 1-32, with disctrict 75 as a</span></a>
+<a class="sourceLine" id="cb211-24" data-line-number="24"><span class="co"> *   citywide special district designed to help students with disabilities</span></a>
 <a class="sourceLine" id="cb211-25" data-line-number="25"><span class="co"> *   and special needs</span></a>
 <a class="sourceLine" id="cb211-26" data-line-number="26"><span class="co"> *   boro: string, one of the five boroughs:</span></a>
 <a class="sourceLine" id="cb211-27" data-line-number="27"><span class="co"> *   Manhattan, Bronx, Brooklyn, Queens, Staten Island</span></a>

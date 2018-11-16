@@ -9,19 +9,19 @@
  * - id: string, a unique id that has the school district`, boro,
  *   and school number,  ex: "01M015"
  * - name: string, the full school name, ex:"P.S. 015 Roberto Clemente"
- * - grade: integer, the grade level for the test results, in the range 3..8
+ * - grade: integer, the grade level for the test results, grades 3-8
  * - year: integer, the year the test was taken. The data includes all
  *   results from  2013-2017
  * - numTested: integer, the number of students taking the test at this
  *   school-grade-year
- * - level1: integer, the number of students scoring a one (1), the lowest level
+ * - level1: integer, the number of students scoring a one (1), lowest
  * - level2: integer, the number of students scoring a two (2)
  * - level3: integer, the number of students scoring a three (3)
- * - level4: integer, the number of students scoring a four (4), the highest level
+ * - level4: integer, the number of students scoring a four (4), highest
  * - district: integer, the NYC DOE school district, districts are smaller
  *   geographic areas consisting of several schools, with their own, more
- *   local administration. They are numbered 1-32, with disctrict 75
- *   as a citywide special district designed to help students with disabilities
+ *   local administration. They are numbered 1-32, with disctrict 75 as a
+ *   citywide special district designed to help students with disabilities
  *   and special needs
  *   boro: string, one of the five boroughs:
  *   Manhattan, Bronx, Brooklyn, Queens, Staten Island
