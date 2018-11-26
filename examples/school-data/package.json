@@ -8,8 +8,8 @@
     "load": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "mxc",
-  "license": "GPL",
+  "author": "",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "csvtojson": "^2.0.8",
     "lodash": "^4.17.11",
