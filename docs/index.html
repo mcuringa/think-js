@@ -486,6 +486,15 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#code-listing-2-school-test-data-report">Code Listing 2: School Test Data Report</a></li>
 <li><a href="#school-data-exercises">School Data Exercises</a></li>
 </ul></li>
+<li><a href="#objects-maps">Objects &amp; Maps</a><ul>
+<li><a href="#keyvalue-pairs">Key:Value Pairs</a></li>
+<li><a href="#map-operations">Map operations</a></li>
+<li><a href="#object-utility-functions">Object utility functions</a></li>
+<li><a href="#aliasing-and-copying">Aliasing and copying</a></li>
+<li><a href="#counting-letters">Counting letters</a></li>
+<li><a href="#glossary-8">Glossary</a></li>
+<li><a href="#exercises-1">Exercises</a></li>
+</ul></li>
 <li><a href="#appendices">Appendices</a><ul>
 <li><a href="#code-templates-solutions-and-examples">Code templates, solutions, and examples</a></li>
 <li><a href="#preface-to-previous-edition">Preface to previous edition</a></li>
@@ -3813,7 +3822,7 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <p>When the program is run, it indicates that the students improved over the time analyzed, scoring on average 2.02 in 2013 and 2.40 in 2017.</p>
 </aside>
 <aside data-line-number="204">
-<p><code>topPerformers</code> reports the results of our filtering funcion. It uses 3.9 as the argument to <code>limit</code>, so the results only includes schools that had test results greater than 2.9. Because the <code>results</code> are an array, we traverse the (filtered) array to report the results. The <code>console.log</code> statement uses a template string with backticks (<code></code> <code>) to easily format the output. Because we use the current</code>results<code>element so often in the report, we created an **alias** of the object on line 210, with the code</code>let r = results[i];<code>. This allows us to insert the short variable name</code>r` (for result) easily into our template string.</p>
+<p><code>topPerformers</code> reports the results of our filtering funcion. It uses 3.9 as the argument to <code>limit</code>, so the results only includes schools that had test results greater than 2.9. Because the <code>results</code> are an array, we traverse the (filtered) array to report the results. The <code>console.log</code> statement uses a template string with backticks to easily format the output. Because we use the current <code>results</code> element so often in the report, we created an <strong>alias</strong> of the object on line 210, with the code <code>let r = results[i];</code>. This allows us to insert the short variable name <code>r</code> (for result) easily into our template string.</p>
 </aside>
 <aside data-line-number="217">
 <p>Finally, we define and then call our <code>main</code> function to begin the program. <code>main</code> outputs some of the results directly, and divides some of the more complex reporting into distinct functions.</p>
@@ -4083,6 +4092,210 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 </section>
 </section>
 </section>
+<section id="objects-maps" class="level1">
+<h1>Objects &amp; Maps</h1>
+<section id="keyvalue-pairs" class="level2">
+<h2>Key:Value Pairs</h2>
+<p>So far we have looked at sequential data types — strings and arrays — which use integers as indices to access the values they contain.</p>
+<p><strong>Maps</strong> are yet another kind of compound type. It is conventional to use Objects as the <strong>mapping type</strong> in Javascript, as we have seen in the <em>School Data</em> case study. Javascript also offers a built-in [Map data type] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), but we will stick with the Object convention for this chapter.</p>
+<p>Mapped data structures <em>map</em> <strong>keys</strong> to <strong>values</strong>. Values can be any type (heterogeneous), just like the elements of an array. Sometimes maps are called <em>associative arrays</em> since they associate a key with a value. When using objects as maps (as we will for most of this chapter), <em>keys</em> should be strings. The <code>Map</code> object in Javascript allows keys to be of any type.</p>
+<p>As an example, we will create a map to translate English words into Spanish. For this map, the keys are strings.</p>
+<p>One way to create a map is to start with the empty object and add <strong>key:value pairs</strong>. The empty object is denoted by <code>{}</code>:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb212-1" data-line-number="1">⠕ <span class="kw">let</span> eng2sp <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb212-2" data-line-number="2">⠕ eng2sp[<span class="st">&quot;one&quot;</span>] <span class="op">=</span> <span class="st">&quot;uno&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb212-3" data-line-number="3">⠕ eng2sp[<span class="st">&quot;two&quot;</span>] <span class="op">=</span> <span class="st">&quot;dos&quot;</span><span class="op">;</span></a></code></pre></div>
+<p>The first assignment creates a map named <code>eng2sp</code>; the other assignments add new key:value pairs to the map. We can print the current value of the map in the usual way:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb213-1" data-line-number="1">⠕ <span class="va">console</span>.<span class="at">log</span>(eng2sp)<span class="op">;</span></a>
+<a class="sourceLine" id="cb213-2" data-line-number="2"><span class="op">{</span> <span class="dt">one</span><span class="op">:</span> <span class="st">&#39;uno&#39;</span><span class="op">,</span> <span class="dt">two</span><span class="op">:</span> <span class="st">&#39;dos&#39;</span> <span class="op">}</span></a></code></pre></div>
+<p>The key:value pairs of the map are separated by commas. Each pair contains a key and a value separated by a colon.</p>
+<aside id="hashing">
+<p><strong>Hashing</strong></p>
+<p>The order of the pairs may not be what was expected. Javascript object don’t guarantee the that keys are returned in the same order they’re inserted (<code>Maps</code>’s do, however). Javascript uses complex algorithms, designed for very fast access, to determine where the key:value pairs are stored in a map. For our purposes we can think of this ordering as unpredictable.</p>
+<p>You also might wonder why we use maps at all when the same concept of mapping a key to a value could be implemented using an array of arrays with key:value pairs:</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb214-1" data-line-number="1">⠕ <span class="kw">let</span> eng2spArray <span class="op">=</span> []<span class="op">;</span></a>
+<a class="sourceLine" id="cb214-2" data-line-number="2">⠕ eng2sp[<span class="dv">0</span>] <span class="op">=</span> [<span class="st">&quot;one&quot;</span><span class="op">,</span> <span class="st">&quot;uno&quot;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb214-3" data-line-number="3">⠕ eng2sp[<span class="dv">1</span>] <span class="op">=</span> [<span class="st">&quot;two&quot;</span><span class="op">,</span> <span class="st">&quot;dos&quot;</span>]<span class="op">;</span></a></code></pre></div>
+<p>In this example, the zeroeth element of the nested arrays contains the key and the first element contains the value. We could retrieve the key:value pair by iterating through the array and searching for a key.</p>
+<p>Maps provide very fast lookup by keys by implementing a technique called hashing, which allows us to access a value very quickly. By contrast, the array of arrays implementation above is slow. If we wanted to find a value associated with a key, we would have to iterate over every element, checking the 0th element. What if the key wasn’t even in the list? We would have to get to the end of it to find out.</p>
+</aside>
+<p>Another way to create a map is to provide a list of key:value pairs using the same syntax as the previous output:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb215-1" data-line-number="1">⠕ <span class="kw">let</span> eng2sp <span class="op">=</span> <span class="op">{</span><span class="st">&quot;one&quot;</span><span class="op">:</span> <span class="st">&quot;uno&quot;</span><span class="op">,</span> <span class="st">&quot;two&quot;</span><span class="op">:</span> <span class="st">&quot;dos&quot;</span><span class="op">,</span> <span class="st">&quot;three&quot;</span><span class="op">:</span> <span class="st">&quot;tres&quot;</span><span class="op">};</span></a></code></pre></div>
+<p>It doesn’t matter what order we write the pairs. The values in a map are accessed with keys, not with indices, so there is no need to care about ordering.</p>
+<p>Here is how we use a key to look up the corresponding value:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb216-1" data-line-number="1">⠕ <span class="va">console</span>.<span class="at">log</span>(eng2sp[<span class="st">&quot;two&quot;</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2">dos</a></code></pre></div>
+<p>The key <code>&quot;two&quot;</code> yields the value <code>&quot;dos&quot;</code>.</p>
+<p>Arrays and strings have been called <em>sequences</em>, because their items occur in order. The map is the first compound type that we’ve seen that is not a sequence, so we can’t index or slice a map.</p>
+</section>
+<section id="map-operations" class="level2">
+<h2>Map operations</h2>
+<p>The <code>delete</code> statement removes a key:value pair from a map. For example, the following map contains the names of various fruits and the number of each fruit in stock:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb217-1" data-line-number="1">⠕ <span class="kw">let</span> inventory <span class="op">=</span> <span class="op">{</span><span class="st">&quot;apples&quot;</span><span class="op">:</span> <span class="dv">430</span><span class="op">,</span> <span class="st">&quot;bananas&quot;</span><span class="op">:</span> <span class="dv">312</span><span class="op">,</span> <span class="st">&quot;oranges&quot;</span><span class="op">:</span> <span class="dv">525</span><span class="op">,</span> <span class="st">&quot;pears&quot;</span><span class="op">:</span> <span class="dv">217</span><span class="op">};</span>   </a>
+<a class="sourceLine" id="cb217-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(inventory)<span class="op">;</span></a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="op">{</span> <span class="dt">apples</span><span class="op">:</span> <span class="dv">430</span><span class="op">,</span> <span class="dt">bananas</span><span class="op">:</span> <span class="dv">312</span><span class="op">,</span> <span class="dt">oranges</span><span class="op">:</span> <span class="dv">525</span><span class="op">,</span> <span class="dt">pears</span><span class="op">:</span> <span class="dv">217</span> <span class="op">}</span></a></code></pre></div>
+<p>If someone buys all of the pears, we can remove the entry from the map:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb218-1" data-line-number="1">⠕ <span class="kw">delete</span> inventory[<span class="st">&quot;pears&quot;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb218-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(inventory)<span class="op">;</span></a>
+<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="op">{</span> <span class="dt">apples</span><span class="op">:</span> <span class="dv">430</span><span class="op">,</span> <span class="dt">bananas</span><span class="op">:</span> <span class="dv">312</span><span class="op">,</span> <span class="dt">oranges</span><span class="op">:</span> <span class="dv">525</span> <span class="op">}</span></a></code></pre></div>
+<p>Or if we’re expecting more pears soon, we might just change the value associated with pears:</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb219-1" data-line-number="1">⠕ inventory[<span class="st">&quot;pears&quot;</span>] <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb219-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(inventory)<span class="op">;</span></a>
+<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="op">{</span> <span class="dt">apples</span><span class="op">:</span> <span class="dv">430</span><span class="op">,</span> <span class="dt">bananas</span><span class="op">:</span> <span class="dv">312</span><span class="op">,</span> <span class="dt">oranges</span><span class="op">:</span> <span class="dv">525</span><span class="op">,</span> <span class="dt">pears</span><span class="op">:</span> <span class="dv">0</span> <span class="op">}</span></a></code></pre></div>
+<p>A new shipment of bananas arriving could be handled like this:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb220-1" data-line-number="1">⠕ inventory[<span class="st">&quot;bananas&quot;</span>] <span class="op">+=</span> <span class="dv">200</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb220-2" data-line-number="2">⠕ <span class="va">console</span>.<span class="at">log</span>(inventory)<span class="op">;</span></a>
+<a class="sourceLine" id="cb220-3" data-line-number="3">inventory[<span class="st">&quot;bananas&quot;</span>] <span class="op">+=</span> <span class="dv">200</span></a></code></pre></div>
+<aside id="map-dot-notation">
+<p><strong>Dot Notation</strong></p>
+<p>All objects in Javascript are mapped data types (associative arrays), and the functions and properties of the object are <em>values</em> associated with the object by its <em>keys</em>. So, <code>inventory.bananas</code> is equivalent to <code>inventory[&quot;bananas&quot;]</code>. Often, it is easier to read and write Javascript using “dot notation” — accessing the function or property by the <code>.</code> symbol. Note, however that only valid Javascript identifiers can be used via dot notation, where as any string can be used as a key using bracket notation.</p>
+<p><code>inventory.date of next delivery</code> produces an error, where <code>inventory[&quot;date of next delivery&quot;]</code> is valid Javascript code.</p>
+</aside>
+</section>
+<section id="object-utility-functions" class="level2">
+<h2>Object utility functions</h2>
+<p>The built in <code>Object</code> library contains many useful functions for working with objects as map datatypes.</p>
+<p>We can use <code>Object.keys()</code> to return an array of all of the keys in a map. Using the keys, we can <em>iterate</em> through the keys and values in our map.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="kw">let</span> eng2sp <span class="op">=</span> <span class="op">{</span><span class="st">&quot;one&quot;</span><span class="op">:</span> <span class="st">&quot;uno&quot;</span><span class="op">,</span> <span class="st">&quot;two&quot;</span><span class="op">:</span> <span class="st">&quot;dos&quot;</span><span class="op">,</span> <span class="st">&quot;three&quot;</span><span class="op">:</span> <span class="st">&quot;tres&quot;</span><span class="op">};</span></a>
+<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="kw">let</span> keys <span class="op">=</span> <span class="va">Object</span>.<span class="at">keys</span>(eng2sp)<span class="op">;</span></a>
+<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">keys</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb221-4" data-line-number="4">  <span class="kw">let</span> k <span class="op">=</span> keys[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb221-5" data-line-number="5">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Got key&quot;</span><span class="op">,</span> k<span class="op">,</span> <span class="st">&quot;which maps to value&quot;</span><span class="op">,</span> eng2sp[k])<span class="op">;</span></a>
+<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="op">}</span></a>
+<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="va">console</span>.<span class="at">log</span>(keys)<span class="op">;</span></a></code></pre></div>
+<p>This produces this output:</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb222-1" data-line-number="1">Got key one which maps to value uno</a>
+<a class="sourceLine" id="cb222-2" data-line-number="2">Got key two which maps to value dos</a>
+<a class="sourceLine" id="cb222-3" data-line-number="3">Got key three which maps to value tres</a>
+<a class="sourceLine" id="cb222-4" data-line-number="4">[ <span class="st">&#39;one&#39;</span><span class="op">,</span> <span class="st">&#39;two&#39;</span><span class="op">,</span> <span class="st">&#39;three&#39;</span> ]</a></code></pre></div>
+<p>It is so common to iterate over the keys in a map that Javascript provides a special syntax for this loop.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> k <span class="kw">in</span> eng2sp) <span class="op">{</span></a>
+<a class="sourceLine" id="cb223-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Got key&quot;</span><span class="op">,</span> k)<span class="op">;</span></a>
+<a class="sourceLine" id="cb223-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>The <code>Object.values()</code> function is similar to <code>keys()</code>; it returns an array containing all of the map’s objects:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb224-1" data-line-number="1">⠕ <span class="va">Object</span>.<span class="at">values</span>(eng2sp)<span class="op">;</span></a>
+<a class="sourceLine" id="cb224-2" data-line-number="2"><span class="op">=&gt;</span> [ <span class="st">&#39;uno&#39;</span><span class="op">,</span> <span class="st">&#39;dos&#39;</span><span class="op">,</span> <span class="st">&#39;tres&#39;</span> ]</a></code></pre></div>
+<p>The <code>Object.entries()</code> function returns an array of key:value pair arrays. ~~~~~~~~~~~~~~~~~~~~~~~~~~<del>{.javascript} ⠕ Object.entries(eng2sp); [ [ ‘one’, ‘uno’ ], [ ‘two’, ‘dos’ ], [ ‘three’, ‘tres’ ] ]</del>~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<p>Combining <code>Object.entries()</code> with a Javascript syntax for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring assignment</a>, we can easily iterate over the keys and values of a map.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> [k<span class="op">,</span> v] of <span class="va">Object</span>.<span class="at">entries</span>(eng2sp)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb225-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(k<span class="op">,</span> v)<span class="op">;</span></a>
+<a class="sourceLine" id="cb225-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<p>This produces:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb226-1" data-line-number="1">one uno</a>
+<a class="sourceLine" id="cb226-2" data-line-number="2">two dos</a>
+<a class="sourceLine" id="cb226-3" data-line-number="3">three tres</a></code></pre></div>
+<p>This simple example introduces two new Javascript structures. <strong>Destructuring</strong> takes the values of an array on the right hand of the assignment operator and assigns them to multiple individual variables on the left hand side of the operation. <code>let [a, b] = [1, 2]</code> creates two new variables, <code>a</code> and <code>b</code> with the values <code>1</code> and <code>2</code> respectively.</p>
+<p>We also use the special <strong>for…of</strong> syntax for this loop. This is a compact form of our usual array iteration loop, however we don’t use a loop index. Other than iterating through key:value pairs of maps, we will use the standard for loop for array iteration. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">You can read more about for…of in the docs.</a></p>
+<p>If we try to access a key that isn’t in our map, Javascript yields the special <code>undefined</code> value.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb227-1" data-line-number="1">⠕ eng2sp[<span class="st">&quot;one&quot;</span>]</a>
+<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="st">&#39;uno&#39;</span></a>
+<a class="sourceLine" id="cb227-3" data-line-number="3">⠕ <span class="st">&quot;six&quot;</span> <span class="kw">in</span> eng2sp</a>
+<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="kw">undefined</span></a></code></pre></div>
+<p>Later in the chapter we will see some examples where we use this technique to determine if we should update an existing entry in a map or create a new entry.</p>
+</section>
+<section id="aliasing-and-copying" class="level2">
+<h2>Aliasing and copying</h2>
+<p>As in the case of arrays, because maps are mutable, we need to be aware of aliasing. Whenever two variables refer to the same object, changes to one affect the other.</p>
+<p>If we want to modify a map and keep a copy of the original, use the <code>copy</code> method. For example, <code>opposites</code> is a map that contains pairs of opposites:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb228-1" data-line-number="1">⠕ <span class="kw">let</span> opposites <span class="op">=</span> <span class="op">{</span><span class="st">&quot;up&quot;</span><span class="op">:</span> <span class="st">&quot;down&quot;</span><span class="op">,</span> <span class="st">&quot;right&quot;</span><span class="op">:</span> <span class="st">&quot;wrong&quot;</span><span class="op">,</span> <span class="st">&quot;yes&quot;</span><span class="op">:</span> <span class="st">&quot;no&quot;</span><span class="op">};</span></a>
+<a class="sourceLine" id="cb228-2" data-line-number="2">⠕ <span class="kw">let</span> alias <span class="op">=</span> opposites<span class="op">;</span></a>
+<a class="sourceLine" id="cb228-3" data-line-number="3">⠕ <span class="kw">let</span> copy <span class="op">=</span> <span class="va">Object</span>.<span class="at">assign</span>(opposites)<span class="op">;</span>  <span class="co">// a shallow copy</span></a></code></pre></div>
+<p><code>alias</code> and <code>opposites</code> refer to the same object; <code>copy</code> refers to a fresh copy of the same map. If we modify <code>alias</code>, <code>opposites</code> is also changed:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb229-1" data-line-number="1">⠕ alias[<span class="st">&quot;right&quot;</span>] <span class="op">=</span> <span class="st">&quot;left&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb229-2" data-line-number="2">⠕ opposites[<span class="st">&quot;right&quot;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb229-3" data-line-number="3"><span class="st">&#39;left&#39;</span></a></code></pre></div>
+<p>If we modify <code>copy</code>, <code>opposites</code> is unchanged:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb230-1" data-line-number="1">⠕ copy[<span class="st">&quot;right&quot;</span>] <span class="op">=</span> <span class="st">&quot;privilege&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb230-2" data-line-number="2">⠕ opposites[<span class="st">&quot;right&quot;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb230-3" data-line-number="3"><span class="st">&#39;left&#39;</span></a></code></pre></div>
+</section>
+<section id="counting-letters" class="level2">
+<h2>Counting letters</h2>
+<p>In the exercises in in the Strings chapter, we wrote a function that counted the number of occurrences of vowels in a string. A more general version of this problem is to form a frequency table of the letters in the string, that is, how many times each letter appears.</p>
+<p>Such a frequency table might be useful for compressing a text file. Because different letters appear with different frequencies, we can compress a file by using shorter codes for common letters and longer codes for letters that appear less frequently.</p>
+<p>Maps provide an elegant way to generate a frequency table:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">let</span> letterCounts <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="kw">let</span> word <span class="op">=</span> <span class="st">&quot;Mississippi&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb231-3" data-line-number="3">word <span class="op">=</span> <span class="va">word</span>.<span class="at">toLowerCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb231-4" data-line-number="4"><span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">word</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb231-5" data-line-number="5">  <span class="kw">let</span> letter <span class="op">=</span> word[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb231-6" data-line-number="6">  <span class="cf">if</span>(letterCounts[letter]) <span class="op">{</span></a>
+<a class="sourceLine" id="cb231-7" data-line-number="7">    letterCounts[letter]<span class="op">++;</span></a>
+<a class="sourceLine" id="cb231-8" data-line-number="8">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb231-9" data-line-number="9">  <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb231-10" data-line-number="10">    letterCounts[letter] <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb231-11" data-line-number="11">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb231-12" data-line-number="12"><span class="op">}</span></a>
+<a class="sourceLine" id="cb231-13" data-line-number="13"><span class="va">console</span>.<span class="at">log</span>(letterCounts)<span class="op">;</span></a></code></pre></div>
+<p>Outputs: ~~~~~~~~~~~~~~~~~~~~~~~~~~<del>{.javascript} { M: 1, i: 4, s: 4, p: 2 }</del>~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<p>We start with an empty map. For each letter in the string, we find the current count (possibly zero) and increment it. At the end, the map contains pairs of letters and their frequencies. We use a Boolean <code>if</code>/<code>else</code> to determine if the key exists in our map. <em>If the key exists</em> we increment the count, <em>else</em> we assign an initial value of 1 to that key. Note that we call <code>toLowerCase()</code> on our string because keys, as you should expect, are <em>case-sensitive</em>.</p>
+<p>It might be more appealing to display the frequency table in alphabetical order. We can do that with the <code>Object.keys()</code> function in the Object library and then calling <code>sort()</code> on our array of keys. We can add this code to our example above in order to print out the frequency map of letters in alphabetical order.</p>
+<div class="sourceCode" id="cb232" data-startFrom="15"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb232-15" data-line-number="15"><span class="kw">let</span> keys <span class="op">=</span> <span class="va">Object</span>.<span class="at">keys</span>(letterCounts)<span class="op">;</span></a>
+<a class="sourceLine" id="cb232-16" data-line-number="16"><span class="va">keys</span>.<span class="at">sort</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb232-17" data-line-number="17"><span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">keys</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb232-18" data-line-number="18">  <span class="kw">let</span> letter <span class="op">=</span> keys[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb232-19" data-line-number="19">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span><span class="sc">${</span>letter<span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>letterCounts[letter]<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb232-20" data-line-number="20"><span class="op">}</span></a></code></pre></div>
+<p>See the interactive example online at <a href="https://repl.it/@mcuringa/MapLetterFrequency" class="uri">https://repl.it/@mcuringa/MapLetterFrequency</a>.</p>
+</section>
+<section id="glossary-8" class="level2">
+<h2>Glossary</h2>
+<dl>
+<dt>map</dt>
+<dd>A collection of key:value pairs that maps from keys to values. The keys should be a string, and the associated value can be of any type.
+</dd>
+<dt>immutable data value</dt>
+<dd>A data value which cannot be modified. Assignments to elements or slices (sub-parts) of immutable values cause a runtime error.
+</dd>
+<dt>key</dt>
+<dd>A data item that is <em>mapped to</em> a value in a map. Keys are used to look up values in a map. Each key must be unique across the map.
+</dd>
+<dt>key:value pair</dt>
+<dd>One of the pairs of items in a map. Values are looked up in a map by key.
+</dd>
+<dt>mapping type</dt>
+<dd>A mapping type is a data type comprised of a collection of keys and associated values. Javascript’s objects are used as mapping types in this chapter. Objects implement the <a href="http://en.wikipedia.org/wiki/Associative_array">associative array</a> abstract data type.
+</dd>
+<dt>mutable data value</dt>
+<dd>A data value which can be modified. The types of all mutable values are compound types. Lists and dictionaries are mutable; strings and tuples are not.
+</dd>
+</dl>
+</section>
+<section id="exercises-1" class="level2">
+<h2>Exercises</h2>
+<ol>
+<li><p>Write a program that reads a string and returns a table of the letters of the alphabet in alphabetical order which occur in the string together with the number of times each letter occurs. Case should be ignored. A sample output of the program when the user enters the data “ThiS is String with Upper and lower case Letters”, would look this this:</p>
+<pre><code>a  2
+c  1
+d  1
+e  5
+g  1
+h  2
+i  4
+l  2
+n  2
+o  1
+p  2
+r  4
+s  5
+t  5
+u  1
+w  2</code></pre></li>
+<li><p>Write a program called <code>alice_words.py</code> that creates a text file named <code>alice_words.txt</code> containing an alphabetical listing of all the words, and the number of times each occurs, in the text version of <code>Alice's Adventures in Wonderland</code>. (You can obtain a free plain text version of the book, along with many others, from http://www.gutenberg.org.) The first 10 lines of your output file should look something like this:</p>
+<pre><code> Word              Count
+ =======================
+ a                 631
+ a-piece           1
+ abide             1
+ able              1
+ about             94
+ above             3
+ absence           1
+ absurd            2</code></pre>
+<p>How many times does the word <code>alice</code> occur in the book?</p></li>
+<li><p>What is the longest word in Alice in Wonderland? How many characters does it have?</p></li>
+</ol>
+</section>
+</section>
 <section id="appendices" class="level1">
 <h1>Appendices</h1>
 <section id="code-templates-solutions-and-examples" class="level2">
@@ -4170,15 +4383,15 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <h2>Introducing programming with Python</h2>
 <p>The process of translating and using <em>How to Think Like a Computer Scientist</em> for the past two years has confirmed Python’s suitability for teaching beginning students. Python greatly simplifies programming examples and makes important programming ideas easier to teach.</p>
 <p>The first example from the text illustrates this point. It is the traditional hello, world program, which in the Java version of the book looks like this:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="kw">class</span> Hello</a>
-<a class="sourceLine" id="cb212-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb212-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
-<a class="sourceLine" id="cb212-4" data-line-number="4">    {</a>
-<a class="sourceLine" id="cb212-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
-<a class="sourceLine" id="cb212-6" data-line-number="6">    }</a>
-<a class="sourceLine" id="cb212-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">class</span> Hello</a>
+<a class="sourceLine" id="cb235-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb235-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
+<a class="sourceLine" id="cb235-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb235-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
+<a class="sourceLine" id="cb235-6" data-line-number="6">    }</a>
+<a class="sourceLine" id="cb235-7" data-line-number="7">}</a></code></pre></div>
 <p>in the Python version it becomes:</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
 <p>Even though this is a trivial example, the advantages of Python stand out. Yorktown’s Computer Science I course has no prerequisites, so many of the students seeing this example are looking at their first program. Some of them are undoubtedly a little nervous, having heard that computer programming is difficult to learn. The Java version has always forced me to choose between two unsatisfying options: either to explain the <code>class Hello</code>, <code>public static void main</code>, <code>String[] args</code>, <code>{</code>, and <code>}</code>, statements and risk confusing or intimidating some of the students right at the start, or to tell them, Just don’t worry about all of that stuff now; we will talk about it later, and risk the same thing. The educational objectives at this point in the course are to introduce students to the idea of a programming statement and to get them to write their first program, thereby introducing them to the programming environment. The Python program has exactly what is needed to do these things, and nothing more.</p>
 <p>Comparing the explanatory text of the program in each version of the book further illustrates what this means to the beginning student. There are seven paragraphs of explanation of Hello, world! in the Java version; in the Python version, there are only a few sentences. More importantly, the missing six paragraphs do not deal with the big ideas in computer programming but with the minutia of Java syntax. I found this same thing happening throughout the book. Whole paragraphs simply disappear from the Python version of the text because Python’s much clearer syntax renders them unnecessary.</p>
 <p>Using a very high-level language like Python allows a teacher to postpone talking about low-level details of the machine until students have the background that they need to better make sense of the details. It thus creates the ability to put first things first pedagogically. One of the best examples of this is the way in which Python handles variables. In Java a variable is a name for a place that holds a value if it is a built-in type, and a reference to an object if it is not. Explaining this distinction requires a discussion of how the computer stores data. Thus, the idea of a variable is bound up with the hardware of the machine. The powerful and fundamental concept of a variable is already difficult enough for beginning students (in both computer science and algebra). Bytes and addresses do not help the matter. In Python a variable is a name that refers to a thing. This is a far more intuitive concept for beginning students and is much closer to the meaning of variable that they learned in their math courses. I had much less difficulty teaching variables this year than I did in the past, and I spent less time helping students with problems using them.</p>
@@ -4222,23 +4435,23 @@ As things move along, we use PyGame for more advanced graphics.</li>
 <li>I have tried to push more object-oriented notions earlier, without asking students to synthesize objects or write their own classes. So, for example, in the chapter about the turtle, we create multiple instances of turtles, talk about their attributes and state (color, position, etc), and we favour method-call style to move them around, i.e. <code>tess.forward(100)</code>. Similarly, when we use random numbers, we avoid the “hidden singleton generator” in the random module — we prefer to create an instance of a generator, and invoke methods on the instance.</li>
 <li>The ease of constructing lists and the <code>for</code> loop seem to be winners in Python, so rather than use the traditional command-line <code>input</code> for data, I’ve favoured using loops and lists right up front, like this:</li>
 </ul>
-<div class="sourceCode" id="cb214"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb214-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
-<a class="sourceLine" id="cb214-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
-<a class="sourceLine" id="cb214-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
-<a class="sourceLine" id="cb214-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb237-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
+<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
+<a class="sourceLine" id="cb237-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
+<a class="sourceLine" id="cb237-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
 <p>This also means that I bumped <code>range</code> up for early exposure.<br />
 I envisage that over time we’ll see more opportunities to exploit “early lists, early iteration” in its most simple form.</p>
 <ul>
 <li>I dumped <code>doctest</code>: it is too quirky for my liking. For example, it fails a test if the spacing between list elements is not precisely the same as the output string, or if Python prints a string with single quotes, but you wrote up the test case with double quotes. Cases like this also confused students (and instructors) quite badly:</li>
 </ul>
-<div class="sourceCode" id="cb215"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb215-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
-<a class="sourceLine" id="cb215-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb215-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
-<a class="sourceLine" id="cb215-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
-<a class="sourceLine" id="cb215-6" data-line-number="6"><span class="co">    9</span></a>
-<a class="sourceLine" id="cb215-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb215-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb238-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
+<a class="sourceLine" id="cb238-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb238-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
+<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
+<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="co">    9</span></a>
+<a class="sourceLine" id="cb238-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb238-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
 <p>If you can explain the difference in scope rules and lifetimes between the parameter <code>xs</code> and the doctest variable <code>xs</code> elegantly, please let me know. Yes, I know doctest creates its own scope behind our back, but it is exactly this black magic that we’re trying to avoid.<br />
 From the usual indentation rules, also looks like the doctests are nested inside the function scope, but they are not. Students thought that the parameter had been given its value by the assignment to <code>xs</code> in the doctest!</p>
 <p>I also think that keeping the test suite separate from the functions under test leads to a cleaner relationship between caller and callee, and gives a better chance of getting argument passing / parameter concepts taught accurately.</p>
