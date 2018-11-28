@@ -493,7 +493,6 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#aliasing-and-copying">Aliasing and copying</a></li>
 <li><a href="#counting-letters">Counting letters</a></li>
 <li><a href="#glossary-8">Glossary</a></li>
-<li><a href="#exercises-1">Exercises</a></li>
 </ul></li>
 <li><a href="#appendices">Appendices</a><ul>
 <li><a href="#code-templates-solutions-and-examples">Code templates, solutions, and examples</a></li>
@@ -4244,7 +4243,7 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <dd>A collection of key:value pairs that maps from keys to values. The keys should be a string, and the associated value can be of any type.
 </dd>
 <dt>immutable data value</dt>
-<dd>A data value which cannot be modified. Assignments to elements or slices (sub-parts) of immutable values cause a runtime error.
+<dd>A data value which cannot be modified. Assignments to immutable datatypes have no effect or cause a runtime error.
 </dd>
 <dt>key</dt>
 <dd>A data item that is <em>mapped to</em> a value in a map. Keys are used to look up values in a map. Each key must be unique across the map.
@@ -4256,44 +4255,9 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <dd>A mapping type is a data type comprised of a collection of keys and associated values. Javascript’s objects are used as mapping types in this chapter. Objects implement the <a href="http://en.wikipedia.org/wiki/Associative_array">associative array</a> abstract data type.
 </dd>
 <dt>mutable data value</dt>
-<dd>A data value which can be modified. The types of all mutable values are compound types. Lists and dictionaries are mutable; strings and tuples are not.
+<dd>A data value which can be modified. The types of all mutable values are compound types. Arrays and maps are mutable; strings and numbers are not.
 </dd>
 </dl>
-</section>
-<section id="exercises-1" class="level2">
-<h2>Exercises</h2>
-<ol>
-<li><p>Write a program that reads a string and returns a table of the letters of the alphabet in alphabetical order which occur in the string together with the number of times each letter occurs. Case should be ignored. A sample output of the program when the user enters the data “ThiS is String with Upper and lower case Letters”, would look this this:</p>
-<pre><code>a  2
-c  1
-d  1
-e  5
-g  1
-h  2
-i  4
-l  2
-n  2
-o  1
-p  2
-r  4
-s  5
-t  5
-u  1
-w  2</code></pre></li>
-<li><p>Write a program called <code>alice_words.py</code> that creates a text file named <code>alice_words.txt</code> containing an alphabetical listing of all the words, and the number of times each occurs, in the text version of <code>Alice's Adventures in Wonderland</code>. (You can obtain a free plain text version of the book, along with many others, from http://www.gutenberg.org.) The first 10 lines of your output file should look something like this:</p>
-<pre><code> Word              Count
- =======================
- a                 631
- a-piece           1
- abide             1
- able              1
- about             94
- above             3
- absence           1
- absurd            2</code></pre>
-<p>How many times does the word <code>alice</code> occur in the book?</p></li>
-<li><p>What is the longest word in Alice in Wonderland? How many characters does it have?</p></li>
-</ol>
 </section>
 </section>
 <section id="appendices" class="level1">
@@ -4383,15 +4347,15 @@ w  2</code></pre></li>
 <h2>Introducing programming with Python</h2>
 <p>The process of translating and using <em>How to Think Like a Computer Scientist</em> for the past two years has confirmed Python’s suitability for teaching beginning students. Python greatly simplifies programming examples and makes important programming ideas easier to teach.</p>
 <p>The first example from the text illustrates this point. It is the traditional hello, world program, which in the Java version of the book looks like this:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">class</span> Hello</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
-<a class="sourceLine" id="cb235-4" data-line-number="4">    {</a>
-<a class="sourceLine" id="cb235-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
-<a class="sourceLine" id="cb235-6" data-line-number="6">    }</a>
-<a class="sourceLine" id="cb235-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="kw">class</span> Hello</a>
+<a class="sourceLine" id="cb233-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb233-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
+<a class="sourceLine" id="cb233-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb233-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
+<a class="sourceLine" id="cb233-6" data-line-number="6">    }</a>
+<a class="sourceLine" id="cb233-7" data-line-number="7">}</a></code></pre></div>
 <p>in the Python version it becomes:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
 <p>Even though this is a trivial example, the advantages of Python stand out. Yorktown’s Computer Science I course has no prerequisites, so many of the students seeing this example are looking at their first program. Some of them are undoubtedly a little nervous, having heard that computer programming is difficult to learn. The Java version has always forced me to choose between two unsatisfying options: either to explain the <code>class Hello</code>, <code>public static void main</code>, <code>String[] args</code>, <code>{</code>, and <code>}</code>, statements and risk confusing or intimidating some of the students right at the start, or to tell them, Just don’t worry about all of that stuff now; we will talk about it later, and risk the same thing. The educational objectives at this point in the course are to introduce students to the idea of a programming statement and to get them to write their first program, thereby introducing them to the programming environment. The Python program has exactly what is needed to do these things, and nothing more.</p>
 <p>Comparing the explanatory text of the program in each version of the book further illustrates what this means to the beginning student. There are seven paragraphs of explanation of Hello, world! in the Java version; in the Python version, there are only a few sentences. More importantly, the missing six paragraphs do not deal with the big ideas in computer programming but with the minutia of Java syntax. I found this same thing happening throughout the book. Whole paragraphs simply disappear from the Python version of the text because Python’s much clearer syntax renders them unnecessary.</p>
 <p>Using a very high-level language like Python allows a teacher to postpone talking about low-level details of the machine until students have the background that they need to better make sense of the details. It thus creates the ability to put first things first pedagogically. One of the best examples of this is the way in which Python handles variables. In Java a variable is a name for a place that holds a value if it is a built-in type, and a reference to an object if it is not. Explaining this distinction requires a discussion of how the computer stores data. Thus, the idea of a variable is bound up with the hardware of the machine. The powerful and fundamental concept of a variable is already difficult enough for beginning students (in both computer science and algebra). Bytes and addresses do not help the matter. In Python a variable is a name that refers to a thing. This is a far more intuitive concept for beginning students and is much closer to the meaning of variable that they learned in their math courses. I had much less difficulty teaching variables this year than I did in the past, and I spent less time helping students with problems using them.</p>
@@ -4435,23 +4399,23 @@ As things move along, we use PyGame for more advanced graphics.</li>
 <li>I have tried to push more object-oriented notions earlier, without asking students to synthesize objects or write their own classes. So, for example, in the chapter about the turtle, we create multiple instances of turtles, talk about their attributes and state (color, position, etc), and we favour method-call style to move them around, i.e. <code>tess.forward(100)</code>. Similarly, when we use random numbers, we avoid the “hidden singleton generator” in the random module — we prefer to create an instance of a generator, and invoke methods on the instance.</li>
 <li>The ease of constructing lists and the <code>for</code> loop seem to be winners in Python, so rather than use the traditional command-line <code>input</code> for data, I’ve favoured using loops and lists right up front, like this:</li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb237-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
-<a class="sourceLine" id="cb237-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
-<a class="sourceLine" id="cb237-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb235-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
+<a class="sourceLine" id="cb235-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
+<a class="sourceLine" id="cb235-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
 <p>This also means that I bumped <code>range</code> up for early exposure.<br />
 I envisage that over time we’ll see more opportunities to exploit “early lists, early iteration” in its most simple form.</p>
 <ul>
 <li>I dumped <code>doctest</code>: it is too quirky for my liking. For example, it fails a test if the spacing between list elements is not precisely the same as the output string, or if Python prints a string with single quotes, but you wrote up the test case with double quotes. Cases like this also confused students (and instructors) quite badly:</li>
 </ul>
-<div class="sourceCode" id="cb238"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb238-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb238-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
-<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
-<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="co">    9</span></a>
-<a class="sourceLine" id="cb238-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb238-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb236-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
+<a class="sourceLine" id="cb236-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb236-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
+<a class="sourceLine" id="cb236-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
+<a class="sourceLine" id="cb236-6" data-line-number="6"><span class="co">    9</span></a>
+<a class="sourceLine" id="cb236-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb236-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
 <p>If you can explain the difference in scope rules and lifetimes between the parameter <code>xs</code> and the doctest variable <code>xs</code> elegantly, please let me know. Yes, I know doctest creates its own scope behind our back, but it is exactly this black magic that we’re trying to avoid.<br />
 From the usual indentation rules, also looks like the doctests are nested inside the function scope, but they are not. Students thought that the parameter had been given its value by the assignment to <code>xs</code> in the doctest!</p>
 <p>I also think that keeping the test suite separate from the functions under test leads to a cleaner relationship between caller and callee, and gives a better chance of getting argument passing / parameter concepts taught accurately.</p>

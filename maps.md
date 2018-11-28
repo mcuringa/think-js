@@ -360,8 +360,8 @@ map
     should be a string, and the associated value can be of any type.
 
 immutable data value
-  ~ A data value which cannot be modified. Assignments to elements or
-    slices (sub-parts) of immutable values cause a runtime error.
+  ~ A data value which cannot be modified. Assignments to immutable datatypes
+    have no effect or cause a runtime error.
 
 key
   ~ A data item that is *mapped to* a value in a map. Keys are used
@@ -381,53 +381,5 @@ mapping type
 
 mutable data value
   ~ A data value which can be modified. The types of all mutable values
-    are compound types. Lists and dictionaries are mutable; strings
-    and tuples are not.
-
-Exercises
----------
-
-#. Write a program that reads a string and returns a
-   table of the letters of the alphabet in alphabetical order which occur in
-   the string together with the number of times each letter occurs. Case should
-   be ignored. A sample output of the program when the user enters the data
-   "ThiS is String with Upper and lower case Letters", would look this this:
-
-       a  2
-       c  1
-       d  1
-       e  5
-       g  1
-       h  2
-       i  4
-       l  2
-       n  2
-       o  1
-       p  2
-       r  4
-       s  5
-       t  5
-       u  1
-       w  2
-
-#. Write a program called ``alice_words.py`` that creates a text file named
-   ``alice_words.txt`` containing an alphabetical listing of all the words, and the
-   number of times each occurs, in the text version of `Alice's Adventures in Wonderland`.
-   (You can obtain a free plain text version of the book, along with many others, from
-   http://www.gutenberg.org.) The first 10 lines of your output file should look
-   something like this:
-
-        Word              Count
-        =======================
-        a                 631
-        a-piece           1
-        abide             1
-        able              1
-        about             94
-        above             3
-        absence           1
-        absurd            2
-
-   How many times does the word ``alice`` occur in the book?
-
-#. What is the longest word in Alice in Wonderland? How many characters does it have?
+    are compound types. Arrays and maps are mutable; strings
+    and numbers are not.
