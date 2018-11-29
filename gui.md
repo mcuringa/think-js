@@ -59,9 +59,55 @@ by professional software developers to create complex, interactive web
 applications. However, these professional frameworks aren't necessarily
 the best or easiest to start with.
 
+To use JS GUI, you need the following:
+
+- a website [like this demo repl](https://repl.it/@mcuringa/JSGuiDemo)
+- an html page that runs your Javascript file (e.g. `index.html`)
+- a local version of the `jsgui.js` library
+
+The following code examples assume such a set-up.
+
 Basic Elements
 --------------
 
 JS GUI provides a series of functions for creating and adding
 graphical elements to a web page. After importing the library,
-you can easily start adding elements.
+you can easily start adding elements. The following code creates
+a web site with the text, _Hello, world_.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+import gui from "./lib/jsgui.js";
+
+gui.add("Hello, world");
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+JS GUI provides functions to create titles, (level 1-6), images,
+and paragraphs of text. New lines can be created with `br()` and
+horizontal rules with `hr()`. This code uses titles, text, images,
+breaks, and rules.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+import gui from "./lib/jsgui.js";
+
+let catPic = gui.img("cat.jpg", "a black cat");
+let dogPic = gui.img("dog.jpg", "a shaggy Newfoundland dog");
+
+gui.add(gui.h1("Cats and Dogs"));
+gui.add(gui.p("Do you prefer cats or dogs?"));
+
+gui.add(gui.h4("Cat people"));
+gui.add(catPic);
+gui.add(gui.br());
+gui.add("Some people like cats. Cats are quiet, playful, soft, and sweet.");
+
+gui.add(gui.br());
+gui.add(gui.hr());
+gui.add(gui.br());
+
+gui.add(gui.h4("Dog people"));
+gui.add(dogPic);
+gui.add(gui.br());
+gui.add("Some people like dogs. Dogs are loyal friends and companions, sad to see you leave and ecstatic when you get home.");
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
