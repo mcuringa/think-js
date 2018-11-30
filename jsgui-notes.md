@@ -89,7 +89,7 @@ contains the content for a page or section header.
 </aside>
 
 
-<aside data-line-number="72">
+<aside data-line-number="79">
 
 `about` is a string that contains special formatting marks in a format
 called **markdown**. Markdown allows us to easily turn plain text into
@@ -99,7 +99,7 @@ Javascript. `jsgui` converts a markdown formatted string to html with
 </aside>
 
 
-<aside data-line-number="84">
+<aside data-line-number="88">
 
 ``main`` pulls all of our sections together in the order they will be displayed
 on the page. `add()` takes multiple arguments of elements to display, separated
