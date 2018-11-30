@@ -81,7 +81,6 @@ import jsgui from "./lib/jsgui.js";
 jsgui.add("Hello, world");
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 JS GUI provides functions to create titles, (level 1-6), images,
 and paragraphs of text. New lines can be created with `br()` and
 horizontal rules with `hr()`. This code uses titles, text, images,
@@ -108,6 +107,12 @@ jsgui.add(jsgui.br());
 jsgui.add(jsgui.h4("Dog people"));
 jsgui.add(dogPic);
 jsgui.add(jsgui.br());
-jsgui.add("Some people like dogs. Dogs are loyal friends and companions, sad to see you leave and ecstatic when you get home.");
+jsgui.add(`Some people like dogs. Dogs are loyal friends and
+companions, sad to see you leave and ecstatic when you get home.``);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `img(url, alt)` function has two parameters, the first is the URL of the image.
+In this case, it's in the same location as our code, so we only need the
+file name: `cat.jpg`. If it was on another server, we could put the full URL,
+something like `https://www.example.com/img/cat.jpg`.
