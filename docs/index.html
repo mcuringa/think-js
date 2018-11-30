@@ -494,6 +494,14 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#counting-letters">Counting letters</a></li>
 <li><a href="#glossary-8">Glossary</a></li>
 </ul></li>
+<li><a href="#web-guis">Web GUIs</a><ul>
+<li><a href="#gui-graphical-user-interface">GUI: Graphical User Interface</a></li>
+<li><a href="#how-the-web-works-the-super-brief-version">How the web works (the super brief version)</a></li>
+<li><a href="#js-gui">JS GUI</a></li>
+<li><a href="#basic-elements">Basic Elements</a></li>
+<li><a href="#js-gui-arrays-and-objects">JS GUI, Arrays, and Objects</a></li>
+<li><a href="#code-listing-js-gui-demo">Code Listing: JS GUI Demo</a></li>
+</ul></li>
 <li><a href="#appendices">Appendices</a><ul>
 <li><a href="#code-templates-solutions-and-examples">Code templates, solutions, and examples</a></li>
 <li><a href="#preface-to-previous-edition">Preface to previous edition</a></li>
@@ -531,7 +539,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>To paraphrase the philosophy of the Free Software Foundation, this book is free like free speech, but not necessarily free like free pizza. It came about because of a collaboration that would not have been possible without the GNU Free Documentation License. So we would like to thank the Free Software Foundation for developing this license and, of course, making it available to us.</p>
 <p>We would also like to thank the more than 100 sharp-eyed and thoughtful readers who have sent us suggestions and corrections over the past few years. In the spirit of free software, we decided to express our gratitude in the form of a contributor list. Unfortunately, this list is not complete, but we are doing our best to keep it up to date. It was also getting too large to include everyone who sends in a typo or two. You have our gratitude, and you have the personal satisfaction of making a book you found useful better for you and everyone else who uses it. New additions to the list for the 2nd edition will be those who have made on-going contributions.</p>
 <p>If you have a chance to look through the list, you should realize that each person here has spared you and all subsequent readers from the confusion of a technical error or a less-than-transparent explanation, just by sending us a note.</p>
-<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za" class="email">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
+<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
 <section id="second-edition" class="level3">
 <h3>Second Edition</h3>
 <ul>
@@ -4260,6 +4268,238 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 </dl>
 </section>
 </section>
+<section id="web-guis" class="level1">
+<h1>Web GUIs</h1>
+<section id="gui-graphical-user-interface" class="level2">
+<h2>GUI: Graphical User Interface</h2>
+<p>A GUI or <em>graphical user interface</em> is the main way that most of us interact with computers most of the time. The standards for graphical computing are well known: clicking buttons and icons, scrolling windows, reading images and text, etc. When we created our Turtle programs, we were programming GUIs.</p>
+<p>Most of the examples in this text, however have used <em>text interfaces</em> or Command Line Interfaces (CLI). With a CLI, the user receives computer output through text on the screen, and sends input to the program by entering text. In this chapter, we introduce a Javascript-based library for creating GUIs web applications.</p>
+</section>
+<section id="how-the-web-works-the-super-brief-version" class="level2">
+<h2>How the web works (the super brief version)</h2>
+<p>There are three computer languages that form the base for any web page. They are HTML, CSS, and Javascript. Hypertext markup language (HTML) describes the type of content on a web page. HTML describes many different types of content. You are familiar with most of them: - text: titles, paragraphs, lists, etc - media: images, videos, audio, animation graphics - links: that allow navigation to different areas of the web - form elements: buttons, input boxes, checkboxes, and other elements that users to input information - tables: that display grids of information</p>
+<p>Other HTML elements are more structural, they divide web pages into sections (like headers and footers).</p>
+<p>Cascading style sheets (CSS), control the layout of the content described by the HTML. CSS can be used to change the font or text size, add background images to elements, space and size different containers, and, generally create useful and aesthetic interfaces. A single HTML document can work with different CSS styles, allowing it to adapt to different use cases. One set of styles can control layout for mobile phones, another for laptops, and yet another for print.</p>
+<p>Javascript is the only <strong>programming language</strong> of the three languages discussed here. It’s the only of the group that uses variables and controls the flow of execution with loops and Boolean conditions. At this point in the book, we are familiar with many of the programming aspects of Javascript. For the web, Javascript can interact with user input, and dynamically change the content and HTML structure on a page. While some, small websites are <strong>static</strong> — meaning that all of the content and HTML is written by hand in a text editor like the one in repl.it — most website pull the content from databases or other data files. We have begun to see how Javascript can interact with larger sets of data, now we will see how Javascript can be used to display this data on the web, to create <strong>dynamic</strong> websites that change when the data is changed.</p>
+</section>
+<section id="js-gui" class="level2">
+<h2>JS GUI</h2>
+<p>JS GUI is a Javascript library or module that is being written to accompany the examples in this book. There are many powerful Javascript frameworks, like React (developed by Facebook) and Angular (developed by Google), used by professional software developers to create complex, interactive web applications. However, these professional frameworks aren’t necessarily the best or easiest to start with.</p>
+<p>To use JS GUI, you need the following:</p>
+<ul>
+<li>a website <a href="https://repl.it/@mcuringa/JSGuiDemo">like this demo repl</a></li>
+<li>an html page that runs your Javascript file (e.g. <code>index.html</code>)</li>
+<li>a local version of the <code>jsgui.js</code> library</li>
+</ul>
+<p>The following code examples assume such a set-up.</p>
+</section>
+<section id="basic-elements" class="level2">
+<h2>Basic Elements</h2>
+<p>JS GUI provides a series of functions for creating and adding graphical elements to a web page. After importing the library, you can easily start adding elements. The following code creates a web site with the text, <em>Hello, world</em>.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="st">&quot;Hello, world&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>JS GUI provides functions to create titles, (level 1-6), images, and paragraphs of text. New lines can be created with <code>br()</code> and horizontal rules with <code>hr()</code>. This code uses titles, text, images, breaks, and rules.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb234-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb234-3" data-line-number="3"><span class="kw">let</span> catPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;cat.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a black cat&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-4" data-line-number="4"><span class="kw">let</span> dogPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;dog.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a shaggy Newfoundland dog&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb234-6" data-line-number="6"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h1</span>(<span class="st">&quot;Cats and Dogs&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-7" data-line-number="7"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">p</span>(<span class="st">&quot;Do you prefer cats or dogs?&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb234-9" data-line-number="9"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h4</span>(<span class="st">&quot;Cat people&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-10" data-line-number="10"><span class="va">jsgui</span>.<span class="at">add</span>(catPic)<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-11" data-line-number="11"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-12" data-line-number="12"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="st">&quot;Some people like cats. Cats are quiet, playful, soft, and sweet.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb234-14" data-line-number="14"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-15" data-line-number="15"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-16" data-line-number="16"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb234-18" data-line-number="18"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h4</span>(<span class="st">&quot;Dog people&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-19" data-line-number="19"><span class="va">jsgui</span>.<span class="at">add</span>(dogPic)<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-20" data-line-number="20"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb234-21" data-line-number="21"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="vs">`Some people like dogs. Dogs are loyal friends and</span></a>
+<a class="sourceLine" id="cb234-22" data-line-number="22"><span class="vs">companions, sad to see you leave and ecstatic when you get home.``);</span></a></code></pre></div>
+<figure class="figure border">
+<img src="figs/cats1.png" class="figure-img img-fluid" alt="Screenshot of a web page with an image of a cat and a dog with some text.">
+<figcaption class="figure-caption">
+<p>The web page produced by this code example.</p>
+<a href="https://repl.it/@mcuringa/JSGuiDemo">See the repl with this code in <code>cats1.js</code></a>
+</figcaption>
+</figure>
+<p>The <code>img(url, alt)</code> function has two parameters, the first is the URL of the image. In this case, it’s in the same location as our code, so we only need the file name: <code>cat.jpg</code>. If it was on another server, we could put the full URL, something like <code>https://www.example.com/img/cat.jpg</code>. THe <code>alt</code> parameter is a short text description of the image that makes the web more useful for users with disabilities, such as visual impairment. For the <code>catPic</code> and <code>dogPic</code> we save the image into a variable before calling <code>add()</code> to place it on the web page.</p>
+<p>Th rest of the <strong>html elements</strong> in this code example are composed directly with the <code>add()</code> function. <code>h1()</code> and <code>h4()</code> create a level 1 header and level 4 header respectively. <code>p()</code> creates a paragraph of text. <code>br()</code> is a line break that forces a new line. Vertical whitespace in HTML is (usually) ignored when the web browser lays out a page. <code>hr()</code> creates a horizontal rule (line) across the page.</p>
+</section>
+<section id="js-gui-arrays-and-objects" class="level2">
+<h2>JS GUI, Arrays, and Objects</h2>
+<p>JS GUI has some helper functions that makes it easy to display mapped data and arrays of data. For the key-value pairs in a map, JS GUI uses the HTML definition list element. A definition list (<code>&lt;dl&gt;</code>) describes contents that have a <em>term</em> and a <em>definition</em>. The <code>dl()</code> function maps the <em>keys</em> to terms and the <em>values</em> to definitions.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="co">// ...</span></a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb235-3" data-line-number="3"><span class="kw">let</span> pet <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb235-4" data-line-number="4">  <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;Sparkle Swan Fireworks&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb235-5" data-line-number="5">  <span class="dt">type</span><span class="op">:</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb235-6" data-line-number="6">  <span class="dt">age</span><span class="op">:</span> <span class="st">&quot;3&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb235-7" data-line-number="7">  <span class="dt">breed</span><span class="op">:</span> <span class="st">&quot;American Short Hair&quot;</span></a>
+<a class="sourceLine" id="cb235-8" data-line-number="8"><span class="op">}</span></a>
+<a class="sourceLine" id="cb235-9" data-line-number="9"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">dl</span>(pet))<span class="op">;</span></a></code></pre></div>
+<figure class="figure border">
+<img src="figs/jsgui-dl.png" class="figure-img img-fluid" alt="Screenshot of a web page with a definition list with the keys on the left and terms on the right.">
+<figcaption class="figure-caption">
+The keys are in a column on the left, right aligned and bold. The values are on the right.
+</figcaption>
+</figure>
+<p>Arrays of data can be quickly laid out as tables. The example below uses an array of arrays, where each element of <code>animalsOnScreen</code> is an array. <code>jsgui.table(data, header)</code> takes the data as the first argument. If an array is passed for the <code>header</code> argument, <code>table()</code> will use that data to make bold column headers. Although not used here, <code>data</code> can also be an array of data maps. If this is the case, only the <code>values</code> from the map are displayed in the table rows.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="co">// ...</span></a>
+<a class="sourceLine" id="cb236-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb236-3" data-line-number="3"><span class="kw">let</span> animalsOnScreen <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb236-4" data-line-number="4">  [<span class="st">&quot;Name&quot;</span><span class="op">,</span> <span class="st">&quot;Type&quot;</span><span class="op">,</span> <span class="st">&quot;Breed&quot;</span><span class="op">,</span> <span class="st">&quot;Film/Show&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb236-5" data-line-number="5">  [<span class="st">&quot;Rin Tin Tin&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;German Shepherd&quot;</span><span class="op">,</span> <span class="st">&quot;Various&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb236-6" data-line-number="6">  [<span class="st">&quot;Lassie&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;Collie&quot;</span><span class="op">,</span> <span class="st">&quot;Lassie&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb236-7" data-line-number="7">  [<span class="st">&quot;Mrs. Norris&quot;</span><span class="op">,</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span> <span class="st">&quot;Maine Coon&quot;</span><span class="op">,</span> <span class="st">&quot;Harry Potter&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb236-8" data-line-number="8">  [<span class="st">&quot;Flipper&quot;</span><span class="op">,</span> <span class="st">&quot;Dolphin&quot;</span><span class="op">,</span> <span class="st">&quot;bottlenose&quot;</span><span class="op">,</span> <span class="st">&quot;Flipper&quot;</span>]</a>
+<a class="sourceLine" id="cb236-9" data-line-number="9">]<span class="op">;</span></a>
+<a class="sourceLine" id="cb236-10" data-line-number="10"><span class="kw">let</span> table <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">table</span>(<span class="va">animalsOnScreen</span>.<span class="at">slice</span>(<span class="dv">1</span>)<span class="op">,</span> animalsOnScreen[<span class="dv">0</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb236-11" data-line-number="11"><span class="va">jsgui</span>.<span class="at">add</span>(table)<span class="op">;</span></a></code></pre></div>
+<p>This example creates an array with 4 columns and 5 elements. Since the 0-th element contains the header data, <code>slice(1)</code> is used to exclude that row when <code>table()</code> is called, and the array at <code>animalsOnScreen[0]</code> is passed as the <code>header</code> argument.</p>
+<figure class="figure border">
+<img src="figs/jsgui-table.png" class="figure-img img-fluid" alt="Screenshot of a web page with a data presented in a table.">
+<figcaption class="figure-caption">
+The <strong>double scripted</strong> array gets presented as a table, where each array element becomes a row, and each element of the sub-array becomes a column.
+</figcaption>
+</figure>
+</section>
+<section id="code-listing-js-gui-demo" class="level2 codeListing">
+<h2>Code Listing: JS GUI Demo</h2>
+<section id="complex-compositions-with-containers" class="level3">
+<h3>Complex compositions with containers</h3>
+<p>Web pages, like software programs, can be made more flexible using the <strong>decomposition</strong> strategy of breaking the problem (the page layout) into smaller parts. HTML offers a number of <strong>block elements</strong> that contain other elements (including blocks). Using Javascript, we can write functions that return a group of elements in one of these containers. We can make our code more abstract, where functions can use the same layout for different content. Alternatively, we can make functions that are re-usable, such as returning headers, footers, and navigation elements that can be used across several web pages.</p>
+<p>The examples in this code listing use many, but not all of the layout features of JS GUI.</p>
+<ul>
+<li><a href="https://repl.it/@mcuringa/JSGuiDemo">View the “JS GUI Demo” repl</a></li>
+<li><a href="https://jsguidemo.mcuringa.repl.co/">View the “JS GUI Demo” website</a></li>
+</ul>
+</section>
+<section id="case-study-jsgui-demo" class="level3 jsguidemo codeNotes">
+<h3>Case Study: JSGUI Demo</h3>
+<aside data-line-number="4">
+<p><code>import</code> the JS GUI module (aka package or library) into a variable called <code>jsgui</code>. We could call this something else. Perhaps a shorter name like <code>gui</code> or even <code>g</code> would also make sense, since we use the package name in so many nested calls below. <code>&quot;./lib/jsgui.js&quot;</code> tells JS to look for the library in a <strong>directory</strong> (folder) called <code>lib</code> and a file named <code>jsgui.js</code>.</p>
+</aside>
+<aside data-line-number="11">
+<p>The <code>animalDetail()</code> function creates a consistent layout of all of the content passed in to its parameters. The <code>&lt;div&gt;</code> element created with <code>div()</code> is a generic HTML container.</p>
+</aside>
+<aside data-line-number="21">
+<p>Create a <code>&lt;section&gt;</code> container, <code>sec</code> to hold all of the elements in the cats and dogs section.</p>
+</aside>
+<aside data-line-number="19">
+<p>Create images for the cat and dog pictures. The first argument to <code>img()</code> is the path or url of the image file. Web images should be of type png, gif, or svg. Types like psd, bmp, tiff, might not show up on the web.</p>
+<p>We call <code>animalDetail()</code> twice, with different arguments.</p>
+</aside>
+<aside data-line-number="32">
+<p><code>grid()</code> makes a special grid layout container. A grid can have between 1-12 columns. Add elements to a specific grid column with <code>addToGrid(grid, colNumber, ...items)</code></p>
+<p>After creating the grid, we append all of the items to our section container and then return it.</p>
+</aside>
+<aside data-line-number="50">
+<p>First, we create <code>animalsOnScreen</code>, a regular Javascript array with a set of data. Each item of the array is an array (of strings).</p>
+<p>Call <code>table(data, cols)</code>: <code>animalsOnScreen[1-4]</code> are the data and <code>animalsOnScreen[0]</code> contains the column header information.</p>
+</aside>
+<aside data-line-number="69">
+<p>A <code>&lt;header&gt;</code> is a type of HTML container that typically contains the content for a page or section header.</p>
+</aside>
+<aside data-line-number="72">
+<p><code>about</code> is a string that contains special formatting marks in a format called <strong>markdown</strong>. Markdown allows us to easily turn plain text into Javascript. <code>jsgui</code> converts a markdown formatted string to html with <code>md()</code> <a href="https://guides.github.com/features/mastering-markdown/">Learn how to write markdown here</a>.</p>
+</aside>
+<aside data-line-number="84">
+<p><code>main</code> pulls all of our sections together in the order they will be displayed on the page. <code>add()</code> takes multiple arguments of elements to display, separated by commas (kind of like the built in <code>console.log()</code>)</p>
+</aside>
+<div class="listingSrcCode">
+<div class="sourceCode" id="cb237"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="co"> * index.js is the default script for the JSGUI Demo Site</span></a>
+<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="co"> * It demonstrates some of the main layout functions included</span></a>
+<a class="sourceLine" id="cb237-4" data-line-number="4"><span class="co"> * in the js gui package.</span></a>
+<a class="sourceLine" id="cb237-5" data-line-number="5"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb237-6" data-line-number="6"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb237-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb237-8" data-line-number="8"><span class="kw">function</span> <span class="at">animalDetail</span>(title<span class="op">,</span> img<span class="op">,</span> text) <span class="op">{</span></a>
+<a class="sourceLine" id="cb237-9" data-line-number="9">  <span class="kw">let</span> container <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">div</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-10" data-line-number="10">  <span class="va">jsgui</span>.<span class="at">append</span>(container<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h4</span>(title)<span class="op">,</span> img<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">br</span>()<span class="op">,</span> text)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-11" data-line-number="11">  <span class="cf">return</span> container<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-12" data-line-number="12"><span class="op">}</span></a>
+<a class="sourceLine" id="cb237-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb237-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb237-15" data-line-number="15"><span class="kw">function</span> <span class="at">catsOrDogs</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb237-16" data-line-number="16">  <span class="kw">let</span> sec <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">section</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb237-18" data-line-number="18">  <span class="kw">let</span> catPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;cat.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a black cat&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-19" data-line-number="19">  <span class="kw">let</span> dogPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;dog.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a shaggy Newfoundland dog&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb237-21" data-line-number="21">  <span class="kw">let</span> catPeople <span class="op">=</span> <span class="at">animalDetail</span>(<span class="st">&quot;Cat people&quot;</span><span class="op">,</span> catPic<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-22" data-line-number="22">    <span class="st">&quot;Some people like cats. Cats are quiet, playful, soft, and sweet.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb237-24" data-line-number="24">  <span class="kw">let</span> dogPeople <span class="op">=</span> <span class="at">animalDetail</span>(<span class="st">&quot;Dog people&quot;</span><span class="op">,</span> dogPic<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-25" data-line-number="25">    <span class="st">&quot;Some people like dogs. Dogs are loyal friends and companions, sad to see you leave and ecstatic when you get home.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb237-27" data-line-number="27">  <span class="kw">let</span> grid <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">grid</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-28" data-line-number="28">  <span class="va">jsgui</span>.<span class="at">addToGrid</span>(grid<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> catPeople)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-29" data-line-number="29">  <span class="va">jsgui</span>.<span class="at">addToGrid</span>(grid<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> dogPeople)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-30" data-line-number="30">  <span class="va">jsgui</span>.<span class="at">append</span>(sec<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-31" data-line-number="31">    <span class="va">jsgui</span>.<span class="at">h2</span>(<span class="st">&quot;Cats and Dogs&quot;</span>)<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-32" data-line-number="32">    <span class="va">jsgui</span>.<span class="at">p</span>(<span class="st">&quot;Do you prefer cats or dogs?&quot;</span>)<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-33" data-line-number="33">    grid<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-34" data-line-number="34">    <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb237-36" data-line-number="36">  <span class="cf">return</span> sec<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb237-38" data-line-number="38"><span class="op">}</span></a>
+<a class="sourceLine" id="cb237-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb237-40" data-line-number="40"><span class="kw">function</span> <span class="at">animalActors</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb237-41" data-line-number="41">  <span class="kw">let</span> sec <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">section</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-42" data-line-number="42">  <span class="kw">let</span> animalsOnScreen <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb237-43" data-line-number="43">    [<span class="st">&quot;Name&quot;</span><span class="op">,</span> <span class="st">&quot;Type&quot;</span><span class="op">,</span> <span class="st">&quot;Breed&quot;</span><span class="op">,</span> <span class="st">&quot;Film/Show&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-44" data-line-number="44">    [<span class="st">&quot;Rin Tin Tin&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;German Shepherd&quot;</span><span class="op">,</span> <span class="st">&quot;Various&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-45" data-line-number="45">    [<span class="st">&quot;Lassie&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;Collie&quot;</span><span class="op">,</span> <span class="st">&quot;Lassie&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-46" data-line-number="46">    [<span class="st">&quot;Mrs. Norris&quot;</span><span class="op">,</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span> <span class="st">&quot;Maine Coon&quot;</span><span class="op">,</span> <span class="st">&quot;Harry Potter&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-47" data-line-number="47">    [<span class="st">&quot;Flipper&quot;</span><span class="op">,</span> <span class="st">&quot;Dolphin&quot;</span><span class="op">,</span> <span class="st">&quot;bottlenose&quot;</span><span class="op">,</span> <span class="st">&quot;Flipper&quot;</span>]</a>
+<a class="sourceLine" id="cb237-48" data-line-number="48">  ]<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-49" data-line-number="49">  <span class="kw">let</span> table <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">table</span>(<span class="va">animalsOnScreen</span>.<span class="at">slice</span>(<span class="dv">1</span>)<span class="op">,</span> animalsOnScreen[<span class="dv">0</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-50" data-line-number="50">  <span class="va">jsgui</span>.<span class="at">append</span>(sec<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-51" data-line-number="51">    <span class="va">jsgui</span>.<span class="at">h2</span>(<span class="st">&quot;Animals on the Screen&quot;</span>)<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-52" data-line-number="52">    table<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-53" data-line-number="53">    <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-54" data-line-number="54">  <span class="cf">return</span> sec<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-55" data-line-number="55"><span class="op">}</span></a>
+<a class="sourceLine" id="cb237-56" data-line-number="56"></a>
+<a class="sourceLine" id="cb237-57" data-line-number="57"><span class="kw">function</span> <span class="at">header</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb237-58" data-line-number="58">  <span class="kw">let</span> h <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">header</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-59" data-line-number="59">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h1</span>(<span class="st">&quot;Animals On Screen&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-60" data-line-number="60">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h5</span>(<span class="st">&quot;A demo of the JS GUI library&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-61" data-line-number="61">  <span class="kw">let</span> about <span class="op">=</span> <span class="vs">`</span></a>
+<a class="sourceLine" id="cb237-62" data-line-number="62"><span class="vs">JS GUI is [Free Open Source Software](https://fsf.org) for teaching and learning to program web-based JS guis. It was created by Robby Lucia and Matt Curinga to accompany the open textbook, _Think JS_. [[read online](http://mcuringa.github.com/think-js)] [[source](https://github.com/mcuringa/think-js)].</span></a>
+<a class="sourceLine" id="cb237-63" data-line-number="63"><span class="vs">`</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb237-64" data-line-number="64">  about <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">md</span>(about)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-65" data-line-number="65">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> about)<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-66" data-line-number="66">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-67" data-line-number="67"></a>
+<a class="sourceLine" id="cb237-68" data-line-number="68">  <span class="cf">return</span> h<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb237-70" data-line-number="70"><span class="op">}</span></a>
+<a class="sourceLine" id="cb237-71" data-line-number="71"></a>
+<a class="sourceLine" id="cb237-72" data-line-number="72"></a>
+<a class="sourceLine" id="cb237-73" data-line-number="73"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb237-74" data-line-number="74">  <span class="va">jsgui</span>.<span class="at">add</span>(</a>
+<a class="sourceLine" id="cb237-75" data-line-number="75">    <span class="at">header</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-76" data-line-number="76">    <span class="at">catsOrDogs</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-77" data-line-number="77">    <span class="at">animalActors</span>()</a>
+<a class="sourceLine" id="cb237-78" data-line-number="78">  )<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-79" data-line-number="79"></a>
+<a class="sourceLine" id="cb237-80" data-line-number="80"><span class="op">}</span></a>
+<a class="sourceLine" id="cb237-81" data-line-number="81"></a>
+<a class="sourceLine" id="cb237-82" data-line-number="82"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
+</div>
+</section>
+</section>
+</section>
 <section id="appendices" class="level1">
 <h1>Appendices</h1>
 <section id="code-templates-solutions-and-examples" class="level2">
@@ -4347,15 +4587,15 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <h2>Introducing programming with Python</h2>
 <p>The process of translating and using <em>How to Think Like a Computer Scientist</em> for the past two years has confirmed Python’s suitability for teaching beginning students. Python greatly simplifies programming examples and makes important programming ideas easier to teach.</p>
 <p>The first example from the text illustrates this point. It is the traditional hello, world program, which in the Java version of the book looks like this:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="kw">class</span> Hello</a>
-<a class="sourceLine" id="cb233-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb233-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
-<a class="sourceLine" id="cb233-4" data-line-number="4">    {</a>
-<a class="sourceLine" id="cb233-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
-<a class="sourceLine" id="cb233-6" data-line-number="6">    }</a>
-<a class="sourceLine" id="cb233-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">class</span> Hello</a>
+<a class="sourceLine" id="cb238-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb238-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
+<a class="sourceLine" id="cb238-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb238-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
+<a class="sourceLine" id="cb238-6" data-line-number="6">    }</a>
+<a class="sourceLine" id="cb238-7" data-line-number="7">}</a></code></pre></div>
 <p>in the Python version it becomes:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
 <p>Even though this is a trivial example, the advantages of Python stand out. Yorktown’s Computer Science I course has no prerequisites, so many of the students seeing this example are looking at their first program. Some of them are undoubtedly a little nervous, having heard that computer programming is difficult to learn. The Java version has always forced me to choose between two unsatisfying options: either to explain the <code>class Hello</code>, <code>public static void main</code>, <code>String[] args</code>, <code>{</code>, and <code>}</code>, statements and risk confusing or intimidating some of the students right at the start, or to tell them, Just don’t worry about all of that stuff now; we will talk about it later, and risk the same thing. The educational objectives at this point in the course are to introduce students to the idea of a programming statement and to get them to write their first program, thereby introducing them to the programming environment. The Python program has exactly what is needed to do these things, and nothing more.</p>
 <p>Comparing the explanatory text of the program in each version of the book further illustrates what this means to the beginning student. There are seven paragraphs of explanation of Hello, world! in the Java version; in the Python version, there are only a few sentences. More importantly, the missing six paragraphs do not deal with the big ideas in computer programming but with the minutia of Java syntax. I found this same thing happening throughout the book. Whole paragraphs simply disappear from the Python version of the text because Python’s much clearer syntax renders them unnecessary.</p>
 <p>Using a very high-level language like Python allows a teacher to postpone talking about low-level details of the machine until students have the background that they need to better make sense of the details. It thus creates the ability to put first things first pedagogically. One of the best examples of this is the way in which Python handles variables. In Java a variable is a name for a place that holds a value if it is a built-in type, and a reference to an object if it is not. Explaining this distinction requires a discussion of how the computer stores data. Thus, the idea of a variable is bound up with the hardware of the machine. The powerful and fundamental concept of a variable is already difficult enough for beginning students (in both computer science and algebra). Bytes and addresses do not help the matter. In Python a variable is a name that refers to a thing. This is a far more intuitive concept for beginning students and is much closer to the meaning of variable that they learned in their math courses. I had much less difficulty teaching variables this year than I did in the past, and I spent less time helping students with problems using them.</p>
@@ -4399,23 +4639,23 @@ As things move along, we use PyGame for more advanced graphics.</li>
 <li>I have tried to push more object-oriented notions earlier, without asking students to synthesize objects or write their own classes. So, for example, in the chapter about the turtle, we create multiple instances of turtles, talk about their attributes and state (color, position, etc), and we favour method-call style to move them around, i.e. <code>tess.forward(100)</code>. Similarly, when we use random numbers, we avoid the “hidden singleton generator” in the random module — we prefer to create an instance of a generator, and invoke methods on the instance.</li>
 <li>The ease of constructing lists and the <code>for</code> loop seem to be winners in Python, so rather than use the traditional command-line <code>input</code> for data, I’ve favoured using loops and lists right up front, like this:</li>
 </ul>
-<div class="sourceCode" id="cb235"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb235-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
-<a class="sourceLine" id="cb235-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb240-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
+<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
+<a class="sourceLine" id="cb240-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
+<a class="sourceLine" id="cb240-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
 <p>This also means that I bumped <code>range</code> up for early exposure.<br />
 I envisage that over time we’ll see more opportunities to exploit “early lists, early iteration” in its most simple form.</p>
 <ul>
 <li>I dumped <code>doctest</code>: it is too quirky for my liking. For example, it fails a test if the spacing between list elements is not precisely the same as the output string, or if Python prints a string with single quotes, but you wrote up the test case with double quotes. Cases like this also confused students (and instructors) quite badly:</li>
 </ul>
-<div class="sourceCode" id="cb236"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb236-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
-<a class="sourceLine" id="cb236-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb236-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
-<a class="sourceLine" id="cb236-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
-<a class="sourceLine" id="cb236-6" data-line-number="6"><span class="co">    9</span></a>
-<a class="sourceLine" id="cb236-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb236-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb241-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
+<a class="sourceLine" id="cb241-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb241-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
+<a class="sourceLine" id="cb241-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
+<a class="sourceLine" id="cb241-6" data-line-number="6"><span class="co">    9</span></a>
+<a class="sourceLine" id="cb241-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb241-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
 <p>If you can explain the difference in scope rules and lifetimes between the parameter <code>xs</code> and the doctest variable <code>xs</code> elegantly, please let me know. Yes, I know doctest creates its own scope behind our back, but it is exactly this black magic that we’re trying to avoid.<br />
 From the usual indentation rules, also looks like the doctests are nested inside the function scope, but they are not. Students thought that the parameter had been given its value by the assignment to <code>xs</code> in the doctest!</p>
 <p>I also think that keeping the test suite separate from the functions under test leads to a cleaner relationship between caller and callee, and gives a better chance of getting argument passing / parameter concepts taught accurately.</p>

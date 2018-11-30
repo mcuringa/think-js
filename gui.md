@@ -112,7 +112,7 @@ companions, sad to see you leave and ecstatic when you get home.``);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<figure class="figure">
+<figure class="figure border">
 <img src="figs/cats1.png" class="figure-img img-fluid" alt="Screenshot of a web page with an image of a cat and a dog with some text.">
 <figcaption class="figure-caption">
 The web page produced by this code example.
@@ -159,7 +159,7 @@ jsgui.add(jsgui.dl(pet));
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<figure class="figure">
+<figure class="figure border">
 <img src="figs/jsgui-dl.png" class="figure-img img-fluid" alt="Screenshot of a web page with a definition list with the keys on the left and terms on the right.">
 <figcaption class="figure-caption">
 The keys are in a column on the left, right aligned and bold. The values are
@@ -192,26 +192,13 @@ jsgui.add(table);
 
 This example creates an array with 4 columns and 5 elements. Since the
 0-th element contains the header data, `slice(1)` is used to exclude
-that row when `table()` is called, and the array at `animalsOnScreen[0]` 
+that row when `table()` is called, and the array at `animalsOnScreen[0]`
 is passed as the `header` argument.
 
-<figure class="figure">
+<figure class="figure border">
 <img src="figs/jsgui-table.png" class="figure-img img-fluid" alt="Screenshot of a web page with a data presented in a table.">
 <figcaption class="figure-caption">
 The **double scripted** array gets presented as a table, where each array
 element becomes a row, and each element of the sub-array becomes a column.
 </figcaption>
 </figure>
-
-
-Complex compositions with containers
-------------------------------------
-Web pages, like software programs, can be made more flexible using
-the **decomposition** strategy of breaking the problem (the page layout)
-into smaller parts. HTML offers a number of **block elements** that
-contain other elements (including blocks). Using Javascript, we can write
-functions that return a group of elements in one of these containers.
-We can make our code more abstract, where functions
-can use the same layout for different content. Alternatively, we can
-make functions that are re-usable, such as returning headers, footers,
-and navigation elements that can be used across several web pages.
