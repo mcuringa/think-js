@@ -112,7 +112,106 @@ companions, sad to see you leave and ecstatic when you get home.``);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `img(url, alt)` function has two parameters, the first is the URL of the image.
-In this case, it's in the same location as our code, so we only need the
+<figure class="figure">
+<img src="figs/cats1.png" class="figure-img img-fluid" alt="Screenshot of a web page with an image of a cat and a dog with some text.">
+<figcaption class="figure-caption">
+The web page produced by this code example.
+
+[See the repl with this code in `cats1.js`](https://repl.it/@mcuringa/JSGuiDemo)
+</figcaption>
+</figure>
+
+The `img(url, alt)` function has two parameters, the first is the URL of the
+image. In this case, it's in the same location as our code, so we only need the
 file name: `cat.jpg`. If it was on another server, we could put the full URL,
-something like `https://www.example.com/img/cat.jpg`.
+something like `https://www.example.com/img/cat.jpg`. THe `alt` parameter is a
+short text description of the image that makes the web more useful for users
+with disabilities, such as visual impairment. For the `catPic` and `dogPic` we
+save the image into a variable before calling `add()` to place it on the
+web page.
+
+Th rest of the **html elements** in this code example are composed directly with
+the `add()` function. `h1()` and `h4()` create a level 1 header and level 4
+header respectively. `p()` creates a paragraph of text. `br()` is a line break
+that forces a new line. Vertical whitespace in HTML is (usually) ignored when
+the web browser lays out a page. `hr()` creates a horizontal rule (line) across
+the page.
+
+JS GUI, Arrays, and Objects
+---------------------------
+
+JS GUI has some helper functions that makes it easy to display
+mapped data and arrays of data. For the key-value pairs in a
+map, JS GUI uses the HTML definition list element. A definition
+list (`<dl>`) describes contents that have a _term_ and a _definition_.
+The `dl()` function maps the _keys_ to terms and the _values_ to definitions.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+// ...
+
+let pet = {
+  name: "Sparkle Swan Fireworks",
+  type: "Cat",
+  age: "3",
+  breed: "American Short Hair"
+}
+jsgui.add(jsgui.dl(pet));
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<figure class="figure">
+<img src="figs/jsgui-dl.png" class="figure-img img-fluid" alt="Screenshot of a web page with a definition list with the keys on the left and terms on the right.">
+<figcaption class="figure-caption">
+The keys are in a column on the left, right aligned and bold. The values are
+on the right.
+</figcaption>
+</figure>
+
+Arrays of data can be quickly laid out as tables. The example below uses
+an array of arrays, where each element of `animalsOnScreen` is an array.
+`jsgui.table(data, header)` takes the data as the first argument. If
+an array is passed for the `header` argument, `table()` will use
+that data to make bold column headers. Although not used here,
+`data` can also be an array of data maps. If this is the case, only
+the `values` from the map are displayed in the table rows.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+// ...
+
+let animalsOnScreen = [
+  ["Name", "Type", "Breed", "Film/Show"],
+  ["Rin Tin Tin", "Dog", "German Shepherd", "Various"],
+  ["Lassie", "Dog", "Collie", "Lassie"],
+  ["Mrs. Norris", "Cat", "Maine Coon", "Harry Potter"],
+  ["Flipper", "Dolphin", "bottlenose", "Flipper"]
+];
+let table = jsgui.table(animalsOnScreen.slice(1), animalsOnScreen[0]);
+jsgui.add(table);
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This example creates an array with 4 columns and 5 elements. Since the
+0-th element contains the header data, `slice(1)` is used to exclude
+that row when `table()` is called, and the array at `animalsOnScreen[0]` 
+is passed as the `header` argument.
+
+<figure class="figure">
+<img src="figs/jsgui-table.png" class="figure-img img-fluid" alt="Screenshot of a web page with a data presented in a table.">
+<figcaption class="figure-caption">
+The **double scripted** array gets presented as a table, where each array
+element becomes a row, and each element of the sub-array becomes a column.
+</figcaption>
+</figure>
+
+
+Complex compositions with containers
+------------------------------------
+Web pages, like software programs, can be made more flexible using
+the **decomposition** strategy of breaking the problem (the page layout)
+into smaller parts. HTML offers a number of **block elements** that
+contain other elements (including blocks). Using Javascript, we can write
+functions that return a group of elements in one of these containers.
+We can make our code more abstract, where functions
+can use the same layout for different content. Alternatively, we can
+make functions that are re-usable, such as returning headers, footers,
+and navigation elements that can be used across several web pages.
