@@ -76,9 +76,9 @@ you can easily start adding elements. The following code creates
 a web site with the text, _Hello, world_.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-import gui from "./lib/jsgui.js";
+import jsgui from "./lib/jsgui.js";
 
-gui.add("Hello, world");
+jsgui.add("Hello, world");
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -88,26 +88,26 @@ horizontal rules with `hr()`. This code uses titles, text, images,
 breaks, and rules.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-import gui from "./lib/jsgui.js";
+import jsgui from "./lib/jsgui.js";
 
-let catPic = gui.img("cat.jpg", "a black cat");
-let dogPic = gui.img("dog.jpg", "a shaggy Newfoundland dog");
+let catPic = jsgui.img("cat.jpg", "a black cat");
+let dogPic = jsgui.img("dog.jpg", "a shaggy Newfoundland dog");
 
-gui.add(gui.h1("Cats and Dogs"));
-gui.add(gui.p("Do you prefer cats or dogs?"));
+jsgui.add(jsgui.h1("Cats and Dogs"));
+jsgui.add(jsgui.p("Do you prefer cats or dogs?"));
 
-gui.add(gui.h4("Cat people"));
-gui.add(catPic);
-gui.add(gui.br());
-gui.add("Some people like cats. Cats are quiet, playful, soft, and sweet.");
+jsgui.add(jsgui.h4("Cat people"));
+jsgui.add(catPic);
+jsgui.add(jsgui.br());
+jsgui.add("Some people like cats. Cats are quiet, playful, soft, and sweet.");
 
-gui.add(gui.br());
-gui.add(gui.hr());
-gui.add(gui.br());
+jsgui.add(jsgui.br());
+jsgui.add(jsgui.hr());
+jsgui.add(jsgui.br());
 
-gui.add(gui.h4("Dog people"));
-gui.add(dogPic);
-gui.add(gui.br());
-gui.add("Some people like dogs. Dogs are loyal friends and companions, sad to see you leave and ecstatic when you get home.");
+jsgui.add(jsgui.h4("Dog people"));
+jsgui.add(dogPic);
+jsgui.add(jsgui.br());
+jsgui.add("Some people like dogs. Dogs are loyal friends and companions, sad to see you leave and ecstatic when you get home.");
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -235,10 +235,10 @@ of the operation. `let [a, b] = [1, 2]` creates two new  variables, `a` and `b`
 with the values `1` and `2` respectively.
 
 We also use the special **for...of** syntax for this loop. This is a compact
-form of our usual array iteration loop, however we don't use a loop index. Other
-than iterating through key:value pairs of maps, we will use the standard for
-loop for array iteration.
-[You can read more about for...of in the docs.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+form of our usual array iteration loop that doesn't require (or afford) a loop
+index. Other than iterating through key:value pairs of maps, we will use the
+standard for loop for array iteration. [You can read more about for...of in the
+docs.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
 
 If we try to access a key that isn't in our map, Javascript yields the special
 `undefined` value.
