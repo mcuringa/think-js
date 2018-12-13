@@ -205,9 +205,12 @@ containing all of the map's objects:
 
 The ``Object.entries()`` function returns an array of
 key:value pair arrays.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
+
 ⠕ Object.entries(eng2sp);
 [ [ 'one', 'uno' ], [ 'two', 'dos' ], [ 'three', 'tres' ] ]
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Combining `Object.entries()` with a Javascript syntax for

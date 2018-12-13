@@ -4181,67 +4181,70 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <p>The <code>Object.values()</code> function is similar to <code>keys()</code>; it returns an array containing all of the map’s objects:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb224-1" data-line-number="1">⠕ <span class="va">Object</span>.<span class="at">values</span>(eng2sp)<span class="op">;</span></a>
 <a class="sourceLine" id="cb224-2" data-line-number="2"><span class="op">=&gt;</span> [ <span class="st">&#39;uno&#39;</span><span class="op">,</span> <span class="st">&#39;dos&#39;</span><span class="op">,</span> <span class="st">&#39;tres&#39;</span> ]</a></code></pre></div>
-<p>The <code>Object.entries()</code> function returns an array of key:value pair arrays. ~~~~~~~~~~~~~~~~~~~~~~~~~~<del>{.javascript} ⠕ Object.entries(eng2sp); [ [ ‘one’, ‘uno’ ], [ ‘two’, ‘dos’ ], [ ‘three’, ‘tres’ ] ]</del>~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+<p>The <code>Object.entries()</code> function returns an array of key:value pair arrays.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb225-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb225-2" data-line-number="2">⠕ <span class="va">Object</span>.<span class="at">entries</span>(eng2sp)<span class="op">;</span></a>
+<a class="sourceLine" id="cb225-3" data-line-number="3">[ [ <span class="st">&#39;one&#39;</span><span class="op">,</span> <span class="st">&#39;uno&#39;</span> ]<span class="op">,</span> [ <span class="st">&#39;two&#39;</span><span class="op">,</span> <span class="st">&#39;dos&#39;</span> ]<span class="op">,</span> [ <span class="st">&#39;three&#39;</span><span class="op">,</span> <span class="st">&#39;tres&#39;</span> ] ]</a></code></pre></div>
 <p>Combining <code>Object.entries()</code> with a Javascript syntax for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring assignment</a>, we can easily iterate over the keys and values of a map.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> [k<span class="op">,</span> v] of <span class="va">Object</span>.<span class="at">entries</span>(eng2sp)) <span class="op">{</span></a>
-<a class="sourceLine" id="cb225-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(k<span class="op">,</span> v)<span class="op">;</span></a>
-<a class="sourceLine" id="cb225-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="cf">for</span> (<span class="kw">let</span> [k<span class="op">,</span> v] of <span class="va">Object</span>.<span class="at">entries</span>(eng2sp)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb226-2" data-line-number="2">  <span class="va">console</span>.<span class="at">log</span>(k<span class="op">,</span> v)<span class="op">;</span></a>
+<a class="sourceLine" id="cb226-3" data-line-number="3"><span class="op">}</span></a></code></pre></div>
 <p>This produces:</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb226-1" data-line-number="1">one uno</a>
-<a class="sourceLine" id="cb226-2" data-line-number="2">two dos</a>
-<a class="sourceLine" id="cb226-3" data-line-number="3">three tres</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb227-1" data-line-number="1">one uno</a>
+<a class="sourceLine" id="cb227-2" data-line-number="2">two dos</a>
+<a class="sourceLine" id="cb227-3" data-line-number="3">three tres</a></code></pre></div>
 <p>This simple example introduces two new Javascript structures. <strong>Destructuring</strong> takes the values of an array on the right hand of the assignment operator and assigns them to multiple individual variables on the left hand side of the operation. <code>let [a, b] = [1, 2]</code> creates two new variables, <code>a</code> and <code>b</code> with the values <code>1</code> and <code>2</code> respectively.</p>
 <p>We also use the special <strong>for…of</strong> syntax for this loop. This is a compact form of our usual array iteration loop that doesn’t require (or afford) a loop index. Other than iterating through key:value pairs of maps, we will use the standard for loop for array iteration. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">You can read more about for…of in the docs.</a></p>
 <p>If we try to access a key that isn’t in our map, Javascript yields the special <code>undefined</code> value.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb227-1" data-line-number="1">⠕ eng2sp[<span class="st">&quot;one&quot;</span>]</a>
-<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="st">&#39;uno&#39;</span></a>
-<a class="sourceLine" id="cb227-3" data-line-number="3">⠕ <span class="st">&quot;six&quot;</span> <span class="kw">in</span> eng2sp</a>
-<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="kw">undefined</span></a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb228-1" data-line-number="1">⠕ eng2sp[<span class="st">&quot;one&quot;</span>]</a>
+<a class="sourceLine" id="cb228-2" data-line-number="2"><span class="st">&#39;uno&#39;</span></a>
+<a class="sourceLine" id="cb228-3" data-line-number="3">⠕ <span class="st">&quot;six&quot;</span> <span class="kw">in</span> eng2sp</a>
+<a class="sourceLine" id="cb228-4" data-line-number="4"><span class="kw">undefined</span></a></code></pre></div>
 <p>Later in the chapter we will see some examples where we use this technique to determine if we should update an existing entry in a map or create a new entry.</p>
 </section>
 <section id="aliasing-and-copying" class="level2">
 <h2>Aliasing and copying</h2>
 <p>As in the case of arrays, because maps are mutable, we need to be aware of aliasing. Whenever two variables refer to the same object, changes to one affect the other.</p>
 <p>If we want to modify a map and keep a copy of the original, use the <code>copy</code> method. For example, <code>opposites</code> is a map that contains pairs of opposites:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb228-1" data-line-number="1">⠕ <span class="kw">let</span> opposites <span class="op">=</span> <span class="op">{</span><span class="st">&quot;up&quot;</span><span class="op">:</span> <span class="st">&quot;down&quot;</span><span class="op">,</span> <span class="st">&quot;right&quot;</span><span class="op">:</span> <span class="st">&quot;wrong&quot;</span><span class="op">,</span> <span class="st">&quot;yes&quot;</span><span class="op">:</span> <span class="st">&quot;no&quot;</span><span class="op">};</span></a>
-<a class="sourceLine" id="cb228-2" data-line-number="2">⠕ <span class="kw">let</span> alias <span class="op">=</span> opposites<span class="op">;</span></a>
-<a class="sourceLine" id="cb228-3" data-line-number="3">⠕ <span class="kw">let</span> copy <span class="op">=</span> <span class="va">Object</span>.<span class="at">assign</span>(opposites)<span class="op">;</span>  <span class="co">// a shallow copy</span></a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb229-1" data-line-number="1">⠕ <span class="kw">let</span> opposites <span class="op">=</span> <span class="op">{</span><span class="st">&quot;up&quot;</span><span class="op">:</span> <span class="st">&quot;down&quot;</span><span class="op">,</span> <span class="st">&quot;right&quot;</span><span class="op">:</span> <span class="st">&quot;wrong&quot;</span><span class="op">,</span> <span class="st">&quot;yes&quot;</span><span class="op">:</span> <span class="st">&quot;no&quot;</span><span class="op">};</span></a>
+<a class="sourceLine" id="cb229-2" data-line-number="2">⠕ <span class="kw">let</span> alias <span class="op">=</span> opposites<span class="op">;</span></a>
+<a class="sourceLine" id="cb229-3" data-line-number="3">⠕ <span class="kw">let</span> copy <span class="op">=</span> <span class="va">Object</span>.<span class="at">assign</span>(opposites)<span class="op">;</span>  <span class="co">// a shallow copy</span></a></code></pre></div>
 <p><code>alias</code> and <code>opposites</code> refer to the same object; <code>copy</code> refers to a fresh copy of the same map. If we modify <code>alias</code>, <code>opposites</code> is also changed:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb229-1" data-line-number="1">⠕ alias[<span class="st">&quot;right&quot;</span>] <span class="op">=</span> <span class="st">&quot;left&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb229-2" data-line-number="2">⠕ opposites[<span class="st">&quot;right&quot;</span>]<span class="op">;</span></a>
-<a class="sourceLine" id="cb229-3" data-line-number="3"><span class="st">&#39;left&#39;</span></a></code></pre></div>
-<p>If we modify <code>copy</code>, <code>opposites</code> is unchanged:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb230-1" data-line-number="1">⠕ copy[<span class="st">&quot;right&quot;</span>] <span class="op">=</span> <span class="st">&quot;privilege&quot;</span><span class="op">;</span></a>
+<div class="sourceCode" id="cb230"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb230-1" data-line-number="1">⠕ alias[<span class="st">&quot;right&quot;</span>] <span class="op">=</span> <span class="st">&quot;left&quot;</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb230-2" data-line-number="2">⠕ opposites[<span class="st">&quot;right&quot;</span>]<span class="op">;</span></a>
 <a class="sourceLine" id="cb230-3" data-line-number="3"><span class="st">&#39;left&#39;</span></a></code></pre></div>
+<p>If we modify <code>copy</code>, <code>opposites</code> is unchanged:</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb231-1" data-line-number="1">⠕ copy[<span class="st">&quot;right&quot;</span>] <span class="op">=</span> <span class="st">&quot;privilege&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb231-2" data-line-number="2">⠕ opposites[<span class="st">&quot;right&quot;</span>]<span class="op">;</span></a>
+<a class="sourceLine" id="cb231-3" data-line-number="3"><span class="st">&#39;left&#39;</span></a></code></pre></div>
 </section>
 <section id="counting-letters" class="level2">
 <h2>Counting letters</h2>
 <p>In the exercises in in the Strings chapter, we wrote a function that counted the number of occurrences of vowels in a string. A more general version of this problem is to form a frequency table of the letters in the string, that is, how many times each letter appears.</p>
 <p>Such a frequency table might be useful for compressing a text file. Because different letters appear with different frequencies, we can compress a file by using shorter codes for common letters and longer codes for letters that appear less frequently.</p>
 <p>Maps provide an elegant way to generate a frequency table:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">let</span> letterCounts <span class="op">=</span> <span class="op">{};</span></a>
-<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="kw">let</span> word <span class="op">=</span> <span class="st">&quot;Mississippi&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb231-3" data-line-number="3">word <span class="op">=</span> <span class="va">word</span>.<span class="at">toLowerCase</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb231-4" data-line-number="4"><span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">word</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb231-5" data-line-number="5">  <span class="kw">let</span> letter <span class="op">=</span> word[i]<span class="op">;</span></a>
-<a class="sourceLine" id="cb231-6" data-line-number="6">  <span class="cf">if</span>(letterCounts[letter]) <span class="op">{</span></a>
-<a class="sourceLine" id="cb231-7" data-line-number="7">    letterCounts[letter]<span class="op">++;</span></a>
-<a class="sourceLine" id="cb231-8" data-line-number="8">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb231-9" data-line-number="9">  <span class="cf">else</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb231-10" data-line-number="10">    letterCounts[letter] <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb231-11" data-line-number="11">  <span class="op">}</span></a>
-<a class="sourceLine" id="cb231-12" data-line-number="12"><span class="op">}</span></a>
-<a class="sourceLine" id="cb231-13" data-line-number="13"><span class="va">console</span>.<span class="at">log</span>(letterCounts)<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="kw">let</span> letterCounts <span class="op">=</span> <span class="op">{};</span></a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="kw">let</span> word <span class="op">=</span> <span class="st">&quot;Mississippi&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb232-3" data-line-number="3">word <span class="op">=</span> <span class="va">word</span>.<span class="at">toLowerCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb232-4" data-line-number="4"><span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">word</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb232-5" data-line-number="5">  <span class="kw">let</span> letter <span class="op">=</span> word[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb232-6" data-line-number="6">  <span class="cf">if</span>(letterCounts[letter]) <span class="op">{</span></a>
+<a class="sourceLine" id="cb232-7" data-line-number="7">    letterCounts[letter]<span class="op">++;</span></a>
+<a class="sourceLine" id="cb232-8" data-line-number="8">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb232-9" data-line-number="9">  <span class="cf">else</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb232-10" data-line-number="10">    letterCounts[letter] <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb232-11" data-line-number="11">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb232-12" data-line-number="12"><span class="op">}</span></a>
+<a class="sourceLine" id="cb232-13" data-line-number="13"><span class="va">console</span>.<span class="at">log</span>(letterCounts)<span class="op">;</span></a></code></pre></div>
 <p>Outputs: ~~~~~~~~~~~~~~~~~~~~~~~~~~<del>{.javascript} { M: 1, i: 4, s: 4, p: 2 }</del>~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
 <p>We start with an empty map. For each letter in the string, we find the current count (possibly zero) and increment it. At the end, the map contains pairs of letters and their frequencies. We use a Boolean <code>if</code>/<code>else</code> to determine if the key exists in our map. <em>If the key exists</em> we increment the count, <em>else</em> we assign an initial value of 1 to that key. Note that we call <code>toLowerCase()</code> on our string because keys, as you should expect, are <em>case-sensitive</em>.</p>
 <p>It might be more appealing to display the frequency table in alphabetical order. We can do that with the <code>Object.keys()</code> function in the Object library and then calling <code>sort()</code> on our array of keys. We can add this code to our example above in order to print out the frequency map of letters in alphabetical order.</p>
-<div class="sourceCode" id="cb232" data-startFrom="15"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb232-15" data-line-number="15"><span class="kw">let</span> keys <span class="op">=</span> <span class="va">Object</span>.<span class="at">keys</span>(letterCounts)<span class="op">;</span></a>
-<a class="sourceLine" id="cb232-16" data-line-number="16"><span class="va">keys</span>.<span class="at">sort</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb232-17" data-line-number="17"><span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">keys</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
-<a class="sourceLine" id="cb232-18" data-line-number="18">  <span class="kw">let</span> letter <span class="op">=</span> keys[i]<span class="op">;</span></a>
-<a class="sourceLine" id="cb232-19" data-line-number="19">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span><span class="sc">${</span>letter<span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>letterCounts[letter]<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb232-20" data-line-number="20"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb233" data-startFrom="15"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb233-15" data-line-number="15"><span class="kw">let</span> keys <span class="op">=</span> <span class="va">Object</span>.<span class="at">keys</span>(letterCounts)<span class="op">;</span></a>
+<a class="sourceLine" id="cb233-16" data-line-number="16"><span class="va">keys</span>.<span class="at">sort</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb233-17" data-line-number="17"><span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">keys</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb233-18" data-line-number="18">  <span class="kw">let</span> letter <span class="op">=</span> keys[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb233-19" data-line-number="19">  <span class="va">console</span>.<span class="at">log</span>(<span class="vs">`</span><span class="sc">${</span>letter<span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>letterCounts[letter]<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb233-20" data-line-number="20"><span class="op">}</span></a></code></pre></div>
 <p>See the interactive example online at <a href="https://repl.it/@mcuringa/MapLetterFrequency" class="uri">https://repl.it/@mcuringa/MapLetterFrequency</a>.</p>
 </section>
 <section id="glossary-8" class="level2">
@@ -4296,32 +4299,32 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <section id="basic-elements" class="level2">
 <h2>Basic Elements</h2>
 <p>JS GUI provides a series of functions for creating and adding graphical elements to a web page. After importing the library, you can easily start adding elements. The following code creates a web site with the text, <em>Hello, world</em>.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="st">&quot;Hello, world&quot;</span>)<span class="op">;</span></a></code></pre></div>
-<p>JS GUI provides functions to create titles, (level 1-6), images, and paragraphs of text. New lines can be created with <code>br()</code> and horizontal rules with <code>hr()</code>. This code uses titles, text, images, breaks, and rules.</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb234-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb234-3" data-line-number="3"><span class="kw">let</span> catPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;cat.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a black cat&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-4" data-line-number="4"><span class="kw">let</span> dogPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;dog.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a shaggy Newfoundland dog&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb234-6" data-line-number="6"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h1</span>(<span class="st">&quot;Cats and Dogs&quot;</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-7" data-line-number="7"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">p</span>(<span class="st">&quot;Do you prefer cats or dogs?&quot;</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb234-9" data-line-number="9"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h4</span>(<span class="st">&quot;Cat people&quot;</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-10" data-line-number="10"><span class="va">jsgui</span>.<span class="at">add</span>(catPic)<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-11" data-line-number="11"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-12" data-line-number="12"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="st">&quot;Some people like cats. Cats are quiet, playful, soft, and sweet.&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb234-14" data-line-number="14"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-15" data-line-number="15"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-16" data-line-number="16"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb234-18" data-line-number="18"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h4</span>(<span class="st">&quot;Dog people&quot;</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-19" data-line-number="19"><span class="va">jsgui</span>.<span class="at">add</span>(dogPic)<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-20" data-line-number="20"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb234-21" data-line-number="21"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="vs">`Some people like dogs. Dogs are loyal friends and</span></a>
-<a class="sourceLine" id="cb234-22" data-line-number="22"><span class="vs">companions, sad to see you leave and ecstatic when you get home.``);</span></a></code></pre></div>
+<a class="sourceLine" id="cb234-3" data-line-number="3"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="st">&quot;Hello, world&quot;</span>)<span class="op">;</span></a></code></pre></div>
+<p>JS GUI provides functions to create titles, (level 1-6), images, and paragraphs of text. New lines can be created with <code>br()</code> and horizontal rules with <code>hr()</code>. This code uses titles, text, images, breaks, and rules.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb235-3" data-line-number="3"><span class="kw">let</span> catPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;cat.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a black cat&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-4" data-line-number="4"><span class="kw">let</span> dogPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;dog.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a shaggy Newfoundland dog&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb235-6" data-line-number="6"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h1</span>(<span class="st">&quot;Cats and Dogs&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-7" data-line-number="7"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">p</span>(<span class="st">&quot;Do you prefer cats or dogs?&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb235-9" data-line-number="9"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h4</span>(<span class="st">&quot;Cat people&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-10" data-line-number="10"><span class="va">jsgui</span>.<span class="at">add</span>(catPic)<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-11" data-line-number="11"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-12" data-line-number="12"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="st">&quot;Some people like cats. Cats are quiet, playful, soft, and sweet.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb235-14" data-line-number="14"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-15" data-line-number="15"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-16" data-line-number="16"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb235-18" data-line-number="18"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">h4</span>(<span class="st">&quot;Dog people&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-19" data-line-number="19"><span class="va">jsgui</span>.<span class="at">add</span>(dogPic)<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-20" data-line-number="20"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">br</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb235-21" data-line-number="21"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="vs">`Some people like dogs. Dogs are loyal friends and</span></a>
+<a class="sourceLine" id="cb235-22" data-line-number="22"><span class="vs">companions, sad to see you leave and ecstatic when you get home.``);</span></a></code></pre></div>
 <figure class="figure border">
 <img src="figs/cats1.png" class="figure-img img-fluid" alt="Screenshot of a web page with an image of a cat and a dog with some text.">
 <figcaption class="figure-caption">
@@ -4335,15 +4338,15 @@ The <code>split</code> method (which we’ve already seen) breaks a string into 
 <section id="js-gui-arrays-and-objects" class="level2">
 <h2>JS GUI, Arrays, and Objects</h2>
 <p>JS GUI has some helper functions that makes it easy to display mapped data and arrays of data. For the key-value pairs in a map, JS GUI uses the HTML definition list element. A definition list (<code>&lt;dl&gt;</code>) describes contents that have a <em>term</em> and a <em>definition</em>. The <code>dl()</code> function maps the <em>keys</em> to terms and the <em>values</em> to definitions.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="co">// ...</span></a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb235-3" data-line-number="3"><span class="kw">let</span> pet <span class="op">=</span> <span class="op">{</span></a>
-<a class="sourceLine" id="cb235-4" data-line-number="4">  <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;Sparkle Swan Fireworks&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb235-5" data-line-number="5">  <span class="dt">type</span><span class="op">:</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb235-6" data-line-number="6">  <span class="dt">age</span><span class="op">:</span> <span class="st">&quot;3&quot;</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb235-7" data-line-number="7">  <span class="dt">breed</span><span class="op">:</span> <span class="st">&quot;American Short Hair&quot;</span></a>
-<a class="sourceLine" id="cb235-8" data-line-number="8"><span class="op">}</span></a>
-<a class="sourceLine" id="cb235-9" data-line-number="9"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">dl</span>(pet))<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="co">// ...</span></a>
+<a class="sourceLine" id="cb236-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb236-3" data-line-number="3"><span class="kw">let</span> pet <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb236-4" data-line-number="4">  <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;Sparkle Swan Fireworks&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb236-5" data-line-number="5">  <span class="dt">type</span><span class="op">:</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb236-6" data-line-number="6">  <span class="dt">age</span><span class="op">:</span> <span class="st">&quot;3&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb236-7" data-line-number="7">  <span class="dt">breed</span><span class="op">:</span> <span class="st">&quot;American Short Hair&quot;</span></a>
+<a class="sourceLine" id="cb236-8" data-line-number="8"><span class="op">}</span></a>
+<a class="sourceLine" id="cb236-9" data-line-number="9"><span class="va">jsgui</span>.<span class="at">add</span>(<span class="va">jsgui</span>.<span class="at">dl</span>(pet))<span class="op">;</span></a></code></pre></div>
 <figure class="figure border">
 <img src="figs/jsgui-dl.png" class="figure-img img-fluid" alt="Screenshot of a web page with a definition list with the keys on the left and terms on the right.">
 <figcaption class="figure-caption">
@@ -4351,17 +4354,17 @@ The keys are in a column on the left, right aligned and bold. The values are on 
 </figcaption>
 </figure>
 <p>Arrays of data can be quickly laid out as tables. The example below uses an array of arrays, where each element of <code>animalsOnScreen</code> is an array. <code>jsgui.table(data, header)</code> takes the data as the first argument. If an array is passed for the <code>header</code> argument, <code>table()</code> will use that data to make bold column headers. Although not used here, <code>data</code> can also be an array of data maps. If this is the case, only the <code>values</code> from the map are displayed in the table rows.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="co">// ...</span></a>
-<a class="sourceLine" id="cb236-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb236-3" data-line-number="3"><span class="kw">let</span> animalsOnScreen <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb236-4" data-line-number="4">  [<span class="st">&quot;Name&quot;</span><span class="op">,</span> <span class="st">&quot;Type&quot;</span><span class="op">,</span> <span class="st">&quot;Breed&quot;</span><span class="op">,</span> <span class="st">&quot;Film/Show&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb236-5" data-line-number="5">  [<span class="st">&quot;Rin Tin Tin&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;German Shepherd&quot;</span><span class="op">,</span> <span class="st">&quot;Various&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb236-6" data-line-number="6">  [<span class="st">&quot;Lassie&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;Collie&quot;</span><span class="op">,</span> <span class="st">&quot;Lassie&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb236-7" data-line-number="7">  [<span class="st">&quot;Mrs. Norris&quot;</span><span class="op">,</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span> <span class="st">&quot;Maine Coon&quot;</span><span class="op">,</span> <span class="st">&quot;Harry Potter&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb236-8" data-line-number="8">  [<span class="st">&quot;Flipper&quot;</span><span class="op">,</span> <span class="st">&quot;Dolphin&quot;</span><span class="op">,</span> <span class="st">&quot;bottlenose&quot;</span><span class="op">,</span> <span class="st">&quot;Flipper&quot;</span>]</a>
-<a class="sourceLine" id="cb236-9" data-line-number="9">]<span class="op">;</span></a>
-<a class="sourceLine" id="cb236-10" data-line-number="10"><span class="kw">let</span> table <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">table</span>(<span class="va">animalsOnScreen</span>.<span class="at">slice</span>(<span class="dv">1</span>)<span class="op">,</span> animalsOnScreen[<span class="dv">0</span>])<span class="op">;</span></a>
-<a class="sourceLine" id="cb236-11" data-line-number="11"><span class="va">jsgui</span>.<span class="at">add</span>(table)<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="co">// ...</span></a>
+<a class="sourceLine" id="cb237-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="kw">let</span> animalsOnScreen <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb237-4" data-line-number="4">  [<span class="st">&quot;Name&quot;</span><span class="op">,</span> <span class="st">&quot;Type&quot;</span><span class="op">,</span> <span class="st">&quot;Breed&quot;</span><span class="op">,</span> <span class="st">&quot;Film/Show&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-5" data-line-number="5">  [<span class="st">&quot;Rin Tin Tin&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;German Shepherd&quot;</span><span class="op">,</span> <span class="st">&quot;Various&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-6" data-line-number="6">  [<span class="st">&quot;Lassie&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;Collie&quot;</span><span class="op">,</span> <span class="st">&quot;Lassie&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-7" data-line-number="7">  [<span class="st">&quot;Mrs. Norris&quot;</span><span class="op">,</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span> <span class="st">&quot;Maine Coon&quot;</span><span class="op">,</span> <span class="st">&quot;Harry Potter&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb237-8" data-line-number="8">  [<span class="st">&quot;Flipper&quot;</span><span class="op">,</span> <span class="st">&quot;Dolphin&quot;</span><span class="op">,</span> <span class="st">&quot;bottlenose&quot;</span><span class="op">,</span> <span class="st">&quot;Flipper&quot;</span>]</a>
+<a class="sourceLine" id="cb237-9" data-line-number="9">]<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-10" data-line-number="10"><span class="kw">let</span> table <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">table</span>(<span class="va">animalsOnScreen</span>.<span class="at">slice</span>(<span class="dv">1</span>)<span class="op">,</span> animalsOnScreen[<span class="dv">0</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb237-11" data-line-number="11"><span class="va">jsgui</span>.<span class="at">add</span>(table)<span class="op">;</span></a></code></pre></div>
 <p>This example creates an array with 4 columns and 5 elements. Since the 0-th element contains the header data, <code>slice(1)</code> is used to exclude that row when <code>table()</code> is called, and the array at <code>animalsOnScreen[0]</code> is passed as the <code>header</code> argument.</p>
 <figure class="figure border">
 <img src="figs/jsgui-table.png" class="figure-img img-fluid" alt="Screenshot of a web page with a data presented in a table.">
@@ -4414,102 +4417,102 @@ The <strong>double scripted</strong> array gets presented as a table, where each
 <p><code>main</code> pulls all of our sections together in the order they will be displayed on the page. <code>add()</code> takes multiple arguments of elements to display, separated by commas (kind of like the built in <code>console.log()</code>)</p>
 </aside>
 <div class="listingSrcCode">
-<div class="sourceCode" id="cb237"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="co"> * index.js is the default script for the JSGUI Demo Site</span></a>
-<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="co"> * It demonstrates some of the main layout functions included</span></a>
-<a class="sourceLine" id="cb237-4" data-line-number="4"><span class="co"> * in the js gui package.</span></a>
-<a class="sourceLine" id="cb237-5" data-line-number="5"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb237-6" data-line-number="6"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb237-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb237-8" data-line-number="8"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb237-9" data-line-number="9"><span class="co"> * create a panel about an animal with a title, img, and caption</span></a>
-<a class="sourceLine" id="cb237-10" data-line-number="10"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb237-11" data-line-number="11"><span class="kw">function</span> <span class="at">animalDetail</span>(title<span class="op">,</span> img<span class="op">,</span> text) <span class="op">{</span></a>
-<a class="sourceLine" id="cb237-12" data-line-number="12">  <span class="kw">let</span> container <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">div</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-13" data-line-number="13">  <span class="va">jsgui</span>.<span class="at">append</span>(container<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h4</span>(title)<span class="op">,</span> img<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">br</span>()<span class="op">,</span> text)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-14" data-line-number="14">  <span class="cf">return</span> container<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-15" data-line-number="15"><span class="op">}</span></a>
-<a class="sourceLine" id="cb237-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb237-17" data-line-number="17"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb237-18" data-line-number="18"><span class="co"> * create a section with all of the elements for Cats or Dogs</span></a>
-<a class="sourceLine" id="cb237-19" data-line-number="19"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb237-20" data-line-number="20"><span class="kw">function</span> <span class="at">catsOrDogs</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb237-21" data-line-number="21">  <span class="kw">let</span> sec <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">section</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb237-23" data-line-number="23">  <span class="kw">let</span> catPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;cat.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a black cat&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-24" data-line-number="24">  <span class="kw">let</span> dogPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;dog.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a shaggy Newfoundland dog&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb237-26" data-line-number="26">  <span class="kw">let</span> catPeople <span class="op">=</span> <span class="at">animalDetail</span>(<span class="st">&quot;Cat people&quot;</span><span class="op">,</span> catPic<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-27" data-line-number="27">    <span class="st">&quot;Some people like cats. Cats are quiet, playful, soft, and sweet.&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb237-29" data-line-number="29">  <span class="kw">let</span> dogPeople <span class="op">=</span> <span class="at">animalDetail</span>(<span class="st">&quot;Dog people&quot;</span><span class="op">,</span> dogPic<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-30" data-line-number="30">    <span class="st">&quot;Some people like dogs: loyal friends and quick with a trick.&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb237-32" data-line-number="32">  <span class="kw">let</span> grid <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">grid</span>(<span class="dv">2</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-33" data-line-number="33">  <span class="va">jsgui</span>.<span class="at">addToGrid</span>(grid<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> catPeople)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-34" data-line-number="34">  <span class="va">jsgui</span>.<span class="at">addToGrid</span>(grid<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> dogPeople)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-35" data-line-number="35">  <span class="va">jsgui</span>.<span class="at">append</span>(sec<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-36" data-line-number="36">    <span class="va">jsgui</span>.<span class="at">h2</span>(<span class="st">&quot;Cats and Dogs&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-37" data-line-number="37">    <span class="va">jsgui</span>.<span class="at">p</span>(<span class="st">&quot;Do you prefer cats or dogs?&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-38" data-line-number="38">    grid<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-39" data-line-number="39">    <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb237-41" data-line-number="41">  <span class="cf">return</span> sec<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb237-43" data-line-number="43"><span class="op">}</span></a>
-<a class="sourceLine" id="cb237-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb237-45" data-line-number="45"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb237-46" data-line-number="46"><span class="co"> * create the Animals on Screen section</span></a>
-<a class="sourceLine" id="cb237-47" data-line-number="47"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb237-48" data-line-number="48"><span class="kw">function</span> <span class="at">animalActors</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb237-49" data-line-number="49">  <span class="kw">let</span> sec <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">section</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-50" data-line-number="50">  <span class="kw">let</span> animalsOnScreen <span class="op">=</span> [</a>
-<a class="sourceLine" id="cb237-51" data-line-number="51">    [<span class="st">&quot;Name&quot;</span><span class="op">,</span> <span class="st">&quot;Type&quot;</span><span class="op">,</span> <span class="st">&quot;Breed&quot;</span><span class="op">,</span> <span class="st">&quot;Film/Show&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-52" data-line-number="52">    [<span class="st">&quot;Rin Tin Tin&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;German Shepherd&quot;</span><span class="op">,</span> <span class="st">&quot;Various&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-53" data-line-number="53">    [<span class="st">&quot;Lassie&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;Collie&quot;</span><span class="op">,</span> <span class="st">&quot;Lassie&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-54" data-line-number="54">    [<span class="st">&quot;Mrs. Norris&quot;</span><span class="op">,</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span> <span class="st">&quot;Maine Coon&quot;</span><span class="op">,</span> <span class="st">&quot;Harry Potter&quot;</span>]<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-55" data-line-number="55">    [<span class="st">&quot;Flipper&quot;</span><span class="op">,</span> <span class="st">&quot;Dolphin&quot;</span><span class="op">,</span> <span class="st">&quot;Bottlenose&quot;</span><span class="op">,</span> <span class="st">&quot;Flipper&quot;</span>]</a>
-<a class="sourceLine" id="cb237-56" data-line-number="56">  ]<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-57" data-line-number="57">  <span class="kw">let</span> table <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">table</span>(<span class="va">animalsOnScreen</span>.<span class="at">slice</span>(<span class="dv">1</span>)<span class="op">,</span> animalsOnScreen[<span class="dv">0</span>])<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-58" data-line-number="58">  <span class="va">jsgui</span>.<span class="at">append</span>(sec<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-59" data-line-number="59">    <span class="va">jsgui</span>.<span class="at">h2</span>(<span class="st">&quot;Animals on the Screen&quot;</span>)<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-60" data-line-number="60">    table<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-61" data-line-number="61">    <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-62" data-line-number="62">  <span class="cf">return</span> sec<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-63" data-line-number="63"><span class="op">}</span></a>
-<a class="sourceLine" id="cb237-64" data-line-number="64"></a>
-<a class="sourceLine" id="cb237-65" data-line-number="65"><span class="co">/**</span></a>
-<a class="sourceLine" id="cb237-66" data-line-number="66"><span class="co"> * create a page header</span></a>
-<a class="sourceLine" id="cb237-67" data-line-number="67"><span class="co"> */</span></a>
-<a class="sourceLine" id="cb237-68" data-line-number="68"><span class="kw">function</span> <span class="at">header</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb237-69" data-line-number="69">  <span class="kw">let</span> h <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">header</span>()<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-70" data-line-number="70">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h1</span>(<span class="st">&quot;Animals On Screen&quot;</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-71" data-line-number="71">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h5</span>(<span class="st">&quot;A demo of the JS GUI library&quot;</span>))<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-72" data-line-number="72">  <span class="kw">let</span> about <span class="op">=</span> <span class="st">&quot;JS GUI is [Free Open Source Software](https://fsf.org)&quot;</span></a>
-<a class="sourceLine" id="cb237-73" data-line-number="73">    <span class="op">+</span> <span class="st">&quot;for teaching and learning to program web-based JS guis. &quot;</span></a>
-<a class="sourceLine" id="cb237-74" data-line-number="74">    <span class="op">+</span> <span class="st">&quot;It was created by Robby Lucia and Matt Curinga to accompany &quot;</span></a>
-<a class="sourceLine" id="cb237-75" data-line-number="75">    <span class="op">+</span> <span class="st">&quot;the open textbook, _Think JS_. &quot;</span></a>
-<a class="sourceLine" id="cb237-76" data-line-number="76">    <span class="op">+</span> <span class="st">&quot;[[read online](http://mcuringa.github.com/think-js)] &quot;</span></a>
-<a class="sourceLine" id="cb237-77" data-line-number="77">    <span class="op">+</span> <span class="st">&quot;[[source](https://github.com/mcuringa/think-js)].&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb237-78" data-line-number="78"></a>
-<a class="sourceLine" id="cb237-79" data-line-number="79">  about <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">md</span>(about)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-80" data-line-number="80">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> about)<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-81" data-line-number="81">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-82" data-line-number="82"></a>
-<a class="sourceLine" id="cb237-83" data-line-number="83">  <span class="cf">return</span> h<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-84" data-line-number="84"></a>
-<a class="sourceLine" id="cb237-85" data-line-number="85"><span class="op">}</span></a>
-<a class="sourceLine" id="cb237-86" data-line-number="86"></a>
-<a class="sourceLine" id="cb237-87" data-line-number="87"><span class="co">// start our program</span></a>
-<a class="sourceLine" id="cb237-88" data-line-number="88"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
-<a class="sourceLine" id="cb237-89" data-line-number="89">  <span class="va">jsgui</span>.<span class="at">add</span>(</a>
-<a class="sourceLine" id="cb237-90" data-line-number="90">    <span class="at">header</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-91" data-line-number="91">    <span class="at">catsOrDogs</span>()<span class="op">,</span></a>
-<a class="sourceLine" id="cb237-92" data-line-number="92">    <span class="at">animalActors</span>()</a>
-<a class="sourceLine" id="cb237-93" data-line-number="93">  )<span class="op">;</span></a>
-<a class="sourceLine" id="cb237-94" data-line-number="94"><span class="op">}</span></a>
-<a class="sourceLine" id="cb237-95" data-line-number="95"></a>
-<a class="sourceLine" id="cb237-96" data-line-number="96"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="co"> * index.js is the default script for the JSGUI Demo Site</span></a>
+<a class="sourceLine" id="cb238-3" data-line-number="3"><span class="co"> * It demonstrates some of the main layout functions included</span></a>
+<a class="sourceLine" id="cb238-4" data-line-number="4"><span class="co"> * in the js gui package.</span></a>
+<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="im">import</span> jsgui <span class="im">from</span> <span class="st">&quot;./lib/jsgui.js&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb238-8" data-line-number="8"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb238-9" data-line-number="9"><span class="co"> * create a panel about an animal with a title, img, and caption</span></a>
+<a class="sourceLine" id="cb238-10" data-line-number="10"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb238-11" data-line-number="11"><span class="kw">function</span> <span class="at">animalDetail</span>(title<span class="op">,</span> img<span class="op">,</span> text) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-12" data-line-number="12">  <span class="kw">let</span> container <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">div</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-13" data-line-number="13">  <span class="va">jsgui</span>.<span class="at">append</span>(container<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h4</span>(title)<span class="op">,</span> img<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">br</span>()<span class="op">,</span> text)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-14" data-line-number="14">  <span class="cf">return</span> container<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-15" data-line-number="15"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb238-17" data-line-number="17"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb238-18" data-line-number="18"><span class="co"> * create a section with all of the elements for Cats or Dogs</span></a>
+<a class="sourceLine" id="cb238-19" data-line-number="19"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb238-20" data-line-number="20"><span class="kw">function</span> <span class="at">catsOrDogs</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-21" data-line-number="21">  <span class="kw">let</span> sec <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">section</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb238-23" data-line-number="23">  <span class="kw">let</span> catPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;cat.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a black cat&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-24" data-line-number="24">  <span class="kw">let</span> dogPic <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">img</span>(<span class="st">&quot;dog.jpg&quot;</span><span class="op">,</span> <span class="st">&quot;a shaggy Newfoundland dog&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb238-26" data-line-number="26">  <span class="kw">let</span> catPeople <span class="op">=</span> <span class="at">animalDetail</span>(<span class="st">&quot;Cat people&quot;</span><span class="op">,</span> catPic<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-27" data-line-number="27">    <span class="st">&quot;Some people like cats. Cats are quiet, playful, soft, and sweet.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb238-29" data-line-number="29">  <span class="kw">let</span> dogPeople <span class="op">=</span> <span class="at">animalDetail</span>(<span class="st">&quot;Dog people&quot;</span><span class="op">,</span> dogPic<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-30" data-line-number="30">    <span class="st">&quot;Some people like dogs: loyal friends and quick with a trick.&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb238-32" data-line-number="32">  <span class="kw">let</span> grid <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">grid</span>(<span class="dv">2</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-33" data-line-number="33">  <span class="va">jsgui</span>.<span class="at">addToGrid</span>(grid<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> catPeople)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-34" data-line-number="34">  <span class="va">jsgui</span>.<span class="at">addToGrid</span>(grid<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> dogPeople)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-35" data-line-number="35">  <span class="va">jsgui</span>.<span class="at">append</span>(sec<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-36" data-line-number="36">    <span class="va">jsgui</span>.<span class="at">h2</span>(<span class="st">&quot;Cats and Dogs&quot;</span>)<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-37" data-line-number="37">    <span class="va">jsgui</span>.<span class="at">p</span>(<span class="st">&quot;Do you prefer cats or dogs?&quot;</span>)<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-38" data-line-number="38">    grid<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-39" data-line-number="39">    <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb238-41" data-line-number="41">  <span class="cf">return</span> sec<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb238-43" data-line-number="43"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb238-45" data-line-number="45"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb238-46" data-line-number="46"><span class="co"> * create the Animals on Screen section</span></a>
+<a class="sourceLine" id="cb238-47" data-line-number="47"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb238-48" data-line-number="48"><span class="kw">function</span> <span class="at">animalActors</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-49" data-line-number="49">  <span class="kw">let</span> sec <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">section</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-50" data-line-number="50">  <span class="kw">let</span> animalsOnScreen <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb238-51" data-line-number="51">    [<span class="st">&quot;Name&quot;</span><span class="op">,</span> <span class="st">&quot;Type&quot;</span><span class="op">,</span> <span class="st">&quot;Breed&quot;</span><span class="op">,</span> <span class="st">&quot;Film/Show&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-52" data-line-number="52">    [<span class="st">&quot;Rin Tin Tin&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;German Shepherd&quot;</span><span class="op">,</span> <span class="st">&quot;Various&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-53" data-line-number="53">    [<span class="st">&quot;Lassie&quot;</span><span class="op">,</span> <span class="st">&quot;Dog&quot;</span><span class="op">,</span> <span class="st">&quot;Collie&quot;</span><span class="op">,</span> <span class="st">&quot;Lassie&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-54" data-line-number="54">    [<span class="st">&quot;Mrs. Norris&quot;</span><span class="op">,</span> <span class="st">&quot;Cat&quot;</span><span class="op">,</span> <span class="st">&quot;Maine Coon&quot;</span><span class="op">,</span> <span class="st">&quot;Harry Potter&quot;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-55" data-line-number="55">    [<span class="st">&quot;Flipper&quot;</span><span class="op">,</span> <span class="st">&quot;Dolphin&quot;</span><span class="op">,</span> <span class="st">&quot;Bottlenose&quot;</span><span class="op">,</span> <span class="st">&quot;Flipper&quot;</span>]</a>
+<a class="sourceLine" id="cb238-56" data-line-number="56">  ]<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-57" data-line-number="57">  <span class="kw">let</span> table <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">table</span>(<span class="va">animalsOnScreen</span>.<span class="at">slice</span>(<span class="dv">1</span>)<span class="op">,</span> animalsOnScreen[<span class="dv">0</span>])<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-58" data-line-number="58">  <span class="va">jsgui</span>.<span class="at">append</span>(sec<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-59" data-line-number="59">    <span class="va">jsgui</span>.<span class="at">h2</span>(<span class="st">&quot;Animals on the Screen&quot;</span>)<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-60" data-line-number="60">    table<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-61" data-line-number="61">    <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-62" data-line-number="62">  <span class="cf">return</span> sec<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-63" data-line-number="63"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb238-65" data-line-number="65"><span class="co">/**</span></a>
+<a class="sourceLine" id="cb238-66" data-line-number="66"><span class="co"> * create a page header</span></a>
+<a class="sourceLine" id="cb238-67" data-line-number="67"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb238-68" data-line-number="68"><span class="kw">function</span> <span class="at">header</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-69" data-line-number="69">  <span class="kw">let</span> h <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">header</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-70" data-line-number="70">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h1</span>(<span class="st">&quot;Animals On Screen&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-71" data-line-number="71">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">h5</span>(<span class="st">&quot;A demo of the JS GUI library&quot;</span>))<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-72" data-line-number="72">  <span class="kw">let</span> about <span class="op">=</span> <span class="st">&quot;JS GUI is [Free Open Source Software](https://fsf.org)&quot;</span></a>
+<a class="sourceLine" id="cb238-73" data-line-number="73">    <span class="op">+</span> <span class="st">&quot;for teaching and learning to program web-based JS guis. &quot;</span></a>
+<a class="sourceLine" id="cb238-74" data-line-number="74">    <span class="op">+</span> <span class="st">&quot;It was created by Robby Lucia and Matt Curinga to accompany &quot;</span></a>
+<a class="sourceLine" id="cb238-75" data-line-number="75">    <span class="op">+</span> <span class="st">&quot;the open textbook, _Think JS_. &quot;</span></a>
+<a class="sourceLine" id="cb238-76" data-line-number="76">    <span class="op">+</span> <span class="st">&quot;[[read online](http://mcuringa.github.com/think-js)] &quot;</span></a>
+<a class="sourceLine" id="cb238-77" data-line-number="77">    <span class="op">+</span> <span class="st">&quot;[[source](https://github.com/mcuringa/think-js)].&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-78" data-line-number="78"></a>
+<a class="sourceLine" id="cb238-79" data-line-number="79">  about <span class="op">=</span> <span class="va">jsgui</span>.<span class="at">md</span>(about)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-80" data-line-number="80">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> about)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-81" data-line-number="81">  <span class="va">jsgui</span>.<span class="at">append</span>(h<span class="op">,</span> <span class="va">jsgui</span>.<span class="at">hr</span>())<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb238-83" data-line-number="83">  <span class="cf">return</span> h<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-84" data-line-number="84"></a>
+<a class="sourceLine" id="cb238-85" data-line-number="85"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-86" data-line-number="86"></a>
+<a class="sourceLine" id="cb238-87" data-line-number="87"><span class="co">// start our program</span></a>
+<a class="sourceLine" id="cb238-88" data-line-number="88"><span class="kw">function</span> <span class="at">main</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-89" data-line-number="89">  <span class="va">jsgui</span>.<span class="at">add</span>(</a>
+<a class="sourceLine" id="cb238-90" data-line-number="90">    <span class="at">header</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-91" data-line-number="91">    <span class="at">catsOrDogs</span>()<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-92" data-line-number="92">    <span class="at">animalActors</span>()</a>
+<a class="sourceLine" id="cb238-93" data-line-number="93">  )<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-94" data-line-number="94"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-95" data-line-number="95"></a>
+<a class="sourceLine" id="cb238-96" data-line-number="96"><span class="at">main</span>()<span class="op">;</span></a></code></pre></div>
 </div>
 </section>
 </section>
@@ -4601,15 +4604,15 @@ The <strong>double scripted</strong> array gets presented as a table, where each
 <h2>Introducing programming with Python</h2>
 <p>The process of translating and using <em>How to Think Like a Computer Scientist</em> for the past two years has confirmed Python’s suitability for teaching beginning students. Python greatly simplifies programming examples and makes important programming ideas easier to teach.</p>
 <p>The first example from the text illustrates this point. It is the traditional hello, world program, which in the Java version of the book looks like this:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">class</span> Hello</a>
-<a class="sourceLine" id="cb238-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
-<a class="sourceLine" id="cb238-4" data-line-number="4">    {</a>
-<a class="sourceLine" id="cb238-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
-<a class="sourceLine" id="cb238-6" data-line-number="6">    }</a>
-<a class="sourceLine" id="cb238-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">class</span> Hello</a>
+<a class="sourceLine" id="cb239-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb239-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
+<a class="sourceLine" id="cb239-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb239-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
+<a class="sourceLine" id="cb239-6" data-line-number="6">    }</a>
+<a class="sourceLine" id="cb239-7" data-line-number="7">}</a></code></pre></div>
 <p>in the Python version it becomes:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
 <p>Even though this is a trivial example, the advantages of Python stand out. Yorktown’s Computer Science I course has no prerequisites, so many of the students seeing this example are looking at their first program. Some of them are undoubtedly a little nervous, having heard that computer programming is difficult to learn. The Java version has always forced me to choose between two unsatisfying options: either to explain the <code>class Hello</code>, <code>public static void main</code>, <code>String[] args</code>, <code>{</code>, and <code>}</code>, statements and risk confusing or intimidating some of the students right at the start, or to tell them, Just don’t worry about all of that stuff now; we will talk about it later, and risk the same thing. The educational objectives at this point in the course are to introduce students to the idea of a programming statement and to get them to write their first program, thereby introducing them to the programming environment. The Python program has exactly what is needed to do these things, and nothing more.</p>
 <p>Comparing the explanatory text of the program in each version of the book further illustrates what this means to the beginning student. There are seven paragraphs of explanation of Hello, world! in the Java version; in the Python version, there are only a few sentences. More importantly, the missing six paragraphs do not deal with the big ideas in computer programming but with the minutia of Java syntax. I found this same thing happening throughout the book. Whole paragraphs simply disappear from the Python version of the text because Python’s much clearer syntax renders them unnecessary.</p>
 <p>Using a very high-level language like Python allows a teacher to postpone talking about low-level details of the machine until students have the background that they need to better make sense of the details. It thus creates the ability to put first things first pedagogically. One of the best examples of this is the way in which Python handles variables. In Java a variable is a name for a place that holds a value if it is a built-in type, and a reference to an object if it is not. Explaining this distinction requires a discussion of how the computer stores data. Thus, the idea of a variable is bound up with the hardware of the machine. The powerful and fundamental concept of a variable is already difficult enough for beginning students (in both computer science and algebra). Bytes and addresses do not help the matter. In Python a variable is a name that refers to a thing. This is a far more intuitive concept for beginning students and is much closer to the meaning of variable that they learned in their math courses. I had much less difficulty teaching variables this year than I did in the past, and I spent less time helping students with problems using them.</p>
@@ -4653,23 +4656,23 @@ As things move along, we use PyGame for more advanced graphics.</li>
 <li>I have tried to push more object-oriented notions earlier, without asking students to synthesize objects or write their own classes. So, for example, in the chapter about the turtle, we create multiple instances of turtles, talk about their attributes and state (color, position, etc), and we favour method-call style to move them around, i.e. <code>tess.forward(100)</code>. Similarly, when we use random numbers, we avoid the “hidden singleton generator” in the random module — we prefer to create an instance of a generator, and invoke methods on the instance.</li>
 <li>The ease of constructing lists and the <code>for</code> loop seem to be winners in Python, so rather than use the traditional command-line <code>input</code> for data, I’ve favoured using loops and lists right up front, like this:</li>
 </ul>
-<div class="sourceCode" id="cb240"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb240-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
-<a class="sourceLine" id="cb240-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
-<a class="sourceLine" id="cb240-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb241-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
+<a class="sourceLine" id="cb241-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
+<a class="sourceLine" id="cb241-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
 <p>This also means that I bumped <code>range</code> up for early exposure.<br />
 I envisage that over time we’ll see more opportunities to exploit “early lists, early iteration” in its most simple form.</p>
 <ul>
 <li>I dumped <code>doctest</code>: it is too quirky for my liking. For example, it fails a test if the spacing between list elements is not precisely the same as the output string, or if Python prints a string with single quotes, but you wrote up the test case with double quotes. Cases like this also confused students (and instructors) quite badly:</li>
 </ul>
-<div class="sourceCode" id="cb241"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb241-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
-<a class="sourceLine" id="cb241-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb241-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
-<a class="sourceLine" id="cb241-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
-<a class="sourceLine" id="cb241-6" data-line-number="6"><span class="co">    9</span></a>
-<a class="sourceLine" id="cb241-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb241-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb242-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
+<a class="sourceLine" id="cb242-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb242-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
+<a class="sourceLine" id="cb242-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
+<a class="sourceLine" id="cb242-6" data-line-number="6"><span class="co">    9</span></a>
+<a class="sourceLine" id="cb242-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb242-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
 <p>If you can explain the difference in scope rules and lifetimes between the parameter <code>xs</code> and the doctest variable <code>xs</code> elegantly, please let me know. Yes, I know doctest creates its own scope behind our back, but it is exactly this black magic that we’re trying to avoid.<br />
 From the usual indentation rules, also looks like the doctests are nested inside the function scope, but they are not. Students thought that the parameter had been given its value by the assignment to <code>xs</code> in the doctest!</p>
 <p>I also think that keeping the test suite separate from the functions under test leads to a cleaner relationship between caller and callee, and gives a better chance of getting argument passing / parameter concepts taught accurately.</p>
