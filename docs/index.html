@@ -502,6 +502,9 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#js-gui-arrays-and-objects">JS GUI, Arrays, and Objects</a></li>
 <li><a href="#code-listing-js-gui-demo">Code Listing: JS GUI Demo</a></li>
 </ul></li>
+<li><a href="#react-web-programming">React Web Programming</a><ul>
+<li><a href="#code-listing-spellcaster">Code Listing: SpellCaster</a></li>
+</ul></li>
 <li><a href="#appendices">Appendices</a><ul>
 <li><a href="#code-templates-solutions-and-examples">Code templates, solutions, and examples</a></li>
 <li><a href="#preface-to-previous-edition">Preface to previous edition</a></li>
@@ -539,7 +542,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>To paraphrase the philosophy of the Free Software Foundation, this book is free like free speech, but not necessarily free like free pizza. It came about because of a collaboration that would not have been possible without the GNU Free Documentation License. So we would like to thank the Free Software Foundation for developing this license and, of course, making it available to us.</p>
 <p>We would also like to thank the more than 100 sharp-eyed and thoughtful readers who have sent us suggestions and corrections over the past few years. In the spirit of free software, we decided to express our gratitude in the form of a contributor list. Unfortunately, this list is not complete, but we are doing our best to keep it up to date. It was also getting too large to include everyone who sends in a typo or two. You have our gratitude, and you have the personal satisfaction of making a book you found useful better for you and everyone else who uses it. New additions to the list for the 2nd edition will be those who have made on-going contributions.</p>
 <p>If you have a chance to look through the list, you should realize that each person here has spared you and all subsequent readers from the confusion of a technical error or a less-than-transparent explanation, just by sending us a note.</p>
-<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
+<p>Impossible as it may seem after so many corrections, there may still be errors in this book. If you should stumble across one, we hope you will take a minute to contact us. The email address (for the Python 3 version of the book) is <a href="mailto:p.wentworth@ru.ac.za" class="email">p.wentworth@ru.ac.za</a>. Substantial changes made due to your suggestions will add you to the next version of the contributor list (unless you ask to be omitted). Thank you!</p>
 <section id="second-edition" class="level3">
 <h3>Second Edition</h3>
 <ul>
@@ -4514,6 +4517,253 @@ The <strong>double scripted</strong> array gets presented as a table, where each
 </section>
 </section>
 </section>
+<section id="react-web-programming" class="level1">
+<h1>React Web Programming</h1>
+<section id="code-listing-spellcaster" class="level2 codeListing">
+<h2>Code Listing: SpellCaster</h2>
+<section id="reacting-to-user-interaction" class="level3">
+<h3>Reacting to user interaction</h3>
+<p>This code listing steps through the process of making a moderately complex web user interface that <em>reacts</em> to user actions. It presents a list of spells and allows the user to <em>filter</em> the list by checking/unchecking a series of checkbox form elements. The code must keep track of which boxes are checked in the React Object <strong>state</strong>. The list of spells must update dynamically when changes are detected. This is what we mean by a <em>reactive interface</em>.</p>
+<ul>
+<li><a href="https://repl.it/@mcuringa/JSGuiDemo">View the “JS GUI Demo” repl</a></li>
+<li><a href="https://jsguidemo.mcuringa.repl.co/">View the “JS GUI Demo” website</a></li>
+</ul>
+</section>
+<section id="case-study-spellcaster-spells" class="level3 jsguidemo codeNotes">
+<h3>Case Study: SpellCaster Spells</h3>
+<aside data-line-number="1">
+<p>We see a new <code>import</code> here from the <code>lodash</code> library. <a href="https://lodash.com/docs/4.17.11">lodash</a> has many useful functions for working with arrays, maps, collections, objects, and functions. In this code, we are going to use it primarily for <em>sorting</em> our data more easily.</p>
+</aside>
+<aside data-line-number="11">
+<p>An objects <strong>constructor</strong> is called once, when the object is first created or <em>instantiated</em>. For <code>React Component</code> objects, we call <code>super()</code> to trigger the generic <code>Component</code> constructor, then initialize our default values for the <strong>state</strong>.</p>
+<p><code>filters</code> will let us know which spells to display, based on the character classes that are active (e.g. show only spells that clerics and druids can use). All of the items are <code>true</code> to start so that all spells are shown.</p>
+</aside>
+<aside data-line-number="29">
+<p>Our objects methods (aka member functions) share data and communicate with each other through the special <code>this</code> object. <code>this</code> refers to this instance of <code>SpellTable</code>. If we don’t <code>bind()</code> this to each of our functions, those functions can’t access object data such as <code>state</code>, <code>props</code>, or other methods.</p>
+</aside>
+<aside data-line-number="35">
+<p><code>componentWillMount()</code> is called before the component is displayed. It’s the best place to load the data that our component will need. Here we take the spell objects that we imported from <code>&quot;./data/spells.json&quot;</code> and we sort them by level. We call the <code>setState()</code> function that is part of <code>React Component</code> in order to update the state and trigger our <code>render()</code> function if needed.</p>
+</aside>
+<aside data-line-number="32">
+<p><code>grid()</code> makes a special grid layout container. A grid can have between 1-12 columns. Add elements to a specific grid column with <code>addToGrid(grid, colNumber, ...items)</code></p>
+<p>After creating the grid, we append all of the items to our section container and then return it.</p>
+</aside>
+<aside data-line-number="39">
+<p><code>toggleFilter()</code> gets called when one of our filter checkboxes is checked or unchecked. It changes the <code>state</code> of the entry in the <code>filters</code> map to <code>true</code> or <code>false</code> (the logical opposite of whatever it currently is).</p>
+</aside>
+<aside data-line-number="45">
+<p><code>clearFilters()</code> sets all of the filters to <code>false</code>. No spells will be shown, but it makes it easier for the user to select just one character class.</p>
+</aside>
+<aside data-line-number="53">
+<p><code>allCharClasses()</code> sets all of the filters to <code>true</code> so that all spells are shown.</p>
+</aside>
+<aside data-line-number="61">
+<p>All React Components <em>must</em> define a <code>render()</code> method. This returns the string component that is rendered to the screen (or <code>null</code> if nothing is to be displayed.) Our render method is building an HTML table (with Boostrap css classes) that shows all of the spells that are active. It defines <code>th()</code> as an internal function to map html <code>th</code> elements to an array of strings. This creates the table header.</p>
+</aside>
+<aside data-line-number="75">
+We look up the list of active filters from the <code>state</code> and then call <code>filterSpellsByCharClass()</code> to find the <code>spells</code> which should be active. We map those spells to <code>SpellRow</code> components calling <code>spells.map()</code>
+</aside>
+<div class="listingSrcCode">
+<div class="sourceCode" id="cb238"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="im">import</span> React<span class="op">,</span> <span class="op">{</span> Component <span class="op">}</span> <span class="im">from</span> <span class="st">&#39;react&#39;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="im">import</span> <span class="op">{</span> Link <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;react-router-dom&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-3" data-line-number="3"><span class="im">import</span> _ <span class="im">from</span> <span class="st">&quot;lodash&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="im">import</span> <span class="op">{</span> ClassIcon <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./Icons&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="im">import</span> spells <span class="im">from</span> <span class="st">&quot;./data/spells.json&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-7" data-line-number="7"><span class="im">import</span> details <span class="im">from</span> <span class="st">&quot;./res/wireframes/spell-detail.png&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb238-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb238-10" data-line-number="10"><span class="kw">class</span> SpellTable <span class="kw">extends</span> Component <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-11" data-line-number="11">  <span class="at">constructor</span>(props) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-12" data-line-number="12">    <span class="kw">super</span>(props)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-13" data-line-number="13">    <span class="kw">let</span> filters <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-14" data-line-number="14">      <span class="dt">bard</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-15" data-line-number="15">      <span class="dt">cleric</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-16" data-line-number="16">      <span class="dt">druid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-17" data-line-number="17">      <span class="dt">monk</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-18" data-line-number="18">      <span class="dt">paladin</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-19" data-line-number="19">      <span class="dt">ranger</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-20" data-line-number="20">      <span class="dt">sorcerer</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-21" data-line-number="21">      <span class="dt">warlock</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-22" data-line-number="22">      <span class="dt">wizard</span><span class="op">:</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb238-23" data-line-number="23">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-24" data-line-number="24">    <span class="kw">this</span>.<span class="at">state</span> <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-25" data-line-number="25">      <span class="dt">spells</span><span class="op">:</span> []<span class="op">,</span></a>
+<a class="sourceLine" id="cb238-26" data-line-number="26">      <span class="dt">charClassFilters</span><span class="op">:</span> filters</a>
+<a class="sourceLine" id="cb238-27" data-line-number="27">    <span class="op">};</span></a>
+<a class="sourceLine" id="cb238-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb238-29" data-line-number="29">    <span class="kw">this</span>.<span class="at">toggleFilter</span> <span class="op">=</span> <span class="kw">this</span>.<span class="va">toggleFilter</span>.<span class="at">bind</span>(<span class="kw">this</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-30" data-line-number="30">    <span class="kw">this</span>.<span class="at">clearFilters</span> <span class="op">=</span> <span class="kw">this</span>.<span class="va">clearFilters</span>.<span class="at">bind</span>(<span class="kw">this</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-31" data-line-number="31">    <span class="kw">this</span>.<span class="at">allCharClasses</span> <span class="op">=</span> <span class="kw">this</span>.<span class="va">allCharClasses</span>.<span class="at">bind</span>(<span class="kw">this</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-32" data-line-number="32">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb238-34" data-line-number="34">  <span class="at">componentWillMount</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-35" data-line-number="35">    <span class="kw">let</span> spellList <span class="op">=</span> <span class="va">_</span>.<span class="at">sortBy</span>(spells<span class="op">,</span> <span class="st">&quot;level_int&quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-36" data-line-number="36">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span> <span class="dt">spells</span><span class="op">:</span> spellList <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-37" data-line-number="37">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb238-39" data-line-number="39">  <span class="at">toggleFilter</span>(charClass) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-40" data-line-number="40">    <span class="kw">let</span> filters <span class="op">=</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">charClassFilters</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-41" data-line-number="41">    filters[charClass] <span class="op">=</span> <span class="op">!</span>filters[charClass]<span class="op">;</span> <span class="co">//toggle the filter</span></a>
+<a class="sourceLine" id="cb238-42" data-line-number="42">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">charClassFilters</span><span class="op">:</span> filters<span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-43" data-line-number="43">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb238-45" data-line-number="45">  <span class="at">clearFilters</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-46" data-line-number="46">    <span class="kw">let</span> filters <span class="op">=</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">charClassFilters</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-47" data-line-number="47">    <span class="cf">for</span>(<span class="kw">let</span> k <span class="kw">in</span> filters) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-48" data-line-number="48">      filters[k] <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-49" data-line-number="49">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-50" data-line-number="50">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">charClassFilters</span><span class="op">:</span> filters<span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-51" data-line-number="51">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb238-53" data-line-number="53">  <span class="at">allCharClasses</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-54" data-line-number="54">    <span class="kw">let</span> filters <span class="op">=</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">charClassFilters</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-55" data-line-number="55">    <span class="cf">for</span>(<span class="kw">let</span> k <span class="kw">in</span> filters) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-56" data-line-number="56">      filters[k] <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-57" data-line-number="57">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-58" data-line-number="58">    <span class="kw">this</span>.<span class="at">setState</span>(<span class="op">{</span><span class="dt">charClassFilters</span><span class="op">:</span> filters<span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-59" data-line-number="59">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb238-61" data-line-number="61">  <span class="at">render</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-62" data-line-number="62">    <span class="kw">const</span> th <span class="op">=</span> (header<span class="op">,</span> index) <span class="op">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-63" data-line-number="63">      <span class="cf">return</span> (<span class="op">&lt;</span>th key<span class="op">={</span>index<span class="op">}&gt;{</span>header<span class="op">}</span>&lt;/th<span class="op">&gt;</span>)</a>
+<a class="sourceLine" id="cb238-64" data-line-number="64">    <span class="op">};</span></a>
+<a class="sourceLine" id="cb238-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb238-66" data-line-number="66">    <span class="kw">let</span> headers <span class="op">=</span> [</a>
+<a class="sourceLine" id="cb238-67" data-line-number="67">      <span class="st">&quot;Spell&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-68" data-line-number="68">      <span class="st">&quot;Level&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-69" data-line-number="69">      <span class="st">&quot;School&quot;</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb238-70" data-line-number="70">      <span class="st">&quot;Casting Classes&quot;</span></a>
+<a class="sourceLine" id="cb238-71" data-line-number="71">    ]<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-72" data-line-number="72">    headers <span class="op">=</span> <span class="va">headers</span>.<span class="at">map</span>(th)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-73" data-line-number="73"></a>
+<a class="sourceLine" id="cb238-74" data-line-number="74"></a>
+<a class="sourceLine" id="cb238-75" data-line-number="75">    <span class="kw">let</span> filters <span class="op">=</span> <span class="kw">this</span>.<span class="va">state</span>.<span class="at">charClassFilters</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-76" data-line-number="76">    <span class="kw">let</span> spells <span class="op">=</span> <span class="at">filterSpellsByCharClass</span>(<span class="kw">this</span>.<span class="va">state</span>.<span class="at">spells</span><span class="op">,</span> filters)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-77" data-line-number="77"></a>
+<a class="sourceLine" id="cb238-78" data-line-number="78">    <span class="kw">const</span> rows <span class="op">=</span> <span class="va">spells</span>.<span class="at">map</span>(SpellRow)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-79" data-line-number="79"></a>
+<a class="sourceLine" id="cb238-80" data-line-number="80">    <span class="cf">return</span> (</a>
+<a class="sourceLine" id="cb238-81" data-line-number="81">      <span class="op">&lt;</span>section id<span class="op">=</span><span class="st">&quot;Spells&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-82" data-line-number="82">        <span class="op">&lt;</span>h2<span class="op">&gt;</span>Spells&lt;/h2<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-83" data-line-number="83">        <span class="op">&lt;</span>h5 className<span class="op">=</span><span class="st">&quot;text-primary&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-84" data-line-number="84">          Filter list</a>
+<a class="sourceLine" id="cb238-85" data-line-number="85">          <span class="op">&lt;</span>button type<span class="op">=</span><span class="st">&quot;button&quot;</span> className<span class="op">=</span><span class="st">&quot;btn btn-link btn-sm&quot;</span> onClick<span class="op">={</span><span class="kw">this</span>.<span class="at">clearFilters</span><span class="op">}&gt;</span>[clear]&lt;/button<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-86" data-line-number="86">          <span class="op">&lt;</span>button type<span class="op">=</span><span class="st">&quot;button&quot;</span> className<span class="op">=</span><span class="st">&quot;btn btn-link btn-sm&quot;</span> onClick<span class="op">={</span><span class="kw">this</span>.<span class="at">allCharClasses</span><span class="op">}&gt;</span>[all]&lt;/button<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-87" data-line-number="87">        &lt;/h5<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-88" data-line-number="88">        <span class="op">&lt;</span>form className<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-89" data-line-number="89">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;bard&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;bard&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-90" data-line-number="90">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;cleric&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;cleric&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-91" data-line-number="91">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;druid&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;druid&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-92" data-line-number="92">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;monk&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;monk&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-93" data-line-number="93">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;paladin&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;paladin&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-94" data-line-number="94">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;ranger&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;ranger&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-95" data-line-number="95">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;sorcerer&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;sorcerer&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-96" data-line-number="96">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;warlock&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;warlock&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-97" data-line-number="97">          <span class="op">&lt;</span>IconCheckBox onChange<span class="op">={</span><span class="kw">this</span>.<span class="at">toggleFilter</span><span class="op">}</span> isActive<span class="op">={</span>filters[<span class="st">&quot;wizard&quot;</span>]<span class="op">}</span> charClass<span class="op">=</span><span class="st">&quot;wizard&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-98" data-line-number="98">        &lt;/form<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-99" data-line-number="99"></a>
+<a class="sourceLine" id="cb238-100" data-line-number="100">        <span class="op">&lt;</span>table className<span class="op">=</span><span class="st">&quot;table table-hover table-sm&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-101" data-line-number="101">          <span class="op">&lt;</span>thead<span class="op">&gt;&lt;</span>tr<span class="op">&gt;{</span>headers<span class="op">}</span>&lt;/tr<span class="op">&gt;</span>&lt;/thead<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-102" data-line-number="102">          <span class="op">&lt;</span>tbody<span class="op">&gt;{</span>rows<span class="op">}</span>&lt;/tbody<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-103" data-line-number="103">        &lt;/table<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-104" data-line-number="104"></a>
+<a class="sourceLine" id="cb238-105" data-line-number="105">      &lt;/section<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-106" data-line-number="106">    )</a>
+<a class="sourceLine" id="cb238-107" data-line-number="107">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-108" data-line-number="108"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-109" data-line-number="109"></a>
+<a class="sourceLine" id="cb238-110" data-line-number="110"></a>
+<a class="sourceLine" id="cb238-111" data-line-number="111"><span class="kw">function</span> <span class="at">filterSpellsByCharClass</span>(spells<span class="op">,</span> classes) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-112" data-line-number="112">  <span class="kw">let</span> t <span class="op">=</span> []<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-113" data-line-number="113">  <span class="kw">function</span> <span class="at">isActive</span>(spellCasters) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-114" data-line-number="114">    <span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">spellCasters</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-115" data-line-number="115">      <span class="kw">let</span> charClass <span class="op">=</span> spellCasters[i].<span class="at">toLowerCase</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-116" data-line-number="116">      <span class="cf">if</span>(classes[charClass]) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-117" data-line-number="117">        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-118" data-line-number="118">      <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-119" data-line-number="119">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-120" data-line-number="120">    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-121" data-line-number="121">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-122" data-line-number="122"></a>
+<a class="sourceLine" id="cb238-123" data-line-number="123">  <span class="cf">for</span>(<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="va">spells</span>.<span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-124" data-line-number="124">    <span class="kw">const</span> spell <span class="op">=</span> spells[i]<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-125" data-line-number="125">    <span class="kw">const</span> spellCasters <span class="op">=</span> spell[<span class="st">&quot;class&quot;</span>].<span class="at">split</span>(<span class="st">&quot;, &quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-126" data-line-number="126">    <span class="cf">if</span>(<span class="at">isActive</span>(spellCasters)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-127" data-line-number="127">      <span class="va">t</span>.<span class="at">push</span>(spell)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-128" data-line-number="128">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-129" data-line-number="129">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-130" data-line-number="130">  <span class="cf">return</span> t<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-131" data-line-number="131"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-132" data-line-number="132"></a>
+<a class="sourceLine" id="cb238-133" data-line-number="133"></a>
+<a class="sourceLine" id="cb238-134" data-line-number="134"></a>
+<a class="sourceLine" id="cb238-135" data-line-number="135"><span class="kw">function</span> <span class="at">IconCheckBox</span>(props) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-136" data-line-number="136">  <span class="kw">function</span> <span class="at">toggle</span>() <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-137" data-line-number="137">    <span class="va">props</span>.<span class="at">onChange</span>(<span class="va">props</span>.<span class="at">charClass</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-138" data-line-number="138">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-139" data-line-number="139"></a>
+<a class="sourceLine" id="cb238-140" data-line-number="140">  <span class="cf">return</span> (</a>
+<a class="sourceLine" id="cb238-141" data-line-number="141">    <span class="op">&lt;</span>span key<span class="op">={</span><span class="vs">`toggle_</span><span class="sc">${</span><span class="va">props</span>.<span class="at">charClass</span><span class="sc">}</span><span class="vs">`</span><span class="op">}</span> className<span class="op">=</span><span class="st">&quot;form-check form-check-inline&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-142" data-line-number="142">      <span class="op">&lt;</span>input className<span class="op">=</span><span class="st">&quot;form-check-input&quot;</span></a>
+<a class="sourceLine" id="cb238-143" data-line-number="143">        type<span class="op">=</span><span class="st">&quot;checkbox&quot;</span></a>
+<a class="sourceLine" id="cb238-144" data-line-number="144">        checked<span class="op">={</span><span class="va">props</span>.<span class="at">isActive</span><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-145" data-line-number="145">        onChange<span class="op">={</span>toggle<span class="op">}</span> /&gt;</a>
+<a class="sourceLine" id="cb238-146" data-line-number="146">      <span class="op">&lt;</span>ClassIcon charClass<span class="op">={</span><span class="va">props</span>.<span class="at">charClass</span><span class="op">}</span> /&gt; <span class="op">{</span><span class="va">props</span>.<span class="at">charClass</span><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-147" data-line-number="147">    &lt;/span<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-148" data-line-number="148">  )</a>
+<a class="sourceLine" id="cb238-149" data-line-number="149"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-150" data-line-number="150"></a>
+<a class="sourceLine" id="cb238-151" data-line-number="151"><span class="kw">function</span> <span class="at">SpellRow</span>(spell) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-152" data-line-number="152"></a>
+<a class="sourceLine" id="cb238-153" data-line-number="153">  <span class="kw">const</span> check <span class="op">=</span> (casterClass) <span class="op">=&gt;</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-154" data-line-number="154">    <span class="kw">const</span> spellCasters <span class="op">=</span> spell[<span class="st">&quot;class&quot;</span>].<span class="at">split</span>(<span class="st">&quot;, &quot;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-155" data-line-number="155">    <span class="cf">if</span> (<span class="va">_</span>.<span class="at">includes</span>(spellCasters<span class="op">,</span> casterClass)) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-156" data-line-number="156">      <span class="cf">return</span> <span class="op">&lt;</span>abbr title<span class="op">={</span>casterClass<span class="op">}&gt;&lt;</span>ClassIcon charClass<span class="op">={</span><span class="va">casterClass</span>.<span class="at">toLowerCase</span>()<span class="op">}</span> /&gt;&lt;/abbr<span class="op">&gt;;</span></a>
+<a class="sourceLine" id="cb238-157" data-line-number="157">    <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-158" data-line-number="158">    <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-159" data-line-number="159">  <span class="op">}</span></a>
+<a class="sourceLine" id="cb238-160" data-line-number="160"></a>
+<a class="sourceLine" id="cb238-161" data-line-number="161">  <span class="kw">const</span> level <span class="op">=</span> <span class="va">spell</span>.<span class="at">level_int</span> <span class="op">||</span> <span class="st">&quot;C&quot;</span><span class="op">;</span></a>
+<a class="sourceLine" id="cb238-162" data-line-number="162">  <span class="cf">return</span> (</a>
+<a class="sourceLine" id="cb238-163" data-line-number="163"></a>
+<a class="sourceLine" id="cb238-164" data-line-number="164">    <span class="op">&lt;</span>tr key<span class="op">={</span><span class="va">spell</span>.<span class="at">_id</span><span class="op">}&gt;</span></a>
+<a class="sourceLine" id="cb238-165" data-line-number="165">      <span class="op">&lt;</span>td<span class="op">&gt;&lt;</span>Link to<span class="op">=</span><span class="st">&quot;/spells/detail&quot;</span><span class="op">&gt;{</span><span class="va">spell</span>.<span class="at">name</span><span class="op">}</span>&lt;/Link<span class="op">&gt;</span>&lt;/td<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-166" data-line-number="166">      <span class="op">&lt;</span>td<span class="op">&gt;{</span>level<span class="op">}</span>&lt;/td<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-167" data-line-number="167">      <span class="op">&lt;</span>td<span class="op">&gt;{</span><span class="va">spell</span>.<span class="at">school</span><span class="op">}</span>&lt;/td<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-168" data-line-number="168">      <span class="op">&lt;</span>td<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-169" data-line-number="169">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Bard&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-170" data-line-number="170">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Cleric&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-171" data-line-number="171">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Druid&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-172" data-line-number="172">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Paladin&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-173" data-line-number="173">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Ranger&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-174" data-line-number="174">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Sorcerer&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-175" data-line-number="175">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Warlock&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-176" data-line-number="176">        <span class="op">{</span><span class="at">check</span>(<span class="st">&quot;Wizard&quot;</span>)<span class="op">}</span></a>
+<a class="sourceLine" id="cb238-177" data-line-number="177">      &lt;/td<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-178" data-line-number="178">    &lt;/tr<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-179" data-line-number="179">  )<span class="op">;</span></a>
+<a class="sourceLine" id="cb238-180" data-line-number="180"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-181" data-line-number="181"></a>
+<a class="sourceLine" id="cb238-182" data-line-number="182"></a>
+<a class="sourceLine" id="cb238-183" data-line-number="183"><span class="kw">function</span> <span class="at">SpellDetail</span>(props) <span class="op">{</span></a>
+<a class="sourceLine" id="cb238-184" data-line-number="184">  <span class="cf">return</span> (</a>
+<a class="sourceLine" id="cb238-185" data-line-number="185">    <span class="op">&lt;</span>section className<span class="op">=</span><span class="st">&quot;SpellDetail&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-186" data-line-number="186">      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;alert alert-warning&quot;</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-187" data-line-number="187">        This screen shows the full spell data<span class="op">,</span> <span class="cf">with</span> buttons</a>
+<a class="sourceLine" id="cb238-188" data-line-number="188">        to add or remove to any of the user<span class="st">&#39;s colllections.</span></a>
+<a class="sourceLine" id="cb238-189" data-line-number="189">      &lt;/div<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-190" data-line-number="190">      <span class="op">&lt;</span>img className<span class="op">=</span><span class="st">&quot;img-fluid&quot;</span> src<span class="op">={</span>details<span class="op">}</span> alt<span class="op">=</span><span class="st">&quot;wireframe of spell detail screen&quot;</span> /&gt;</a>
+<a class="sourceLine" id="cb238-191" data-line-number="191">    &lt;/section<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb238-192" data-line-number="192">  )</a>
+<a class="sourceLine" id="cb238-193" data-line-number="193"><span class="op">}</span></a>
+<a class="sourceLine" id="cb238-194" data-line-number="194"></a>
+<a class="sourceLine" id="cb238-195" data-line-number="195"></a>
+<a class="sourceLine" id="cb238-196" data-line-number="196"><span class="im">export</span> <span class="op">{</span> SpellTable<span class="op">,</span> SpellDetail <span class="op">};</span></a></code></pre></div>
+</div>
+</section>
+</section>
+</section>
 <section id="appendices" class="level1">
 <h1>Appendices</h1>
 <section id="code-templates-solutions-and-examples" class="level2">
@@ -4601,15 +4851,15 @@ The <strong>double scripted</strong> array gets presented as a table, where each
 <h2>Introducing programming with Python</h2>
 <p>The process of translating and using <em>How to Think Like a Computer Scientist</em> for the past two years has confirmed Python’s suitability for teaching beginning students. Python greatly simplifies programming examples and makes important programming ideas easier to teach.</p>
 <p>The first example from the text illustrates this point. It is the traditional hello, world program, which in the Java version of the book looks like this:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">class</span> Hello</a>
-<a class="sourceLine" id="cb238-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
-<a class="sourceLine" id="cb238-4" data-line-number="4">    {</a>
-<a class="sourceLine" id="cb238-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
-<a class="sourceLine" id="cb238-6" data-line-number="6">    }</a>
-<a class="sourceLine" id="cb238-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">class</span> Hello</a>
+<a class="sourceLine" id="cb239-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb239-3" data-line-number="3">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (<span class="bu">String</span>[] args)</a>
+<a class="sourceLine" id="cb239-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb239-5" data-line-number="5">        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span> (<span class="st">&quot;Hello, world.&quot;</span>);</a>
+<a class="sourceLine" id="cb239-6" data-line-number="6">    }</a>
+<a class="sourceLine" id="cb239-7" data-line-number="7">}</a></code></pre></div>
 <p>in the Python version it becomes:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;Hello, World!&quot;</span>)</a></code></pre></div>
 <p>Even though this is a trivial example, the advantages of Python stand out. Yorktown’s Computer Science I course has no prerequisites, so many of the students seeing this example are looking at their first program. Some of them are undoubtedly a little nervous, having heard that computer programming is difficult to learn. The Java version has always forced me to choose between two unsatisfying options: either to explain the <code>class Hello</code>, <code>public static void main</code>, <code>String[] args</code>, <code>{</code>, and <code>}</code>, statements and risk confusing or intimidating some of the students right at the start, or to tell them, Just don’t worry about all of that stuff now; we will talk about it later, and risk the same thing. The educational objectives at this point in the course are to introduce students to the idea of a programming statement and to get them to write their first program, thereby introducing them to the programming environment. The Python program has exactly what is needed to do these things, and nothing more.</p>
 <p>Comparing the explanatory text of the program in each version of the book further illustrates what this means to the beginning student. There are seven paragraphs of explanation of Hello, world! in the Java version; in the Python version, there are only a few sentences. More importantly, the missing six paragraphs do not deal with the big ideas in computer programming but with the minutia of Java syntax. I found this same thing happening throughout the book. Whole paragraphs simply disappear from the Python version of the text because Python’s much clearer syntax renders them unnecessary.</p>
 <p>Using a very high-level language like Python allows a teacher to postpone talking about low-level details of the machine until students have the background that they need to better make sense of the details. It thus creates the ability to put first things first pedagogically. One of the best examples of this is the way in which Python handles variables. In Java a variable is a name for a place that holds a value if it is a built-in type, and a reference to an object if it is not. Explaining this distinction requires a discussion of how the computer stores data. Thus, the idea of a variable is bound up with the hardware of the machine. The powerful and fundamental concept of a variable is already difficult enough for beginning students (in both computer science and algebra). Bytes and addresses do not help the matter. In Python a variable is a name that refers to a thing. This is a far more intuitive concept for beginning students and is much closer to the meaning of variable that they learned in their math courses. I had much less difficulty teaching variables this year than I did in the past, and I spent less time helping students with problems using them.</p>
@@ -4653,23 +4903,23 @@ As things move along, we use PyGame for more advanced graphics.</li>
 <li>I have tried to push more object-oriented notions earlier, without asking students to synthesize objects or write their own classes. So, for example, in the chapter about the turtle, we create multiple instances of turtles, talk about their attributes and state (color, position, etc), and we favour method-call style to move them around, i.e. <code>tess.forward(100)</code>. Similarly, when we use random numbers, we avoid the “hidden singleton generator” in the random module — we prefer to create an instance of a generator, and invoke methods on the instance.</li>
 <li>The ease of constructing lists and the <code>for</code> loop seem to be winners in Python, so rather than use the traditional command-line <code>input</code> for data, I’ve favoured using loops and lists right up front, like this:</li>
 </ul>
-<div class="sourceCode" id="cb240"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb240-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
-<a class="sourceLine" id="cb240-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
-<a class="sourceLine" id="cb240-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb241-1" data-line-number="1">friends <span class="op">=</span> [<span class="st">&quot;Zoe&quot;</span>, <span class="st">&quot;Joe&quot;</span>, <span class="st">&quot;Bill&quot;</span>]</a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="cf">for</span> f <span class="kw">in</span> friends:</a>
+<a class="sourceLine" id="cb241-3" data-line-number="3">    invitation <span class="op">=</span> <span class="st">&quot;Hi &quot;</span> <span class="op">+</span> f <span class="op">+</span> <span class="st">&quot;.  Please come to my party on Saturday!&quot;</span></a>
+<a class="sourceLine" id="cb241-4" data-line-number="4">    <span class="bu">print</span>(invitation)</a></code></pre></div>
 <p>This also means that I bumped <code>range</code> up for early exposure.<br />
 I envisage that over time we’ll see more opportunities to exploit “early lists, early iteration” in its most simple form.</p>
 <ul>
 <li>I dumped <code>doctest</code>: it is too quirky for my liking. For example, it fails a test if the spacing between list elements is not precisely the same as the output string, or if Python prints a string with single quotes, but you wrote up the test case with double quotes. Cases like this also confused students (and instructors) quite badly:</li>
 </ul>
-<div class="sourceCode" id="cb241"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb241-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
-<a class="sourceLine" id="cb241-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb241-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
-<a class="sourceLine" id="cb241-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
-<a class="sourceLine" id="cb241-6" data-line-number="6"><span class="co">    9</span></a>
-<a class="sourceLine" id="cb241-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
-<a class="sourceLine" id="cb241-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode numberSource python numberLines"><code class="sourceCode python"><a class="sourceLine" id="cb242-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="kw">def</span> addlist(xs):</a>
+<a class="sourceLine" id="cb242-3" data-line-number="3">    <span class="co">&quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb242-4" data-line-number="4"><span class="co">    &gt;&gt;&gt; xs = [2,3,4]</span></a>
+<a class="sourceLine" id="cb242-5" data-line-number="5"><span class="co">    &gt;&gt;&gt; addlist(xs)</span></a>
+<a class="sourceLine" id="cb242-6" data-line-number="6"><span class="co">    9</span></a>
+<a class="sourceLine" id="cb242-7" data-line-number="7"><span class="co">    &quot;&quot;&quot;</span></a>
+<a class="sourceLine" id="cb242-8" data-line-number="8">    <span class="cf">return</span></a></code></pre></div>
 <p>If you can explain the difference in scope rules and lifetimes between the parameter <code>xs</code> and the doctest variable <code>xs</code> elegantly, please let me know. Yes, I know doctest creates its own scope behind our back, but it is exactly this black magic that we’re trying to avoid.<br />
 From the usual indentation rules, also looks like the doctests are nested inside the function scope, but they are not. Students thought that the parameter had been given its value by the assignment to <code>xs</code> in the doctest!</p>
 <p>I also think that keeping the test suite separate from the functions under test leads to a cleaner relationship between caller and callee, and gives a better chance of getting argument passing / parameter concepts taught accurately.</p>
