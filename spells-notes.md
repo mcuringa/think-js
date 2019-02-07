@@ -12,8 +12,8 @@ boxes are checked in the React Object **state**. The list of spells must
 update dynamically when changes are detected. This is what we mean
 by a _reactive interface_.
 
-- [View the "JS GUI Demo" repl](https://repl.it/@mcuringa/JSGuiDemo)
-- [View the "JS GUI Demo" website](https://jsguidemo.mcuringa.repl.co/)
+- [View the SpellBook repl](https://repl.it/@mcuringa/SpellBookv2)
+- [View the SpellBook live website](https://spellbookv2--mcuringa.repl.co/)
 
 ### Case Study: SpellCaster Spells {.jsguidemo .codeNotes}
 
@@ -48,9 +48,9 @@ access object data such as `state`, `props`, or other methods.
 
 </aside>
 
-<aside data-line-number="35">
+<aside data-line-number="34">
 
-`componentWillMount()` is called before the component is displayed. It's the
+The `componentWillMount()` method is inherited from React `Component`. It is called before the component is displayed. It's the
 best place to load the data that our component will need. Here we take the
 spell objects that we imported from `"./data/spells.json"` and we sort
 them by level. We call the `setState()` function that is part of `React Component`
@@ -58,17 +58,6 @@ in order to update the state and trigger our `render()` function if needed.
 
 </aside>
 
-
-<aside data-line-number="32">
-
-`grid()` makes a special grid layout container. A grid can have
-between 1-12 columns. Add elements to a specific grid column with
-`addToGrid(grid, colNumber, ...items)`
-
-After creating the grid, we append all of the items to our section
-container and then return it.
-
-</aside>
 
 <aside data-line-number="39">
 
@@ -93,9 +82,9 @@ but it makes it easier for the user to select just one character class.
 
 <aside data-line-number="61">
 
-All React Components _must_ define a `render()` method. This returns the string
+All React Components _must_ define a `render()` method. This returns the JSX/string
 component that is rendered to the screen (or `null` if nothing is to be displayed.)
-Our render method is building an HTML table (with Boostrap css classes) that
+Our render method is building an HTML table (with Bootstrap css classes) that
 shows all of the spells that are active. It defines `th()` as an internal
 function to map html `th` elements to an array of strings. This creates the
 table header.
@@ -106,6 +95,60 @@ table header.
 <aside data-line-number="75">
 
 We look up the list of active filters from the `state` and then call
-`filterSpellsByCharClass()` to find the `spells` which should be active.
+`filterSpellsByCharClass()` (see below) to find the `spells` which should be active.
 We map those spells to `SpellRow` components calling `spells.map()`
+</aside>
+
+
+<aside data-line-number="85">
+
+We have two buttons that make it easier to _clear_ or _check all_ of the
+filters. They call `this.clearFilters()` and `this.allCharClasses()` (see above).
+
+We call the `IconCheckBox` Component function (below) to create a checkbox for each D&D
+character class. When any of these boxes are changed (checked or unchecked),
+passing `toggleFilter()`, the active status, and the character class as properties.
+
+</aside>
+
+<aside data-line-number="100">
+Finally, we display the HTML table, with headers and rows.
+
+</aside>
+
+
+<aside data-line-number="108">
+On line 108 we close `SpellTable`, the only React class Component in
+this code.
+</aside>
+
+
+<aside data-line-number="111">
+`filterSpellsByCharClass()` is a plain old filter function (and a pure one at that),
+which follows our well-known pattern from the Arrays and Maps sections of this
+textbook. It takes the entire list of spells and the list of active character
+classes as inputs and returns the filtered list of spells that belonging to
+one of the active character classes.
+</aside>
+
+<aside data-line-number="135">
+`IconCheckBox()` is a reusable React component function that returns a form
+checkbox element the corresponding character class icon. The inner function,
+`toggle()` _wraps_ the `onChange` property function and passes the correct
+character class string argument so `onChange` knows which class to toggle.
+</aside>
+
+<aside data-line-number="151">
+`SpellRow()` is a reusable React component function that returns the JSX
+for an HTML table row. Note that `SpellRow` doesn't use a `properties` function parameter,
+but rather takes the `spell` data object as its only argument. This makes it easier
+to use with `Array.map()`.
+
+The inner `check()` function returns the `ClassIcon`
+for a character class, or `null` if this spell isn't available to the class.
+</aside>
+
+<aside data-line-number="186">
+The `SpellTable` is exported so it can be used as a Route component by
+the navigation system (see the full code from the link above).
 </aside>

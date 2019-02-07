@@ -24,4 +24,4 @@ CHAPTERS="forward.md way_of_the_program.md variables.md functions.md ./work/tip-
 
 pandoc -o ./docs/index.html --mathml --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 
-pandoc -o ./docs/tjs.epub --mathml -t epub --template=tmpl/tmpl.html -s --section-divs -H ./tmpl/style.css $CHAPTERS;
+# pandoc -o ./docs/tjs.epub --mathml -t epub --template=tmpl/tmpl.html -s --section-divs -H ./tmpl/style.css $CHAPTERS;

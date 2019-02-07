@@ -85,7 +85,7 @@ class SpellTable extends Component {
           <button type="button" className="btn btn-link btn-sm" onClick={this.clearFilters}>[clear]</button>
           <button type="button" className="btn btn-link btn-sm" onClick={this.allCharClasses}>[all]</button>
         </h5>
-        <form className="">
+        <form>
           <IconCheckBox onChange={this.toggleFilter} isActive={filters["bard"]} charClass="bard" />
           <IconCheckBox onChange={this.toggleFilter} isActive={filters["cleric"]} charClass="cleric" />
           <IconCheckBox onChange={this.toggleFilter} isActive={filters["druid"]} charClass="druid" />
@@ -153,7 +153,11 @@ function SpellRow(spell) {
   const check = (casterClass) => {
     const spellCasters = spell["class"].split(", ");
     if (_.includes(spellCasters, casterClass)) {
-      return <abbr title={casterClass}><ClassIcon charClass={casterClass.toLowerCase()} /></abbr>;
+      return (
+        <abbr title={casterClass}>
+          <ClassIcon charClass={casterClass.toLowerCase()} />
+        </abbr>
+      )
     }
     return null;
   }
@@ -179,18 +183,7 @@ function SpellRow(spell) {
   );
 }
 
-
-function SpellDetail(props) {
-  return (
-    <section className="SpellDetail">
-      <div className="alert alert-warning">
-        This screen shows the full spell data, with buttons
-        to add or remove to any of the user's colllections.
-      </div>
-      <img className="img-fluid" src={details} alt="wireframe of spell detail screen" />
-    </section>
-  )
-}
+export { SpellTable };
 
 
-export { SpellTable, SpellDetail };
+ 
