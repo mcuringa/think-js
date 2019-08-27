@@ -79,18 +79,18 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   </style>
   <!-- this css file gets inlined by the build script to make standalone html5 output
   that is why it has a style tag... -->
-  
+
   <style type="text/css">
-  
+
   blockquote {
     margin-top: 1em;
     max-width: 600px;
     border-left: 8px solid lightgray;
     padding-left: .5em;
   }
-  
-  
-  h1.title 
+
+
+  h1.title
   {
     margin:0;
     margin-bottom: .5em;
@@ -103,86 +103,86 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     font-weight: bold;
     font-size: 400%;
   }
-  
-  
+
+
   h1
   {
-    font-size: 350%; 
+    font-size: 350%;
     border-bottom: medium solid black;
     text-transform: uppercase;
     padding: 0;
     padding-top: 3em;
   }
-  
+
   /* make all tables bootstrappy */
   table {
     width: 100%;
     margin-bottom: 1rem;
     background-color: transparent;
   }
-  
+
   td, th {
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
   }
-  
+
   thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6;
     font-weight: bold;
   }
-  
-  
+
+
   #TOC {
     margin-top: 2em;
   }
-  
+
   #foreword, #the-way-of-the-program, #appendices {
     counter-reset: section;
   }
-  
+
   section.level1 {
     counter-increment: section;
     counter-reset: subsection;
   }
-  
-  
+
+
   section.level2 {
     max-width: 680px;
   }
-  
-  
+
+
   h2:before {
     counter-increment: subsection;
     content: counter(section) "." counter(subsection) " ";
   }
-  
+
   #forward h2:before, #preface h2:before {
     content: "";
   }
-  
-  
+
+
   #appendices h2:before {
     content: counter(subsection, upper-alpha ) ". ";
   }
-  
+
   #appendices {
     counter-reset: section;
     counter-reset: subsection;
   }
-  
-  
-  
-  h1.title:before, 
-  h2.author:before, 
-  nav#TOC h2:before, 
-  #forward h2:before, 
+
+
+
+  h1.title:before,
+  h2.author:before,
+  nav#TOC h2:before,
+  #forward h2:before,
   #preface h2:before {
     content: "";
   }
-  
-  
+
+
   h2.author
   {
     font-size: 1rem;
@@ -190,58 +190,58 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     padding: 0;
     margin-bottom: 0;
   }
-  
-  
+
+
   nav#TOC
   {
     background: none repeat scroll 0 0 white;
     counter-reset: toccount;
   }
-  
+
   nav#TOC li
   {
     list-style-type: none;
     font-weight: normal;
   }
-  
+
   nav#TOC>ul>li
   {
     font-weight: bold;
     padding-top: 1em;
     margin-bottom: .5em;
   }
-  
-  
-  
-  nav#TOC>ul>li:nth-child(3)
+
+
+
+  nav#TOC>ul>li:nth-child(2)
   {
     counter-reset: toccount;
   }
-  
+
   nav#TOC>ul>li:before
   {
     counter-reset: tocsub;
     counter-increment: toccount;
     content: counter(toccount) ". ";
   }
-  
-  nav#TOC>ul>li:nth-child(-n+2):before
+
+  nav#TOC>ul>li:nth-child(-n+1)::before
   {
     content: counter(toccount, lower-roman) ". ";
   }
-  
+
   nav#TOC>ul>li>ul>li:first-child
   {
     padding-top: .5em;
   }
-  
+
   nav#TOC>ul>li>ul>li:before
   {
     counter-increment: tocsub;
     content: counter(toccount) "." counter(tocsub) " ";
   }
-  
-  
+
+
   aside
   {
     border: medium solid gray;
@@ -250,10 +250,10 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     margin: 3em .5em;
     background-color: #F6CCDA;
   }
-  
-  
+
+
   /** code highlighting stuff **/
-  
+
   /*pre.numberSource {
     margin-left: 1em;
   }
@@ -264,16 +264,16 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     background-color: transparent !important;
     border-style: none !important;
   }
-  
+
   a.sourceLine:before {
     text-decoration: none !important;
     border-style: none;
   }
-  
+
   div.sourceCode {
     padding: 6px;
   }
-  
+
   /* not sure why this is necessary -- need to look at the syntax highlighter */
   .sourceCode pre, pre.sourceCode
   {
@@ -281,29 +281,29 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     border-style: none;
     background-color: #303030;
   }
-  
-  
+
+
   /** code listings/case studies **/
-  
+
   section.codeListing {
     width: 1200px;
     max-width: 100%;
   }
-  
+
   section[id*="case-study"]
   {
     padding-left: 40%;
     position: relative;
     border-top: 1px solid gray;
   }
-  
+
   section[id*="case-study"] h2, section[id*="case-study"] h3
   {
     text-align: right;
     margin: 2em 0;
-  
+
   }
-  
+
   section[id*="case-study"] aside
   {
     background: white;
@@ -317,7 +317,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     margin: 0;
     font-size: 90%;
   }
-  
+
   section[id*="case-study"] aside p
   {
     margin: 0;
@@ -326,9 +326,9 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
     line-height: 1.1em;
     margin-bottom: .5em;
   }
-  
-  
-  
+
+
+
   @media screen
   {
     body
@@ -337,9 +337,9 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
       max-width: 1200px;
       margin: 0 auto;
     }
-  
+
   }
-  
+
   </style>
 </head>
 <body>
@@ -2007,7 +2007,7 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb77-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving license!&quot;</span>)</a>
 <a class="sourceLine" id="cb77-3" title="3"><span class="op">}</span></a></code></pre></div>
 <p>Two powerful simplification laws (called de Morgan’s laws) that are often helpful when dealing with complicated Boolean expressions are:</p>
-<pre><code>!(x &amp;&amp; y)  ===  (!x) || (!y) 
+<pre><code>!(x &amp;&amp; y)  ===  (!x) || (!y)
 !(x || y)   ===  (!x) &amp;&amp; (!y)</code></pre>
 <p>For example, suppose we can slay the dragon only if our magic lightsabre sword is charged to 90% or higher, and we have 100 or more energy units in our protective shield. We find this fragment of Javascript code in the game:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb79-1" title="1"><span class="cf">if</span> <span class="op">!</span>((swordCharge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="op">&amp;&amp;</span> (shieldEnergy <span class="op">&gt;=</span> <span class="dv">100</span>)) <span class="op">{</span></a>

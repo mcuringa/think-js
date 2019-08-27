@@ -11,7 +11,7 @@ blockquote {
 }
 
 
-h1.title 
+h1.title
 {
   margin:0;
   margin-bottom: .5em;
@@ -28,7 +28,7 @@ h1.title
 
 h1
 {
-  font-size: 350%; 
+  font-size: 350%;
   border-bottom: medium solid black;
   text-transform: uppercase;
   padding: 0;
@@ -95,10 +95,10 @@ h2:before {
 
 
 
-h1.title:before, 
-h2.author:before, 
-nav#TOC h2:before, 
-#forward h2:before, 
+h1.title:before,
+h2.author:before,
+nav#TOC h2:before,
+#forward h2:before,
 #preface h2:before {
   content: "";
 }
@@ -146,7 +146,7 @@ nav#TOC>ul>li:before
   content: counter(toccount) ". ";
 }
 
-nav#TOC>ul>li:nth-child(-n+2):before
+nav#TOC>ul>li:first-child::before
 {
   content: counter(toccount, lower-roman) ". ";
 }
@@ -262,5 +262,3 @@ section[id*="case-study"] aside p
 }
 
 </style>
-
-
