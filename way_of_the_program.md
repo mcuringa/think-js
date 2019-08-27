@@ -34,7 +34,7 @@ As you might infer from the name high-level language, there are also
 **low-level languages**, sometimes referred to as machine languages or assembly
 languages. Loosely speaking, computers can only execute programs written in
 low-level languages. Thus, programs written in a high-level language have to be
-translated into something more suitable before they can run. 
+translated into something more suitable before they can run.
 
 Almost all programs are written in high-level languages because of their advantages.
 It is much easier to program in a
@@ -52,14 +52,14 @@ programming platform and community. Code listings include links to the "repl" th
 copy ("fork") and experiment with.
 
 There are two ways to use the interpreter: *interactive or immediate mode* and *script
-mode*. In immediate mode, you type Javascript expressions into the interpreter's console, 
+mode*. In immediate mode, you type Javascript expressions into the interpreter's console,
 and the interpreter immediately shows the result. This is the an example of the repl.it
 interpreter's console:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.bash}
 Babel Compiler v6.4.4
 Copyright (c) 2014-2015 Sebastian McKenzie
-   
+
 ⠕ 2+2
 => 4
 
@@ -67,13 +67,13 @@ Copyright (c) 2014-2015 Sebastian McKenzie
 
 The ``2+2`` is entered at the **Javascript prompt**. The ``⠕`` token indicates a statement entered at the prompt.
 The interpreter uses the prompt to indicate that it is ready for
-instructions. We typed ``2 + 2`` and hit ``enter`` the interpreter evaluated our expression, and replied ``4``, 
+instructions. We typed ``2 + 2`` and hit ``enter`` the interpreter evaluated our expression, and replied ``4``,
 and on the next line it gave a new prompt. In this case, ``4`` is the **output** and it is indicated as output
 in our console by the ``=>`` token.
 
 Alternatively, you can write a program in a file and use the interpreter to
 execute the contents of the file. Such a file is called a **script**. Scripts have the
-advantage that they can be saved to disk, printed, shared, and so on. 
+advantage that they can be saved to disk, printed, shared, and so on.
 
 For example, we created a file named ``main.js`` using our text editor.
 By convention, files that contain Javascript programs have names that end with
@@ -138,8 +138,8 @@ often leads to errors. Programming errors are called
 **debugging**.  Use of the term *bug* to describe small engineering difficulties
 dates back to at least 1889, when Thomas Edison had a bug with his phonograph.
 
-Three kinds of errors can occur in a program: [syntax errors](http://en.wikipedia.org/wiki/Syntax_error), 
-[runtime errors](http://en.wikipedia.org/wiki/Runtime_error), 
+Three kinds of errors can occur in a program: [syntax errors](http://en.wikipedia.org/wiki/Syntax_error),
+[runtime errors](http://en.wikipedia.org/wiki/Runtime_error),
 and [semantic errors](http://en.wikipedia.org/wiki/Logic_error). It is useful to
 distinguish between them in order to track them down more quickly.
 
@@ -240,7 +240,7 @@ not.
 
 Syntax rules come in two flavors, pertaining to **tokens** and structure.
 Tokens are the basic elements of the language, such as words, numbers, parentheses,
-commas, and so on. In Javascript, a statement like ``console.log("Happy New Year for ", 2013)`` 
+commas, and so on. In Javascript, a statement like ``console.log("Happy New Year for ", 2013)``
 has 6 tokens: a function name, an open parenthesis (round bracket), a string, a comma, a number, and a close parenthesis.
 
 It is possible to make errors in the way one constructs tokens.  
@@ -288,11 +288,11 @@ redundancy
 
 literalness
 
-:   Formal languages mean exactly what they say.  On the other hand, natural languages 
+:   Formal languages mean exactly what they say.  On the other hand, natural languages
     are full of idiom and metaphor. If someone says, "The
     other shoe fell", there is probably no shoe and nothing falling.  
-    You'll need to find the 
-    original joke to understand the idiomatic meaning of the other shoe falling. 
+    You'll need to find the
+    original joke to understand the idiomatic meaning of the other shoe falling.
     *Yahoo! Answers* thinks it knows!  
 
 People who grow up speaking a natural language—everyone—often have a hard
@@ -307,7 +307,7 @@ poetry
     is not only common but often deliberate.
 
 prose
-    
+
 :   The literal meaning of words is more important, and the structure
     contributes more meaning. Prose is more amenable to analysis than
     poetry but still often ambiguous.
@@ -365,7 +365,7 @@ natural language what the program is doing.
 A **comment** in a computer program is text that is intended
 only for the human reader --- it is completely ignored by the interpreter.
 
-In Javascript, the ` \\ ` token starts a comment.  The rest of the line 
+In Javascript, the ` \\ ` token starts a comment.  The rest of the line
 is ignored. Here is a new version of *Hello, World!*.
 
 
@@ -376,8 +376,8 @@ is ignored. Here is a new version of *Hello, World!*.
 // Anyone may freely copy or modify this program.
 //---------------------------------------------------
 
-console.log("Hello, World!");     // Isn't this easy! 
-      
+console.log("Hello, World!");     // Isn't this easy!
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You'll also notice that we've left a blank line in the program. Blank lines
 are also ignored by the interpreter, but comments and blank lines can make your
@@ -394,8 +394,8 @@ Javascript also supports multiline comments with the ``/* */`` style.
 ---------------------------------------------------
 */
 
-console.log("Hello, World!");     // Isn't this easy! 
-      
+console.log("Hello, World!");     // Isn't this easy!
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 In addition to adding hints and suggestions for human readers,
 comments play an important role in debugging. Because the
@@ -421,6 +421,242 @@ editor for this book, you can simply highlight the lines you want to
 comment or uncomment and use the <kbd>Ctrl</kbd> + <kbd>/</kbd>
 keyboard shortcut. You will see us using this technique in our example
 videos.
+
+Turtle Graphics
+---------------
+
+In the late 1960s, Seymor Papert's group at MIT introduced [LOGO Turtle](https://en.wikipedia.org/wiki/Turtle_graphics)
+as a way to teach computer programming to kids. After learning the basic turtle commands (also called an API), you can make surprising computer graphics programs with only a little bit of code.
+
+We're using a version of Turtle that has been written for Javascript. [Thanks to Morgan McGuire at Casual Effects for the code.](https://casual-effects.com/codeheart/turtle/index.html).
+
+As we've seen, a program and algorithms consist of a number of commands or statements
+that execute in an order described by the program. There are many libraries
+or APIs (application programming interface) that help you useful do things in Javascript.
+Some APIsread files over a network, others choose random numbers, while others might
+encrypt data to make it more secure. The `turtle` API
+has a number of commands that you can use to move a turtle around a screen
+and to draw shapes and patterns.
+
+Here's a short turtle graphics program.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+// set up the "pen" color and width
+setWidth(30);
+setColor("red");
+
+// move forward 100px to draw a red line
+fd(100);
+
+wait(1);
+
+// raise the pen "pen up -- pu()", then return the turtle
+// to Y coordinate 0 and move it to X coordinate 100
+pu();
+setY(0);
+setX(100)
+pd();
+
+wait(1);
+
+// draw a blue line
+setColor("blue");
+fd(100);
+
+wait(1);
+
+// move turtle to the top left quadrant
+pu();
+setY(300);
+setX(-300)
+pd();
+
+// draw a "DeepPink" circle
+setColor("DeepPink");
+startFill("DeepPink");
+arc(360, 80);
+endFill();
+
+// hide the turtle
+ht();
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When we run this program, we draw this image:
+<figure class="border">
+<img src="figs/turtle-first.png" class="figure-img img-fluid" alt="2 colored lines and a circle drawn with turtle graphics">
+<figcaption class="figure-caption border-top">
+The picture drawn by this program.<br>
+**[Run and remix this code on repl.it](https://repl.it/@mcuringa/turtle)**
+</figcaption>
+</figure>
+
+Turtle programs use the metaphor of a turtle moving around drawing with a pen.
+To move the turtle without drawing, you call the "pen up" method, or `pu()`,
+as we do on lines 12 and 26. The turtle is plotted on an x,y plane
+(also called a [Cartesian Plane](https://en.wikipedia.org/wiki/Cartesian_coordinate_system)). The `x` coordinate specifies the horizontal
+position of the turtle and the `y` coordinate specifies the vertical position
+of the turtle. In this plane, (0, 0) is in the middle of the window. Negative
+`x` coordinates are to the left of the center, and negative `y` coordinates
+are below the center. We call the `setX()` and `setY()` methods to move
+the turtle's position. If the pen is down, it draws while we move. If it's up,
+turtle moves without a trace. Notice how we draw a "DeepPink" circle, starting
+on line 32? Because our Javascript program executes in a web browser, we can
+use any of the "named colors" that are part of the web development standard.
+[You can find all of the name colors here.](https://www.w3schools.com/colors/colors_names.asp)
+
+Turtle documentation
+--------------------
+To fully use the turtle API, you will need to read and understand the documentation.
+Part of becoming a programmer and thinking like a computer scientist includes
+the ability to read (and write!) technical documentation. No programmer remembers
+every possible language feature or available commands. Before you begin the exercises
+and lab for this chapter, review the full
+
+
+`fd(distance)`
+
+:   Move forward the given distance.
+
+`bk(distance)`
+
+:   Move backward the given distance.
+
+`rt(angle)`
+
+:   Turn right (clockwise) in place.
+
+`rt(angle, radius)`
+
+:   Turn right (clockwise) in an arc of the given radius.
+
+`lt(angle)`
+
+:   Turn left (counterclockwise) in place.
+
+`lt(angle, radius)`
+
+:   Turn left (counterclockwise) in an arc of the given radius.
+
+`arc(angle, radius)`
+
+:   Draw an arc around the turtle, without moving the turtle. The angle is relative to the current heading.
+
+`pu()`
+
+:   Pick the pen up to temporarily move without drawing.
+
+`pd()`
+
+:   Put the pen down to resume drawing.
+
+`setColor(color)`
+
+:   Set the pen color by name such as RED or CSS color string such as "#FF0041".
+
+`setColor(r, g, b)`
+
+:   Set the pen color based on three RGB values each between zero and one.
+
+`setColor(r, g, b, a)`
+
+:   Set the pen color based on three RGB values and an opacity value, each between zero and one.
+
+`startFill(color)`
+
+:   Start drawing a filled region of the given color. Must end with `endFill()`
+
+`startFill(r, g, b)`
+
+:   Start drawing a filled region with color given by three RGB values, each between zero and one.
+
+`setColor(r, g, b, a)`
+
+:   Start drawing a region filled by three RGB values and an opacity value, each between zero and one.
+
+`endFill()`
+
+:   End drawing a filled region and actually fill it. If the pen is down, then the outline will also be stroked.
+
+`setPosition(x, y)`
+
+:   Sets the absolute position. If the pen is down, draws a line to that position.
+
+`setX(x)`
+
+:   Sets the absolute x-axis position. If the pen is down, draws a line to that position.
+
+`getX()`
+
+:   Returns the absolute x-axis position.
+
+`setY(x)`
+
+:   Sets the absolute y-axis position. If the pen is down, draws a line to that position.
+
+`getY()`
+
+:   Returns the absolute y-axis position.
+
+`setWidth(width)`
+
+:   Sets the pen width.
+
+`setHeading(degrees)`
+
+:   Sets the current heading in degrees measured clockwise from the upwards vertical axis. North = 0, East = 90, South = 180, West = 270.
+
+`getHeading()`
+
+:   Returns the current heading in degrees measured clockwise from the upwards vertical axis. North = 0, East = 90, South = 180, West = 270.
+
+`setScale(s)`
+
+:   Scales all distances (but not x and y coordinates or pen width) by this factor. Useful for reusing drawing commands for different size objects. 1.0 is the default scale.
+
+`getScale()`
+
+:   Returns the current drawing scale.
+
+`setSpeed(speed)`
+
+:   Sets the number of commands executed before showing the next frame of animation. Defaults to 1. Can be set to Infinity to draw the entire image at once. Does not affect wait times.
+
+`clear(color)`
+
+:   Clears the screen to the specified color
+
+`clear(r, g, b)`
+
+:   Clears the screen to the specified color
+
+`wait(seconds)`
+
+:   Pauses drawing for approximately this many seconds. Useful for creating animations. Not affected by setSpeed.
+
+`repeat (count) { ... }`
+
+:   Repeat the commands between the curly braces the specified number of times.
+
+
+
+Exercises
+---------
+
+1. Use `turtle` to draw a red square with a pink border
+2. Draw three circles, side-by-side. The first one should be blue, the second green, the third red.
+3. Draw a triangle.
+4. (bonus) Draw a 5-pointed star. _Hint:_ draw this on a piece of paper first
+
+First Turtle Lab
+----------------
+
+Our first lab presents an open-ended exercise, just to get you started.
+Use turtle graphics to draw a picture. We suggest you spend about
+one hour working on this lab. Make sure that you includes some commands
+from the documentation that are not in the example program. Other than that,
+the content of your drawing is up to you.
+
+- [Remix this repl to start your lab.](https://repl.it/@mcuringa/csc-602-lab1) Make your changes to `index.js`.
 
 Glossary
 --------
@@ -461,14 +697,14 @@ high-level language
 
 immediate mode
 
-:   A style of using Javascript where we type expressions at the command prompt, and 
+:   A style of using Javascript where we type expressions at the command prompt, and
     the results are shown immediately.  Contrast with **script**, and see the
     entry under **Javascript shell**.
 
 interpreter
 
 :   The engine that executes your Javascript scripts or expressions.
-    
+
 low-level language
 
 :   A programming language that is designed to be easy for a computer to
@@ -492,7 +728,7 @@ portability
 
 print function
 
-:   A function used in a program or script that causes the Javascript interpreter to 
+:   A function used in a program or script that causes the Javascript interpreter to
     display a value on its output device.
 
 problem solving

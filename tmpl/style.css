@@ -248,8 +248,12 @@ section[id*="case-study"] aside p
   margin-bottom: .5em;
 }
 
-
-
+.figure-caption {
+  text-align: center;
+}
+dd {
+  margin-left: 1em;
+}
 @media screen
 {
   body
