@@ -639,8 +639,9 @@ and lab for this chapter, review the full
 
 
 
-Exercises
----------
+Turtle Exercises 1
+------------------
+[Turtle Exercises 1 Repl](https://repl.it/@mcuringa/turtle-exercises)
 
 1. Use `turtle` to draw a red square with a pink border
 2. Draw three circles, side-by-side. The first one should be blue, the second green, the third red.
@@ -649,6 +650,7 @@ Exercises
 
 First Turtle Lab
 ----------------
+[First Turtle Lab Repl](https://repl.it/@mcuringa/csc-602-lab1)
 
 Our first lab presents an open-ended exercise, just to get you started.
 Use turtle graphics to draw a picture. We suggest you spend about
@@ -656,7 +658,6 @@ one hour working on this lab. Make sure that you includes some commands
 from the documentation that are not in the example program. Other than that,
 the content of your drawing is up to you.
 
-- [Remix this repl to start your lab.](https://repl.it/@mcuringa/csc-602-lab1) Make your changes to `index.js`.
 
 Glossary
 --------
