@@ -666,6 +666,7 @@ reassignment
 
 For Loop Exercises
 ------------------
+[Fork this repl with empty function definitions to get started](https://repl.it/@mcuringa/function-exercises)
 
 1. Write a function that prints `We like Javascript!` 1000 times.
 
