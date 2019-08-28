@@ -394,6 +394,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#input">Input</a></li>
 <li><a href="#composition">Composition</a></li>
 <li><a href="#the-modulus-operator">The modulus operator</a></li>
+<li><a href="#exercises">Exercises</a></li>
 <li><a href="#glossary-2">Glossary</a></li>
 </ul></li>
 <li><a href="#functions">Functions</a><ul>
@@ -403,7 +404,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#functions-that-require-arguments">Functions that require arguments</a></li>
 <li><a href="#functions-that-return-values">Functions that return values</a></li>
 <li><a href="#glossary-3">Glossary</a></li>
-<li><a href="#exercises">Exercises</a></li>
+<li><a href="#exercises-1">Exercises</a></li>
 <li><a href="#functions-lab">Functions Lab</a></li>
 <li><a href="#code-listing-1-the-tip-calculator">Code Listing 1: The Tip Calculator</a></li>
 </ul></li>
@@ -1063,7 +1064,7 @@ The picture drawn by this program.<br> <strong><a href="https://repl.it/@mcuring
 <p>Strings enclosed with the backtick symbol are called <strong>template literals</strong>. Template literals can contain either single or double quotes:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb12-1" title="1"><span class="va">console</span>.<span class="at">log</span>(<span class="vs">`&quot;Oh no&quot;, she exclaimed, &quot;Ben&#39;s bike is broken!&quot;`</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="st">&quot;Oh no&quot;</span><span class="op">,</span> she exclaimed<span class="op">,</span> <span class="st">&quot;Ben&#39;s bike is broken!&quot;</span></a>
-<a class="sourceLine" id="cb12-3" title="3">⠕ </a></code></pre></div>
+<a class="sourceLine" id="cb12-3" title="3">⠕</a></code></pre></div>
 <p>Template literal strings can even span multiple lines:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb13-1" title="1">⠕ <span class="kw">let</span> message <span class="op">=</span> <span class="vs">`This message will</span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="vs">... span several</span></a>
@@ -1101,7 +1102,7 @@ The picture drawn by this program.<br> <strong><a href="https://repl.it/@mcuring
 <a class="sourceLine" id="cb16-3" title="3">⠕ <span class="kw">let</span> pi <span class="op">=</span> <span class="fl">3.14159</span><span class="op">;</span></a></code></pre></div>
 <p>This example declares three variables and assigns them values. The first assigns the string value <code>"What's up, Doc?"</code> to a variable named <code>message</code>. The second gives the number <code>17</code> to <code>n</code>, and the third assigns the number <code>3.14159</code> to a variable called <code>pi</code>.</p>
 <p>The <strong>assignment token</strong>, <code>=</code>, should not be confused with <em>equals</em>, which uses the token <code>===</code>. The assignment statement binds a <em>name</em>, on the left-hand side of the operator, to a <em>value</em>, on the right-hand side. This is why you will get an error if you enter:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" title="1">        </a>
+<div class="sourceCode" id="cb17"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" title="1"></a>
 <a class="sourceLine" id="cb17-2" title="2">⠕ <span class="kw">let</span> <span class="dv">17</span> <span class="op">=</span> n<span class="op">;</span></a>
 <a class="sourceLine" id="cb17-3" title="3"></a>
 <a class="sourceLine" id="cb17-4" title="4">SyntaxError<span class="op">:</span> unexpected token<span class="op">:</span> numeric literal</a></code></pre></div>
@@ -1134,16 +1135,16 @@ The picture drawn by this program.<br> <strong><a href="https://repl.it/@mcuring
 <section id="variable-names-and-keywords" class="level2">
 <h2>Variable names and keywords</h2>
 <p><strong>Variable names</strong> and other <strong>identifiers</strong> can be arbitrarily long. They can contain both letters and digits, but they have to begin with a letter, the dollar sign <code>$</code>, or an underscore <code>_</code>. Remember that case matters. <code>Bruce</code> and <code>bruce</code> are different variables.</p>
-<p>In Javascript, capital letters are often used in variables tha contain multiple words, such as <code>myName</code> or <code>thePriceOfTeaInChina</code>. The underscore character (<code>_</code>) can appear in a name, too. You may see it to separate multiple words, such as <code>my_name</code> or <code>price_of_tea_in_china</code>, but this style is less common in Javascript.</p>
+<p>In Javascript, capital letters are often used in variables that contain multiple words, such as <code>myName</code> or <code>thePriceOfTeaInChina</code>. The underscore character (<code>_</code>) can appear in a name, too. You may see underscores used to separate multiple words, such as <code>my_name</code> or <code>price_of_tea_in_china</code>, but this style is less common in Javascript.</p>
 <p>Sometimes programmers start variables with underscores or dollar signs to give them special meanings. In this book, all variable names will start with letters.</p>
 <p>If you give a variable an illegal name, you get a syntax error:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb20-1" title="1">⠕ <span class="kw">let</span> 76trombones <span class="op">=</span> <span class="st">&quot;big parade&quot;</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb20-2" title="2">unknown<span class="op">:</span> Identifier directly after number</a>
 <a class="sourceLine" id="cb20-3" title="3">⠕ <span class="kw">let</span> <span class="kw">typeof</span> <span class="op">=</span> <span class="st">&quot;Computer Science 101&quot;</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb20-4" title="4">unknown<span class="op">:</span> Unexpected token </a></code></pre></div>
+<a class="sourceLine" id="cb20-4" title="4">unknown<span class="op">:</span> Unexpected token</a></code></pre></div>
 <p><code>76trombones</code> is illegal because it does not begin with a letter, but what’s wrong with <code>typeof</code>?</p>
 <p>It turns out that <code>typeof</code> is reserved as one of Javascript’s <strong>keywords</strong>. Keywords define the language’s syntax rules and structure, and they cannot be used as variable names.</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords">Javascript has almost fourty keywords</a> (different versions of Javascript have slightly different keywords):</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords">Javascript has almost forty keywords</a> (different versions of Javascript have slightly different keywords):</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb21-1" title="1"></a>
 <a class="sourceLine" id="cb21-2" title="2">await       <span class="cf">finally</span>       <span class="kw">protected</span></a>
 <a class="sourceLine" id="cb21-3" title="3"><span class="cf">break</span>       <span class="cf">for</span>           <span class="cf">return</span></a>
@@ -1193,7 +1194,7 @@ So you’ll find some instructors who deliberately don’t choose meaningful nam
 <h2>Operators and operands</h2>
 <p><strong>Operators</strong> are special tokens that represent computations like addition, multiplication and division. The values the operator uses are called <strong>operands</strong>.</p>
 <p>The following are all legal Javascript expressions whose meaning is more or less clear:</p>
-<pre><code>20+32   hour-1   hour*60+minute   minute/60   5**2   (5+9)*(15-7)</code></pre>
+<pre><code>20+32   hour-1   hour*60+minute   minute/60   5**2   (5+9) * (15-7)</code></pre>
 <p>The tokens <code>+</code>, <code>-</code>, and <code>*</code>, and the use of parenthesis for grouping, mean in Javascript what they mean in mathematics. The asterisk (<code>*</code>) is the token for multiplication, and <code>**</code> is the token for exponentiation.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb25-1" title="1">⠕ <span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span></a>
 <a class="sourceLine" id="cb25-2" title="2"><span class="op">=&gt;</span> <span class="dv">8</span></a>
@@ -1222,7 +1223,7 @@ So you’ll find some instructors who deliberately don’t choose meaningful nam
 <p>The <code>Number.parseInt(arg)</code> function can take a floating point number or a string, and turn it into an whole number. For floating point numbers, it <em>discards</em> the decimal portion of the number — a process we call <em>truncation towards zero</em> on the number line. Let us see this in action:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb28-1" title="1">⠕ <span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.14</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="op">=&gt;</span> <span class="dv">3</span></a>
-<a class="sourceLine" id="cb28-3" title="3">⠕ <span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.9999</span>)<span class="op">;</span>     <span class="co">// This doesn&#39;t round to the closest int! </span></a>
+<a class="sourceLine" id="cb28-3" title="3">⠕ <span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.9999</span>)<span class="op">;</span>     <span class="co">// This doesn&#39;t round to the closest int!</span></a>
 <a class="sourceLine" id="cb28-4" title="4"><span class="op">=&gt;</span> <span class="dv">3</span></a>
 <a class="sourceLine" id="cb28-5" title="5">⠕ <span class="va">Number</span>.<span class="at">parseInt</span>(<span class="fl">3.0</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb28-6" title="6"><span class="op">=&gt;</span> <span class="dv">3</span></a>
@@ -1295,7 +1296,7 @@ As we’ve seen, concatenation means joining the two operands by linking them en
 <p>There is a built-in function in Javascript for getting input from the user:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb36-1" title="1">⠕ <span class="kw">let</span> n <span class="op">=</span> <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;Please enter your name: &quot;</span>)<span class="op">;</span></a></code></pre></div>
 <p>If you run this sample in a repl.it prompt, it will open a dialog window with the message:</p>
-<pre><code>Please enter your name: </code></pre>
+<pre><code>Please enter your name:</code></pre>
 <p>The user of the program can type the name and hit <code>enter</code>. When this happens the text that has been entered is returned from the <code>prompt</code> function, and in this case assigned to the variable <code>n</code>.</p>
 <p>Even if you asked the user to enter their age, you would get back a string like <code>"17"</code>. It would be your job, as the programmer, to convert that string into a integer or float before using it, if that was required.</p>
 </section>
@@ -1314,7 +1315,7 @@ As we’ve seen, concatenation means joining the two operands by linking them en
 <div class="sourceCode" id="cb39"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">let</span> r <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(<span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What is your radius? &quot;</span>))<span class="op">;</span></a>
 <a class="sourceLine" id="cb39-2" title="2"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The area is &quot;</span><span class="op">,</span> <span class="fl">3.14159</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span></a></code></pre></div>
 <p>If we really wanted to be tricky, we could write it all in one statement:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb40-1" title="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The area is &quot;</span><span class="op">,</span> <span class="fl">3.14159</span> <span class="op">*</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(<span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What is your radius? &quot;</span>))<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> </a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb40-1" title="1"><span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;The area is &quot;</span><span class="op">,</span> <span class="fl">3.14159</span> <span class="op">*</span> <span class="va">Number</span>.<span class="at">parseFloat</span>(<span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;What is your radius? &quot;</span>))<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span></a></code></pre></div>
 <p>Such compact code may not be the most understandable for humans, but it does illustrate how we can compose bigger chunks from our building blocks.</p>
 <p>If you’re ever in doubt about whether to compose code or fragment it into smaller steps, try to make it as simple as you can for the human to follow. My choice would be the first case above, with four separate steps.</p>
 </section>
@@ -1336,8 +1337,35 @@ As we’ve seen, concatenation means joining the two operands by linking them en
 <a class="sourceLine" id="cb42-3" title="3">⠕ <span class="kw">let</span> secsStillRemaining  <span class="op">=</span> totalSecs <span class="op">%</span> <span class="dv">3600</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb42-4" title="4">⠕ <span class="kw">let</span> minutes <span class="op">=</span> <span class="va">Math</span>.<span class="at">floor</span>(secsStillRemaining / <span class="dv">60</span>)<span class="op">;</span></a>
 <a class="sourceLine" id="cb42-5" title="5">⠕ <span class="kw">let</span> secsFinallyRemaining <span class="op">=</span> secsStillRemaining  <span class="op">%</span> <span class="dv">60</span><span class="op">;</span></a>
-<a class="sourceLine" id="cb42-6" title="6">⠕ </a>
+<a class="sourceLine" id="cb42-6" title="6">⠕</a>
 <a class="sourceLine" id="cb42-7" title="7">⠕ <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hrs=&quot;</span><span class="op">,</span> hours<span class="op">,</span> <span class="st">&quot;  mins=&quot;</span><span class="op">,</span> minutes<span class="op">,</span> <span class="st">&quot;secs=&quot;</span><span class="op">,</span> secsFinallyRemaining)<span class="op">;</span></a></code></pre></div>
+</section>
+<section id="exercises" class="level2">
+<h2>Exercises</h2>
+<p>To complete these exercises, open up a Javascript interpreter in repl.it. You can test things out in the right-side interactive window, and write your solutions in the Javascript source file on the left side. You might want to comment out the code you’re not working on, so that the output is less confusing.</p>
+<p><a href="https://repl.it/@mcuringa/ES6-shell">Fork the basic ES6 Shell to get started</a></p>
+<ol>
+<li>Take the sentence: <em>All work and no play makes Jack a dull boy.</em> Store each word in a separate variable, then print out the sentence on one line using <code>console.log()</code>.</li>
+<li>Add parenthesis to the expression <code>6 * 1 - 2</code> to change its value from 4 to -6.</li>
+<li><p>Start the Javascript interpreter and enter <code>bruce + 4</code> at the prompt. This will give you an error: <code>ReferenceError: bruce is not defined</code></p>
+Assign a value to <code>bruce</code> so that <code>bruce + 4</code> evaluates to <code>10</code>.</li>
+<li><p>The formula for computing the final amount if one is earning compound interest is given on Wikipedia as <img class="d-block img-fluid" src="figs/compoundInterest.png" alt="formula for compound interest"></p>
+<p>Write a Javascript program that assigns the principal amount of $10000 to variable <code>P</code>, assign to <code>n</code> the value 12, and assign to <code>r</code> the interest rate of 8%. Set variable <code>t</code> to be the number of years the money will be compounded for. Calculate and print the final amount after <code>t</code> years.</p></li>
+<li><p>Evaluate the following numerical expressions in your head, then use the Javascript interpreter to check your results:</p>
+<ol>
+<li><code>⠕ 5 % 2</code></li>
+<li><code>⠕ 9 % 5</code></li>
+<li><code>⠕ 15 % 12</code></li>
+<li><code>⠕ 12 % 15</code></li>
+<li><code>⠕ 6 % 6</code></li>
+<li><code>⠕ 0 % 7</code></li>
+<li><code>⠕ 7 % 0</code></li>
+</ol>
+<p>What happened with the last example? Why? If you were able to correctly anticipate the computer’s response in all but the last one, it is time to move on. If not, take time now to make up examples of your own. Explore the modulus operator until you are confident you understand how it works.</p></li>
+<li><p>You look at the clock and it is exactly 2pm. You set an alarm to go off in 51 hours. At what time does the alarm go off? (Hint: you could count on your fingers, but this is not what we’re after. If you are tempted to count on your fingers, change the 51 to 5100.)</p></li>
+<li><p>Write a Javascript program to solve the general version of the above problem. Create a variable <code>hrs</code> to represent the number of hours to wait.<br />
+Your program should output what the time will be on the clock when the alarm goes off, regardless of the value that <code>hrs</code> holds.</p></li>
+</ol>
 </section>
 <section id="glossary-2" class="level2">
 <h2>Glossary</h2>
@@ -1648,7 +1676,7 @@ Short variable names are more economical and sometimes make code easier to read:
 </dd>
 </dl>
 </section>
-<section id="exercises" class="level2">
+<section id="exercises-1" class="level2">
 <h2>Exercises</h2>
 <ol type="1">
 <li><p>Write a void (non-fruitful) function to that prints out a “hello” message. Your function should declare 3 parameters: <code>firstName</code>, <code>lastName</code>, and <code>title</code>. <code>title</code> will be Mr., Ms., Dr., etc. The function should print a message like this one: <code>Hello Dr. Matthew Curinga.</code></p></li>

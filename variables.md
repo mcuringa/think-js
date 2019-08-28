@@ -9,8 +9,8 @@ that a program manipulates. Programming `turtle` we have been using values
 like `100` when we write `fd(100)` and `"blue"` in statements like
 `setColor("blue")`.
 
-These values are classified into different **classes**, or **data types**: ``100`` 
-is an *number*, and ``"blue"`` is a *string*, 
+These values are classified into different **classes**, or **data types**: ``100``
+is an *number*, and ``"blue"`` is a *string*,
 so-called because it contains a string of
 letters. You (and the interpreter) can identify strings because they are
 enclosed in quotation marks.
@@ -27,8 +27,8 @@ If you are not sure what class a value falls into, the Javascript **typeof**  op
 Not surprisingly, strings are of type `string` and integers are of type `number`.
 In Javascript, both whole numbers and fractions (numbers with decimal points)
 are of type `number`. At this stage, you can treat the words *class* and *type*
-interchangeably.  We'll come back to a deeper understanding of what a class 
-is in later chapters. 
+interchangeably.  We'll come back to a deeper understanding of what a class
+is in later chapters.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -62,16 +62,16 @@ Strings in Javascript can be enclosed in either single quotes (``'``) or double 
 
 Double quoted strings can contain single quotes inside them, as in
 ``"Bruce's beard"``, and single quoted strings can have double quotes
-inside them, as in ``'The knights who say "Ni!"'``. 
+inside them, as in ``'The knights who say "Ni!"'``.
 
 Strings enclosed with the backtick symbol are
-called **template literals**.  Template literals can 
-contain either single or double quotes: 
+called **template literals**.  Template literals can
+contain either single or double quotes:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 console.log(`"Oh no", she exclaimed, "Ben's bike is broken!"`);
 "Oh no", she exclaimed, "Ben's bike is broken!"
-⠕ 
+⠕
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Template literal strings can even span multiple lines:
 
@@ -98,10 +98,10 @@ console.log(message);
 This long message will... will appear on one line... when it's logged to the console.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Javascript doesn't care whether you use single or double quotes to surround your strings: 
+Javascript doesn't care whether you use single or double quotes to surround your strings:
 once it has parsed the text of your program or command, the way it stores the
 value is identical in all cases, and the surrounding quotes are not part of
-the value. But when the interpreter wants to display a string, it has to 
+the value. But when the interpreter wants to display a string, it has to
 decide which quotes to use to make it look like a string. It usually choose a single quote.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -121,9 +121,9 @@ We will learn more about template strings in the chapter on strings.
 
 When you type a large number, you might be tempted to use commas between
 groups of three digits, as in ``42,000``. This is not a legal number in
-Javascript, and different Javascript interpreters handle it differently. Formal languages are 
+Javascript, and different Javascript interpreters handle it differently. Formal languages are
 strict, the notation is concise, and even the smallest change might
-mean something quite different from what you intended. 
+mean something quite different from what you intended.
 
 Variables
 ---------
@@ -152,7 +152,7 @@ left-hand side of the operator, to a *value*, on the right-hand side.
 This is why you will get an error if you enter:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-        
+
 ⠕ let 17 = n;
 
 SyntaxError: unexpected token: numeric literal
@@ -164,12 +164,12 @@ or "n gets the value 17".  Don't say "n equals 17"._
 A common way to represent variables on paper is to write the name with an arrow
 pointing to the variable's value. This kind of figure is called a **state
 snapshot** because it shows what state each of the variables is in at a particular
-instant in time.  (Think of it as the variable's state of mind). 
+instant in time.  (Think of it as the variable's state of mind).
 This diagram shows the result of executing the assignment statements:
 
 ![State snapshot](figs/state.png)
 
-If you ask the interpreter to evaluate a variable, it will produce the value that is currently 
+If you ask the interpreter to evaluate a variable, it will produce the value that is currently
 linked to the variable:
 
 
@@ -182,7 +182,7 @@ linked to the variable:
 => 3.14159
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We use variables in a program to "remember" things, perhaps the current score in the video game.
-But variables are *variable*. This means they can change over time, just like the score in a video game. 
+But variables are *variable*. This means they can change over time, just like the score in a video game.
 You can assign a value to a variable, and later assign a different value to the same variable.  
 (*This is different from maths. In maths, if you give `x` the value 3, it
 cannot change to link to a different value half-way through your calculations!*)
@@ -198,11 +198,11 @@ cannot change to link to a different value half-way through your calculations!*)
 ⠕ day
 => 21
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-You'll notice we changed the value of ``day`` three times, and on the third assignment we even 
+You'll notice we changed the value of ``day`` three times, and on the third assignment we even
 made it refer to a value that was of a different type.   
 
-A great deal of programming is about having the computer remember things, e.g. *The number of missed calls on your phone*, 
-and then arranging to update or change the variable when you miss another call. 
+A great deal of programming is about having the computer remember things, e.g. *The number of missed calls on your phone*,
+and then arranging to update or change the variable when you miss another call.
 
 Variable names and keywords
 ---------------------------
@@ -211,14 +211,14 @@ Variable names and keywords
 digits, but they have to begin with a letter, the dollar sign `$`, or an underscore `_`.
 Remember that case matters. ``Bruce`` and ``bruce`` are different variables.
 
-In Javascript, capital letters are often used in variables tha contain multiple words, such as
+In Javascript, capital letters are often used in variables that contain multiple words, such as
 ``myName`` or ``thePriceOfTeaInChina``. The underscore character (``_``) can appear in a name, too.
-You may see it to separate multiple words, such as ``my_name`` or ``price_of_tea_in_china``, but
+You may see underscores used to separate multiple words, such as ``my_name`` or ``price_of_tea_in_china``, but
 this style is less common in Javascript.
 
 Sometimes programmers start variables with underscores or dollar signs to give them special meanings.
 In this book, all variable names will start with letters.
- 
+
 If you give a variable an illegal name, you get a syntax error:
 
 
@@ -226,7 +226,7 @@ If you give a variable an illegal name, you get a syntax error:
 ⠕ let 76trombones = "big parade";
 unknown: Identifier directly after number
 ⠕ let typeof = "Computer Science 101";
-unknown: Unexpected token 
+unknown: Unexpected token
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``76trombones`` is illegal because it does not begin with a letter, but
@@ -235,7 +235,7 @@ what's wrong with ``typeof``?
 It turns out that ``typeof`` is reserved as one of Javascript's **keywords**. Keywords define
 the language's syntax rules and structure, and they cannot be used as variable names.
 
-[Javascript has almost fourty keywords](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords) (different versions of Javascript have slightly different keywords):
+[Javascript has almost forty keywords](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords) (different versions of Javascript have slightly different keywords):
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 
@@ -257,19 +257,19 @@ extends     private       yield
 You might want to keep this list handy. If the interpreter complains about one
 of your variable names and you don't know why, see if it is on this list.
 
-Programmers generally choose names for their variables that are meaningful to 
+Programmers generally choose names for their variables that are meaningful to
 the human readers of the program—they help the programmer document, or remember, what the variable is used for.
 
 <aside id="meaningful-names">
    Beginners sometimes confuse "meaningful to the human readers" with "meaningful to the computer".
    So they'll wrongly think that because they've called some variable ``average`` or ``pi``, it will
-   somehow magically calculate an average, or magically know that the variable ``pi`` should have a 
+   somehow magically calculate an average, or magically know that the variable ``pi`` should have a
    value like 3.14159.  No! The computer doesn't understand what you intend the variable to mean.
-    
-   So you'll find some instructors who deliberately don't choose meaningful 
+
+   So you'll find some instructors who deliberately don't choose meaningful
    names when they teach beginners --- not because we don't think it is a good habit,
    but because we're trying to reinforce the message that you --- the programmer --- must
-   write the program code to calculate the average, and you must write an assignment 
+   write the program code to calculate the average, and you must write an assignment
    statement to give the variable ``pi`` the value you want it to have.
 </aside>
 
@@ -277,7 +277,7 @@ Statements
 ----------
 
 A **statement** is an instruction that the Javascript interpreter can execute. We
-have mostly seen the assignment statement so far.  Some other kinds of statements that 
+have mostly seen the assignment statement so far.  Some other kinds of statements that
 we'll see shortly are ``while`` statements, ``for`` statements, and ``if`` statements.
 (There are other kinds too!)
 
@@ -297,7 +297,7 @@ displays the result:
 ⠕ typeof "hello";
 => 'string'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In this example ``typeof`` is a Javascript operator that returns the type of a variable or literal data operand. 
+In this example ``typeof`` is a Javascript operator that returns the type of a variable or literal data operand.
 
 The *evaluation of an expression* produces a value, which is why expressions
 can appear on the right hand side of assignment statements. A value all by
@@ -324,8 +324,8 @@ multiplication and division. The values the operator uses are called **operands*
 
 The following are all legal Javascript expressions whose meaning is more or less
 clear:
-    
-    20+32   hour-1   hour*60+minute   minute/60   5**2   (5+9)*(15-7)
+
+    20+32   hour-1   hour*60+minute   minute/60   5**2   (5+9) * (15-7)
 
 The tokens ``+``, ``-``, and ``*``, and the use of parenthesis for grouping,
 mean in Javascript what they mean in mathematics. The asterisk (``*``) is the
@@ -337,6 +337,7 @@ token for multiplication, and ``**`` is the token for exponentiation.
 ⠕ 3 ** 2
 => 9
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 When a variable name appears in the place of an operand, it is replaced with
 its value before the operation is performed.
 
@@ -352,10 +353,10 @@ Example: so let us convert 645 minutes into hours:
 ⠕ hours;
 => 10.75
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Oops! In Javascript, the division operator ``/`` always yields a floating point (decimal) result. 
+Oops! In Javascript, the division operator ``/`` always yields a floating point (decimal) result.
 What we might have wanted to know was how many *whole* hours there are, and how many minutes remain.
 Javascript provides helpful **Math** functions to allow us to do this.
-`Math.floor()` rounds a number down to the nearest whole number. 
+`Math.floor()` rounds a number down to the nearest whole number.
 Its result is always a whole number --- and if it has to adjust the number it always
 moves it to the left on the number line. So `Math.floor(6 / 4)` yields `1`, but
 `Math.floor(-6 / 4)` might surprise you!  
@@ -373,19 +374,19 @@ moves it to the left on the number line. So `Math.floor(6 / 4)` yields `1`, but
 
 Type conversion
 ---------------
-    
+
 Here we'll look at some ways to convert data. We call these
 **type converters**.  
 
 The ``Number.parseInt(arg)`` function can take a floating point number or a string, and turn
-it into an whole number. For floating point numbers, it *discards* the decimal portion 
+it into an whole number. For floating point numbers, it *discards* the decimal portion
 of the number --- a process we call *truncation towards zero* on
 the number line. Let us see this in action:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ Number.parseInt(3.14);
 => 3
-⠕ Number.parseInt(3.9999);     // This doesn't round to the closest int! 
+⠕ Number.parseInt(3.9999);     // This doesn't round to the closest int!
 => 3
 ⠕ Number.parseInt(3.0);
 => 3
@@ -440,14 +441,14 @@ is a useful way to remember the order of operations:
    the expression ``6-3+2``, the subtraction happens first, yielding 3. We then add
    2 to get the result 5. If the operations had been evaluated from
    right to left, the result would have been ``6-(3+2)``, which is 1.  (The acronym
-   PEDMAS could mislead you to thinking that division has higher precedence than multiplication, 
+   PEDMAS could mislead you to thinking that division has higher precedence than multiplication,
    and addition is done ahead of subtraction - don't be misled.  
    Subtraction and addition are at the same precedence, and the left-to-right rule applies.)
-   
-   - An exception to the left-to-right left-associative rule 
-     is the exponentiation operator ``**``, so a useful hint is to always use 
+
+   - An exception to the left-to-right left-associative rule
+     is the exponentiation operator ``**``, so a useful hint is to always use
      parentheses to force exactly the order you want when exponentiation is involved:
-   
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ 2 ** 3 ** 2     // The right-most ** operator gets done first!
@@ -456,7 +457,7 @@ is a useful way to remember the order of operations:
 => 64
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The Javascript console in repl.it is great for exploring and experimenting
-with expressions like this. You can fork this repl to try it: <https://repl.it/@mcuringa/ES6-shell> 
+with expressions like this. You can fork this repl to try it: <https://repl.it/@mcuringa/ES6-shell>
 
 
 Operations on strings
@@ -483,7 +484,7 @@ returns the special *Not a Number* value, `NaN`.
 => NaN
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Interestingly, the ``+`` operator work with strings, but for strings, 
+Interestingly, the ``+`` operator work with strings, but for strings,
 the ``+`` operator represents **concatenation**, not addition.  
 As we've seen, concatenation means joining the two operands by linking them end-to-end. For example:
 
@@ -494,7 +495,7 @@ As we've seen, concatenation means joining the two operands by linking them end-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The output of this program is ``banana nut bread``. The space before the word
 ``nut`` is part of the string, and is necessary to produce the space between
-the concatenated strings. 
+the concatenated strings.
 
 Automatic conversion can be tricky and sometimes lead to unexpected results. Consider:
 
@@ -517,7 +518,7 @@ There is a built-in function in Javascript for getting input from the user:
 If you run this sample in a repl.it prompt, it will open a dialog window with the message:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Please enter your name: 
+Please enter your name:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The user of the program can type the name and hit `enter`. When this happens
@@ -536,17 +537,17 @@ So far, we have looked at the elements of a program --- variables, expressions,
 statements, and function calls --- in isolation, without talking about how to combine them.
 
 One of the most useful features of programming languages is their ability to
-take small building blocks and **compose** them into larger chunks. 
+take small building blocks and **compose** them into larger chunks.
 
 For example, we know how to get the user to enter some input, we know how to
 convert the string we get into a number, we know how to write a complex expression, and
 we know how to print values. Let's put these together in a small four-step program that
-asks the user to input a value for the radius of a circle, and then 
+asks the user to input a value for the radius of a circle, and then
 computes the area of the circle from the formula  
 
 ![](figs/circle_area.png)
 
-Firstly, we'll do the four steps one at a time: 
+Firstly, we'll do the four steps one at a time:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 let response = window.prompt("What is your radius? ");
@@ -566,7 +567,7 @@ console.log("The area is ", 3.14159 * r**2);
 If we really wanted to be tricky, we could write it all in one statement:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
-console.log("The area is ", 3.14159 * Number.parseFloat(window.prompt("What is your radius? "))**2); 
+console.log("The area is ", 3.14159 * Number.parseFloat(window.prompt("What is your radius? "))**2);
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -615,9 +616,63 @@ some seconds, and we'll convert them into hours, minutes, and remaining seconds.
 ⠕ let secsStillRemaining  = totalSecs % 3600;
 ⠕ let minutes = Math.floor(secsStillRemaining / 60);
 ⠕ let secsFinallyRemaining = secsStillRemaining  % 60;
-⠕ 
+⠕
 ⠕ console.log("Hrs=", hours, "  mins=", minutes, "secs=", secsFinallyRemaining);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Exercises
+---------
+
+To complete these exercises, open up a Javascript interpreter in repl.it.
+You can test things out in the right-side interactive window, and write your
+solutions in the Javascript source file on the left side. You might want to
+comment out the code you're not working on, so that the output is less confusing.
+
+[Fork the basic ES6 Shell to get started](https://repl.it/@mcuringa/ES6-shell)
+
+#. Take the sentence: *All work and no play makes Jack a dull boy.*
+   Store each word in a separate variable, then print out the sentence on
+   one line using ``console.log()``.
+#. Add parenthesis to the expression ``6 * 1 - 2`` to change its value
+   from 4 to -6.
+#. Start the Javascript interpreter and enter ``bruce + 4`` at the prompt.
+   This will give you an error: `ReferenceError: bruce is not defined`
+
+   Assign a value to ``bruce`` so that ``bruce + 4`` evaluates to ``10``.
+#. The formula for computing the final amount if one is earning
+   compound interest is given on Wikipedia as <img class="d-block img-fluid" src="figs/compoundInterest.png" alt="formula for compound interest">
+
+   Write a Javascript program that assigns the principal amount of $10000 to variable `P`,
+   assign to `n` the value 12, and assign to `r` the interest rate of 8%.
+   Set variable `t` to be the number of years the money will be compounded for.
+   Calculate and print the final amount after `t` years.
+
+#. Evaluate the following numerical expressions in your head, then use
+   the Javascript interpreter to check your results:
+
+    #. ``⠕ 5 % 2``
+    #. ``⠕ 9 % 5``
+    #. ``⠕ 15 % 12``
+    #. ``⠕ 12 % 15``
+    #. ``⠕ 6 % 6``
+    #. ``⠕ 0 % 7``
+    #. ``⠕ 7 % 0``
+
+   What happened with the last example? Why? If you were able to correctly
+   anticipate the computer's response in all but the last one, it is time to
+   move on. If not, take time now to make up examples of your own. Explore the
+   modulus operator until you are confident you understand how it works.
+
+#. You look at the clock and it is exactly 2pm. You set an alarm to go off
+   in 51 hours. At what time does the alarm go off? (Hint: you could count on
+   your fingers, but this is not what we're after. If you are tempted
+   to count on your fingers, change the 51 to 5100.)
+
+#. Write a Javascript program to solve the general version of the above problem.
+   Create a variable `hrs` to represent the number of hours to wait.  
+   Your program should output what the time will be on the clock when the alarm goes off,
+   regardless of the value that `hrs` holds.
+
 
 Glossary
 --------
@@ -668,7 +723,7 @@ int
 keyword
 
 :   A reserved word that is used by the compiler to parse program; you cannot use keywords like ``if``, ``function``, and ``while`` as variable names.
-    
+
 modulus operator
 
 :   An operator, denoted with a percent sign ( ``%``), that works on integers and yields the remainder when one number is divided by another.
