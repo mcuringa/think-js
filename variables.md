@@ -620,8 +620,8 @@ some seconds, and we'll convert them into hours, minutes, and remaining seconds.
 ⠕ console.log("Hrs=", hours, "  mins=", minutes, "secs=", secsFinallyRemaining);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Exercises
----------
+Variable Exercises
+------------------
 
 To complete these exercises, open up a Javascript interpreter in repl.it.
 You can test things out in the right-side interactive window, and write your
