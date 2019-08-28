@@ -32,11 +32,11 @@ for ([initialization]; [loop condition]; [final-expression]) {
 We can see that `for` follows the familiar pattern for **block statements** that
 we have already seen for _functions_ and _if_/_else_ statements,
 with a header and then body between opening and closing curly braces ({});
-In the case of `for`, the header contains 3 statements inside the 
-parenthesis. 
+In the case of `for`, the header contains 3 statements inside the
+parenthesis.
 
 1. The **initialization** statement is called exactly once: the
-first time the program reaches the for statement. 
+first time the program reaches the for statement.
 2. The **loop condition**
 is tested before each iteration of the loop. If `true`, the **loop body**
 executes. The loop body may contain any number of Javascript statements.
@@ -80,7 +80,7 @@ function spiral () {
 * At the _beginning_ of each _iteration_ or _pass_ of the loop, the Javascript interpreter
   checks the **loop condition**. If `true` the loop
   runs for another iteration. If `false`, the loop terminates.
-* At the _end_ of each execution of the body of the loop, Javascript returns 
+* At the _end_ of each execution of the body of the loop, Javascript returns
   to the `for` header to run the **final expression**. The final expression
   here increments `i` by one, using the special `++` operator.
 * Finally, when the loop condition is false, the program continues beyond the closing
@@ -88,7 +88,7 @@ function spiral () {
   the function returns `undefined` since it is a _void function_.
 
 Assignment
----------- 
+----------
 As we have mentioned previously, it is legal to make more than one assignment to the
 same variable. A new assignment makes an existing variable refer to a new value
 (and stop referring to the old value).
@@ -131,13 +131,13 @@ a = 3;    // After executing this line, a and b are no longer equal
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The third line changes the value of `a` but does not change the 
-value of `b`, so they are no longer equal. (In some programming 
-languages, a different symbol is used for assignment, such as `<-` 
-or `:=`, to avoid confusion.  Some people also think that 
-*variable* was an unfortunate word to choose, and instead we should 
-have called them *assignables*. Javascript chooses to follow common 
-terminology and token usage, also found in languages like C, C++, 
+The third line changes the value of `a` but does not change the
+value of `b`, so they are no longer equal. (In some programming
+languages, a different symbol is used for assignment, such as `<-`
+or `:=`, to avoid confusion.  Some people also think that
+*variable* was an unfortunate word to choose, and instead we should
+have called them *assignables*. Javascript chooses to follow common
+terminology and token usage, also found in languages like C, C++,
 Java, and C#, so we use the tokens `=` for assignment, `==`
 (or `===` which we prefer in Javascript) for equality, and we talk of *variables*.
 
@@ -145,15 +145,15 @@ Java, and C#, so we use the tokens `=` for assignment, `==`
 Updating variables
 ------------------
 
-When an assignment statement is executed, the right-hand side 
-expression (i.e. the expression that comes after the assignment 
-token) is evaluated first. This produces a value. Then the 
-assignment is made, so that the variable on the left-hand side now 
+When an assignment statement is executed, the right-hand side
+expression (i.e. the expression that comes after the assignment
+token) is evaluated first. This produces a value. Then the
+assignment is made, so that the variable on the left-hand side now
 refers to the new value.
 
 One of the most common forms of assignment is an update, where the new
 value of the variable depends on its old value. Deduct 40 cents from
-my airtime balance, or add one run to the scoreboard. 
+my airtime balance, or add one run to the scoreboard.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
 let n = 5;
@@ -173,7 +173,7 @@ If you try to get the value of a variable that has never been assigned to, you'l
 ReferenceError: x is not defined
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before you can update a variable, you have to **initialize** it to some starting value, 
+Before you can update a variable, you have to **initialize** it to some starting value,
 usually with a simple assignment:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
@@ -184,9 +184,9 @@ runsScored = runsScored + 1;
 
 Line 3 — updating a variable by adding 1 to it — is very common.  
 It is called an **increment** of the variable; subtracting 1 is called a **decrement**.  
-Sometimes programmers also talk about *bumping* a variable, which means the same 
+Sometimes programmers also talk about *bumping* a variable, which means the same
 as incrementing it by 1.
-  
+
 Abbreviated assignment
 ----------------------
 
@@ -231,28 +231,28 @@ There are similar abbreviations for `--`, `-=`, `*=`, `/=`, and `%=`:
 Tables
 ------
 
-One of the things loops are good for is generating tables.  Before 
-computers were readily available, people had to calculate 
-logarithms, sines and cosines, and other mathematical functions by 
-hand. To make that easier, mathematics books contained long tables 
-listing the values of these functions. Creating the tables was slow 
+One of the things loops are good for is generating tables.  Before
+computers were readily available, people had to calculate
+logarithms, sines and cosines, and other mathematical functions by
+hand. To make that easier, mathematics books contained long tables
+listing the values of these functions. Creating the tables was slow
 and boring, and they tended to be full of errors.
 
-When computers appeared on the scene, one of the initial reactions 
-was, _"This is great! We can use the computers to generate the 
-tables, so there will be no errors."_ That turned out to be true 
-(mostly) but shortsighted. Soon thereafter, computers and 
+When computers appeared on the scene, one of the initial reactions
+was, _"This is great! We can use the computers to generate the
+tables, so there will be no errors."_ That turned out to be true
+(mostly) but shortsighted. Soon thereafter, computers and
 calculators were so pervasive that the tables became obsolete.
 
-Well, almost. For some operations, computers use tables of values to 
-get an approximate answer and then perform computations to improve 
-the approximation. In some cases, there have been errors in the 
-underlying tables, most famously in the table the Intel Pentium 
+Well, almost. For some operations, computers use tables of values to
+get an approximate answer and then perform computations to improve
+the approximation. In some cases, there have been errors in the
+underlying tables, most famously in the table the Intel Pentium
 processor chip used to perform floating-point division.
 
-Although a log table is not as useful as it once was, it still makes 
-a good example of iteration. The following program outputs a 
-sequence of values in the left column and 2 raised to the power of 
+Although a log table is not as useful as it once was, it still makes
+a good example of iteration. The following program outputs a
+sequence of values in the left column and 2 raised to the power of
 that value in the right column:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}        
@@ -324,7 +324,7 @@ console.log(row);
 Here we initialized our loop variable `i` to 1 rather than 0
 because we want to start counting from 1.
 As the loop executes, the value of `i` changes from 1 to
-6. When `i` is incremented to 7, the loop terminates. 
+6. When `i` is incremented to 7, the loop terminates.
 Each time through the loop, it
 displays the value of `2 * i`, followed by the tab escape character.
 
@@ -344,13 +344,13 @@ So far, so good. The next step is to **encapsulate** and **generalize**.
 Encapsulation and generalization
 --------------------------------
 
-**Encapsulation** is the process of wrapping a piece of code in a 
-function, allowing you to take advantage of all the things functions 
-are good for. You have already seen some examples of encapsulation, 
+**Encapsulation** is the process of wrapping a piece of code in a
+function, allowing you to take advantage of all the things functions
+are good for. You have already seen some examples of encapsulation,
 including including the `square` function for our turtle graphics.
 
-**Generalization** means taking something specific, such as printing the 
-multiples of 2, and making it more general or **abstract**, such as printing the 
+**Generalization** means taking something specific, such as printing the
+multiples of 2, and making it more general or **abstract**, such as printing the
 multiples of any integer. We can use function parameters to accomplish generalization
 and abstraction.
 
@@ -520,7 +520,7 @@ Notice that when we added a new parameter, we had to change the first line of
 the function (the function heading), and we also had to change the place where
 the function is called in `printMultTable`.
 
-Now, when we call `printMultTable(7)`: 
+Now, when we call `printMultTable(7)`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~{.bash}
 1    2     3     4     5     6     7
@@ -622,7 +622,7 @@ them:
 
 Glossary
 --------
-   
+
 control flow
 :  The execution and sequencing of statements in a computer program. Statements flow
    in the order they are written. _Selection_ of certain statements -- and exclusion
@@ -633,7 +633,7 @@ definite loop
 :  A form of iteration when the (maximum) number of loops are known before
    the loop begins.
 
-encapsulation 
+encapsulation
 :  Encapsulation in computer programming involves writing functionality in code
    that is isolated from other parts of the program. We can wrap parts of our
    code in a function to encapsulate it. This allows us to test and validate
@@ -644,10 +644,10 @@ encapsulation
   of times.  `for` loops are useful for repeating things a set number of times
   (e.g. do this 100 times, print all of the odd numbers to 5,000), and iterating
   through items on a list (e.g. send an email to the whole class roster).
-   
+
 loop body
 :  Any number of statements that are executed during iterations of the loop. The
-   loop body follows the loop header and is indicated by curly braces and 
+   loop body follows the loop header and is indicated by curly braces and
    (in well formatted code) one level of indentation.
 
 loop initialization
@@ -657,7 +657,7 @@ loop initialization
 loop variable
 :  The loop variable determines when the loop terminates in a Booleaen expression
    in the _loop condition_. Often it counts the number of iterations in a loop, but
-   it is modified by the _final expression_ and may be modified in the _loop body_. 
+   it is modified by the _final expression_ and may be modified in the _loop body_.
 
 reassignment
 :  The ability of _variables_ to be given (assigned) a new value after they have been declared.
@@ -665,15 +665,15 @@ reassignment
 
 
 For Loop Exercises
--------------------
+------------------
 
-1. Write a function that prints `We like Javascript!` 1000 times. 
+1. Write a function that prints `We like Javascript!` 1000 times.
 
 2. Write a function `printOdds(start, end)` which prints all of the odd number starting with `start`
     up to and including `end`.
 
 3. Write a function `countByTens` that counts to 10,000 by 10s (printing the sequence 10, 20, 30, .. 10,000).
-      
+
 4. Write a function named `poly` that uses a `for` loop to make a turtle draw
    any regular polygon (regular means all sides the same lengths, all angles
    the same, to find the angle, divide 360 by the number of sides). The function
@@ -696,7 +696,7 @@ For Loop Exercises
    a **naive** solution -- a solution which solve the problem in a basic, but
    not most efficient or _elegant_ manner. Thinking (or reading) about prime
    numbers, can you **refactor** `isPrime` so that it can determine if a number
-   is prime without having to complete all of the iterations between 2 and `n`? 
+   is prime without having to complete all of the iterations between 2 and `n`?
 
 For Loop Lab
 ------------

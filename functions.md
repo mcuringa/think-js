@@ -7,8 +7,8 @@ Functions
 In Javascript, a **function** is a named sequence of statements
 that belong together. Their primary purpose is to help us
 organize programs into chunks that match how we think about
-the problem. 
- 
+the problem.
+
 The syntax for a **function definition** is:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
@@ -19,7 +19,7 @@ function NAME( PARAMETERS ) {
 
 We can make up any names we want for the functions we create, except that
 we can't use a name that is a Javascript keyword, and the names must follow the rules
-for legal identifiers (the same rules that apply to variable names). 
+for legal identifiers (the same rules that apply to variable names).
 
 There can be any number of statements inside the function, but they have to be
 between the curly braces (`{}`). These statements make up the **function body**.
@@ -35,7 +35,7 @@ pattern:
 3. A closing (right) curly brace.
 
 We've already seen the ``for`` loop which follows this pattern.
-   
+
 So looking again at the function definition, the keyword in the header is ``function``, which is
 followed by the name of the function and some *parameters* enclosed in
 parentheses. The parameter list may be empty, or it may contain any number of
@@ -45,7 +45,7 @@ The parameters specifies what information, if any, we have to provide in order t
 Suppose we are writing a program to calculate the amount of tip due on a
 bill. We might write a function to "calculate tip". "calculate tip" is
 an *abstraction*, or a mental chunk, of a number of smaller steps.  So
-let's write a function to capture the pattern of this "building block": 
+let's write a function to capture the pattern of this "building block":
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 /*
@@ -67,7 +67,7 @@ function calculateTip (bill, pct) {
 calculateTip(100,18);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This function is named ``calculateTip``.  It has two parameters: one to tell 
+This function is named ``calculateTip``.  It has two parameters: one to tell
 the function the amount of the bill, and the other to tell it the percent
 tip to calculate.
 
@@ -83,7 +83,7 @@ executing, then, the variable ``bill`` refers to the value 100, and the
 variable ``pct`` refers to 18. We can pass either variables (like ``myBill``)
 or literal values (like ``100``) as arguments.
 
-Once we've defined a function, we can call it as often as we like, and its 
+Once we've defined a function, we can call it as often as we like, and its
 statements will be executed each time we call it. In the next example, we calculate 3 different
 tip amounts for the same bill, using ``calculateTip`` defined above.
 
@@ -143,21 +143,21 @@ that we define ourselves.
 
 There are some points worth noting here:
 
-* Functions can call other functions. 
+* Functions can call other functions.
 * A caller of this function might say ``calculateTip(myBill, 15)``.  The parameters
   of this function, ``bill`` and ``tip``, are assigned the values of the myBill variable, and
   the number literal 15, respectively.
-* In the body of the function they are just like any other variable. 
+* In the body of the function they are just like any other variable.
 
 So far, it may not be clear why it is worth the trouble to create all of these
 new functions. Actually, there are a lot of reasons, but this example
 demonstrates two:
 
 1. Creating a new function gives us an opportunity to name a group of
-   statements. Functions can simplify a program by hiding a complex computation 
-   behind a single command. The function (including its name) can capture our 
+   statements. Functions can simplify a program by hiding a complex computation
+   behind a single command. The function (including its name) can capture our
    mental chunking, or *abstraction*, of the problem.  
-2. Creating a new function can make a program smaller by eliminating repetitive 
+2. Creating a new function can make a program smaller by eliminating repetitive
    code.  
 
 As we might expect, we have to create a function before we can execute it.
@@ -201,9 +201,9 @@ Functions that require arguments
 ---------------------------------------------
 
 Most functions require arguments: the arguments provide for generalization, allowing the same
-function to work with different data inputs. 
-For example, if we want to find the absolute value of a number, we have 
-to indicate what the number is. The Javascript ``Math`` class has a built-in function for 
+function to work with different data inputs.
+For example, if we want to find the absolute value of a number, we have
+to indicate what the number is. The Javascript ``Math`` class has a built-in function for
 computing the absolute value:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
@@ -253,8 +253,8 @@ Functions that return values
 
 Some functions return values. In the previous section we saw that ``Math.abs``
 and ``Math.max`` return values. ``calculateTip`` does not return a value; it
-uses ``console.log`` to produce output on the screen for the user. 
-We can use the return values from functions to compose more complex functions. 
+uses ``console.log`` to produce output on the screen for the user.
+We can use the return values from functions to compose more complex functions.
 
 A function that returns a value is called a **fruitful function** in this book.
 The opposite of a fruitful function is **void function** — one that is not executed
@@ -279,8 +279,8 @@ function finalAmt (p, r, n, t) {
   // This is new, and makes the function fruitful
   return a;
 }
-   
-           
+
+
 //now that we have the function above, let's call it
 let toInvest = Number.parseFloat( window.prompt("How much do you want to invest?") );
 let fnl = finalAmt(toInvest, 0.08, 12, 5);
@@ -299,19 +299,19 @@ console.log("At the end of the period you'll have", fnl);
   This is a bit messy with all these decimal places, but remember that
   Javascript doesn't understand that we're working with money: it just does the calculation to
   the best of its ability, without rounding. Later we'll see how to format the string that
-  is printed in such a way that it does get nicely rounded to two decimal places before printing. 
+  is printed in such a way that it does get nicely rounded to two decimal places before printing.
 * The line ``let toInvest = Number.parseFloat( window.prompt("How much do you want to invest?") );
 ``
   also shows yet another example
-  of *composition* — we can call a function like ``Number.parseFloat``, and its arguments 
+  of *composition* — we can call a function like ``Number.parseFloat``, and its arguments
   can be the results of other function calls (like ``window.prompt``) that we've called along the way.
-  
+
 Notice something else very important here. The name of the variable we pass as an
 argument — ``toInvest`` — has nothing to do with the name of the parameter
-— ``p``.  It is as if  ``p = toInvest`` is executed when ``finalAmt`` is called. 
-It doesn't matter what the value was named in 
+— ``p``.  It is as if  ``p = toInvest`` is executed when ``finalAmt`` is called.
+It doesn't matter what the value was named in
 the caller, in ``finalAmt`` its name is ``p``.  
-         
+
 These short variable names are getting quite tricky, so perhaps we'd prefer one of these
 versions instead:       
 
@@ -327,13 +327,13 @@ function finalAmtV3(amt, rate, compounded, years) {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-They all do the same thing. Use your judgment to write code that can be best 
+They all do the same thing. Use your judgment to write code that can be best
 understood by other humans!  
-Short variable names are more economical and sometimes make 
-code easier to read: 
+Short variable names are more economical and sometimes make
+code easier to read:
 <var>E = mc<sup>2</sup></var> would not be nearly so memorable if Einstein had
-used longer variable names! If you do prefer short names, 
-make sure you also have some comments to enlighten the reader 
+used longer variable names! If you do prefer short names,
+make sure you also have some comments to enlighten the reader
 about what the variables are used for.
 
 -----------------------------------------------
@@ -346,33 +346,33 @@ the function, and we cannot use it outside. For example, consider again this fun
 function finalAmt (p, r, n, t) {
   let a = p * (1 + r/n) ** (n * t);
   return a;
-} 
+}
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- 
+
 If we try to use ``a``, outside the function, we'll get an error like this:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}        
 ⠕ a
 ReferenceError: a is not defined
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
- 
+
 The variable ``a`` is local to ``finalAmt``, and is not visible
 outside the function.
 
-Additionally, ``a`` only exists while the function is being executed — 
-we call this its **lifetime**. 
+Additionally, ``a`` only exists while the function is being executed —
+we call this its **lifetime**.
 When the execution of the function terminates, the local variables are destroyed.
 
-Parameters are also local, and act like local variables. 
-For example, the lifetimes of ``p``, ``r``, ``n``, ``t`` begin when ``finalAmt`` is called, 
+Parameters are also local, and act like local variables.
+For example, the lifetimes of ``p``, ``r``, ``n``, ``t`` begin when ``finalAmt`` is called,
 and the lifetime ends when the function completes its execution.   
 
-So it is not possible for a function to set some local variable to a 
+So it is not possible for a function to set some local variable to a
 value, complete its execution, and then when it is called again next
 time, recover the local variable. Each call of the function creates
 new local variables, and their lifetimes expire when the function returns
-to the caller. 
+to the caller.
 
 
 Glossary
@@ -382,7 +382,7 @@ argument
 
 :    A value provided to a function when the function is called. This value
     is assigned to the corresponding parameter in the function.  The argument
-    can be the result of an expression which may involve operators, 
+    can be the result of an expression which may involve operators,
     operands and calls to other fruitful functions.
 
 body
@@ -437,7 +437,7 @@ function definition
 
 :   A statement that creates a new function, specifying its name,
     parameters, and the statements it executes.
-    
+
 fruitful function
 
 :   A function that returns a value when it is called.
@@ -450,14 +450,14 @@ header line
 import statement
 
 :   A statement which permits functions and variables defined in another Python
-    module to be brought into the environment of another script.  To use the 
+    module to be brought into the environment of another script.  To use the
     features of the turtle, we need to first import the turtle module.
-    
+
 lifetime
 
 :   Variables and objects have lifetimes — they are created at some point during
-    program execution, and will be destroyed at some time. 
-    
+    program execution, and will be destroyed at some time.
+
 local variable
 
 :   A variable defined inside a function. A local variable can only be used
@@ -466,16 +466,16 @@ local variable
 
 parameter
 
-:   A name used inside a function to refer to the value which was passed 
+:   A name used inside a function to refer to the value which was passed
     to it as an argument.
-       
+
 refactor
 
-:   A fancy word to describe reorganizing our program code, usually to make 
+:   A fancy word to describe reorganizing our program code, usually to make
     it more understandable.  Typically, we have a program that is already working,
     then we go back to "tidy it up".  It often involves choosing better variable
     names, or spotting repeated patterns and moving that code into a function.    
-    
+
 stack diagram
 
 :   A graphical representation of a stack of functions, their variables,
@@ -488,20 +488,20 @@ traceback
     *stack trace*, since it lists the functions in the order in which they
     are stored in the
     [runtime stack](http://en.wikipedia.org/wiki/Runtime_stack).
-    
+
 void function
 
 :    The opposite of a fruitful function: one that does not return a value.  It is
     executed for the work it does, rather than for the value it returns.
 
-Exercises
----------
+Function Exercises
+------------------
 
 1.  Write a void (non-fruitful) function to that prints out a "hello" message. Your function
     should declare 3 parameters: ``firstName``, ``lastName``, and ``title``. ``title`` will be
     Mr., Ms., Dr., etc. The function should print a message like this one:
     `Hello Dr. Matthew Curinga.`
-    
+
 
 2. Write a function ``half(num)`` which returns the value of ``num`` divided by 2.
 
@@ -514,7 +514,7 @@ Exercises
 5. Write a function ``hypotenuse(a, b)`` which calculates the hypotonuse of a right triangle
    when given the length of sides ``a`` and ``b``.
    Use the [Pythagorean theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem) `a^2 + b^2 = c^2`.<br>
-   Note, you will need to be able to calculate square roots to solve this problem. 
+   Note, you will need to be able to calculate square roots to solve this problem.
    You can use the build in math function ``Math.sqrt``.
 
 6. (hard bonus) Write a function called ``distance(x1, y1, x2, y2)`` which calculates the
@@ -537,7 +537,7 @@ For this first lab, too, please pay attention to your [coding style](#coding-sty
 make sure that the program is well formatted and easy for human readers to understand.
 
 For this lab you are going to revisit the lemonade stand estimator from the exercises in
-chapter 2. You will make an interactive program that asks the user to enter all of the 
+chapter 2. You will make an interactive program that asks the user to enter all of the
 data for:
 
 - prices of the ingredients

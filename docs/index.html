@@ -404,7 +404,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="#functions-that-require-arguments">Functions that require arguments</a></li>
 <li><a href="#functions-that-return-values">Functions that return values</a></li>
 <li><a href="#glossary-3">Glossary</a></li>
-<li><a href="#exercises">Exercises</a></li>
+<li><a href="#function-exercises">Function Exercises</a></li>
 <li><a href="#functions-lab">Functions Lab</a></li>
 <li><a href="#code-listing-1-the-tip-calculator">Code Listing 1: The Tip Calculator</a></li>
 </ul></li>
@@ -1565,8 +1565,8 @@ Your program should output what the time will be on the clock when the alarm goe
 <a class="sourceLine" id="cb49-7" title="7">  <span class="co">// This is new, and makes the function fruitful</span></a>
 <a class="sourceLine" id="cb49-8" title="8">  <span class="cf">return</span> a<span class="op">;</span></a>
 <a class="sourceLine" id="cb49-9" title="9"><span class="op">}</span></a>
-<a class="sourceLine" id="cb49-10" title="10">   </a>
-<a class="sourceLine" id="cb49-11" title="11">           </a>
+<a class="sourceLine" id="cb49-10" title="10"></a>
+<a class="sourceLine" id="cb49-11" title="11"></a>
 <a class="sourceLine" id="cb49-12" title="12"><span class="co">//now that we have the function above, let&#39;s call it</span></a>
 <a class="sourceLine" id="cb49-13" title="13"><span class="kw">let</span> toInvest <span class="op">=</span> <span class="va">Number</span>.<span class="at">parseFloat</span>( <span class="va">window</span>.<span class="at">prompt</span>(<span class="st">&quot;How much do you want to invest?&quot;</span>) )<span class="op">;</span></a>
 <a class="sourceLine" id="cb49-14" title="14"><span class="kw">let</span> fnl <span class="op">=</span> <span class="at">finalAmt</span>(toInvest<span class="op">,</span> <span class="fl">0.08</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">5</span>)<span class="op">;</span></a>
@@ -1597,7 +1597,7 @@ Short variable names are more economical and sometimes make code easier to read:
 <a class="sourceLine" id="cb51-2" title="2"><span class="kw">function</span> <span class="at">finalAmt</span> (p<span class="op">,</span> r<span class="op">,</span> n<span class="op">,</span> t) <span class="op">{</span></a>
 <a class="sourceLine" id="cb51-3" title="3">  <span class="kw">let</span> a <span class="op">=</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> r/n) <span class="op">**</span> (n <span class="op">*</span> t)<span class="op">;</span></a>
 <a class="sourceLine" id="cb51-4" title="4">  <span class="cf">return</span> a<span class="op">;</span></a>
-<a class="sourceLine" id="cb51-5" title="5"><span class="op">}</span> </a></code></pre></div>
+<a class="sourceLine" id="cb51-5" title="5"><span class="op">}</span></a></code></pre></div>
 <p>If we try to use <code>a</code>, outside the function, we’ll get an error like this:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb52-1" title="1">⠕ a</a>
 <a class="sourceLine" id="cb52-2" title="2">ReferenceError<span class="op">:</span> a is not defined</a></code></pre></div>
@@ -1676,8 +1676,8 @@ Short variable names are more economical and sometimes make code easier to read:
 </dd>
 </dl>
 </section>
-<section id="exercises" class="level2">
-<h2>Exercises</h2>
+<section id="function-exercises" class="level2">
+<h2>Function Exercises</h2>
 <ol type="1">
 <li><p>Write a void (non-fruitful) function to that prints out a “hello” message. Your function should declare 3 parameters: <code>firstName</code>, <code>lastName</code>, and <code>title</code>. <code>title</code> will be Mr., Ms., Dr., etc. The function should print a message like this one: <code>Hello Dr. Matthew Curinga.</code></p></li>
 <li><p>Write a function <code>half(num)</code> which returns the value of <code>num</code> divided by 2.</p></li>
