@@ -5,7 +5,7 @@ Conditionals
 > whose combinations should be founded upon the laws of the mental processes
 > which they represent, would, so far, be a step towards a philosophical
 > language.
-> 
+>
 > --- George Boole, _The Mathematical Analysis of Logic_ 1847
 
 Boolean values and expressions
@@ -31,7 +31,7 @@ a Boolean value. For example, the operator ``===`` tests if two values are equal
 It produces (or *yields*) a Boolean value:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
-⠕ 5 === (3 + 2);   // Is five equal 5 to the result of 3 + 2? 
+⠕ 5 === (3 + 2);   // Is five equal 5 to the result of 3 + 2?
 => true
 ⠕ 5 === 6;
 => false
@@ -43,7 +43,7 @@ true
 In the first statement, the two operands evaluate to equal values, so the expression evaluates
 to ``true``; in the second statement, 5 is not equal to 6, so we get ``false``.
 
-The ``===`` operator is one of six common **comparison operators** which all produce 
+The ``===`` operator is one of six common **comparison operators** which all produce
 a ``boolean`` result; here are all six:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -62,7 +62,7 @@ equal sign (``=``) instead of a triple equal sign (``===``). Remember that ``=``
 is an assignment operator and ``===`` is a comparison operator. Also, there is
 no such thing as ``=<`` or ``=>``.
 
-Like any other types we've seen so far, Boolean values can be assigned to 
+Like any other types we've seen so far, Boolean values can be assigned to
 variables, printed, etc.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}     
@@ -87,7 +87,7 @@ Javascript does automatic type conversion. For example, it converts numbers to
 strings when you use the ``+`` token for string concatenation and
 strings to numbers (if it can) when we use other mathematical operators.
 
-The ``==`` compares values for equality _after_ type conversion, whereas 
+The ``==`` compares values for equality _after_ type conversion, whereas
 the ``===`` compares values _before_ conversion. Only values of the same
 type are equal with the strict operator.
 
@@ -131,7 +131,7 @@ Finally, the ``not`` operator negates a Boolean value, so ``! (x > y)``
 is ``true`` if ``(x > y)`` is ``false``, that is, if ``x`` is less than or equal to
 ``y``.
 
-The expression on the left of the ``||`` operator is evaluated first: if the result is ``true``, 
+The expression on the left of the ``||`` operator is evaluated first: if the result is ``true``,
 Javascript does not (and need not) evaluate the expression on the right --- this is called *short-circuit evaluation*.
 Similarly, for the ``&&`` operator, if the expression on the left yields ``false``, Javascript does not
 evaluate the expression on the right.
@@ -154,7 +154,7 @@ False   True     False
 True    False    False
 True    True     True
 
-In a Truth Table, we sometimes use T and F as shorthand for the two 
+In a Truth Table, we sometimes use T and F as shorthand for the two
 Boolean values: here is the truth table describing ``||``:
 
 
@@ -178,13 +178,13 @@ T    F
 Simplifying Boolean Expressions
 -------------------------------
 
-A set of rules for simplifying and rearranging expressions is called an *algebra*. 
+A set of rules for simplifying and rearranging expressions is called an *algebra*.
 For example, we are all familiar with school algebra rules, such as:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}    
 n * 0 === 0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-which provides rules for working with Boolean values. 
+which provides rules for working with Boolean values.
 
 First, the ``&&`` operator:
 
@@ -207,7 +207,7 @@ x || true === true
 true || x === true
 x || x === x
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        
+
 Two ``!`` operators cancel each other:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
@@ -234,7 +234,7 @@ else {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If it is true, then all the indented statements get executed. If not, then all
-the statements indented under the ``else`` clause get executed. 
+the statements indented under the ``else`` clause get executed.
 
 ![Flowchart of an if statement with an else clause](figs/flowchart_if_else.png)
 
@@ -258,9 +258,9 @@ The indented statements that follow are called a **block**. The block ends with 
 right curly brace ( } ).
 
 Each of the statements inside the first block of statements are executed in order if the Boolean
-expression evaluates to ``true``. The entire first block of statements 
+expression evaluates to ``true``. The entire first block of statements
 is skipped if the Boolean expression evaluates to ``false``, and instead
-all the statements indented under the ``else`` clause are executed. 
+all the statements indented under the ``else`` clause are executed.
 
 There is no limit on the number of statements that can appear under the two clauses of an ``if`` statement, but there has to be at least one statement in each block.
 
@@ -269,7 +269,7 @@ Omitting the ``else`` clause
 
 ![Flowchart of an if statement with no else clause](figs/flowchart_if_only.png)
 
-Another form of the ``if`` statement is one in which the ``else`` clause is omitted entirely. 
+Another form of the ``if`` statement is one in which the ``else`` clause is omitted entirely.
 In this case, when the condition evaluates to ``true``, the statements are
 executed, otherwise the flow of execution continues to the statement after the ``if``.
 
@@ -286,10 +286,10 @@ console.log("The square root of ", x, "is", Math.sqrt(x)) ;
 In this case, the print function that outputs the square root is the one after the ``if`` --- it comes
 after our curly braces ended the conditional block.
 
-Notice that ``else`` is not a statement. The ``if`` statement has 
+Notice that ``else`` is not a statement. The ``if`` statement has
 two *clauses*, one of which is the (optional) ``else`` clause. However you can
 never use the ``else`` keyword outside of an ``if`` statement.
-        
+
 
 Chained conditionals
 --------------------
@@ -309,7 +309,7 @@ else {
   STATEMENTS_C
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- 
+
 ![](figs/flowchart_chained_conditional.png)        
 
 Again, exactly one branch will be executed. There is no limit of the number of
@@ -344,7 +344,7 @@ One conditional can also be **nested** within another. (It is the same theme of
 composability, again!)  We could have written
 the previous example as follows:
 
-![Flowchart of this nested conditional](figs/flowchart_nested_conditional.png) 
+![Flowchart of this nested conditional](figs/flowchart_nested_conditional.png)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
 if (x < y) {
@@ -360,7 +360,7 @@ else {
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The outer conditional contains two branches. 
+The outer conditional contains two branches.
 The second branch contains another ``if`` statement, which
 has two branches of its own. Those two branches could contain
 conditional statements as well.
@@ -394,7 +394,7 @@ if (0 < x && x < 10) {
 The ``return`` statement
 ------------------------
 
-The ``return`` statement, with or without a value, depending on whether the 
+The ``return`` statement, with or without a value, depending on whether the
 function is fruitful or void, allows us to terminate the execution of a function
 before (or when) we reach the end. One reason to use an *early return* is if we detect an error
 condition:
@@ -415,7 +415,7 @@ displays an error message and then uses ``return`` to exit the function. The
 flow of execution immediately returns to the caller, and the remaining lines of
 the function are not executed.
 
-Truthy evaluations 
+Truthy evaluations
 ------------------
 
 As you integrate Boolean logic into your programs, you will often encounter
@@ -495,7 +495,7 @@ Each of the six relational operators has a logical opposite: for example,
 suppose we can get a driving license when our age is greater or equal to 16,
 we can *not* get the driving license when we are less than 16.
 
-Notice that the opposite of ``>=`` is ``<``. 
+Notice that the opposite of ``>=`` is ``<``.
 
 
 operator  logical opposite     
@@ -509,7 +509,7 @@ operator  logical opposite
 
 Understanding these logical opposites allows us to sometimes get rid of ``!``
 operators. ``!`` operators are often quite difficult to read in computer code, and
-our intentions will usually be clearer if we can eliminate them. 
+our intentions will usually be clearer if we can eliminate them.
 
 For example, if we wrote this Javascript:
 
@@ -517,9 +517,9 @@ For example, if we wrote this Javascript:
 if (!(age >= 16)) {
   console.log("Hey, you're too young to get a driving license!");
 }
-  
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-it would probably be clearer to use the simplification laws, and to 
+it would probably be clearer to use the simplification laws, and to
 write instead:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
@@ -531,13 +531,13 @@ Two powerful simplification laws (called de Morgan's laws) that are often
 helpful when dealing with complicated Boolean expressions are:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!(x && y)  ===  (!x) || (!y) 
+!(x && y)  ===  (!x) || (!y)
 !(x || y)   ===  (!x) && (!y)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For example, suppose we can slay the dragon only if our magic 
-lightsabre sword is charged to 90% or higher, 
-and we have 100 or more energy units in our protective shield. 
+For example, suppose we can slay the dragon only if our magic
+lightsabre sword is charged to 90% or higher,
+and we have 100 or more energy units in our protective shield.
 We find this fragment of Javascript code in the game:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
@@ -572,22 +572,22 @@ else {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This last version is probably the best of the three, because it very closely matches  
-the initial English statement. Clarity of our code (for other humans), 
+the initial English statement. Clarity of our code (for other humans),
 and making it easy to see that the code does what we expect should always
-be a high priority. 
+be a high priority.
 
-As our programming skills develop we'll find we have 
-more than one way to solve any problem. So good programs are *designed*. 
-We make choices that favor clarity, simplicity, and elegance. The job 
+As our programming skills develop we'll find we have
+more than one way to solve any problem. So good programs are *designed*.
+We make choices that favor clarity, simplicity, and elegance. The job
 title *software architect* says a lot about what we do --- we are *architects*
-who engineer our products to balance beauty, functionality, simplicity and 
-clarity in our creations. 
+who engineer our products to balance beauty, functionality, simplicity and
+clarity in our creations.
 
 <aside id="polish-code-tip">
 **Tip:** Once our program works, we should play around a bit trying to polish it up.
-Write good comments. Think about whether the code would be clearer with 
+Write good comments. Think about whether the code would be clearer with
 different variable names. Could we have done it more elegantly?  Should
-we rather use a function?  Can we simplify the conditionals? 
+we rather use a function?  Can we simplify the conditionals?
 
 We think of our code as our creation, our work of art! We make it great.
 </aside>
@@ -603,7 +603,7 @@ body
 
 :   The block of statements in a compound statement that follows the
     header.
-          
+
 Boolean algebra
 
 :   Some rules for rearranging and reasoning about Boolean expressions.
@@ -632,7 +632,7 @@ chained conditional
 comparison operator
 
 :   Javascript operators that compare two values: ``===``, ``!==``, ``>``,
-    ``<``, ``>=``, and ``<=``. 
+    ``<``, ``>=``, and ``<=``.
 
 condition
 
@@ -658,11 +658,11 @@ nesting
 prompt
 
 :   A visual cue that tells the user that the system is ready to accept input data.
-    
+
 truth table
 
 :   A concise table of Boolean values that can describe the semantics
-    of an operator. 
+    of an operator.
 
 type conversion
 
@@ -681,32 +681,33 @@ wrapping code in a function
 
 Conditional Exercises
 ---------------------
-   
-1. Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. 
+[You can use this repl for your exercises](https://repl.it/@mcuringa/conditionals-exercises)
+
+1. Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday.
    Write a function which is given the day number, and it returns the day name (a string).
- 
+
 2. You go on a wonderful vacation leaving on day number 3 (a Wednesday). You
    return home after 22 nights sleep. What day of the week is it? Write a general
    version of the program which asks for the starting day number, and the length
    of your stay, and it will tell you the name of day of the week you will return
    on. You might want to use the ``%`` mod operator. You can compose this
    function from the one you wrote in exercise 1.
-   
+
 3. Give the logical opposites of these conditions
-    a. ``a > b`` 
+    a. ``a > b``
     b. ``a >= b``
     c. ``a >= 18  and  day == 3``
     d. ``a >= 18  and  day != 3``
-    
+
 4. What do these expressions evaluate to?
     a. ``3 === 3``
     b. ``3 !== 3``
     c. ``3 >= 4``
     d. ``!(3 < 4)``
-    
-5. Write a function which is given an exam score, 
+
+5. Write a function which is given an exam score,
    and it returns a string --- the letter grade for that mark --- according to this scheme:   
-   
+
     Score     Grade
     -------   --------------
     90-100    A
@@ -720,7 +721,7 @@ Conditional Exercises
    that the third argument to the function is always the longest side. It will
    return ``true`` if the triangle  is right-angled, or ``false`` otherwise.<br>
    Hint: Floating point arithmetic is not always exactly accurate,
-   so it is not safe to test floating point numbers for equality. 
+   so it is not safe to test floating point numbers for equality.
    If a good programmer wants to know whether
    ``x`` is equal or close enough to ``y``, they would probably code it up as:<br>
 
@@ -732,7 +733,7 @@ Conditional Exercises
 
    If you're intrigued by why floating point arithmetic is sometimes inaccurate, on a piece
    of paper, divide 10 by 3 and write down the decimal result. You'll find it does not terminate,
-   so you'll need an infinitely long sheet of paper. The *representation* of numbers in computer 
+   so you'll need an infinitely long sheet of paper. The *representation* of numbers in computer
    memory or on your calculator has similar problems: memory is finite, and some digits may have
    to be  discarded, so small inaccuracies creep in. Try this script:
 
@@ -799,7 +800,7 @@ Snake           1929
 Horse           1930
 Goat            1931
 Monkey          1932
-Rooster         1933 
+Rooster         1933
 Dog             1934
 Pig             1935
 
@@ -819,8 +820,3 @@ away from the edge. It should choose a new random distance in this heading. Some
   and determine if it's on the screen or off the screen
 - you will need to use `getHeading()` to make this calculation
 - you will need to use the trigonometry functions in [the Javascript Math library](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
-
-
-
-
-
