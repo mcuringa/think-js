@@ -633,11 +633,6 @@ and lab for this chapter, review the full
 
 :   Pauses drawing for approximately this many seconds. Useful for creating animations. Not affected by setSpeed.
 
-`repeat (count) { ... }`
-
-:   Repeat the commands between the curly braces the specified number of times.
-
-
 
 Turtle Exercises 1
 ------------------
