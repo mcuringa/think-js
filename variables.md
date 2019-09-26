@@ -628,7 +628,8 @@ You can test things out in the right-side interactive window, and write your
 solutions in the Javascript source file on the left side. You might want to
 comment out the code you're not working on, so that the output is less confusing.
 
-[Fork the basic ES6 Shell to get started](https://repl.it/@mcuringa/ES6-shell)
+[Fork the standard ES6 Shell with `window.prompt()`](https://repl.it/@mcuringa/ES6-shell)
+or [the node.js shell with the terminal-only `prompt()` function](https://repl.it/@mcuringa/prompt)
 
 #. Take the sentence: *All work and no play makes Jack a dull boy.*
    Store each word in a separate variable, then print out the sentence on

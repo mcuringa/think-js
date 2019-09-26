@@ -864,6 +864,9 @@ The picture drawn by this program.<br> <strong><a href="https://repl.it/@mcuring
 <dt><code>pd()</code></dt>
 <dd><p>Put the pen down to resume drawing.</p>
 </dd>
+<dt><code>ht()</code></dt>
+<dd><p>Hide the turtle.</p>
+</dd>
 <dt><code>setColor(color)</code></dt>
 <dd><p>Set the pen color by name such as RED or CSS color string such as “#FF0041”.</p>
 </dd>
@@ -926,9 +929,6 @@ The picture drawn by this program.<br> <strong><a href="https://repl.it/@mcuring
 </dd>
 <dt><code>wait(seconds)</code></dt>
 <dd><p>Pauses drawing for approximately this many seconds. Useful for creating animations. Not affected by setSpeed.</p>
-</dd>
-<dt><code>repeat (count) { ... }</code></dt>
-<dd><p>Repeat the commands between the curly braces the specified number of times.</p>
 </dd>
 </dl>
 </section>
@@ -1343,7 +1343,7 @@ As we’ve seen, concatenation means joining the two operands by linking them en
 <section id="variable-exercises" class="level2">
 <h2>Variable Exercises</h2>
 <p>To complete these exercises, open up a Javascript interpreter in repl.it. You can test things out in the right-side interactive window, and write your solutions in the Javascript source file on the left side. You might want to comment out the code you’re not working on, so that the output is less confusing.</p>
-<p><a href="https://repl.it/@mcuringa/ES6-shell">Fork the basic ES6 Shell to get started</a></p>
+<p><a href="https://repl.it/@mcuringa/ES6-shell">Fork the standard ES6 Shell with <code>window.prompt()</code></a> or <a href="https://repl.it/@mcuringa/prompt">the node.js shell with the terminal-only <code>prompt()</code> function</a></p>
 <ol>
 <li>Take the sentence: <em>All work and no play makes Jack a dull boy.</em> Store each word in a separate variable, then print out the sentence on one line using <code>console.log()</code>.</li>
 <li>Add parenthesis to the expression <code>6 * 1 - 2</code> to change its value from 4 to -6.</li>
@@ -1853,7 +1853,7 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <a class="sourceLine" id="cb55-3" title="3">⠕ tyepof True<span class="op">;</span></a>
 <a class="sourceLine" id="cb55-4" title="4"><span class="op">=&gt;</span> <span class="st">&#39;undefined&#39;</span></a></code></pre></div>
 <p>A <strong>Boolean expression</strong> is an expression that evaluates to produce a result which is a Boolean value. For example, the operator <code>===</code> tests if two values are equal. It produces (or <em>yields</em>) a Boolean value:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb56-1" title="1">⠕ <span class="dv">5</span> <span class="op">===</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">2</span>)<span class="op">;</span>   <span class="co">// Is five equal 5 to the result of 3 + 2? </span></a>
+<div class="sourceCode" id="cb56"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb56-1" title="1">⠕ <span class="dv">5</span> <span class="op">===</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">2</span>)<span class="op">;</span>   <span class="co">// Is five equal 5 to the result of 3 + 2?</span></a>
 <a class="sourceLine" id="cb56-2" title="2"><span class="op">=&gt;</span> <span class="kw">true</span></a>
 <a class="sourceLine" id="cb56-3" title="3">⠕ <span class="dv">5</span> <span class="op">===</span> <span class="dv">6</span><span class="op">;</span></a>
 <a class="sourceLine" id="cb56-4" title="4"><span class="op">=&gt;</span> <span class="kw">false</span></a>
@@ -2201,14 +2201,13 @@ This process of rearrangement is called <strong>refactoring</strong> the code.</
 <p>For example, if we wrote this Javascript:</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb77-1" title="1"><span class="cf">if</span> (<span class="op">!</span>(age <span class="op">&gt;=</span> <span class="dv">16</span>)) <span class="op">{</span></a>
 <a class="sourceLine" id="cb77-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving license!&quot;</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb77-3" title="3"><span class="op">}</span></a>
-<a class="sourceLine" id="cb77-4" title="4">  </a></code></pre></div>
+<a class="sourceLine" id="cb77-3" title="3"><span class="op">}</span></a></code></pre></div>
 <p>it would probably be clearer to use the simplification laws, and to write instead:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb78-1" title="1"><span class="cf">if</span> (age <span class="op">&lt;</span> <span class="dv">16</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb78-2" title="2">  <span class="va">console</span>.<span class="at">log</span>(<span class="st">&quot;Hey, you&#39;re too young to get a driving license!&quot;</span>)</a>
 <a class="sourceLine" id="cb78-3" title="3"><span class="op">}</span></a></code></pre></div>
 <p>Two powerful simplification laws (called de Morgan’s laws) that are often helpful when dealing with complicated Boolean expressions are:</p>
-<pre><code>!(x &amp;&amp; y)  ===  (!x) || (!y) 
+<pre><code>!(x &amp;&amp; y)  ===  (!x) || (!y)
 !(x || y)   ===  (!x) &amp;&amp; (!y)</code></pre>
 <p>For example, suppose we can slay the dragon only if our magic lightsabre sword is charged to 90% or higher, and we have 100 or more energy units in our protective shield. We find this fragment of Javascript code in the game:</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><a class="sourceLine" id="cb80-1" title="1"><span class="cf">if</span> <span class="op">!</span>((swordCharge <span class="op">&gt;=</span> <span class="fl">0.90</span>) <span class="op">&amp;&amp;</span> (shieldEnergy <span class="op">&gt;=</span> <span class="dv">100</span>)) <span class="op">{</span></a>
@@ -2294,6 +2293,7 @@ We think of our code as our creation, our work of art! We make it great.
 </section>
 <section id="conditional-exercises" class="level2">
 <h2>Conditional Exercises</h2>
+<p><a href="https://repl.it/@mcuringa/conditionals-exercises">You can use this repl for your exercises</a></p>
 <ol type="1">
 <li><p>Assume the days of the week are numbered 0,1,2,3,4,5,6 from Sunday to Saturday. Write a function which is given the day number, and it returns the day name (a string).</p></li>
 <li><p>You go on a wonderful vacation leaving on day number 3 (a Wednesday). You return home after 22 nights sleep. What day of the week is it? Write a general version of the program which asks for the starting day number, and the length of your stay, and it will tell you the name of day of the week you will return on. You might want to use the <code>%</code> mod operator. You can compose this function from the one you wrote in exercise 1.</p></li>
@@ -2357,9 +2357,8 @@ We think of our code as our creation, our work of art! We make it great.
 <p>This section describes three lab assignments that ask you to write larger programs that are organized into several functions. To complete these labs you will combine what you have learned about variables and expressions, functions, and conditional Boolean expressions.</p>
 <section id="lab-1-bmi-calculator-lab" class="level3">
 <h3>Lab 1: BMI Calculator Lab</h3>
-<p><a href="https://en.wikipedia.org/wiki/Body_mass_index">Body Mass Index (BMI)</a> is a [ratio of weight to height that public health and other organizations use as a [guide for healthy weights. In this lab you will write a BMI calculator that [asks the user for their age, height, and weight. You will calculate their BMI [and then report a message indicating if they are at risk for being [underweight, healthy weight, overweight, or obese.</p>
-<p>BMI is calculated by using the formula <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (kg)}{height (m)^{2}} =
-BMI</annotation></semantics></math> If you choose to use standard rather than metric measurements, you can use inches as the units for height and pounds as the unit for weight, and then convert the result by multiplying by the constant <code>703</code>. The formula would be: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mi>b</mi><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mi>n</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>×</mo><mn>703</mn><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass (lbs)}{height (in)^{2}} \times 703 = BMI</annotation></semantics></math></p>
+<p><a href="https://en.wikipedia.org/wiki/Body_mass_index">Body Mass Index (BMI)</a> is a ratio of weight to height (squared) that public health and other organizations use as a guide for healthy weights. It is expressed as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi></mrow><mrow><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass}{height^{2}} =BMI</annotation></semantics></math> In this lab you will write a BMI calculator that asks the user for their age, height, and weight. You will calculate their BMI and then report a message indicating if they are at risk for being underweight, healthy weight, overweight, or obese.</p>
+<p>BMI can be calculated using metric or SI measurements for height and weitht. The standard <em>index</em> comes from metric units: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass(kg)}{(height(m))^{2}} = BMI</annotation></semantics></math> If you choose to use SI rather than metric measurements, you can use inches as the units for height and pounds as the unit for weight, and then convert the result by multiplying by the constant <code>703</code>. The formula would be: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>m</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mi>b</mi><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>×</mo><mn>703</mn><mo>=</mo><mi>B</mi><mi>M</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">\frac{mass(lbs)}{(height(in))^{2}} \times 703 = BMI</annotation></semantics></math></p>
 <p>BMI for children and teens is more complicated, so you will not calculate it for this lab. Instead, if the age is &lt; 20, you should show the user a message that indicates that your calculator is only for adults.</p>
 <p>Once you have calculated the user’s BMI, you should use the following chart to determine which weight category they are in. Use this table:</p>
 <table>
@@ -2453,7 +2452,8 @@ BMI</annotation></semantics></math> If you choose to use standard rather than me
 </section>
 <section id="lab-3-bouncing-turtle" class="level3">
 <h3>Lab 3: Bouncing turtle</h3>
-<p>This may be an interesting problem if you are comfortable with geometry and trigonometry. In this lab you’ll revisit the <code>randomWalk</code> program that we worked on in our <em>turtle graphics</em>. You will modify <code>randomWalk</code> so that the turtle “bounces” when it reaches the edge of the screen. By bounce, the turtle should advance to the edge of the screen (aka canvas) and then choose a random angle away from the edge. It should choose a new random distance in this heading. Some hints:</p>
+<p>This may be an interesting problem if you are comfortable with geometry and trigonometry. In this lab you’ll revisit the <code>randomWalk</code> program that we worked on in our <em>turtle graphics</em>. In the <code>randomWalk</code> the turtle moves in a loop where it chooses a random angle to turn and a random distance for each iteration of the loop. You will modify <code>randomWalk</code> so that the turtle “bounces” when it reaches the edge of the screen. By bounce, the turtle should advance to the edge of the screen (aka canvas) and then turn to the <a href="https://www.physicsclassroom.com/class/refln/Lesson-1/The-Law-of-Reflection">angle of reflection</a> away from the edge. To finish its “walk”, it should then move forward for whatever distance remains for this iteration. Some hints:</p>
+<p>https://repl.it/<span class="citation" data-cites="mcuringa/Random-Walk">@mcuringa/Random-Walk</span></p>
 <ul>
 <li>Determine the maximum and minimum <code>x</code> and <code>y</code> that allow the turtle to stay on the screen. The turtle canvas dimensions are <code>1920 x 1280</code></li>
 <li><em>Before</em> the turtle moves forward, you will have to calculate the ending <code>x</code>, <code>y</code> and determine if it’s on the screen or off the screen</li>

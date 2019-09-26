@@ -549,6 +549,10 @@ and lab for this chapter, review the full
 
 :   Put the pen down to resume drawing.
 
+`ht()`
+
+:   Hide the turtle.
+
 `setColor(color)`
 
 :   Set the pen color by name such as RED or CSS color string such as "#FF0041".

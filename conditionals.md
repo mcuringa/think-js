@@ -754,17 +754,20 @@ Boolean expressions.
 ### Lab 1: BMI Calculator Lab
 
 [Body Mass Index (BMI)](https://en.wikipedia.org/wiki/Body_mass_index) is a
-[ratio of weight to height that public health and other organizations use as a
-[guide for healthy weights. In this lab you will write a BMI calculator that
-[asks the user for their age, height, and weight. You will calculate their BMI
-[and then report a message indicating if they are at risk for being
-[underweight, healthy weight, overweight, or obese.
+ratio of weight to height (squared) that public health and other organizations use as a
+guide for healthy weights. It is expressed as $$\frac{mass}{height^{2}} =BMI$$
+In this lab you will write a BMI calculator that
+asks the user for their age, height, and weight. You will calculate their BMI
+and then report a message indicating if they are at risk for being
+underweight, healthy weight, overweight, or obese.
 
-BMI is calculated by using the formula $$\frac{mass (kg)}{height (m)^{2}} =
-BMI$$ If you choose to use standard rather than metric measurements, you can
+BMI can be calculated using metric or SI measurements for height and weitht.
+The standard _index_ comes from metric units:
+$$\frac{mass(kg)}{(height(m))^{2}} = BMI$$
+If you choose to use SI rather than metric measurements, you can
 use inches as the units for height and pounds as the unit for weight, and then
 convert the result by multiplying by the constant `703`. The formula would be:
-$$\frac{mass (lbs)}{height (in)^{2}} \times 703 = BMI$$
+$$\frac{mass(lbs)}{(height(in))^{2}} \times 703 = BMI$$
 
 BMI for children and teens is more complicated, so you will not calculate it
 for this lab. Instead, if the age is < 20, you should show the user a message
@@ -809,10 +812,15 @@ Pig             1935
 
 This may be an interesting problem if you are comfortable with geometry and
 trigonometry. In this lab you'll revisit the `randomWalk` program that we
-worked on in our _turtle graphics_. You will modify `randomWalk` so that the
+worked on in our _turtle graphics_. In the `randomWalk` the turtle moves in a loop where
+it chooses a random angle to turn and a random distance for each iteration of the loop.
+You will modify `randomWalk` so that the
 turtle "bounces" when it reaches the edge of the screen. By bounce, the turtle
-should advance to the edge of the screen (aka canvas) and then choose a random angle
-away from the edge. It should choose a new random distance in this heading. Some hints:
+should advance to the edge of the screen (aka canvas) and then turn to the [angle of reflection](https://www.physicsclassroom.com/class/refln/Lesson-1/The-Law-of-Reflection)
+away from the edge. To finish its "walk", it should then move forward for whatever distance
+remains for this iteration. Some hints:
+
+https://repl.it/@mcuringa/Random-Walk
 
 - Determine the maximum and minimum `x` and `y` that allow the turtle to stay on the screen.
   The turtle canvas dimensions are ``1920 x 1280``
