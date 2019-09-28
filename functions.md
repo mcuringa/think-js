@@ -511,7 +511,7 @@ Function Exercises
    For the value of PI, use the constant ``Math.PI``<br>
    (Hint: if you can't remember how to find the area of a circle, look it up or ask a friend.)
 
-5. Write a function ``hypotenuse(a, b)`` which calculates the hypotonuse of a right triangle
+5. Write a function ``hypotenuse(a, b)`` which calculates the hypotenuse of a right triangle
    when given the length of sides ``a`` and ``b``.
    Use the [Pythagorean theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem) `a^2 + b^2 = c^2`.<br>
    Note, you will need to be able to calculate square roots to solve this problem.

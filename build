@@ -20,7 +20,7 @@ listing ./examples/spells/spells.js spells-notes.md  ./work/spells-src.md;
 
 
 
-CHAPTERS="forward.md way_of_the_program.md variables.md functions.md ./work/tip-src.md conditionals.md iteration.md while.md strings.md arrays.md ./work/school-report-src.md school-data-exercises.md maps.md gui.md ./work/jsgui-src.md  ./work/spells-src.md code-listings.md preface.md fdl-1.3.md";
+CHAPTERS="forward.md way_of_the_program.md variables.md functions.md assert-exercises.md ./work/tip-src.md conditionals.md iteration.md while.md strings.md arrays.md ./work/school-report-src.md school-data-exercises.md maps.md gui.md ./work/jsgui-src.md  ./work/spells-src.md code-listings.md preface.md fdl-1.3.md";
 
 pandoc -o ./docs/index.html --mathml --highlight-style zenburn -t html5 --template=tmpl/tmpl.html -s --toc --toc-depth=2 --section-divs -H ./tmpl/style.css $CHAPTERS;
 
