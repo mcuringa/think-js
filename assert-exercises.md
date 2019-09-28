@@ -4,6 +4,27 @@ Unit testing exercises
 For each of these problems, write the unit test **first**, then write the
 function. Make sure that it passes the test.
 
+**Convert km to m.** For example, write a function that converts kilometers to
+meters, as well as a function that tests this code. There are 1,000 meters in
+1 kilometer. The code might look like this:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
+
+function kmToM (km) {
+  let m = km / 1000;
+  return m;
+}
+
+
+function test_kmToM() {
+  assert(kmToM(1) === 1000, "1km should = 1000m");
+  assert(kmToM(52) === 52000, "52km should = 52000m");
+  assert(kmToM(.05) === 50, ".05km should = 50m");
+  assert(kmToM(-3) === -3000, "-3 should = -3000m");
+  assert(kmToM(0) === 0, "0 should = 0");
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 1. **Tbs to cups**. There are 16 tablespoons in a cup. Write a function that converts
    Tbs to cups. It should take the number of tablespoons as an argument and return
    the number of cups.
