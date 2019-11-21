@@ -853,15 +853,13 @@ Array Exercises
 
    ~~~~~~~~~~~~~~~~~~~~~~~{.javascript .numberLines}
    function test_isSorted() {
-     console.log("-----------------");
-     console.log("testing unsorted");
+
      let n1 = [4, 77, 2, 4567, 12];
-     console.log("is sorted:", isSorted(n1));
-     console.log("-----------------");
-     console.log("testing sorted");
+     console.assert(!isSorted(n1), "n1 is not sorted, isSorted(n1) failed");
      let n2 = [1, 2, 3, 4, 5];
-     console.log("is sorted:", isSorted(n2));
+     console.assert(isSorted(n2), "n2 is not sorted, isSorted(n2) failed");
    }
+   test_isSorted();
    ~~~~~~~~~~~~~~~~~~~~~~~
 
 Array Lab
