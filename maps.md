@@ -5,7 +5,7 @@ Key:Value Pairs
 ---------------
 
 So far we have looked at sequential data types --- strings and arrays ---
-which use integers as indices to access  the values they contain.
+which use integers as indices to access the values they contain.
 
 **Maps** are yet another kind of compound type. It is conventional to use
 Objects as the **mapping type** in Javascript, as we have seen in the
@@ -47,7 +47,7 @@ contains a key and a value separated by a colon.
 
 **Hashing**
 
-The order of the pairs may not be what was expected. Javascript  object don't
+The order of the pairs may not be what was expected. Javascript objects don't
 guarantee the that keys are returned in the same order they're inserted
 (``Maps``'s do, however). Javascript uses complex algorithms, designed for very
 fast access, to determine where the key:value pairs are stored in a map. For our
@@ -69,7 +69,7 @@ pair by iterating through the array and searching for a key.
 
 Maps provide very fast lookup by keys by implementing a
 technique called hashing, which allows us to access a value very
-quickly. By contrast, the array of arrays implementation above is slow. If
+quickly. By contrast, the "array of arrays" implementation above is slow. If
 we wanted to find a value associated with a key, we would have to
 iterate over every element, checking the 0th element. What if the key
 wasn't even in the list? We would have to get to the end of it to
@@ -244,18 +244,26 @@ standard for loop for array iteration. [You can read more about for...of in the
 docs.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
 
 If we try to access a key that isn't in our map, Javascript yields the special
-`undefined` value.
+`undefined` value. Javascript offers the `in` operator specifically to allow
+us to test if a key exists in a map. `in` will always return a boolean result
+(`true` or `false`) indicating the existence of a key.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 ⠕ eng2sp["one"]
 'uno'
 ⠕ "six" in eng2sp
-undefined
+false
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Later in the chapter we will see some examples where we use this technique
 to determine if we should update an existing entry in a map or create a new
 entry.
+
+Have a look at this video if you want to see some of the map basics in action.
+
+<div class="embed-responsive embed-responsive-16by9">
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YKgKhPm-2JE" allowfullscreen></iframe>
+</div>
 
 Aliasing and copying
 --------------------
@@ -311,9 +319,9 @@ Maps provide an elegant way to generate a frequency table:
 let letterCounts = {};
 let word = "Mississippi";
 word = word.toLowerCase();
-for(let i = 0; i < word.length; i++) {
+for (let i = 0; i < word.length; i++) {
   let letter = word[i];
-  if(letterCounts[letter]) {
+  if (letter in letterCounts) {
     letterCounts[letter]++;
   }
   else {
@@ -325,6 +333,7 @@ console.log(letterCounts);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Outputs:
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.javascript}
 { M: 1, i: 4, s: 4, p: 2 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -332,9 +341,9 @@ Outputs:
 We start with an empty map. For each letter in the string, we find the
 current count (possibly zero) and increment it. At the end, the map
 contains pairs of letters and their frequencies. We use a Boolean `if`/`else`
-to determine if the key exists in our map. _If the key exists_ we increment
-the count, _else_ we assign an initial value of 1 to that key. Note that we
-call `toLowerCase()` on our string because keys, as you should expect, are
+to determine if the key exists in our map. _If the key is already `in` the _map_
+we increment the count, _else_ we assign an initial value of 1 to that key.
+Note that we call `toLowerCase()` on our string because keys, as you should expect, are
 _case-sensitive_.
 
 It might be more appealing to display the frequency table in alphabetical order. We
