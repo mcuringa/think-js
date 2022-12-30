@@ -16,8 +16,8 @@
     "qwest": "^4.5.0"
   },
   "devDependencies": {
-    "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "keywords": [],
   "description": ""
